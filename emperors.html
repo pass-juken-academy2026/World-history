@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界史ポータル｜超詳細・指導者データバンク</title>
+
+<style>
+:root{
+  --bg:#070b14;
+  --bg2:#0d1321;
+  --panel:#111827;
+  --panel2:#151e30;
+  --line:#26334b;
+  --text:#edf2f7;
+  --muted:#9aa8bd;
+  --blue:#60a5fa;
+  --cyan:#22d3ee;
+  --purple:#a78bfa;
+  --gold:#fbbf24;
+  --green:#34d399;
+  --red:#fb7185;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+  --radius:20px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(96,165,250,.12),transparent 30%),
+    radial-gradient(circle at 90% 10%,rgba(167,139,250,.10),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  font-family:
+    -apple-system,BlinkMacSystemFont,
+    "Noto Sans JP","Yu Gothic",YuGothic,
+    Meiryo,sans-serif;
+  line-height:1.75;
+}
+
+/* =========================
+   共通
+========================= */
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1400px,calc(100% - 32px));
+  margin:auto;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(18px);
+  background:rgba(7,11,20,.78);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.topbar-inner{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+}
+
+.brand-icon{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  box-shadow:0 10px 30px rgba(37,99,235,.25);
+}
+
+.brand-text small{
+  display:block;
+  color:var(--muted);
+  font-size:.68rem;
+  letter-spacing:.12em;
+  line-height:1.2;
+}
+
+.brand-text strong{
+  font-size:.98rem;
+}
+
+.back-btn{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  padding:9px 14px;
+  border-radius:12px;
+  transition:.2s;
+}
+
+.back-btn:hover{
+  background:rgba(96,165,250,.12);
+  border-color:rgba(96,165,250,.45);
+  transform:translateY(-1px);
+}
+
+/* =========================
+   ヒーロー
+========================= */
+
+.hero{
+  padding:55px 0 30px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.45fr .55fr;
+  gap:24px;
+  align-items:stretch;
+}
+
+.hero-main{
+  position:relative;
+  overflow:hidden;
+  padding:40px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:
+    linear-gradient(135deg,rgba(37,99,235,.14),transparent 50%),
+    linear-gradient(315deg,rgba(124,58,237,.12),transparent 55%),
+    var(--panel);
+  box-shadow:var(--shadow);
+}
+
+.hero-main:after{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  right:-90px;
+  top:-100px;
+  background:rgba(96,165,250,.10);
+  filter:blur(5px);
+}
+
+.eyebrow{
+  color:var(--cyan);
+  font-weight:800;
+  font-size:.78rem;
+  letter-spacing:.16em;
+  margin-bottom:10px;
+}
+
+.hero h1{
+  margin:0 0 15px;
+  font-size:clamp(2rem,5vw,4rem);
+  line-height:1.12;
+  letter-spacing:-.04em;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#fff,#93c5fd,#c4b5fd);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-description{
+  color:var(--muted);
+  max-width:780px;
+  margin:0;
+}
+
+.hero-side{
+  display:grid;
+  gap:14px;
+}
+
+.stat-card{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.stat-number{
+  font-size:2rem;
+  font-weight:950;
+  color:#fff;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:.82rem;
+}
+
+/* =========================
+   フィルター
+========================= */
+
+.filter-panel{
+  position:sticky;
+  top:71px;
+  z-index:80;
+  margin-bottom:30px;
+  padding:16px;
+  border:1px solid var(--line);
+  background:rgba(13,19,33,.92);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.filter-row{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  scrollbar-width:thin;
+}
+
+.filter-row + .filter-row{
+  margin-top:11px;
+}
+
+.filter-title{
+  flex:0 0 auto;
+  width:70px;
+  color:var(--muted);
+  font-size:.75rem;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+}
+
+.filter-btn{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  background:#0b111d;
+  color:#aebbd0;
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:.78rem;
+  transition:.2s;
+}
+
+.filter-btn:hover{
+  border-color:#4b658b;
+  color:#fff;
+}
+
+.filter-btn.active{
+  color:#fff;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  border-color:transparent;
+  box-shadow:0 8px 25px rgba(37,99,235,.22);
+}
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  margin-top:14px;
+}
+
+.search-box{
+  width:100%;
+  background:#080e19;
+  border:1px solid var(--line);
+  color:#fff;
+  border-radius:13px;
+  padding:12px 15px;
+  outline:none;
+}
+
+.search-box:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(96,165,250,.1);
+}
+
+.reset-btn{
+  border:1px solid var(--line);
+  background:#151d2c;
+  color:#c8d3e4;
+  padding:0 17px;
+  border-radius:13px;
+}
+
+.reset-btn:hover{
+  background:#1c2940;
+}
+
+/* =========================
+   サマリー
+========================= */
+
+.result-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin:20px 0;
+}
+
+.result-count{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.result-count strong{
+  color:#fff;
+  font-size:1.1rem;
+}
+
+.tip{
+  color:#7dd3fc;
+  font-size:.78rem;
+}
+
+/* =========================
+   データカード
+========================= */
+
+.people-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  padding-bottom:80px;
+}
+
+.person-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.025),transparent),
+    var(--panel);
+  border-radius:22px;
+  padding:24px;
+  transition:.25s;
+}
+
+.person-card:hover{
+  transform:translateY(-4px);
+  border-color:#3a5275;
+  box-shadow:0 18px 45px rgba(0,0,0,.28);
+}
+
+.person-card:before{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  right:-50px;
+  top:-55px;
+  background:rgba(96,165,250,.08);
+}
+
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:flex-start;
+}
+
+.person-name{
+  margin:0;
+  font-size:1.35rem;
+  line-height:1.3;
+}
+
+.person-name-en{
+  color:#6f819c;
+  font-size:.68rem;
+  margin-top:2px;
+}
+
+.affiliation{
+  color:#93c5fd;
+  font-size:.78rem;
+  font-weight:800;
+  margin-top:6px;
+}
+
+.importance{
+  white-space:nowrap;
+  color:var(--gold);
+  font-size:.88rem;
+  letter-spacing:1px;
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:16px 0;
+}
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#0a111e;
+  border:1px solid #223149;
+  color:#aab8cc;
+  font-size:.67rem;
+}
+
+.tag.era{
+  color:#c4b5fd;
+  border-color:rgba(167,139,250,.25);
+}
+
+.tag.region{
+  color:#67e8f9;
+  border-color:rgba(34,211,238,.2);
+}
+
+.summary{
+  color:#b9c4d5;
+  font-size:.84rem;
+  margin:0 0 17px;
+}
+
+.info-section{
+  margin-top:16px;
+}
+
+.info-title{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:7px;
+  color:#f1f5f9;
+  font-weight:900;
+  font-size:.78rem;
+}
+
+.info-title .dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--blue);
+  box-shadow:0 0 12px rgba(96,165,250,.5);
+}
+
+.achievements{
+  margin:0;
+  padding-left:19px;
+  color:#aab7ca;
+  font-size:.78rem;
+}
+
+.achievements li{
+  margin-bottom:4px;
+}
+
+.trap{
+  padding:11px 13px;
+  background:rgba(251,191,36,.055);
+  border:1px solid rgba(251,191,36,.17);
+  border-radius:12px;
+  color:#e6c878;
+  font-size:.76rem;
+}
+
+.card-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:19px;
+  padding-top:15px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.details-btn{
+  border:1px solid rgba(96,165,250,.3);
+  background:rgba(96,165,250,.08);
+  color:#93c5fd;
+  border-radius:10px;
+  padding:8px 12px;
+  font-size:.74rem;
+  font-weight:800;
+}
+
+.details-btn:hover{
+  background:rgba(96,165,250,.15);
+}
+
+.period{
+  color:#687891;
+  font-size:.7rem;
+}
+
+/* =========================
+   モーダル
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modal-content{
+  width:min(900px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border:1px solid #30425f;
+  background:#0d1422;
+  border-radius:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.6);
+}
+
+.modal-header{
+  position:sticky;
+  top:0;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:flex-start;
+  padding:25px;
+  background:rgba(13,20,34,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+
+.modal-title{
+  margin:0;
+  font-size:1.65rem;
+  line-height:1.3;
+}
+
+.close-btn{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  border:1px solid var(--line);
+  background:#111b2b;
+  color:#fff;
+  font-size:1.2rem;
+}
+
+.modal-body{
+  padding:25px;
+}
+
+.detail-block{
+  margin-bottom:25px;
+}
+
+.detail-block h3{
+  margin:0 0 9px;
+  color:#eaf1fb;
+  font-size:1rem;
+}
+
+.detail-block p,
+.detail-block li{
+  color:#aebbd0;
+  font-size:.86rem;
+}
+
+.detail-block ul{
+  padding-left:20px;
+}
+
+.exam-box{
+  border:1px solid rgba(251,191,36,.25);
+  background:rgba(251,191,36,.06);
+  border-radius:15px;
+  padding:17px;
+}
+
+.exam-box strong{
+  color:#fcd34d;
+}
+
+/* =========================
+   フッター
+========================= */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:30px 0 45px;
+  color:#63738c;
+  font-size:.75rem;
+  text-align:center;
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:900px){
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .people-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .container{
+    width:min(100% - 20px,1400px);
+  }
+
+  .topbar-inner{
+    min-height:62px;
+  }
+
+  .brand-icon{
+    width:36px;
+    height:36px;
+  }
+
+  .brand-text strong{
+    font-size:.82rem;
+  }
+
+  .back-btn{
+    padding:7px 10px;
+    font-size:.72rem;
+  }
+
+  .hero{
+    padding-top:30px;
+  }
+
+  .hero-main{
+    padding:27px 22px;
+    border-radius:22px;
+  }
+
+  .hero h1{
+    font-size:2.15rem;
+  }
+
+  .hero-description{
+    font-size:.82rem;
+  }
+
+  .hero-side{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .stat-card{
+    padding:14px 10px;
+    border-radius:15px;
+  }
+
+  .stat-number{
+    font-size:1.35rem;
+  }
+
+  .stat-label{
+    font-size:.62rem;
+  }
+
+  .filter-panel{
+    top:63px;
+    padding:11px;
+    border-radius:15px;
+  }
+
+  .filter-title{
+    width:54px;
+    font-size:.65rem;
+  }
+
+  .filter-btn{
+    font-size:.68rem;
+    padding:7px 10px;
+  }
+
+  .search-row{
+    grid-template-columns:1fr;
+  }
+
+  .reset-btn{
+    padding:9px;
+  }
+
+  .person-card{
+    padding:19px;
+    border-radius:18px;
+  }
+
+  .person-name{
+    font-size:1.17rem;
+  }
+
+  .summary{
+    font-size:.79rem;
+  }
+
+  .achievements{
+    font-size:.74rem;
+  }
+
+  .modal{
+    padding:8px;
+  }
+
+  .modal-content{
+    max-height:94vh;
+    border-radius:18px;
+  }
+
+  .modal-header,
+  .modal-body{
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+<header class="topbar">
+  <div class="container topbar-inner">
+
+    <a href="index.html" class="brand">
+      <div class="brand-icon">🌍</div>
+      <div class="brand-text">
+        <small>WORLD HISTORY PORTAL</small>
+        <strong>指導者データバンク</strong>
+      </div>
+    </a>
+
+    <a href="index.html" class="back-btn">
+      ← トップへ戻る
+    </a>
+
+  </div>
+</header>
+
+
+<main>
+
+<!-- =========================
+     HERO
+========================= -->
+<section class="hero">
+  <div class="container">
+
+    <div class="hero-grid">
+
+      <div class="hero-main">
+        <div class="eyebrow">WORLD HISTORY / LEADERS DATABASE</div>
+
+        <h1>
+          皇帝・王・指導者を<br>
+          <span>「人物史」で攻略する。</span>
+        </h1>
+
+        <p class="hero-description">
+          東アジア・ヨーロッパ・イスラム世界・インド・アメリカまで。
+          大学受験で問われる重要人物を、
+          「所属 → 実績 → 歴史的意味 → ひっかけポイント」
+          の4段階で整理。
+          人名暗記だけで終わらせず、人物と事件・制度を結びつけるためのデータバンクです。
+        </p>
+      </div>
+
+      <div class="hero-side">
+
+        <div class="stat-card">
+          <div class="stat-number" id="totalPeople">0</div>
+          <div class="stat-label">登録人物</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">時代区分</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">検索・絞り込み</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     FILTER
+========================= -->
+<section class="container">
+
+  <div class="filter-panel">
+
+    <div class="filter-row">
+      <div class="filter-title">時代</div>
+
+      <button class="filter-btn active" data-filter="era" data-value="all">
+        すべて
+      </button>
+
+      <button class="filter-btn" data-filter="era" data-value="古代">
+        古代
+      </button>
+
+      <button class="filter-btn" data-filter="era" data-value="中世">
+        中世
+      </button>
+
+      <button class="filter-btn" data-filter="era" data-value="近世">
+        近世
+      </button>
+
+      <button class="filter-btn" data-filter="era" data-value="近代">
+        近代
+      </button>
+
+      <button class="filter-btn" data-filter="era" data-value="現代">
+        現代
+      </button>
+    </div>
+
+
+    <div class="filter-row">
+      <div class="filter-title">地域</div>
+
+      <button class="filter-btn active" data-filter="region" data-value="all">
+        すべて
+      </button>
+
+      <button class="filter-btn" data-filter="region" data-value="東アジア">
+        東アジア
+      </button>
+
+      <button class="filter-btn" data-filter="ヨーロッパ" data-value="ヨーロッパ">
+        ヨーロッパ
+      </button>
+
+      <button class="filter-btn" data-filter="イスラム・西アジア" data-value="イスラム・西アジア">
+        イスラム・西アジア
+      </button>
+
+      <button class="filter-btn" data-filter="インド" data-value="インド">
+        インド
+      </button>
+
+      <button class="filter-btn" data-filter="アメリカ" data-value="アメリカ">
+        アメリカ
+      </button>
+    </div>
+
+
+    <div class="filter-row">
+      <div class="filter-title">重要度</div>
+
+      <button class="filter-btn active" data-filter="importance" data-value="all">
+        すべて
+      </button>
+
+      <button class="filter-btn" data-filter="importance" data-value="3">
+        ★★★ 最重要
+      </button>
+
+      <button class="filter-btn" data-filter="importance" data-value="2">
+        ★★☆ 重要
+      </button>
+
+      <button class="filter-btn" data-filter="importance" data-value="1">
+        ★☆☆ 発展
+      </button>
+    </div>
+
+
+    <div class="search-row">
+
+      <input
+        id="searchInput"
+        class="search-box"
+        type="search"
+        placeholder="人物名・王朝・国名・実績・ひっかけポイントから検索…"
+      >
+
+      <button id="resetBtn" class="reset-btn">
+        条件リセット
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="result-bar">
+    <div class="result-count">
+      <strong id="resultCount">0</strong> 人を表示中
+    </div>
+
+    <div class="tip">
+      💡 人物カードを押すと詳しい受験ポイントを表示
+    </div>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PEOPLE
+========================= -->
+<section class="container">
+  <div id="peopleGrid" class="people-grid"></div>
+</section>
+
+</main>
+
+
+<footer>
+  WORLD HISTORY PORTAL ｜ 指導者データバンク
+</footer>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+<div id="modal" class="modal">
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <div>
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <div id="modalMeta"></div>
+      </div>
+
+      <button id="closeModal" class="close-btn">
+        ×
+      </button>
+
+    </div>
+
+    <div id="modalBody" class="modal-body"></div>
+
+  </div>
+
+</div>
+
+
+<script>
+/* ============================================================
+   世界史・指導者データ
+   ============================================================
+
+   ★★★ = 大学受験で最優先
+   ★★☆ = 頻出・重要
+   ★☆☆ = 発展・差がつく人物
+
+   【編集方法】
+   1. 新しい人物を追加したい場合
+      DATA.push({...}) の形式で追加してください。
+
+   2. era は
+      古代 / 中世 / 近世 / 近代 / 現代
+      のいずれか。
+
+   3. region は
+      東アジア / ヨーロッパ / イスラム・西アジア /
+      インド / アメリカ
+      のいずれか。
+
+   4. achievements
+      → カードに表示される実績。
+
+   5. detailed
+      → 「詳しく見る」で表示される本文。
+
+   6. traps
+      → 受験ひっかけ対策。
+
+============================================================ */
+
+const DATA = [
+
+/* ============================================================
+   東アジア・中国
+============================================================ */
+
+{
+  id:"qin-shihuang",
+  name:"秦の始皇帝",
+  en:"Qin Shi Huang",
+  affiliation:"秦",
+  era:"古代",
+  region:"東アジア",
+  importance:3,
+  period:"前259〜前210年",
+  summary:"戦国時代の諸国を統一し、中国史上初めて「皇帝」を称した人物。",
+  achievements:[
+    "前221年、韓・趙・魏・楚・燕・斉を滅ぼして中国を統一した。",
+    "郡県制を全国に広げ、諸侯を介さない中央集権的支配を進めた。",
+    "度量衡・貨幣・文字・車軌などを統一し、帝国統治の共通基盤を整えた。",
+    "北方では匈奴に備え、既存の城壁を接続・修築して長城建設を進めた。"
+  ],
+  detailed:"秦王政は前221年に天下を統一し、自らを「始皇帝」と称した。統一後は、戦国時代の分権的な封建秩序ではなく、皇帝を頂点とする中央集権体制を構築した。全国を郡・県に分け、官僚を派遣する郡県制を整備した点が重要である。また文字・度量衡・貨幣などの統一を進め、広大な地域を一つの国家として統治する仕組みを整えた。一方、法家思想を背景とした厳格な統治や大規模土木事業への動員は民衆の負担を増やし、秦は始皇帝の死後まもなく滅亡した。",
+  traps:[
+    "「中国を初めて統一」＝始皇帝。漢の武帝ではない。",
+    "始皇帝が統一したのは前221年。",
+    "万里の長城は始皇帝がゼロから造ったものではなく、戦国期の城壁をつないだ点に注意。"
+  ]
+},
+
+{
+  id:"han-wudi",
+  name:"武帝",
+  en:"Emperor Wu of Han",
+  affiliation:"前漢",
+  era:"古代",
+  region:"東アジア",
+  importance:3,
+  period:"前156〜前87年",
+  summary:"前漢の最盛期を築き、匈奴遠征と儒学官学化を進めた皇帝。",
+  achievements:[
+    "衛青・霍去病らを用いて匈奴を圧迫し、北方への勢力を拡大した。",
+    "張騫を西域へ派遣し、西域との交通・交流を強化した。",
+    "董仲舒の進言を背景に儒学を重視し、五経博士を置いた。",
+    "塩・鉄の専売や均輸・平準などを実施し、国家財政を強化した。"
+  ],
+  detailed:"武帝期の前漢は領域・国力ともに大きく拡大した。匈奴との戦いでは衛青・霍去病が活躍し、河西回廊を確保して西域進出への足場を築いた。張騫の西域派遣は、のちのシルクロードを考えるうえで重要である。また儒学を国家統治の理念として重視し、官僚養成との結びつきを強めた。軍事・外交だけでなく専売政策などによって財政基盤を強化した点も重要。",
+  traps:[
+    "匈奴遠征＝武帝期。始皇帝は北方防衛・長城。",
+    "張騫＝武帝に派遣された人物。",
+    "儒学の官学化と結びつく代表的皇帝＝武帝。"
+  ]
+},
+
+{
+  id:"cao-cao",
+  name:"曹操",
+  en:"Cao Cao",
+  affiliation:"魏・後漢末",
+  era:"古代",
+  region:"東アジア",
+  importance:2,
+  period:"155〜220年",
+  summary:"後漢末に華北を支配し、魏の基礎を築いた政治家・軍人。",
+  achievements:[
+    "後漢末の群雄割拠の中で華北を統一した。",
+    "屯田制を利用して兵糧を確保し、軍事力を安定させた。",
+    "献帝を奉じて「挙漢天子以令諸侯」とされる政治的立場を築いた。",
+    "赤壁の戦いでは孫権・劉備連合軍に敗れ、中国統一を阻まれた。"
+  ],
+  detailed:"曹操は後漢末の混乱期に勢力を拡大し、華北を支配した。献帝を擁して政治的正統性を確保し、屯田制などによって軍事・財政基盤を整えた。208年の赤壁の戦いで孫権・劉備連合軍に敗れたことで、中国は魏・呉・蜀の三勢力による分立へ向かった。曹操自身は魏王となり、死後に子の曹丕が後漢を滅ぼして魏を建国する。",
+  traps:[
+    "曹操自身が魏を正式に建国したわけではない。魏の建国者は曹丕。",
+    "赤壁＝曹操 vs 孫権・劉備。",
+    "三国志の『魏・呉・蜀』のうち魏の基礎を築いた人物。"
+  ]
+},
+
+{
+  id:"taizong",
+  name:"太宗（李世民）",
+  en:"Emperor Taizong",
+  affiliation:"唐",
+  era:"中世",
+  region:"東アジア",
+  importance:3,
+  period:"598〜649年",
+  summary:"唐の基礎を固めた皇帝。「貞観の治」で知られる。",
+  achievements:[
+    "玄武門の変を経て即位し、唐の統治体制を安定させた。",
+    "魏徴ら有能な臣下の意見を聞き、政治を安定させた。",
+    "律令体制を整え、均田制・租庸調制など唐の国家体制を発展させた。",
+    "突厥を撃破して北方支配を拡大し、「天可汗」と称された。"
+  ],
+  detailed:"太宗の治世は「貞観の治」と呼ばれ、唐の政治的基盤が強化された。太宗は臣下の諫言を重視し、魏徴らを登用した。北方では東突厥を服属させ、唐の国際的地位を高めた。律令・均田・租庸調などの制度が整えられ、後世の東アジア諸国にも影響を与えた。",
+  traps:[
+    "貞観の治＝太宗。",
+    "開元の治＝玄宗。",
+    "則天武后＝太宗の後、唐の政治を握った人物。"
+  ]
+},
+
+{
+  id:"wu-zetian",
+  name:"則天武后",
+  en:"Wu Zetian",
+  affiliation:"唐・武周",
+  era:"中世",
+  region:"東アジア",
+  importance:2,
+  period:"624〜705年",
+  summary:"中国史上唯一の正式な女性皇帝。",
+  achievements:[
+    "高宗の死後、実権を掌握して政治を主導した。",
+    "690年に国号を周とし、自ら皇帝を称した。",
+    "科挙・官僚登用を活用して貴族勢力を抑えた。",
+    "唐王朝復活後も政治制度や人材登用に影響を残した。"
+  ],
+  detailed:"則天武后は高宗の皇后として権力を強め、最終的に690年に国号を周へ変更して皇帝となった。門閥貴族だけに依存せず科挙などを活用して新しい官僚層を登用したことが重要である。",
+  traps:[
+    "中国史上唯一の正式な女性皇帝＝則天武后。",
+    "彼女の国号は唐ではなく「周」。",
+    "玄宗の開元の治とは別時代。"
+  ]
+},
+
+{
+  id:"song-taizu",
+  name:"太祖（趙匡胤）",
+  en:"Emperor Taizu of Song",
+  affiliation:"北宋",
+  era:"中世",
+  region:"東アジア",
+  importance:3,
+  period:"927〜976年",
+  summary:"五代十国の分裂を収束させ、北宋を建国した皇帝。",
+  achievements:[
+    "960年、宋を建国して五代十国の分裂を終息させる方向へ進めた。",
+    "文治主義を重視し、軍人勢力の政治介入を抑制した。",
+    "科挙を重視し、文官中心の統治体制を強化した。",
+    "節度使の軍事力を抑えて中央集権化を進めた。"
+  ],
+  detailed:"趙匡胤は後周の軍人から皇帝となり、960年に北宋を建国した。唐末以来の軍閥政治を抑えるため、文官を重視する統治を進めた。宋代の科挙官僚制の発展を理解する上で重要な人物である。",
+  traps:[
+    "宋の建国者＝趙匡胤（太祖）。",
+    "元を建国したのはフビライ。",
+    "北宋960〜1127、南宋1127〜1279。"
+  ]
+},
+
+{
+  id:"genghis",
+  name:"チンギス＝ハン",
+  en:"Genghis Khan",
+  affiliation:"モンゴル帝国",
+  era:"中世",
+  region:"東アジア",
+  importance:3,
+  period:"1162頃〜1227年",
+  summary:"モンゴル高原の諸部族を統一し、モンゴル帝国を創始した人物。",
+  achievements:[
+    "1206年、モンゴル高原の諸部族を統合して大ハーンとなった。",
+    "金・西夏・中央アジア方面へ大規模な征服を進めた。",
+    "騎馬軍団と十進法的な軍事編成を活用して広大な領域を征服した。",
+    "ユーラシア各地を結ぶ交通・交易の基盤を拡大した。"
+  ],
+  detailed:"チンギス＝ハンは1206年のクリルタイで大ハーンに推戴され、モンゴル帝国を成立させた。その後、金や西夏、中央アジア方面への征服を進めた。彼の死後、子孫によって征服活動はさらに拡大し、ユーラシア史に大きな変化をもたらした。",
+  traps:[
+    "1206年＝モンゴル帝国成立の重要年。",
+    "元を建国した人物＝フビライ。",
+    "チンギス＝ハン→オゴタイ→モンケ→フビライという流れを整理。"
+  ]
+},
+
+{
+  id:"kublai",
+  name:"フビライ＝ハン",
+  en:"Kublai Khan",
+  affiliation:"元",
+  era:"中世",
+  region:"東アジア",
+  importance:3,
+  period:"1215〜1294年",
+  summary:"モンゴル帝国の大ハーンとなり、中国に元朝を成立させた人物。",
+  achievements:[
+    "1271年に国号を元とし、中国王朝としての支配を進めた。",
+    "1279年、南宋を滅ぼして中国全土を支配した。",
+    "大都を都として東アジア・ユーラシアを結ぶ広域国家を運営した。",
+    "日本・ベトナム・ジャワなどへの対外遠征を行った。"
+  ],
+  detailed:"フビライはモンケ死後の後継争いを経て大ハーンとなり、1271年に国号を元とした。1279年に南宋を滅ぼして中国全土を支配した。元はモンゴル帝国の広域ネットワークと中国王朝としての制度を組み合わせた国家であり、マルコ＝ポーロの記録でも知られる。",
+  traps:[
+    "1271＝国号を元に変更。",
+    "1279＝南宋滅亡・中国統一。",
+    "チンギス＝ハンは元の建国者ではない。"
+  ]
+},
+
+{
+  id:"hongwu",
+  name:"洪武帝（朱元璋）",
+  en:"Hongwu Emperor",
+  affiliation:"明",
+  era:"近世",
+  region:"東アジア",
+  importance:3,
+  period:"1328〜1398年",
+  summary:"元を倒して明を建国した朱元璋。",
+  achievements:[
+    "1368年、元を北へ追って明を建国した。",
+    "皇帝権力を強化し、宰相制度を廃止して六部を皇帝直属とした。",
+    "里甲制などを整備し、農村社会を直接把握した。",
+    "海禁政策を進め、海外との私貿易を制限した。"
+  ],
+  detailed:"朱元璋は貧しい農民出身から紅巾軍の活動を経て勢力を拡大し、1368年に明を建国した。皇帝権力を強化するため中書省・宰相を廃止し、六部を皇帝直属とした。明代の専制君主制を理解する上で重要である。",
+  traps:[
+    "明の建国＝朱元璋・洪武帝。",
+    "宰相を廃止＝洪武帝。",
+    "鄭和の大航海＝次の永楽帝。"
+  ]
+},
+
+{
+  id:"yongle",
+  name:"永楽帝",
+  en:"Yongle Emperor",
+  affiliation:"明",
+  era:"近世",
+  region:"東アジア",
+  importance:3,
+  period:"1360〜1424年",
+  summary:"明の最盛期を築いた皇帝の一人。鄭和の航海で知られる。",
+  achievements:[
+    "1403年以降、南京から北京へ政治の中心を移し、北京を整備した。",
+    "鄭和を南海・インド洋方面へ派遣し、明の国威を示した。",
+    "『永楽大典』の編纂を命じた。",
+    "北方のモンゴル勢力に対して積極的な軍事行動を行った。"
+  ],
+  detailed:"永楽帝は靖難の役で帝位を奪い、明の皇帝となった。北京を政治的中心として整備し、紫禁城建設などを進めた。また鄭和を派遣して東南アジア・インド・西アジア方面との外交関係を強化した。",
+  traps:[
+    "鄭和＝永楽帝。",
+    "永楽帝は洪武帝の子。",
+    "北京遷都と鄭和の大航海をセットで覚える。"
+  ]
+},
+
+{
+  id:"kangxi",
+  name:"康熙帝",
+  en:"Kangxi Emperor",
+  affiliation:"清",
+  era:"近世",
+  region:"東アジア",
+  importance:3,
+  period:"1654〜1722年",
+  summary:"清の安定と領域拡大を進めた皇帝。",
+  achievements:[
+    "三藩の乱を鎮圧して中国南部の支配を強化した。",
+    "ロシアとのネルチンスク条約を締結した。",
+    "台湾を清朝の領域に組み込んだ。",
+    "儒学を重視し、中国の伝統的統治層との関係を安定させた。"
+  ],
+  detailed:"康熙帝は清の支配を安定させ、三藩の乱を鎮圧した。また1689年にロシアとネルチンスク条約を結び、北東アジアにおける国境を外交的に定めた。台湾を清朝の支配下に置いたことも重要である。",
+  traps:[
+    "ネルチンスク条約＝康熙帝。",
+    "乾隆帝の時代と混同しない。",
+    "清の康熙・雍正・乾隆は最盛期の皇帝としてまとめて整理。"
+  ]
+},
+
+{
+  id:"qianlong",
+  name:"乾隆帝",
+  en:"Qianlong Emperor",
+  affiliation:"清",
+  era:"近世",
+  region:"東アジア",
+  importance:3,
+  period:"1711〜1799年",
+  summary:"清の最大領域を形成した皇帝。",
+  achievements:[
+    "ジュンガル部を征服し、新疆方面への支配を拡大した。",
+    "チベット・モンゴル方面への支配を強化した。",
+    "清の領域を最大規模へ拡大した。",
+    "『四庫全書』編纂など文化事業を進めた。"
+  ],
+  detailed:"乾隆帝の時代に清の領域は大きく拡大し、新疆・モンゴル・チベット方面への支配が強化された。一方、清の対外政策では朝貢体制を重視し、ヨーロッパ諸国との通商を広州などに制限した。晩年には政治腐敗や財政負担も深刻化した。",
+  traps:[
+    "清の最大領域＝乾隆帝。",
+    "ネルチンスク条約＝康熙帝。",
+    "アヘン戦争は乾隆帝より後、道光帝の時代。"
+  ]
+},
+
+{
+  id:"mao",
+  name:"毛沢東",
+  en:"Mao Zedong",
+  affiliation:"中国共産党・中華人民共和国",
+  era:"現代",
+  region:"東アジア",
+  importance:3,
+  period:"1893〜1976年",
+  summary:"中国共産党を率いて中華人民共和国を成立させた指導者。",
+  achievements:[
+    "国共内戦を経て1949年に中華人民共和国の成立を宣言した。",
+    "社会主義的な土地改革・経済政策を進めた。",
+    "大躍進政策では急速な工業化・農業集団化を進めたが深刻な混乱を招いた。",
+    "文化大革命を主導し、中国社会・政治に大きな影響を与えた。"
+  ],
+  detailed:"毛沢東は中国共産党の指導者として国共内戦を戦い、1949年に中華人民共和国の成立を宣言した。建国後は社会主義化を進め、大躍進政策や文化大革命などを実施した。これらは中国社会・経済・教育などに大きな影響を与えた。",
+  traps:[
+    "1949年＝中華人民共和国成立。",
+    "毛沢東→鄧小平の改革開放という大きな流れ。",
+    "文化大革命＝1966年開始。"
+  ]
+},
+
+{
+  id:"deng",
+  name:"鄧小平",
+  en:"Deng Xiaoping",
+  affiliation:"中華人民共和国",
+  era:"現代",
+  region:"東アジア",
+  importance:3,
+  period:"1904〜1997年",
+  summary:"改革開放政策を主導し、中国経済の転換を進めた指導者。",
+  achievements:[
+    "1978年以降、改革開放政策を推進した。",
+    "農業・企業などへの市場原理の導入を進めた。",
+    "経済特区を設置し、外国資本・技術の導入を促した。",
+    "「一国二制度」を提唱し、香港・マカオ問題にも影響を与えた。"
+  ],
+  detailed:"鄧小平は毛沢東死後の中国で改革開放を推進した。社会主義体制を維持しながら市場経済的な仕組みを導入し、経済特区を設置して外国資本を受け入れた。中国の現代化政策を理解する上で最重要人物の一人である。",
+  traps:[
+    "改革開放＝鄧小平。",
+    "文化大革命＝毛沢東。",
+    "1978年は改革開放政策の転換点として重要。"
+  ]
+},
+
+
+/* ============================================================
+   ヨーロッパ
+============================================================ */
+
+{
+  id:"pericles",
+  name:"ペリクレス",
+  en:"Pericles",
+  affiliation:"アテネ",
+  era:"古代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"前495頃〜前429年",
+  summary:"アテネ民主政の発展と文化的繁栄を主導した政治家。",
+  achievements:[
+    "民会を中心とするアテネ民主政の発展を支えた。",
+    "公職に就く市民への手当を整え、貧しい市民も政治参加しやすくした。",
+    "パルテノン神殿建設など、アテネの文化的繁栄を進めた。",
+    "ペロポネソス戦争期にアテネを指導した。"
+  ],
+  detailed:"ペリクレス時代のアテネは民主政と文化が発展した。直接民主政の制度を背景に、市民が政治へ参加する仕組みが整えられた。またパルテノン神殿などの建設が進み、古典期ギリシア文化の象徴的時代となった。",
+  traps:[
+    "ペリクレス＝アテネ民主政。",
+    "スパルタ中心＝ペロポネソス同盟。",
+    "ギリシア民主政は女性・奴隷・在留外国人を含む現代的な普通選挙ではない。"
+  ]
+},
+
+{
+  id:"alexander",
+  name:"アレクサンドロス大王",
+  en:"Alexander the Great",
+  affiliation:"マケドニア",
+  era:"古代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"前356〜前323年",
+  summary:"東方遠征によってギリシアからエジプト・西アジア・インド西北部まで勢力を広げた王。",
+  achievements:[
+    "ペルシア帝国を征服し、エジプト・メソポタミア・イランを支配した。",
+    "インド西北部まで遠征して広大な帝国を形成した。",
+    "各地にアレクサンドリアを建設した。",
+    "ギリシア文化と東方文化の融合を促すヘレニズム文化の基盤を形成した。"
+  ],
+  detailed:"アレクサンドロスは東方遠征によってアケメネス朝ペルシアを滅ぼし、エジプトから中央アジア、インド西北部に至る大帝国を形成した。征服後も現地文化を一定程度尊重し、ギリシア文化との融合を進めた。彼の死後帝国は分裂し、ヘレニズム諸国が成立した。",
+  traps:[
+    "ペルシア戦争のギリシア側指導者ではない。",
+    "アレクサンドロスの死後→ディアドコイ戦争。",
+    "ヘレニズム＝ギリシア文化の東方への拡大と融合。"
+  ]
+},
+
+{
+  id:"caesar",
+  name:"カエサル",
+  en:"Julius Caesar",
+  affiliation:"ローマ共和政",
+  era:"古代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"前100〜前44年",
+  summary:"共和政末期のローマで権力を集中させた政治家・軍人。",
+  achievements:[
+    "ガリア遠征によってローマの領域を大きく拡大した。",
+    "ポンペイウスらとの内戦に勝利し、独裁官となった。",
+    "ユリウス暦を導入した。",
+    "元老院中心の共和政から帝政への移行を促す政治的変化を生んだ。"
+  ],
+  detailed:"カエサルはガリア遠征で軍事的名声を高め、元老院派との対立を深めた。ルビコン川を渡って内戦を開始し、ポンペイウスを破って独裁官となった。しかし前44年に暗殺され、彼の死後オクタウィアヌスらによる権力闘争が続き、最終的に帝政へ移行する。",
+  traps:[
+    "カエサル自身はローマ帝国の初代皇帝ではない。",
+    "初代皇帝＝オクタウィアヌス（アウグストゥス）。",
+    "『賽は投げられた』＝ルビコン川。"
+  ]
+},
+
+{
+  id:"augustus",
+  name:"オクタウィアヌス",
+  en:"Augustus",
+  affiliation:"ローマ帝国",
+  era:"古代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"前63〜14年",
+  summary:"ローマ帝国の初代皇帝とされ、「アウグストゥス」の称号を得た人物。",
+  achievements:[
+    "アントニウス・クレオパトラをアクティウムの海戦で破った。",
+    "前27年にアウグストゥスの称号を受け、帝政の基礎を築いた。",
+    "共和政の形式を残しつつ皇帝の実権を確立した。",
+    "ローマの長期的な平和と繁栄につながる体制を整えた。"
+  ],
+  detailed:"オクタウィアヌスはカエサルの養子で、アントニウスらとの権力闘争を制した。前27年にアウグストゥスの称号を受け、共和政の制度を残しながら実質的な皇帝権を確立した。この体制は元首政と呼ばれる。",
+  traps:[
+    "カエサル→オクタウィアヌスの順。",
+    "前27年＝アウグストゥスの称号。",
+    "アクティウムの海戦＝オクタウィアヌス vs アントニウス・クレオパトラ。"
+  ]
+},
+
+{
+  id:"justinian",
+  name:"ユスティニアヌス帝",
+  en:"Justinian I",
+  affiliation:"東ローマ帝国（ビザンツ帝国）",
+  era:"中世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"482〜565年",
+  summary:"東ローマ帝国の最盛期を築き、ローマ法大全を編纂させた皇帝。",
+  achievements:[
+    "ヴァンダル王国・東ゴート王国を征服して地中海世界の再統合を目指した。",
+    "『ローマ法大全』を編纂させ、後世のヨーロッパ法に大きな影響を与えた。",
+    "ハギア＝ソフィア大聖堂を再建した。",
+    "妻テオドラとともに帝国政治を主導した。"
+  ],
+  detailed:"ユスティニアヌス帝は東ローマ帝国の皇帝として西地中海方面へ勢力を拡大し、かつてのローマ帝国領の回復を目指した。またトリボニアヌスらにローマ法を体系化させ、『ローマ法大全』を編纂した。これは近代ヨーロッパ法の基礎の一つとなった。",
+  traps:[
+    "ローマ法大全＝ユスティニアヌス。",
+    "ハギア＝ソフィア＝コンスタンティノープル。",
+    "西ローマ帝国滅亡後の東ローマ帝国の皇帝。"
+  ]
+},
+
+{
+  id:"charlemagne",
+  name:"カール大帝",
+  en:"Charlemagne",
+  affiliation:"フランク王国",
+  era:"中世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"742〜814年",
+  summary:"フランク王国を大きく拡大し、西ヨーロッパ中世世界の基礎を形成した王。",
+  achievements:[
+    "ザクセン人などを征服してフランク王国を拡大した。",
+    "800年、ローマ教皇レオ3世から帝冠を受けた。",
+    "教会と協力し、キリスト教化を推進した。",
+    "カロリング＝ルネサンスと呼ばれる文化復興を進めた。"
+  ],
+  detailed:"カール大帝はフランク王国を西ヨーロッパの広範囲へ拡大した。800年にローマ教皇から帝冠を受けたことは、中世ヨーロッパにおける教皇と皇帝の関係を考える上で重要である。彼の帝国は死後、ヴェルダン条約によって分割された。",
+  traps:[
+    "800年＝カール大帝戴冠。",
+    "843年＝ヴェルダン条約。",
+    "フランク王国→西フランク→フランス、東フランク→ドイツへの流れ。"
+  ]
+},
+
+{
+  id:"louis14",
+  name:"ルイ14世",
+  en:"Louis XIV",
+  affiliation:"フランス・ブルボン朝",
+  era:"近世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1638〜1715年",
+  summary:"フランス絶対王政を象徴する国王。「太陽王」と呼ばれる。",
+  achievements:[
+    "ヴェルサイユ宮殿を政治・文化の中心として整備した。",
+    "コルベールを登用して重商主義的な経済政策を進めた。",
+    "地方貴族の政治的自立を抑え、王権を強化した。",
+    "対外戦争を繰り返し、フランスの国際的影響力を高めた。"
+  ],
+  detailed:"ルイ14世はブルボン朝の王権を強化し、絶対王政を象徴する存在となった。ヴェルサイユ宮殿を中心に貴族を統制し、コルベールによる重商主義政策を進めた。一方、相次ぐ戦争は財政負担を増大させ、後世のフランス財政危機の一因となった。",
+  traps:[
+    "ルイ14世＝太陽王。",
+    "ルイ15世・16世と区別する。",
+    "フランス革命で処刑されたのはルイ16世。"
+  ]
+},
+
+{
+  id:"peter",
+  name:"ピョートル1世",
+  en:"Peter the Great",
+  affiliation:"ロシア・ロマノフ朝",
+  era:"近世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1672〜1725年",
+  summary:"西欧化改革を進め、ロシアをヨーロッパの大国へ押し上げた皇帝。",
+  achievements:[
+    "軍制・行政・教育などの西欧化改革を進めた。",
+    "北方戦争でスウェーデンに勝利し、バルト海への出口を確保した。",
+    "サンクトペテルブルクを建設し、新都とした。",
+    "1721年にロシア帝国成立を宣言した。"
+  ],
+  detailed:"ピョートル1世はロシアの近代化・西欧化を進めた。北方戦争でスウェーデンに勝利し、バルト海沿岸への進出を実現した。サンクトペテルブルクを建設し、ロシアの西欧化を象徴する都市とした。",
+  traps:[
+    "北方戦争＝ロシア vs スウェーデン。",
+    "サンクトペテルブルク＝ピョートル1世。",
+    "エカチェリーナ2世はピョートル1世より後。"
+  ]
+},
+
+{
+  id:"frederick2",
+  name:"フリードリヒ2世",
+  en:"Frederick II",
+  affiliation:"プロイセン",
+  era:"近世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1712〜1786年",
+  summary:"啓蒙専制君主の代表例。プロイセンの強国化を進めた。",
+  achievements:[
+    "オーストリア継承戦争・七年戦争を通じてシュレジエンを確保した。",
+    "軍隊と官僚制を強化し、プロイセンを列強へ押し上げた。",
+    "宗教寛容など啓蒙主義的政策を一部採用した。",
+    "「国家第一のしもべ」として君主による改革を進めた。"
+  ],
+  detailed:"フリードリヒ2世はプロイセンの軍事・行政能力を高め、ヨーロッパの列強へ押し上げた。啓蒙思想を一定程度取り入れた統治を行ったため、ヨーゼフ2世らとともに啓蒙専制君主の代表として扱われる。",
+  traps:[
+    "啓蒙専制君主＝フリードリヒ2世・ヨーゼフ2世・エカチェリーナ2世。",
+    "プロイセンの王＝フリードリヒ2世。",
+    "七年戦争はヨーロッパだけでなく植民地を含む世界的戦争。"
+  ]
+},
+
+{
+  id:"napoleon",
+  name:"ナポレオン",
+  en:"Napoleon Bonaparte",
+  affiliation:"フランス第一帝政",
+  era:"近代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1769〜1821年",
+  summary:"フランス革命後に権力を握り、ヨーロッパ大陸を広く支配した皇帝。",
+  achievements:[
+    "1799年のブリュメール18日のクーデタで実権を掌握した。",
+    "1804年に皇帝となり、ナポレオン法典を制定した。",
+    "アウステルリッツの戦いなどでヨーロッパ諸国を破った。",
+    "大陸封鎖令を実施したが、ロシア遠征失敗後に勢力を失った。"
+  ],
+  detailed:"ナポレオンは革命後のフランスで軍事的成功を背景に権力を拡大し、1799年に統領政府を成立させた。1804年に皇帝となり、ナポレオン法典を制定した。ヨーロッパ各地へ支配を広げたが、ロシア遠征の失敗を契機に没落し、1815年のワーテルローの戦いで最終的に敗北した。",
+  traps:[
+    "1799＝ブリュメール18日のクーデタ。",
+    "1804＝皇帝即位。",
+    "1815＝ワーテルロー。",
+    "ナポレオン法典＝ナポレオン。"
+  ]
+},
+
+{
+  id:"bismarck",
+  name:"ビスマルク",
+  en:"Otto von Bismarck",
+  affiliation:"プロイセン・ドイツ帝国",
+  era:"近代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1815〜1898年",
+  summary:"ドイツ統一を主導したプロイセンの政治家。",
+  achievements:[
+    "鉄血政策を掲げ、軍事力と外交を利用してドイツ統一を推進した。",
+    "デンマーク・オーストリア・フランスとの戦争を通じて統一を実現した。",
+    "1871年、ドイツ帝国成立に貢献した。",
+    "社会主義勢力に対抗する一方、社会保険制度を導入した。"
+  ],
+  detailed:"ビスマルクはプロイセン首相としてドイツ統一を進めた。1864年の対デンマーク戦争、1866年の普墺戦争、1870〜71年の普仏戦争を経てドイツ帝国成立へ至った。外交面ではフランスを孤立させるため三帝同盟・三国同盟などを組み合わせ、ヨーロッパの勢力均衡を維持しようとした。",
+  traps:[
+    "ドイツ統一＝ビスマルク＋ヴィルヘルム1世。",
+    "イタリア統一＝カヴール・ガリバルディなど。",
+    "ビスマルクはドイツ帝国初代皇帝ではなく宰相。"
+  ]
+},
+
+{
+  id:"lenin",
+  name:"レーニン",
+  en:"Vladimir Lenin",
+  affiliation:"ロシア革命・ソ連",
+  era:"近代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1870〜1924年",
+  summary:"ロシア革命を主導し、ソビエト政権を成立させた指導者。",
+  achievements:[
+    "ボリシェヴィキを率いて1917年の十月革命を成功させた。",
+    "ソビエト政権を成立させ、内戦を経て共産党支配を確立した。",
+    "戦時共産主義から新経済政策（NEP）へ転換した。",
+    "1922年のソ連成立につながる政治体制を形成した。"
+  ],
+  detailed:"レーニンはボリシェヴィキを率いて1917年の十月革命を主導した。革命後は内戦と干渉戦争に対応し、経済政策を戦時共産主義からNEPへ転換した。1922年にソビエト社会主義共和国連邦が成立すると、その政治体制の中心的指導者となった。",
+  traps:[
+    "二月革命→臨時政府、十月革命→レーニン・ボリシェヴィキ。",
+    "NEP＝レーニン。",
+    "スターリンはレーニン死後に権力を確立。"
+  ]
+},
+
+{
+  id:"hitler",
+  name:"ヒトラー",
+  en:"Adolf Hitler",
+  affiliation:"ドイツ・ナチ党",
+  era:"近代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1889〜1945年",
+  summary:"ナチ党を率いてドイツを独裁体制へ転換し、第二次世界大戦を引き起こした指導者。",
+  achievements:[
+    "1933年に首相となり、授権法などを通じて独裁体制を構築した。",
+    "再軍備と領土拡張を進め、1939年にポーランドへ侵攻した。",
+    "第二次世界大戦中、占領地で大規模な迫害と虐殺を行った。",
+    "1945年、ドイツ敗戦直前に自殺し、ナチ体制は崩壊した。"
+  ],
+  detailed:"ヒトラーはナチ党を率い、1933年に政権を獲得した。その後、議会制民主主義を解体して独裁体制を構築し、再軍備と領土拡張を進めた。1939年のポーランド侵攻を契機に第二次世界大戦が始まり、ヨーロッパ各地で戦争と迫害が拡大した。",
+  traps:[
+    "1933＝ヒトラー政権成立。",
+    "1939＝ドイツのポーランド侵攻→第二次世界大戦。",
+    "ムッソリーニ＝イタリア、ヒトラー＝ドイツ。"
+  ]
+},
+
+{
+  id:"churchill",
+  name:"チャーチル",
+  en:"Winston Churchill",
+  affiliation:"イギリス",
+  era:"近代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1874〜1965年",
+  summary:"第二次世界大戦期のイギリス首相。",
+  achievements:[
+    "1940年に首相となり、ドイツとの戦争継続を主導した。",
+    "アメリカとの連携を強化し、連合国側の戦争遂行に貢献した。",
+    "ローズヴェルト、スターリンとの協議を通じて戦後秩序形成にも関与した。",
+    "1946年の「鉄のカーテン」演説で冷戦構造を象徴的に表現した。"
+  ],
+  detailed:"チャーチルは第二次世界大戦中のイギリス首相としてドイツとの戦争継続を主導した。ローズヴェルト大統領との英米協力を強め、連合国側の戦争指導に大きな役割を果たした。戦後には「鉄のカーテン」演説を行い、東西冷戦の緊張を象徴する言葉を残した。",
+  traps:[
+    "チャーチル＝イギリス。",
+    "ローズヴェルト＝アメリカ。",
+    "スターリン＝ソ連。"
+  ]
+},
+
+{
+  id:"roosevelt",
+  name:"F.ローズヴェルト",
+  en:"Franklin D. Roosevelt",
+  affiliation:"アメリカ合衆国",
+  era:"近代",
+  region:"アメリカ",
+  importance:3,
+  period:"1882〜1945年",
+  summary:"ニューディール政策を進め、第二次世界大戦期のアメリカを率いた大統領。",
+  achievements:[
+    "世界恐慌後の1933年にニューディール政策を開始した。",
+    "公共事業・金融改革・社会保障政策などで経済再建を目指した。",
+    "第二次世界大戦では連合国側の戦争遂行を主導した。",
+    "国際連合構想など戦後国際秩序の形成にも関与した。"
+  ],
+  detailed:"ローズヴェルトは世界恐慌下で大統領となり、ニューディール政策を実施した。第二次世界大戦では日本との戦争、ヨーロッパ戦線を含む連合国側の戦争指導を担った。1945年に死去し、トルーマンが後継となった。",
+  traps:[
+    "ニューディール＝F.ローズヴェルト。",
+    "W.ローズヴェルトではない。",
+    "1941＝日本の真珠湾攻撃→アメリカ参戦。"
+  ]
+},
+
+{
+  id:"reagan",
+  name:"レーガン",
+  en:"Ronald Reagan",
+  affiliation:"アメリカ合衆国",
+  era:"現代",
+  region:"アメリカ",
+  importance:2,
+  period:"1911〜2004年",
+  summary:"冷戦末期のアメリカ大統領。ソ連との対立と軍拡、後の関係改善で知られる。",
+  achievements:[
+    "1980年代に減税・規制緩和などを重視する経済政策を進めた。",
+    "軍事力を強化し、ソ連との冷戦競争を強めた。",
+    "1980年代後半にはゴルバチョフとの首脳外交を進めた。",
+    "冷戦終結過程を理解する上で重要なアメリカ大統領。"
+  ],
+  detailed:"レーガン政権は軍事支出を拡大し、ソ連との対立を強めた一方、1980年代後半にはゴルバチョフ政権との首脳会談を重ねた。冷戦終結を理解する際には、レーガン、ゴルバチョフ、東欧革命、ベルリンの壁崩壊、ソ連解体を一連の流れとして把握する。",
+  traps:[
+    "冷戦終結＝レーガン一人だけの成果と単純化しない。",
+    "ソ連側の指導者＝ゴルバチョフ。",
+    "1989＝ベルリンの壁崩壊、1991＝ソ連解体。"
+  ]
+},
+
+
+/* ============================================================
+   イスラム・西アジア
+============================================================ */
+
+{
+  id:"muhammad",
+  name:"ムハンマド",
+  en:"Muhammad",
+  affiliation:"イスラーム共同体",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"570頃〜632年",
+  summary:"イスラームを創始し、アラビア半島の統一を進めた預言者。",
+  achievements:[
+    "610年頃、メッカで啓示を受けたとされる。",
+    "622年、メッカからメディナへ移住するヒジュラを行った。",
+    "メディナを拠点にイスラーム共同体を形成した。",
+    "メッカを征服し、アラビア半島の統合を進めた。"
+  ],
+  detailed:"ムハンマドは唯一神アッラーへの信仰を説き、イスラーム共同体を形成した。622年のヒジュラはイスラーム暦の起点となる重要事件である。メディナを拠点に勢力を拡大し、最終的にメッカを支配してアラビア半島の統一を進めた。",
+  traps:[
+    "622年＝ヒジュラ。",
+    "イスラーム暦元年＝ヒジュラが基準。",
+    "ムハンマド死後→正統カリフ時代。"
+  ]
+},
+
+{
+  id:"rashidun",
+  name:"アブー＝バクル",
+  en:"Abu Bakr",
+  affiliation:"正統カリフ",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"573〜634年",
+  summary:"ムハンマド死後、初代カリフとしてイスラーム共同体をまとめた人物。",
+  achievements:[
+    "ムハンマド死後の共同体分裂を抑えた。",
+    "リッダ戦争によって離反した部族を再統合した。",
+    "アラビア半島の統一を維持した。",
+    "後継のウマルによる大征服の基盤を整えた。"
+  ],
+  detailed:"ムハンマド死後、アブー＝バクルが初代カリフとなった。離反する部族を再統合し、イスラーム共同体の崩壊を防いだ。彼の死後、ウマルの時代にビザンツ帝国・ササン朝に対する大規模な征服が進む。",
+  traps:[
+    "正統カリフ＝アブー＝バクル→ウマル→ウスマーン→アリー。",
+    "ウマイヤ朝の初代＝ムアーウィヤ。",
+    "アブー＝バクルはムハンマドの父ではない。"
+  ]
+},
+
+{
+  id:"umar",
+  name:"ウマル",
+  en:"Umar ibn al-Khattab",
+  affiliation:"正統カリフ",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"584頃〜644年",
+  summary:"イスラーム帝国の大征服を進めた第2代カリフ。",
+  achievements:[
+    "シリア・エジプト・イラン方面への征服を進めた。",
+    "ササン朝に対するイスラーム勢力の優位を確立した。",
+    "ディーワーンなど行政制度を整備した。",
+    "征服地統治の基盤を整えた。"
+  ],
+  detailed:"ウマルの時代にイスラーム勢力は急速に拡大し、ビザンツ帝国領のシリア・エジプト、ササン朝領のイラン方面を征服した。イスラーム帝国の行政制度整備にも取り組み、後世の国家統治の基礎を作った。",
+  traps:[
+    "大征服の中心＝第2代カリフのウマル。",
+    "正統カリフ第3代＝ウスマーン。",
+    "第4代＝アリー。"
+  ]
+},
+
+{
+  id:"muawiya",
+  name:"ムアーウィヤ",
+  en:"Muawiya I",
+  affiliation:"ウマイヤ朝",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"602〜680年",
+  summary:"ウマイヤ朝を成立させ、カリフ位を世襲化した人物。",
+  achievements:[
+    "アリーとの対立を経てイスラーム世界の主導権を握った。",
+    "661年にウマイヤ朝を成立させた。",
+    "首都をダマスクスに置いた。",
+    "カリフ位の世襲化を進めた。"
+  ],
+  detailed:"ムアーウィヤはシリア総督として勢力を伸ばし、アリーとの対立を経て661年にウマイヤ朝を成立させた。首都をダマスクスに置き、カリフ位を世襲化したことが重要である。",
+  traps:[
+    "ウマイヤ朝＝ムアーウィヤ。",
+    "首都＝ダマスクス。",
+    "アッバース朝の首都＝バグダード。"
+  ]
+},
+
+{
+  id:"harun",
+  name:"ハールーン＝アッラシード",
+  en:"Harun al-Rashid",
+  affiliation:"アッバース朝",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"763〜809年",
+  summary:"アッバース朝の最盛期を代表するカリフ。",
+  achievements:[
+    "アッバース朝の政治的・経済的繁栄を支えた。",
+    "バグダードを中心とした文化・学問の発展を促した。",
+    "西欧のカール大帝とも外交関係を持った。",
+    "『千夜一夜物語』の伝説的人物としても知られる。"
+  ],
+  detailed:"ハールーン＝アッラシードの時代はアッバース朝の繁栄期として知られる。バグダードを中心に商業・学問・文化が発展し、イスラーム世界と地中海・中央アジア・インド洋を結ぶ交流が活発化した。",
+  traps:[
+    "ハールーン＝アッラシード＝アッバース朝。",
+    "首都バグダード。",
+    "ウマイヤ朝の首都ダマスクスと区別。"
+  ]
+},
+
+{
+  id:"abd-arrahman",
+  name:"アブド＝アッラフマーン1世",
+  en:"Abd al-Rahman I",
+  affiliation:"後ウマイヤ朝",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:2,
+  period:"731〜788年",
+  summary:"イベリア半島に後ウマイヤ朝を建設した人物。",
+  achievements:[
+    "ウマイヤ家の生き残りとしてイベリア半島へ逃れた。",
+    "756年、コルドバを中心に独立したウマイヤ政権を樹立した。",
+    "後ウマイヤ朝の政治的基盤を築いた。",
+    "イスラーム文化がイベリア半島で発展する土台を作った。"
+  ],
+  detailed:"アッバース朝成立によってウマイヤ家が倒された後、アブド＝アッラフマーン1世はイベリア半島へ逃れた。756年にコルドバを中心とする独立政権を成立させ、後ウマイヤ朝の基礎を築いた。",
+  traps:[
+    "後ウマイヤ朝＝コルドバ。",
+    "ウマイヤ朝本体＝ダマスクス。",
+    "後ウマイヤ朝の成立＝アッバース革命後。"
+  ]
+},
+
+{
+  id:"saladin",
+  name:"サラーフ＝アッディーン",
+  en:"Saladin",
+  affiliation:"アイユーブ朝",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"1137〜1193年",
+  summary:"十字軍と戦い、エルサレムを奪回したイスラーム側の指導者。",
+  achievements:[
+    "エジプトとシリアを統合する勢力を形成した。",
+    "アイユーブ朝を成立させた。",
+    "1187年のヒッティーンの戦いで十字軍を破った。",
+    "エルサレムを奪回し、第三回十字軍と戦った。"
+  ],
+  detailed:"サラーフ＝アッディーンはエジプト・シリアを統合し、アイユーブ朝を成立させた。1187年のヒッティーンの戦いで十字軍勢力を破り、エルサレムを奪回した。その後、リチャード1世らによる第三回十字軍と戦った。",
+  traps:[
+    "エルサレム奪回＝サラーフ＝アッディーン。",
+    "第三回十字軍＝リチャード1世。",
+    "十字軍は複数回あり、第一回だけで終わらない。"
+  ]
+},
+
+{
+  id:"mehmed2",
+  name:"メフメト2世",
+  en:"Mehmed II",
+  affiliation:"オスマン帝国",
+  era:"中世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"1432〜1481年",
+  summary:"コンスタンティノープルを征服したオスマン帝国のスルタン。",
+  achievements:[
+    "1453年、コンスタンティノープルを征服した。",
+    "ビザンツ帝国を滅亡させ、オスマン帝国の首都をイスタンブルとした。",
+    "バルカン・黒海方面への勢力拡大を進めた。",
+    "イスラーム世界とキリスト教世界の双方に大きな影響を与えた。"
+  ],
+  detailed:"メフメト2世は1453年にコンスタンティノープルを攻略し、約千年続いた東ローマ帝国を終わらせた。都市をイスタンブルとして整備し、オスマン帝国を東地中海の大国へ成長させた。",
+  traps:[
+    "1453＝コンスタンティノープル陥落。",
+    "東ローマ帝国滅亡＝1453年。",
+    "スレイマン1世はメフメト2世より後。"
+  ]
+},
+
+{
+  id:"suleiman",
+  name:"スレイマン1世",
+  en:"Suleiman I",
+  affiliation:"オスマン帝国",
+  era:"近世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"1494〜1566年",
+  summary:"オスマン帝国の最盛期を築いたスルタン。",
+  achievements:[
+    "ハンガリー方面へ進出し、1526年モハーチの戦いで勝利した。",
+    "ウィーン包囲を行い、ヨーロッパ方面への圧力を強めた。",
+    "地中海方面で海軍力を強化した。",
+    "法典整備を進め、「立法者」とも呼ばれた。"
+  ],
+  detailed:"スレイマン1世はオスマン帝国の領域をヨーロッパ・中東・北アフリカへ広げた。1526年のモハーチの戦いでハンガリー王国軍を破り、中央ヨーロッパへの影響力を強めた。また法制度の整備にも取り組んだ。",
+  traps:[
+    "最盛期のオスマン帝国＝スレイマン1世。",
+    "1453年＝メフメト2世。",
+    "モハーチの戦い＝1526年。"
+  ]
+},
+
+{
+  id:"shah-abbas",
+  name:"シャー＝アッバース1世",
+  en:"Shah Abbas I",
+  affiliation:"サファヴィー朝",
+  era:"近世",
+  region:"イスラム・西アジア",
+  importance:3,
+  period:"1571〜1629年",
+  summary:"サファヴィー朝を最盛期へ導いた君主。",
+  achievements:[
+    "軍制改革によって中央集権化を進めた。",
+    "オスマン帝国との戦争を通じて領域を安定させた。",
+    "イスファハーンを整備し、文化・商業の中心地とした。",
+    "シーア派十二イマーム派を国家宗教とするサファヴィー朝の発展を進めた。"
+  ],
+  detailed:"シャー＝アッバース1世はサファヴィー朝の軍制・行政を改革し、中央集権化を進めた。首都イスファハーンを大都市として整備し、ペルシア文化を発展させた。オスマン帝国との対抗関係も重要である。",
+  traps:[
+    "サファヴィー朝＝シーア派。",
+    "オスマン帝国＝スンナ派。",
+    "イスファハーン＝サファヴィー朝の重要都市。"
+  ]
+},
+
+
+/* ============================================================
+   インド
+============================================================ */
+
+{
+  id:"ashoka",
+  name:"アショーカ王",
+  en:"Ashoka",
+  affiliation:"マウリヤ朝",
+  era:"古代",
+  region:"インド",
+  importance:3,
+  period:"前3世紀",
+  summary:"マウリヤ朝の最盛期を築き、仏教保護で知られる王。",
+  achievements:[
+    "カリンガ戦争後、仏教に深く帰依したとされる。",
+    "ダルマにもとづく統治を進めた。",
+    "仏教教団を保護し、インド各地への布教を支援した。",
+    "石柱碑・磨崖碑などを各地に残した。"
+  ],
+  detailed:"アショーカ王はマウリヤ朝の最大版図を形成した王である。カリンガ戦争の後に仏教へ傾倒し、殺生を抑え、道徳的統治を重視する政策を進めた。各地に碑文を残したことから、古代インド史の重要人物である。",
+  traps:[
+    "仏教保護＝アショーカ王。",
+    "マウリヤ朝＝アショーカ。",
+    "グプタ朝の人物と混同しない。"
+  ]
+},
+
+{
+  id:"kushan-kanishka",
+  name:"カニシカ王",
+  en:"Kanishka",
+  affiliation:"クシャーナ朝",
+  era:"古代",
+  region:"インド",
+  importance:3,
+  period:"2世紀頃",
+  summary:"クシャーナ朝の最盛期を築き、仏教文化の発展に関わった王。",
+  achievements:[
+    "中央アジアからインド北西部に広がる広域国家を形成した。",
+    "仏教を保護し、大乗仏教の発展と関連づけられる。",
+    "ガンダーラ地方でギリシア・ローマ文化と仏教文化が融合した。",
+    "シルクロード交易の発展にも関わった。"
+  ],
+  detailed:"カニシカ王の時代、クシャーナ朝は中央アジアからインド北西部へ勢力を広げた。ガンダーラではギリシア・ローマ系の造形と仏教が融合し、仏像表現が発展した。東西交易の結節点としても重要である。",
+  traps:[
+    "ガンダーラ美術＝クシャーナ朝。",
+    "大乗仏教と関連＝カニシカ王。",
+    "マウリヤ朝のアショーカ王と区別。"
+  ]
+},
+
+{
+  id:"harsha",
+  name:"ハルシャ王",
+  en:"Harsha",
+  affiliation:"ヴァルダナ朝",
+  era:"中世",
+  region:"インド",
+  importance:2,
+  period:"590頃〜647年",
+  summary:"7世紀前半の北インドを統一した王。",
+  achievements:[
+    "北インドの広い地域を統合した。",
+    "仏教・ヒンドゥー教などを保護した。",
+    "玄奘がインドを訪れた時期の北インド王として知られる。",
+    "ナーランダー僧院などの仏教文化とも関係した。"
+  ],
+  detailed:"ハルシャ王は7世紀前半に北インドの広い地域を支配した。中国僧玄奘がインドを訪れた時期の王として知られ、玄奘の『大唐西域記』は当時のインド社会を知る重要史料となっている。",
+  traps:[
+    "玄奘＝唐の太宗・ハルシャ王の時代。",
+    "アショーカ王より約800年後。",
+    "グプタ朝の最盛期と時代を混同しない。"
+  ]
+},
+
+{
+  id:"akbar",
+  name:"アクバル",
+  en:"Akbar",
+  affiliation:"ムガル帝国",
+  era:"近世",
+  region:"インド",
+  importance:3,
+  period:"1542〜1605年",
+  summary:"ムガル帝国の基礎を固め、宗教融和政策を進めた皇帝。",
+  achievements:[
+    "北インドを中心にムガル帝国の領域を拡大した。",
+    "ラージプート諸勢力との融和を進めた。",
+    "非ムスリムへのジズヤを一時廃止した。",
+    "行政・徴税制度を整備し、中央集権化を進めた。"
+  ],
+  detailed:"アクバルはムガル帝国の領域を拡大し、ヒンドゥー教徒のラージプート勢力との協力関係を築いた。宗教的融和政策を進め、帝国の安定を図った。徴税制度や行政制度の整備も行い、ムガル帝国の基礎を固めた。",
+  traps:[
+    "宗教融和政策＝アクバル。",
+    "アウラングゼーブ＝後の皇帝で、よりイスラーム色を強めた。",
+    "ムガル帝国の建国者＝バーブル。"
+  ]
+},
+
+{
+  id:"aurangzeb",
+  name:"アウラングゼーブ",
+  en:"Aurangzeb",
+  affiliation:"ムガル帝国",
+  era:"近世",
+  region:"インド",
+  importance:3,
+  period:"1618〜1707年",
+  summary:"ムガル帝国の最大領域を形成した皇帝。",
+  achievements:[
+    "デカン方面へ進出して帝国領を最大規模に拡大した。",
+    "イスラーム法を重視し、非ムスリムへのジズヤを復活させた。",
+    "マラーター勢力などとの対立が激化した。",
+    "死後、ムガル帝国の政治的統合が弱まり、地方勢力が台頭した。"
+  ],
+  detailed:"アウラングゼーブはムガル帝国の領域を最大規模まで拡大したが、長期の軍事遠征は財政を圧迫した。またアクバルの宗教融和政策から転換し、イスラーム法を重視してジズヤを復活させた。彼の死後、帝国の分裂傾向が強まった。",
+  traps:[
+    "アクバル＝宗教融和。",
+    "アウラングゼーブ＝イスラーム色強化。",
+    "ムガル帝国の衰退→地方勢力・イギリス東インド会社の台頭。"
+  ]
+},
+
+{
+  id:"gandhi",
+  name:"ガンディー",
+  en:"Mahatma Gandhi",
+  affiliation:"インド独立運動",
+  era:"近代",
+  region:"インド",
+  importance:3,
+  period:"1869〜1948年",
+  summary:"非暴力・不服従を掲げ、インド独立運動を指導した人物。",
+  achievements:[
+    "非暴力・不服従を中心とする大衆運動を展開した。",
+    "塩の行進などを通じてイギリスの植民地支配に抗議した。",
+    "インド国民会議を中心とした独立運動に大きな影響を与えた。",
+    "1947年のインド独立に至る過程で重要な役割を果たした。"
+  ],
+  detailed:"ガンディーは南アフリカでの活動を経てインドへ戻り、非暴力・不服従を掲げてイギリス植民地支配への抵抗運動を主導した。塩の行進や国民会議派の運動などを通じて大衆を動員した。1947年の独立後も宗教対立の緩和に努めた。",
+  traps:[
+    "非暴力・不服従＝ガンディー。",
+    "インド独立＝1947年。",
+    "ネルー＝独立後の初代首相。"
+  ]
+},
+
+
+/* ============================================================
+   アメリカ
+============================================================ */
+
+{
+  id:"washington",
+  name:"ジョージ・ワシントン",
+  en:"George Washington",
+  affiliation:"アメリカ合衆国",
+  era:"近代",
+  region:"アメリカ",
+  importance:3,
+  period:"1732〜1799年",
+  summary:"アメリカ独立戦争の総司令官で、初代大統領。",
+  achievements:[
+    "アメリカ独立戦争で大陸軍を指揮した。",
+    "イギリス軍との戦争を経て独立を実現した。",
+    "1789年、アメリカ合衆国初代大統領となった。",
+    "二期で大統領職を退き、平和的な権力移行の先例を作った。"
+  ],
+  detailed:"ワシントンは独立戦争で大陸軍を率い、アメリカ独立に大きな役割を果たした。1787年憲法制定後、1789年に初代大統領となった。新国家の政治制度を安定させる上で重要な人物である。",
+  traps:[
+    "独立宣言起草の中心＝トマス・ジェファソン。",
+    "初代大統領＝ワシントン。",
+    "独立宣言＝1776年、憲法＝1787年。"
+  ]
+},
+
+{
+  id:"jefferson",
+  name:"トマス・ジェファソン",
+  en:"Thomas Jefferson",
+  affiliation:"アメリカ合衆国",
+  era:"近代",
+  region:"アメリカ",
+  importance:3,
+  period:"1743〜1826年",
+  summary:"アメリカ独立宣言の主要起草者で、第3代大統領。",
+  achievements:[
+    "1776年の独立宣言の主要起草者となった。",
+    "共和主義的な政治思想を掲げた。",
+    "大統領としてルイジアナ買収を実施した。",
+    "西部への領土拡大を進める基盤を作った。"
+  ],
+  detailed:"ジェファソンはアメリカ独立宣言の主要起草者として知られる。大統領在任中にはフランスからルイジアナを購入し、アメリカ合衆国の領土を大きく拡大した。",
+  traps:[
+    "独立宣言＝ジェファソン。",
+    "初代大統領＝ワシントン。",
+    "南北戦争＝リンカン。"
+  ]
+},
+
+{
+  id:"lincoln",
+  name:"リンカン",
+  en:"Abraham Lincoln",
+  affiliation:"アメリカ合衆国",
+  era:"近代",
+  region:"アメリカ",
+  importance:3,
+  period:"1809〜1865年",
+  summary:"南北戦争期の大統領で、奴隷解放宣言を発表した人物。",
+  achievements:[
+    "南北戦争で北部を指導し、合衆国維持を目指した。",
+    "1863年に奴隷解放宣言を発表した。",
+    "ゲティスバーグ演説で民主主義の理念を示した。",
+    "南北戦争終結直後に暗殺された。"
+  ],
+  detailed:"リンカンは奴隷制拡大をめぐる南北対立の中で大統領となり、南北戦争を指導した。1863年の奴隷解放宣言は南部の奴隷制に大きな影響を与えた。戦争終結直後の1865年に暗殺された。",
+  traps:[
+    "南北戦争＝リンカン。",
+    "奴隷解放宣言＝1863年。",
+    "アメリカ独立＝1776年。南北戦争＝1861〜65年。"
+  ]
+},
+
+{
+  id:"woodrow",
+  name:"ウィルソン",
+  en:"Woodrow Wilson",
+  affiliation:"アメリカ合衆国",
+  era:"近代",
+  region:"アメリカ",
+  importance:3,
+  period:"1856〜1924年",
+  summary:"第一次世界大戦期のアメリカ大統領。",
+  achievements:[
+    "第一次世界大戦末期にアメリカを指導した。",
+    "十四か条の原則を提唱した。",
+    "国際連盟創設を主張した。",
+    "しかしアメリカ上院の反対などから米国は国際連盟に加盟しなかった。"
+  ],
+  detailed:"ウィルソンは第一次世界大戦後の国際秩序として民族自決や国際協調を掲げる十四か条を提唱した。パリ講和会議にも参加し国際連盟創設を主導したが、アメリカ国内の反対によりアメリカは国際連盟へ加盟しなかった。",
+  traps:[
+    "十四か条・国際連盟＝ウィルソン。",
+    "国際連盟は国際連合（UN）とは別。",
+    "第一次世界大戦＝1914〜18年。"
+  ]
+},
+
+
+/* ============================================================
+   その他・世界史の重要人物
+============================================================ */
+
+{
+  id:"constantine",
+  name:"コンスタンティヌス帝",
+  en:"Constantine I",
+  affiliation:"ローマ帝国",
+  era:"古代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"272〜337年",
+  summary:"キリスト教公認とコンスタンティノープル建設で知られる皇帝。",
+  achievements:[
+    "313年、ミラノ勅令によってキリスト教を公認した。",
+    "330年、コンスタンティノープルを新都として整備した。",
+    "325年、ニケーア公会議を開催した。",
+    "ローマ帝国のキリスト教化を進める転換点を作った。"
+  ],
+  detailed:"コンスタンティヌス帝は313年のミラノ勅令によってキリスト教を公認した。330年にはコンスタンティノープルを新しい首都として整備した。帝国とキリスト教の関係が大きく変化する転換点となった。",
+  traps:[
+    "313＝ミラノ勅令。",
+    "380年のキリスト教国教化＝テオドシウス帝。",
+    "コンスタンティノープル＝後の東ローマ帝国の中心。"
+  ]
+},
+
+{
+  id:"charles5",
+  name:"カール5世",
+  en:"Charles V",
+  affiliation:"ハプスブルク家",
+  era:"近世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1500〜1558年",
+  summary:"広大なハプスブルク領を支配し、宗教改革期の皇帝となった人物。",
+  achievements:[
+    "スペイン王として海外植民地を含む広大な領域を支配した。",
+    "神聖ローマ皇帝として宗教改革に直面した。",
+    "ヴォルムス帝国議会でルターを帝国追放とした。",
+    "最終的にアウクスブルクの和議によってルター派を一定程度認めた。"
+  ],
+  detailed:"カール5世はスペイン王位と神聖ローマ皇帝位を兼ね、ハプスブルク家の広大な領域を支配した。宗教改革ではルターと対立したが、フランスやオスマン帝国との戦争も抱えていたため、最終的に1555年のアウクスブルクの和議でルター派を認める方向へ進んだ。",
+  traps:[
+    "宗教改革時の神聖ローマ皇帝＝カール5世。",
+    "ルター＝宗教改革者。",
+    "1555＝アウクスブルクの和議。"
+  ]
+},
+
+{
+  id:"luther",
+  name:"ルター",
+  en:"Martin Luther",
+  affiliation:"宗教改革",
+  era:"近世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1483〜1546年",
+  summary:"宗教改革を開始し、ルター派を形成した神学者。",
+  achievements:[
+    "1517年、贖宥状販売を批判する九十五か条の論題を発表した。",
+    "聖書中心主義を主張し、信仰義認を唱えた。",
+    "ヴォルムス帝国議会で自説の撤回を拒否した。",
+    "ドイツ諸侯の支持を得てルター派が広がった。"
+  ],
+  detailed:"ルターは1517年、贖宥状販売への批判をきっかけに宗教改革を開始した。人間は善行によってではなく信仰によって義とされるという信仰義認を主張し、聖書を重視した。彼の思想はドイツ諸侯を中心に広まり、宗教改革の大きな流れを形成した。",
+  traps:[
+    "1517＝ルター。",
+    "カルヴァン＝ジュネーヴ・予定説。",
+    "イギリス宗教改革＝ヘンリ8世。"
+  ]
+},
+
+{
+  id:"calvin",
+  name:"カルヴァン",
+  en:"John Calvin",
+  affiliation:"宗教改革",
+  era:"近世",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1509〜1564年",
+  summary:"予定説を説き、カルヴァン派を広めた宗教改革者。",
+  achievements:[
+    "『キリスト教綱要』を著した。",
+    "予定説を中心とする神学を展開した。",
+    "ジュネーヴを拠点に宗教改革を進めた。",
+    "フランスのユグノー、オランダ、スコットランドなどへ影響を与えた。"
+  ],
+  detailed:"カルヴァンはジュネーヴを中心に宗教改革を進め、予定説を重視した。彼の思想はフランスのユグノー、オランダ、スコットランドなどへ広がった。",
+  traps:[
+    "予定説＝カルヴァン。",
+    "フランス＝ユグノー。",
+    "イギリスの国教会成立＝ヘンリ8世。"
+  ]
+},
+
+{
+  id:"gorbachev",
+  name:"ゴルバチョフ",
+  en:"Mikhail Gorbachev",
+  affiliation:"ソ連",
+  era:"現代",
+  region:"ヨーロッパ",
+  importance:3,
+  period:"1931〜2022年",
+  summary:"ソ連最後の指導者。ペレストロイカ・グラスノスチを進めた。",
+  achievements:[
+    "1985年にソ連共産党書記長となった。",
+    "ペレストロイカ（改革）とグラスノスチ（情報公開）を推進した。",
+    "米ソ関係を改善し、核軍縮交渉を進めた。",
+    "東欧諸国への介入を抑制し、冷戦終結の過程に大きな影響を与えた。"
+  ],
+  detailed:"ゴルバチョフはソ連の経済・政治改革を進め、ペレストロイカとグラスノスチを掲げた。東欧諸国の民主化運動に対する軍事介入を抑制し、冷戦構造の変化を促した。1991年にソ連が解体すると、ソ連大統領を辞任した。",
+  traps:[
+    "ペレストロイカ＝ゴルバチョフ。",
+    "レーガン＝アメリカ側。",
+    "1991＝ソ連解体。"
+  ]
+}
+
+];
+
+
+/* ============================================================
+   アプリケーション状態
+============================================================ */
+
+const state = {
+  era:"all",
+  region:"all",
+  importance:"all",
+  search:""
+};
+
+
+/* ============================================================
+   DOM取得
+============================================================ */
+
+const grid = document.getElementById("peopleGrid");
+const resultCount = document.getElementById("resultCount");
+const totalPeople = document.getElementById("totalPeople");
+const searchInput = document.getElementById("searchInput");
+const resetBtn = document.getElementById("resetBtn");
+
+const modal = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalMeta = document.getElementById("modalMeta");
+const modalBody = document.getElementById("modalBody");
+
+
+/* ============================================================
+   初期表示
+============================================================ */
+
+totalPeople.textContent = DATA.length;
+
+
+/* ============================================================
+   重要度を星に変換
+============================================================ */
+
+function getStars(level){
+  if(level === 3) return "★★★";
+  if(level === 2) return "★★☆";
+  return "★☆☆";
+}
+
+
+/* ============================================================
+   カード描画
+============================================================ */
+
+function render(){
+
+  const keyword = state.search.trim().toLowerCase();
+
+  const filtered = DATA.filter(person => {
+
+    const eraMatch =
+      state.era === "all" ||
+      person.era === state.era;
+
+    const regionMatch =
+      state.region === "all" ||
+      person.region === state.region;
+
+    const importanceMatch =
+      state.importance === "all" ||
+      String(person.importance) === state.importance;
+
+    const searchable = [
+      person.name,
+      person.en,
+      person.affiliation,
+      person.era,
+      person.region,
+      person.summary,
+      person.detailed,
+      ...person.achievements,
+      ...person.traps
+    ].join(" ").toLowerCase();
+
+    const searchMatch =
+      !keyword ||
+      searchable.includes(keyword);
+
+    return eraMatch &&
+           regionMatch &&
+           importanceMatch &&
+           searchMatch;
+  });
+
+
+  resultCount.textContent = filtered.length;
+
+
+  if(filtered.length === 0){
+
+    grid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:70px 20px;
+        border:1px solid var(--line);
+        border-radius:20px;
+        background:var(--panel);
+      ">
+        <div style="font-size:2.5rem;margin-bottom:10px;">🔎</div>
+        <h2 style="margin:0 0 8px;">該当する人物がありません</h2>
+        <p style="color:var(--muted);">
+          検索ワードやフィルター条件を変更してみてください。
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  grid.innerHTML = filtered.map(person => {
+
+    const achievements = person.achievements
+      .slice(0,3)
+      .map(item => `<li>${item}</li>`)
+      .join("");
+
+    return `
+      <article class="person-card">
+
+        <div class="card-top">
+
+          <div>
+            <h2 class="person-name">
+              ${person.name}
+            </h2>
+
+            <div class="person-name-en">
+              ${person.en}
+            </div>
+
+            <div class="affiliation">
+              ${person.affiliation}
+            </div>
+          </div>
+
+          <div class="importance">
+            ${getStars(person.importance)}
+          </div>
+
+        </div>
+
+
+        <div class="meta">
+
+          <span class="tag era">
+            ${person.era}
+          </span>
+
+          <span class="tag region">
+            ${person.region}
+          </span>
+
+          <span class="tag">
+            ${person.period}
+          </span>
+
+        </div>
+
+
+        <p class="summary">
+          ${person.summary}
+        </p>
+
+
+        <div class="info-section">
+
+          <div class="info-title">
+            <span class="dot"></span>
+            主要実績
+          </div>
+
+          <ul class="achievements">
+            ${achievements}
+          </ul>
+
+        </div>
+
+
+        <div class="info-section">
+
+          <div class="info-title">
+            <span class="dot" style="background:var(--gold)"></span>
+            受験ひっかけ
+          </div>
+
+          <div class="trap">
+            ${person.traps[0]}
+          </div>
+
+        </div>
+
+
+        <div class="card-bottom">
+
+          <span class="period">
+            ${person.period}
+          </span>
+
+          <button
+            class="details-btn"
+            onclick="openPerson('${person.id}')"
+          >
+            詳細を見る →
+          </button>
+
+        </div>
+
+      </article>
+    `;
+  }).join("");
+}
+
+
+/* ============================================================
+   詳細モーダル
+============================================================ */
+
+function openPerson(id){
+
+  const person = DATA.find(p => p.id === id);
+
+  if(!person) return;
+
+  modalTitle.textContent = person.name;
+
+  modalMeta.innerHTML = `
+    <div class="meta" style="margin:10px 0 0;">
+      <span class="tag era">${person.era}</span>
+      <span class="tag region">${person.region}</span>
+      <span class="tag">${person.affiliation}</span>
+      <span class="tag">${person.period}</span>
+      <span class="tag" style="color:#fbbf24;">
+        ${getStars(person.importance)}
+      </span>
+    </div>
+  `;
+
+
+  modalBody.innerHTML = `
+
+    <div class="detail-block">
+
+      <h3>人物の位置づけ</h3>
+
+      <p>
+        ${person.summary}
+      </p>
+
+    </div>
+
+
+    <div class="detail-block">
+
+      <h3>📚 実績・政策</h3>
+
+      <ul>
+        ${person.achievements
+          .map(item => `<li>${item}</li>`)
+          .join("")
+        }
+      </ul>
+
+    </div>
+
+
+    <div class="detail-block">
+
+      <h3>🌍 歴史的意味</h3>
+
+      <p>
+        ${person.detailed}
+      </p>
+
+    </div>
+
+
+    <div class="detail-block">
+
+      <h3>🎯 受験ひっかけ対策</h3>
+
+      <div class="exam-box">
+
+        <strong>ここを覚える：</strong>
+
+        <ul>
+          ${person.traps
+            .map(item => `<li>${item}</li>`)
+            .join("")
+          }
+        </ul>
+
+      </div>
+
+    </div>
+
+  `;
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+
+/* ============================================================
+   モーダルを閉じる
+============================================================ */
+
+function closePerson(){
+
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+closeModal.addEventListener("click", closePerson);
+
+modal.addEventListener("click", event => {
+
+  if(event.target === modal){
+    closePerson();
+  }
+
+});
+
+document.addEventListener("keydown", event => {
+
+  if(event.key === "Escape"){
+    closePerson();
+  }
+
+});
+
+
+/* ============================================================
+   フィルターボタン
+============================================================ */
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const type = button.dataset.filter;
+    const value = button.dataset.value;
+
+    state[type] = value;
+
+
+    /*
+      同じグループのボタンだけactiveを切り替える
+    */
+
+    document
+      .querySelectorAll(`.filter-btn[data-filter="${type}"]`)
+      .forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+    button.classList.add("active");
+
+    render();
+
+  });
+
+});
+
+
+/* ============================================================
+   検索
+============================================================ */
+
+searchInput.addEventListener("input", () => {
+
+  state.search = searchInput.value;
+
+  render();
+
+});
+
+
+/* ============================================================
+   リセット
+============================================================ */
+
+resetBtn.addEventListener("click", () => {
+
+  state.era = "all";
+  state.region = "all";
+  state.importance = "all";
+  state.search = "";
+
+  searchInput.value = "";
+
+
+  document.querySelectorAll(".filter-btn").forEach(button => {
+
+    button.classList.remove("active");
+
+    if(button.dataset.value === "all"){
+      button.classList.add("active");
+    }
+
+  });
+
+  render();
+
+});
+
+
+/* ============================================================
+   キーボードショートカット
+============================================================ */
+
+document.addEventListener("keydown", event => {
+
+  /*
+    / キーで検索欄へ
+  */
+
+  if(
+    event.key === "/" &&
+    document.activeElement !== searchInput
+  ){
+
+    event.preventDefault();
+    searchInput.focus();
+
+  }
+
+
+  /*
+    Escで検索解除
+  */
+
+  if(event.key === "Escape" && document.activeElement === searchInput){
+
+    searchInput.blur();
+
+  }
+
+});
+
+
+/* ============================================================
+   初回描画
+============================================================ */
+
+render();
+
+</script>
+
+</body>
+</html>
