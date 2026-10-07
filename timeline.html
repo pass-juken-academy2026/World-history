@@ -1,0 +1,5431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080c14">
+<meta name="description" content="大学受験世界史・超詳細世界史年表">
+<title>WORLD HISTORY MASTER | 超詳細世界史年表</title>
+
+<style>
+/* =========================================================
+   WORLD HISTORY MASTER
+   timeline.html
+   HTML / CSS / JavaScript 完全1ファイル構成
+   ========================================================= */
+
+:root {
+    --bg: #070b12;
+    --bg2: #0b111c;
+    --panel: #101827;
+    --panel2: #141e2e;
+    --panel3: #192437;
+
+    --text: #f5f7fb;
+    --muted: #a5afc0;
+    --dim: #69758a;
+
+    --line: rgba(255,255,255,.08);
+    --line2: rgba(255,255,255,.15);
+
+    --blue: #63b3ff;
+    --cyan: #42dcff;
+    --purple: #a77cff;
+    --gold: #ffc857;
+    --green: #53d88b;
+    --red: #ff7180;
+    --orange: #ff9d5c;
+
+    --shadow: 0 20px 70px rgba(0,0,0,.35);
+
+    --radius: 18px;
+    --max: 1500px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(99,179,255,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(167,124,255,.08),
+            transparent 30%
+        ),
+        var(--bg);
+    color: var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
+    line-height: 1.7;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    border-bottom: 1px solid var(--line);
+
+    background: rgba(7,11,18,.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    width: min(var(--max), calc(100% - 28px));
+    min-height: 68px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-mark {
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    font-weight: 950;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--purple)
+        );
+
+    color: #07101a;
+}
+
+.brand-title {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.brand-sub {
+    color: var(--dim);
+    font-size: 9px;
+    letter-spacing: .13em;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 13px;
+
+    border: 1px solid var(--line2);
+    border-radius: 10px;
+
+    color: var(--muted);
+    background: rgba(255,255,255,.035);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.back-button:hover {
+    color: var(--text);
+    border-color: rgba(99,179,255,.4);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+main {
+    width: min(var(--max), calc(100% - 28px));
+    margin: auto;
+}
+
+.hero {
+    padding: 55px 0 30px;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(99,179,255,.22);
+    border-radius: 999px;
+
+    color: var(--blue);
+    background: rgba(99,179,255,.07);
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .12em;
+}
+
+.hero-label::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+}
+
+.hero h1 {
+    margin: 20px 0 10px;
+
+    font-size: clamp(36px, 6vw, 70px);
+    line-height: 1.05;
+    letter-spacing: -.055em;
+}
+
+.hero h1 span {
+    background:
+        linear-gradient(
+            100deg,
+            var(--blue),
+            var(--cyan),
+            var(--purple)
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 900px;
+
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.hero-stats {
+    margin-top: 25px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    padding: 15px;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.025);
+}
+
+.stat strong {
+    display: block;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.stat span {
+    color: var(--dim);
+    font-size: 10px;
+}
+
+/* =========================================================
+   CONTROL PANEL
+   ========================================================= */
+
+.control-panel {
+    position: sticky;
+    top: 68px;
+    z-index: 900;
+
+    margin: 15px 0 30px;
+
+    padding: 17px;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    background: rgba(14,21,33,.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.control-row::-webkit-scrollbar {
+    display: none;
+}
+
+.control-row + .control-row {
+    margin-top: 10px;
+}
+
+.control-label {
+    flex: 0 0 auto;
+
+    min-width: 60px;
+
+    color: var(--dim);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.filter-button {
+    flex: 0 0 auto;
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--line);
+    border-radius: 9px;
+
+    color: var(--muted);
+    background: rgba(255,255,255,.035);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    transition: .18s;
+}
+
+.filter-button:hover {
+    color: var(--text);
+    border-color: rgba(99,179,255,.35);
+}
+
+.filter-button.active {
+    color: #06111c;
+    border-color: transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            #75bdff,
+            #45dcff
+        );
+}
+
+.search-row {
+    margin-top: 13px;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 9px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box span {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: var(--dim);
+}
+
+.search-box input {
+    width: 100%;
+    height: 43px;
+
+    padding: 0 14px 0 40px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    outline: none;
+
+    color: var(--text);
+    background: rgba(0,0,0,.18);
+}
+
+.search-box input:focus {
+    border-color: rgba(99,179,255,.55);
+    box-shadow: 0 0 0 3px rgba(99,179,255,.08);
+}
+
+.reset {
+    height: 43px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    color: var(--muted);
+    background: rgba(255,255,255,.035);
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   TIMELINE HEADER
+   ========================================================= */
+
+.timeline-header {
+    margin: 25px 0 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 15px;
+}
+
+.section-label {
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+.timeline-header h2 {
+    margin: 3px 0 0;
+
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.result-count {
+    color: var(--dim);
+    font-size: 11px;
+}
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.timeline {
+    position: relative;
+    padding-bottom: 80px;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    left: 133px;
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(99,179,255,.45),
+            rgba(167,124,255,.12),
+            transparent
+        );
+}
+
+.timeline-item {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 110px 1fr;
+
+    gap: 45px;
+
+    margin-bottom: 17px;
+}
+
+.timeline-year {
+    position: relative;
+
+    padding-top: 18px;
+
+    text-align: right;
+
+    color: var(--blue);
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    right: -51px;
+    top: 23px;
+
+    width: 12px;
+    height: 12px;
+
+    border: 3px solid var(--bg);
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+    box-shadow: 0 0 15px rgba(66,220,255,.45);
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.history-card {
+    position: relative;
+
+    padding: 20px;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.018)
+        );
+
+    transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+}
+
+.history-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(99,179,255,.3);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.25);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 15px;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px 7px;
+
+    border: 1px solid var(--line);
+    border-radius: 6px;
+
+    color: var(--muted);
+    background: rgba(255,255,255,.035);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.tag.important {
+    color: var(--gold);
+    border-color: rgba(255,200,87,.2);
+    background: rgba(255,200,87,.05);
+}
+
+.card-stars {
+    flex: 0 0 auto;
+
+    color: var(--gold);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.history-card h3 {
+    margin: 9px 0 2px;
+
+    font-size: 21px;
+    line-height: 1.25;
+}
+
+.period {
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.card-summary {
+    margin: 11px 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.info-box {
+    padding: 11px;
+
+    border-radius: 10px;
+
+    background: rgba(0,0,0,.15);
+}
+
+.info-label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--dim);
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.info-text {
+    color: var(--text-soft);
+
+    font-size: 11px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+.trick {
+    color: var(--orange);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.detail-button {
+    flex: 0 0 auto;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(99,179,255,.25);
+    border-radius: 8px;
+
+    color: var(--blue);
+    background: rgba(99,179,255,.05);
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+/* =========================================================
+   ERA DIVIDER
+   ========================================================= */
+
+.era-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 45px 0 22px;
+}
+
+.era-divider::before,
+.era-divider::after {
+    content: "";
+    height: 1px;
+    background: var(--line);
+}
+
+.era-divider::before {
+    width: 45px;
+}
+
+.era-divider::after {
+    flex: 1;
+}
+
+.era-divider span {
+    padding: 7px 12px;
+
+    border: 1px solid rgba(99,179,255,.2);
+    border-radius: 999px;
+
+    color: var(--blue);
+    background: rgba(99,179,255,.05);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+/* =========================================================
+   QUICK YEARS
+   ========================================================= */
+
+.quick-years {
+    margin: 30px 0 10px;
+
+    padding: 18px;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    background: rgba(255,255,255,.025);
+}
+
+.quick-years h3 {
+    margin: 0 0 10px;
+
+    font-size: 14px;
+}
+
+.year-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.year-button {
+    padding: 7px 9px;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+
+    color: var(--muted);
+    background: rgba(255,255,255,.03);
+
+    font-size: 10px;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 3000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px;
+
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(8px);
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-box {
+    width: min(900px, 100%);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    border: 1px solid var(--line2);
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #121b2a,
+            #0b111b
+        );
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 15px;
+}
+
+.modal-title {
+    margin: 0;
+
+    font-size: 27px;
+    line-height: 1.2;
+}
+
+.modal-close {
+    width: 35px;
+    height: 35px;
+
+    border: 1px solid var(--line);
+    border-radius: 9px;
+
+    color: var(--muted);
+    background: rgba(255,255,255,.04);
+
+    font-size: 18px;
+}
+
+.modal-period {
+    margin-top: 5px;
+
+    color: var(--cyan);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.modal-section {
+    margin-top: 22px;
+}
+
+.modal-section h4 {
+    margin: 0 0 8px;
+
+    color: var(--blue);
+
+    font-size: 12px;
+}
+
+.modal-section p,
+.modal-section li {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.modal-section ul {
+    margin: 7px 0 0;
+    padding-left: 20px;
+}
+
+.modal-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.modal-info {
+    padding: 15px;
+
+    border: 1px solid var(--line);
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.025);
+}
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    border: 1px dashed var(--line2);
+    border-radius: var(--radius);
+
+    color: var(--dim);
+}
+
+.empty strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    padding: 40px 0 55px;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--dim);
+
+    font-size: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline::before {
+        left: 96px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 75px 1fr;
+        gap: 40px;
+    }
+
+    .timeline-dot {
+        right: -46px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+
+    main,
+    .header-inner {
+        width: min(100% - 18px, var(--max));
+    }
+
+    .brand-sub {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 35px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .control-panel {
+        top: 62px;
+        padding: 12px;
+    }
+
+    .search-row {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline::before {
+        left: 13px;
+    }
+
+    .timeline-item {
+        display: block;
+
+        padding-left: 30px;
+
+        margin-bottom: 15px;
+    }
+
+    .timeline-year {
+        padding: 0 0 6px;
+
+        text-align: left;
+
+        font-size: 11px;
+    }
+
+    .timeline-dot {
+        left: -23px;
+        right: auto;
+        top: 4px;
+    }
+
+    .history-card {
+        padding: 16px;
+    }
+
+    .history-card h3 {
+        font-size: 18px;
+    }
+
+    .card-summary {
+        font-size: 12px;
+    }
+
+    .card-bottom {
+        display: block;
+    }
+
+    .detail-button {
+        margin-top: 9px;
+    }
+
+    .modal-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-box {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat strong {
+        font-size: 19px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-mark">
+                WH
+            </div>
+
+            <div>
+                <div class="brand-title">
+                    WORLD HISTORY MASTER
+                </div>
+
+                <div class="brand-sub">
+                    DETAILED TIMELINE
+                </div>
+            </div>
+
+        </a>
+
+
+        <a href="index.html" class="back-button">
+            ← トップへ戻る
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-label">
+        PAGE 02 / SUPER DETAILED TIMELINE
+    </div>
+
+    <h1>
+        世界史<br>
+        <span>超詳細年表</span>
+    </h1>
+
+    <p class="hero-description">
+        古代文明から現代の国際社会まで。
+        王朝・国家・人物・戦争・宗教・革命を年代順に配置し、
+        「いつ」「どこで」「何が起きたか」を一気に把握する受験生向けタイムライン。
+    </p>
+
+
+    <div class="hero-stats">
+
+        <div class="stat">
+            <strong id="totalCount">0</strong>
+            <span>収録項目</span>
+        </div>
+
+        <div class="stat">
+            <strong>5</strong>
+            <span>時代区分</span>
+        </div>
+
+        <div class="stat">
+            <strong>6+</strong>
+            <span>地域</span>
+        </div>
+
+        <div class="stat">
+            <strong>★</strong>
+            <span>受験重要度表示</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FILTER
+     ========================================================= -->
+
+<section class="control-panel">
+
+    <div class="control-row">
+
+        <span class="control-label">
+            時代
+        </span>
+
+        <button class="filter-button active"
+                data-era="all">
+            すべて
+        </button>
+
+        <button class="filter-button"
+                data-era="古代">
+            古代
+        </button>
+
+        <button class="filter-button"
+                data-era="中世">
+            中世
+        </button>
+
+        <button class="filter-button"
+                data-era="近世">
+            近世
+        </button>
+
+        <button class="filter-button"
+                data-era="近代">
+            近代
+        </button>
+
+        <button class="filter-button"
+                data-era="現代">
+            現代
+        </button>
+
+    </div>
+
+
+    <div class="control-row">
+
+        <span class="control-label">
+            地域
+        </span>
+
+        <button class="filter-button active"
+                data-region="all">
+            世界全体
+        </button>
+
+        <button class="filter-button"
+                data-region="中国・東アジア">
+            中国・東アジア
+        </button>
+
+        <button class="filter-button"
+                data-region="ヨーロッパ">
+            ヨーロッパ
+        </button>
+
+        <button class="filter-button"
+                data-region="イスラム・西アジア">
+            イスラム・西アジア
+        </button>
+
+        <button class="filter-button"
+                data-region="インド">
+            インド
+        </button>
+
+        <button class="filter-button"
+                data-region="アメリカ">
+            アメリカ
+        </button>
+
+        <button class="filter-button"
+                data-region="世界史テーマ">
+            世界史テーマ
+        </button>
+
+    </div>
+
+
+    <div class="search-row">
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                id="search"
+                type="search"
+                placeholder="王朝・人物・事件・用語を検索…"
+            >
+
+        </div>
+
+        <button class="reset" id="reset">
+            リセット
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK YEAR
+     ========================================================= -->
+
+<section class="quick-years">
+
+    <h3>
+        ⚡ 重要年代へジャンプ
+    </h3>
+
+    <div class="year-buttons">
+
+        <button class="year-button" data-jump="-1600">
+            紀元前1600
+        </button>
+
+        <button class="year-button" data-jump="-221">
+            紀元前221
+        </button>
+
+        <button class="year-button" data-jump="1">
+            1年
+        </button>
+
+        <button class="year-button" data-jump="220">
+            220
+        </button>
+
+        <button class="year-button" data-jump="476">
+            476
+        </button>
+
+        <button class="year-button" data-jump="622">
+            622
+        </button>
+
+        <button class="year-button" data-jump="800">
+            800
+        </button>
+
+        <button class="year-button" data-jump="1066">
+            1066
+        </button>
+
+        <button class="year-button" data-jump="1206">
+            1206
+        </button>
+
+        <button class="year-button" data-jump="1492">
+            1492
+        </button>
+
+        <button class="year-button" data-jump="1648">
+            1648
+        </button>
+
+        <button class="year-button" data-jump="1776">
+            1776
+        </button>
+
+        <button class="year-button" data-jump="1789">
+            1789
+        </button>
+
+        <button class="year-button" data-jump="1848">
+            1848
+        </button>
+
+        <button class="year-button" data-jump="1914">
+            1914
+        </button>
+
+        <button class="year-button" data-jump="1945">
+            1945
+        </button>
+
+        <button class="year-button" data-jump="1991">
+            1991
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TIMELINE HEADER
+     ========================================================= -->
+
+<div class="timeline-header">
+
+    <div>
+
+        <div class="section-label">
+            CHRONOLOGICAL DATABASE
+        </div>
+
+        <h2>
+            古代 → 現代
+        </h2>
+
+    </div>
+
+    <div class="result-count" id="resultCount">
+        0件
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TIMELINE
+     ========================================================= -->
+
+<div class="timeline" id="timeline"></div>
+
+
+</main>
+
+
+<!-- =========================================================
+     DETAIL MODAL
+     ========================================================= -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h2 class="modal-title" id="modalTitle">
+                    -
+                </h2>
+
+                <div class="modal-period" id="modalPeriod">
+                    -
+                </div>
+            </div>
+
+            <button class="modal-close" id="modalClose">
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <main>
+
+        WORLD HISTORY MASTER /
+        UNIVERSITY EXAMINATION WORLD HISTORY
+
+        <br>
+
+        ※年代は大学受験向けの一般的な区分を基本とし、
+        王朝・国家によって成立・滅亡年の数え方が異なる場合があります。
+
+    </main>
+
+</footer>
+
+
+<script>
+/* =========================================================
+   WORLD HISTORY MASTER
+   TIMELINE DATA
+   =========================================================
+
+   ★★★ この配列が年表の本体です ★★★
+
+   今後データを追加・修正するときは、
+   基本的にこの DATA 配列だけ編集すればOK。
+
+   start / end
+   ----------------
+   BCEはマイナスで入力。
+   例：
+   紀元前221年 → -221
+   1年 → 1
+   476年 → 476
+
+   end: null
+   ----------------
+   現在まで続く国家・制度に使用。
+
+   eras
+   ----------------
+   複数時代にまたがるものは配列で指定。
+
+   importance
+   ----------------
+   1 = 基礎
+   2 = 重要
+   3 = 最重要
+
+   ========================================================= */
+
+
+/* =========================================================
+   中国・東アジア
+   ========================================================= */
+
+const DATA = [
+
+/* ---------- 中国古代 ---------- */
+
+{
+    id: "shang",
+
+    region: "中国・東アジア",
+    eras: ["古代"],
+
+    start: -1600,
+    end: -1046,
+
+    date: "前16世紀頃〜前1046年頃",
+
+    name: "殷（商）",
+
+    tags: ["中国史", "古代国家", "甲骨文字"],
+
+    importance: 3,
+
+    summary:
+        "黄河流域を中心に成立した、中国古代の王朝。甲骨文字・青銅器文化が大学受験頻出。",
+
+    leaders: [
+        "紂王：殷の最後の王として知られる",
+        "武丁：殷の中興王。甲骨文に多く登場"
+    ],
+
+    peak: [
+        "甲骨文字が使用された",
+        "青銅器文化が発達",
+        "祭祀と王権が結びついた"
+    ],
+
+    cause:
+        "黄河流域の農耕社会・都市国家の発展を背景に王権が形成された。",
+
+    result:
+        "周の武王に滅ぼされ、周王朝へ移行。",
+
+    impact:
+        "甲骨文字は後の漢字につながり、中国文明の文字史上極めて重要。",
+
+    trick:
+        "殷＝甲骨文字・青銅器。『殷墟』とセットで覚える。"
+},
+
+
+{
+    id: "zhou",
+
+    region: "中国・東アジア",
+    eras: ["古代"],
+
+    start: -1046,
+    end: -256,
+
+    date: "前1046〜前256年頃",
+
+    name: "周",
+
+    tags: ["西周", "東周", "封建制", "諸子百家"],
+
+    importance: 3,
+
+    summary:
+        "殷を滅ぼして成立。西周から東周へ移り、春秋・戦国時代の舞台となった。",
+
+    leaders: [
+        "武王：殷を滅ぼす",
+        "周公旦：封建制の整備に貢献"
+    ],
+
+    peak: [
+        "宗族・封建的支配",
+        "礼・宗法による秩序",
+        "東周期に諸侯が台頭"
+    ],
+
+    cause:
+        "周族が殷の支配を打倒。天命思想によって王朝交替を正当化した。",
+
+    result:
+        "諸侯の自立が進み、春秋・戦国の分裂状態へ。",
+
+    impact:
+        "儒家など諸子百家が登場し、後世の中国思想の基礎となった。",
+
+    trick:
+        "周＝封建制＋宗法＋礼。東周＝春秋・戦国。"
+},
+
+
+{
+    id: "qin",
+
+    region: "中国・東アジア",
+    eras: ["古代"],
+
+    start: -221,
+    end: -206,
+
+    date: "前221〜前206年",
+
+    name: "秦",
+
+    tags: ["中国統一", "法家", "始皇帝"],
+
+    importance: 3,
+
+    summary:
+        "始皇帝が中国を初めて統一し、皇帝制度・郡県制・度量衡統一などを進めた。",
+
+    leaders: [
+        "秦王政（始皇帝）：前221年に中国統一",
+        "李斯：法家政治・文字統一などを推進"
+    ],
+
+    peak: [
+        "皇帝制度",
+        "郡県制",
+        "文字・度量衡・貨幣の統一",
+        "万里の長城の整備",
+        "焚書坑儒"
+    ],
+
+    cause:
+        "戦国七雄の抗争を秦が軍事力と法家政治によって勝ち抜いた。",
+
+    result:
+        "過酷な統治や重税・労役への反発から短期間で滅亡。",
+
+    impact:
+        "短命だったが、中央集権的統一国家のモデルを後漢・隋唐などへ残した。",
+
+    trick:
+        "秦は『短命＝失敗』ではない。制度面では後世への影響が非常に大きい。"
+},
+
+
+{
+    id: "han",
+
+    region: "中国・東アジア",
+    eras: ["古代"],
+
+    start: -206,
+    end: 220,
+
+    date: "前206〜220年",
+
+    name: "漢（前漢・後漢）",
+
+    tags: ["前漢", "後漢", "儒学", "シルクロード"],
+
+    importance: 3,
+
+    summary:
+        "秦の制度を受け継ぎつつ儒学を国家統治に組み込み、中国帝国の基本形を形成。",
+
+    leaders: [
+        "劉邦（高祖）：前漢を建国",
+        "武帝：匈奴遠征・張騫派遣・儒学官学化",
+        "光武帝：後漢を再興"
+    ],
+
+    peak: [
+        "武帝による中央集権化",
+        "張騫の西域派遣",
+        "匈奴との抗争",
+        "シルクロード交易",
+        "儒学の官学化",
+        "後漢の班超による西域経営"
+    ],
+
+    cause:
+        "秦滅亡後の楚漢戦争を経て劉邦が統一。",
+
+    result:
+        "外戚・宦官などの政治的混乱を経て後漢が滅亡。",
+
+    impact:
+        "中国文明の基本的な政治・文化モデルを形成し、周辺地域へ影響を拡大。",
+
+    trick:
+        "前漢＝武帝、後漢＝光武帝・班超・蔡倫。"
+},
+
+
+{
+    id: "three",
+
+    region: "中国・東アジア",
+    eras: ["古代", "中世"],
+
+    start: 220,
+    end: 280,
+
+    date: "220〜280年",
+
+    name: "三国時代",
+
+    tags: ["魏", "蜀", "呉", "曹操"],
+
+    importance: 3,
+
+    summary:
+        "魏・蜀・呉が中国を分割した時代。魏の曹丕、蜀の劉備、呉の孫権が中心。",
+
+    leaders: [
+        "曹操：魏の基礎を築く",
+        "曹丕：魏を建国",
+        "劉備：蜀漢を建国",
+        "孫権：呉を建国"
+    ],
+
+    peak: [
+        "赤壁の戦い",
+        "魏・蜀・呉の鼎立",
+        "諸葛亮の蜀漢経営"
+    ],
+
+    cause:
+        "後漢末の黄巾の乱や地方豪族の台頭により中央政府が崩壊。",
+
+    result:
+        "西晋の司馬炎が魏を奪い、280年に呉を滅ぼして再統一。",
+
+    impact:
+        "中国の分裂と南方開発が進み、後の南北朝時代につながる。",
+
+    trick:
+        "三国＝魏・蜀・呉。『魏晋南北朝』の入口。"
+},
+
+
+{
+    id: "jin",
+
+    region: "中国・東アジア",
+    eras: ["中世"],
+
+    start: 265,
+    end: 420,
+
+    date: "265〜420年",
+
+    name: "晋（西晋・東晋）",
+
+    tags: ["西晋", "東晋", "司馬氏"],
+
+    importance: 3,
+
+    summary:
+        "司馬炎が魏から政権を奪い西晋を建国。後に五胡の侵入によって北方を失い、東晋が江南へ移った。",
+
+    leaders: [
+        "司馬炎（武帝）：西晋を建国",
+        "司馬睿（元帝）：東晋を建国"
+    ],
+
+    peak: [
+        "280年、呉を滅ぼし中国統一",
+        "八王の乱",
+        "五胡の華北進出",
+        "江南の開発"
+    ],
+
+    cause:
+        "魏の実権を握った司馬氏が皇帝位を奪取。",
+
+    result:
+        "西晋が崩壊し、東晋が江南に成立。",
+
+    impact:
+        "北方民族の進出と漢民族の南下によって南北の地域差が拡大。",
+
+    trick:
+        "西晋＝一度統一。東晋＝江南。"
+},
+
+
+{
+    id: "nanbokucho",
+
+    region: "中国・東アジア",
+    eras: ["中世"],
+
+    start: 420,
+    end: 589,
+
+    date: "420〜589年",
+
+    name: "南北朝時代",
+
+    tags: ["北魏", "南朝", "均田制", "仏教"],
+
+    importance: 3,
+
+    summary:
+        "華北と江南に政権が分立した時代。北魏の孝文帝による漢化政策が重要。",
+
+    leaders: [
+        "北魏・孝文帝：洛陽遷都・漢化政策",
+        "宋・斉・梁・陳：南朝諸王朝"
+    ],
+
+    peak: [
+        "北魏による華北統一",
+        "孝文帝の漢化政策",
+        "均田制",
+        "仏教文化の発展"
+    ],
+
+    cause:
+        "五胡十六国の分裂を経て北魏が華北を統一。",
+
+    result:
+        "隋が南朝の陳を滅ぼして中国を再統一。",
+
+    impact:
+        "北方民族と漢民族の融合が進み、隋唐帝国成立の土台となった。",
+
+    trick:
+        "北魏＝孝文帝＝漢化。"
+},
+
+
+{
+    id: "sui",
+
+    region: "中国・東アジア",
+    eras: ["中世"],
+
+    start: 581,
+    end: 618,
+
+    date: "581〜618年",
+
+    name: "隋",
+
+    tags: ["中国再統一", "科挙", "大運河"],
+
+    importance: 3,
+
+    summary:
+        "南北朝の分裂を終わらせ中国を再統一。科挙や大運河など隋唐国家の基盤を整えた。",
+
+    leaders: [
+        "文帝：中国を再統一",
+        "煬帝：大運河建設・高句麗遠征"
+    ],
+
+    peak: [
+        "589年の南北統一",
+        "科挙開始",
+        "大運河",
+        "高句麗遠征"
+    ],
+
+    cause:
+        "北周の外戚だった楊堅が権力を掌握。",
+
+    result:
+        "大規模土木事業と遠征による負担から反乱が発生し滅亡。",
+
+    impact:
+        "隋の制度を唐が継承・発展させた。",
+
+    trick:
+        "隋＝短命だが、唐の制度を準備した王朝。"
+},
+
+
+{
+    id: "tang",
+
+    region: "中国・東アジア",
+    eras: ["中世"],
+
+    start: 618,
+    end: 907,
+
+    date: "618〜907年",
+
+    name: "唐",
+
+    tags: ["太宗", "則天武后", "玄宗", "律令制"],
+
+    importance: 3,
+
+    summary:
+        "東アジアの国際帝国として繁栄。律令制・均田制・府兵制・科挙などが発達。",
+
+    leaders: [
+        "李淵（高祖）：唐を建国",
+        "太宗：貞観の治",
+        "則天武后：中国史上唯一の女帝",
+        "玄宗：開元の治"
+    ],
+
+    peak: [
+        "貞観の治",
+        "開元の治",
+        "長安の国際都市化",
+        "東アジアへの影響",
+        "安史の乱",
+        "均田制・租庸調・府兵制"
+    ],
+
+    cause:
+        "隋末の混乱を李淵・李世民らが制して建国。",
+
+    result:
+        "安史の乱以後、節度使の自立や藩鎮化が進み、黄巣の乱を経て滅亡。",
+
+    impact:
+        "日本・朝鮮・中央アジアなどへ制度・文化を広げた。",
+
+    trick:
+        "唐＝太宗『貞観』→玄宗『開元』→安史の乱。"
+},
+
+
+{
+    id: "five",
+
+    region: "中国・東アジア",
+    eras: ["中世"],
+
+    start: 907,
+    end: 960,
+
+    date: "907〜960年",
+
+    name: "五代十国",
+
+    tags: ["五代", "十国", "分裂"],
+
+    importance: 2,
+
+    summary:
+        "唐滅亡後、華北で五代、華南などで十国が分立した分裂時代。",
+
+    leaders: [
+        "朱全忠：後梁を建国"
+    ],
+
+    peak: [
+        "華北の五代交替",
+        "南方諸国の分立",
+        "節度使勢力の台頭"
+    ],
+
+    cause:
+        "唐末の藩鎮勢力と黄巣の乱によって中央権力が弱体化。",
+
+    result:
+        "後周の趙匡胤が宋を建国。",
+
+    impact:
+        "宋の文治主義・中央集権化への転換につながった。",
+
+    trick:
+        "五代＝華北、十国＝華南中心。"
+},
+
+
+{
+    id: "song",
+
+    region: "中国・東アジア",
+    eras: ["中世"],
+
+    start: 960,
+    end: 1279,
+
+    date: "960〜1279年",
+
+    name: "宋（北宋・南宋）",
+
+    tags: ["北宋", "南宋", "文治主義", "朱子学"],
+
+    importance: 3,
+
+    summary:
+        "科挙官僚制・都市・商業・貨幣経済が発達。北宋と南宋に分かれる。",
+
+    leaders: [
+        "趙匡胤（太祖）：宋を建国",
+        "王安石：新法",
+        "徽宗：北宋末期の皇帝",
+        "朱熹：朱子学を大成"
+    ],
+
+    peak: [
+        "科挙の発展",
+        "文治主義",
+        "紙幣の使用",
+        "印刷術・火薬・羅針盤",
+        "北宋の都開封",
+        "南宋の都臨安",
+        "朱子学"
+    ],
+
+    cause:
+        "五代十国の分裂を趙匡胤が軍事権を掌握して統一。",
+
+    result:
+        "北宋は金に滅ぼされ、南宋は元に滅ぼされた。",
+
+    impact:
+        "東アジアの商業・都市文化を大きく発展させた。",
+
+    trick:
+        "宋＝政治は文治、経済は商業、文化は宋学・朱子学。"
+},
+
+
+{
+    id: "yuan",
+
+    region: "中国・東アジア",
+    eras: ["中世", "近世"],
+
+    start: 1271,
+    end: 1368,
+
+    date: "1271〜1368年",
+
+    name: "元",
+
+    tags: ["モンゴル", "フビライ", "大都"],
+
+    importance: 3,
+
+    summary:
+        "モンゴル帝国の中国支配をフビライが制度化して成立。1279年に南宋を滅ぼし中国を統一。",
+
+    leaders: [
+        "フビライ（世祖）：元を成立",
+        "マルコ＝ポーロ：元代中国を訪れた人物として有名"
+    ],
+
+    peak: [
+        "1279年、南宋滅亡",
+        "大都",
+        "駅伝制度",
+        "東西交易の活発化",
+        "ジャムチ",
+        "色目人の登用"
+    ],
+
+    cause:
+        "モンゴル帝国の拡大とフビライの中国支配。",
+
+    result:
+        "漢民族の反乱などを背景に明が成立。",
+
+    impact:
+        "ユーラシア規模の交易・人・情報の移動を促進。",
+
+    trick:
+        "元＝モンゴル人支配。科挙は一時軽視され、身分制が重視された。"
+},
+
+
+{
+    id: "ming",
+
+    region: "中国・東アジア",
+    eras: ["近世"],
+
+    start: 1368,
+    end: 1644,
+
+    date: "1368〜1644年",
+
+    name: "明",
+
+    tags: ["洪武帝", "永楽帝", "鄭和", "海禁"],
+
+    importance: 3,
+
+    summary:
+        "朱元璋が建国。皇帝権力を強化し、永楽帝期には対外遠征・鄭和の南海遠征などが行われた。",
+
+    leaders: [
+        "朱元璋（洪武帝）：明を建国",
+        "永楽帝：北京遷都・鄭和の遠征"
+    ],
+
+    peak: [
+        "皇帝独裁の強化",
+        "六部による行政",
+        "北京遷都",
+        "鄭和の南海遠征",
+        "朝貢貿易",
+        "万里の長城整備"
+    ],
+
+    cause:
+        "元末の紅巾の乱を経て朱元璋がモンゴル勢力を北へ追った。",
+
+    result:
+        "農民反乱・財政難・清軍の侵入によって滅亡。",
+
+    impact:
+        "東アジアの朝貢体制と海域交流に大きな影響。",
+
+    trick:
+        "鄭和＝永楽帝。大航海時代初期のヨーロッパ勢力と同時代。"
+},
+
+
+{
+    id: "qing",
+
+    region: "中国・東アジア",
+    eras: ["近世", "近代"],
+
+    start: 1644,
+    end: 1911,
+
+    date: "1644〜1911年",
+
+    name: "清",
+
+    tags: ["満洲族", "康熙帝", "乾隆帝", "アヘン戦争"],
+
+    importance: 3,
+
+    summary:
+        "満洲族が建国。康熙・雍正・乾隆期に領域を拡大したが、19世紀には列強の圧力と国内反乱に直面。",
+
+    leaders: [
+        "康熙帝：台湾統一・ロシアとのネルチンスク条約",
+        "雍正帝：中央集権化",
+        "乾隆帝：清の最大版図"
+    ],
+
+    peak: [
+        "三藩の乱平定",
+        "台湾統一",
+        "ネルチンスク条約",
+        "新疆・チベット方面への拡張",
+        "乾隆帝期の領域拡大"
+    ],
+
+    cause:
+        "明末の内乱と李自成の北京占領を背景に、満洲軍が中国本土へ進出。",
+
+    result:
+        "アヘン戦争・アロー戦争・日清戦争・辛亥革命などを経て滅亡。",
+
+    impact:
+        "中国最後の王朝。近代中国国家の領域形成にも影響。",
+
+    trick:
+        "清＝満洲族。最盛期は康熙・雍正・乾隆。"
+},
+
+
+{
+    id: "roc",
+
+    region: "中国・東アジア",
+    eras: ["近代", "現代"],
+
+    start: 1912,
+    end: 1949,
+
+    date: "1912〜1949年",
+
+    name: "中華民国",
+
+    tags: ["辛亥革命", "孫文", "国民党", "国共内戦"],
+
+    importance: 3,
+
+    summary:
+        "辛亥革命によって清朝が倒れ成立。軍閥・国共対立・日中戦争を経験。",
+
+    leaders: [
+        "孫文：臨時大総統・三民主義",
+        "袁世凱：中華民国初期の実力者",
+        "蒋介石：国民政府を主導"
+    ],
+
+    peak: [
+        "辛亥革命",
+        "三民主義",
+        "国民政府",
+        "北伐",
+        "日中戦争",
+        "国共内戦"
+    ],
+
+    cause:
+        "清朝への反発と民族・共和主義の高まり。",
+
+    result:
+        "国共内戦で中国共産党が勝利し、中華人民共和国が成立。",
+
+    impact:
+        "中国の近代国家化と国民国家形成の重要な段階。",
+
+    trick:
+        "1912＝中華民国。1949＝中華人民共和国。"
+},
+
+
+{
+    id: "prc",
+
+    region: "中国・東アジア",
+    eras: ["現代"],
+
+    start: 1949,
+    end: null,
+
+    date: "1949年〜現在",
+
+    name: "中華人民共和国",
+
+    tags: ["毛沢東", "改革開放", "鄧小平"],
+
+    importance: 3,
+
+    summary:
+        "1949年に中国共産党が建国。社会主義化、大躍進、文化大革命を経て改革開放へ転換。",
+
+    leaders: [
+        "毛沢東：中華人民共和国建国を主導",
+        "鄧小平：改革開放を推進"
+    ],
+
+    peak: [
+        "土地改革",
+        "大躍進政策",
+        "文化大革命",
+        "1978年以降の改革開放",
+        "経済成長と国際的影響力拡大"
+    ],
+
+    cause:
+        "国共内戦で中国共産党が国民党を破り、中国大陸を支配。",
+
+    result:
+        "社会主義体制を維持しつつ市場経済的要素を導入。",
+
+    impact:
+        "現代の国際政治・経済における主要大国となった。",
+
+    trick:
+        "毛沢東期と鄧小平以後を分けて理解する。"
+},
+
+
+/* =========================================================
+   ヨーロッパ
+   ========================================================= */
+
+{
+    id: "greece",
+
+    region: "ヨーロッパ",
+    eras: ["古代"],
+
+    start: -800,
+    end: -146,
+
+    date: "前8世紀頃〜前146年",
+
+    name: "古代ギリシア",
+
+    tags: ["ポリス", "アテネ", "スパルタ", "民主政"],
+
+    importance: 3,
+
+    summary:
+        "ポリスを中心とする都市国家世界。アテネ民主政、スパルタ、ペルシア戦争、ペロポネソス戦争が重要。",
+
+    leaders: [
+        "ペリクレス：アテネ民主政の全盛期",
+        "ソクラテス・プラトン・アリストテレス：哲学"
+    ],
+
+    peak: [
+        "アテネ民主政",
+        "ペルシア戦争",
+        "ペロポネソス戦争",
+        "ギリシア哲学",
+        "演劇・建築・歴史学"
+    ],
+
+    cause:
+        "エーゲ海世界の都市国家形成。",
+
+    result:
+        "マケドニアの台頭を経てヘレニズム世界へ。",
+
+    impact:
+        "西洋政治思想・哲学・科学・芸術の基礎を形成。",
+
+    trick:
+        "アテネ＝民主政、スパルタ＝軍国主義。"
+},
+
+
+{
+    id: "rome-republic",
+
+    region: "ヨーロッパ",
+    eras: ["古代"],
+
+    start: -509,
+    end: -27,
+
+    date: "前509〜前27年",
+
+    name: "ローマ共和政",
+
+    tags: ["共和政", "元老院", "ポエニ戦争"],
+
+    importance: 3,
+
+    summary:
+        "王政を廃止して共和政を成立。イタリア半島から地中海世界へ勢力を拡大した。",
+
+    leaders: [
+        "スキピオ：ポエニ戦争でハンニバルを撃破",
+        "グラックス兄弟：土地問題に取り組む",
+        "カエサル：内乱を経て独裁権力を握る"
+    ],
+
+    peak: [
+        "十二表法",
+        "ポエニ戦争",
+        "地中海支配",
+        "属州拡大",
+        "カエサルの独裁"
+    ],
+
+    cause:
+        "ローマの都市国家としての発展と身分闘争。",
+
+    result:
+        "内乱と軍人政治を経て共和政が終わり帝政へ。",
+
+    impact:
+        "ローマ法・共和政思想が後世のヨーロッパ政治へ影響。",
+
+    trick:
+        "共和政末期＝カエサル→アントニウス→アウグストゥス。"
+},
+
+
+{
+    id: "rome-empire",
+
+    region: "ヨーロッパ",
+    eras: ["古代"],
+
+    start: -27,
+    end: 395,
+
+    date: "前27〜395年",
+
+    name: "ローマ帝国",
+
+    tags: ["帝政", "アウグストゥス", "五賢帝"],
+
+    importance: 3,
+
+    summary:
+        "アウグストゥスが帝政を確立。地中海世界を統一的に支配し、ローマの平和が成立。",
+
+    leaders: [
+        "アウグストゥス：帝政を確立",
+        "トラヤヌス：最大版図",
+        "コンスタンティヌス：キリスト教公認"
+    ],
+
+    peak: [
+        "パクス＝ロマーナ",
+        "五賢帝",
+        "ローマ法",
+        "キリスト教の拡大",
+        "313年ミラノ勅令",
+        "380年キリスト教国教化"
+    ],
+
+    cause:
+        "共和政末期の内乱をアウグストゥスが収束。",
+
+    result:
+        "395年、東西分裂。西ローマ帝国は476年に滅亡。",
+
+    impact:
+        "ヨーロッパの政治・法律・宗教・言語に巨大な影響。",
+
+    trick:
+        "313＝ミラノ勅令、325＝ニケーア公会議、380＝国教化。"
+},
+
+
+{
+    id: "byzantine",
+
+    region: "ヨーロッパ",
+    eras: ["古代", "中世"],
+
+    start: 395,
+    end: 1453,
+
+    date: "395〜1453年",
+
+    name: "東ローマ帝国（ビザンツ帝国）",
+
+    tags: ["コンスタンティノープル", "ユスティニアヌス", "正教会"],
+
+    importance: 3,
+
+    summary:
+        "ローマ帝国東部を継承。ギリシア正教・ローマ法・ギリシア文化を融合した帝国。",
+
+    leaders: [
+        "ユスティニアヌス帝：ローマ法大全・領土回復",
+        "ヘラクレイオス：帝国再編"
+    ],
+
+    peak: [
+        "ユスティニアヌス帝",
+        "ローマ法大全",
+        "ハギア＝ソフィア",
+        "西方領土の一部回復",
+        "1054年東西教会分裂",
+        "1453年コンスタンティノープル陥落"
+    ],
+
+    cause:
+        "ローマ帝国の東西分裂後、東部の政治・経済基盤が比較的強かった。",
+
+    result:
+        "オスマン帝国によって1453年滅亡。",
+
+    impact:
+        "正教会世界・東欧文化・ローマ法の継承に重要。",
+
+    trick:
+        "東ローマ＝ビザンツ。首都＝コンスタンティノープル。"
+},
+
+
+{
+    id: "franks",
+
+    region: "ヨーロッパ",
+    eras: ["中世"],
+
+    start: 481,
+    end: 843,
+
+    date: "481〜843年",
+
+    name: "フランク王国",
+
+    tags: ["クローヴィス", "カール大帝", "カロリング朝"],
+
+    importance: 3,
+
+    summary:
+        "ゲルマン人国家の中で西ヨーロッパのキリスト教化と政治統合を進めた重要国家。",
+
+    leaders: [
+        "クローヴィス：メロヴィング朝・カトリック改宗",
+        "カール大帝：西ヨーロッパを広く統合"
+    ],
+
+    peak: [
+        "クローヴィスの改宗",
+        "カロリング朝",
+        "カール大帝の征服",
+        "800年皇帝戴冠",
+        "カロリング＝ルネサンス"
+    ],
+
+    cause:
+        "西ローマ帝国崩壊後のゲルマン諸国家形成。",
+
+    result:
+        "843年ヴェルダン条約で分割。",
+
+    impact:
+        "後のフランス・ドイツの形成につながった。",
+
+    trick:
+        "カール大帝→800年皇帝戴冠→843年ヴェルダン条約。"
+},
+
+
+{
+    id: "hre",
+
+    region: "ヨーロッパ",
+    eras: ["中世", "近世"],
+
+    start: 962,
+    end: 1806,
+
+    date: "962〜1806年",
+
+    name: "神聖ローマ帝国",
+
+    tags: ["オットー1世", "皇帝", "ドイツ"],
+
+    importance: 3,
+
+    summary:
+        "962年オットー1世の皇帝戴冠を起点とする中欧の政治的枠組み。多数の諸侯が存在した。",
+
+    leaders: [
+        "オットー1世：皇帝戴冠",
+        "ハインリヒ4世：叙任権闘争",
+        "カール5世：ハプスブルク家"
+    ],
+
+    peak: [
+        "962年皇帝戴冠",
+        "叙任権闘争",
+        "ヴォルムス協約",
+        "ハプスブルク家の台頭",
+        "宗教改革",
+        "三十年戦争",
+        "1648年ウェストファリア条約"
+    ],
+
+    cause:
+        "フランク王国分裂後の東フランク地域で王権と教会の結びつきが形成。",
+
+    result:
+        "ナポレオンによって1806年解体。",
+
+    impact:
+        "ドイツ・中欧政治史の長期的枠組みとなった。",
+
+    trick:
+        "『神聖』『ローマ』『帝国』という名前でも、古代ローマ帝国そのものではない。"
+},
+
+
+/* =========================================================
+   イギリス
+   ========================================================= */
+
+{
+    id: "england-norman",
+
+    region: "ヨーロッパ",
+    eras: ["中世"],
+
+    start: 1066,
+    end: 1154,
+
+    date: "1066〜1154年",
+
+    name: "イングランド・ノルマン朝",
+
+    tags: ["ノルマン征服", "ウィリアム1世"],
+
+    importance: 2,
+
+    summary:
+        "1066年、ノルマンディー公ウィリアムがイングランドを征服。",
+
+    leaders: [
+        "ウィリアム1世：ノルマン征服"
+    ],
+
+    peak: [
+        "ヘイスティングズの戦い",
+        "ドゥームズデイ＝ブック",
+        "封建的支配の強化"
+    ],
+
+    cause:
+        "エドワード懺悔王死後の王位継承争い。",
+
+    result:
+        "プランタジネット朝へ。",
+
+    impact:
+        "フランス語文化とイングランド王権に大きな影響。",
+
+    trick:
+        "1066＝ノルマン征服。"
+},
+
+
+{
+    id: "england-plantagenet",
+
+    region: "ヨーロッパ",
+    eras: ["中世"],
+
+    start: 1154,
+    end: 1485,
+
+    date: "1154〜1485年",
+
+    name: "イングランド・プランタジネット朝",
+
+    tags: ["マグナ＝カルタ", "議会", "百年戦争"],
+
+    importance: 3,
+
+    summary:
+        "王権と貴族・議会の関係が形成され、後の立憲政治につながった。",
+
+    leaders: [
+        "ヘンリ2世：王権強化",
+        "ジョン王：マグナ＝カルタ",
+        "エドワード3世：百年戦争開始"
+    ],
+
+    peak: [
+        "マグナ＝カルタ",
+        "議会政治の発達",
+        "百年戦争",
+        "薔薇戦争"
+    ],
+
+    cause:
+        "ノルマン征服後の王権強化とフランスとの関係。",
+
+    result:
+        "薔薇戦争を経てテューダー朝へ。",
+
+    impact:
+        "イギリス議会政治の歴史的基盤。",
+
+    trick:
+        "ジョン王＝マグナ＝カルタ。"
+},
+
+
+{
+    id: "england-tudor",
+
+    region: "ヨーロッパ",
+    eras: ["近世"],
+
+    start: 1485,
+    end: 1603,
+
+    date: "1485〜1603年",
+
+    name: "イングランド・テューダー朝",
+
+    tags: ["ヘンリ8世", "エリザベス1世", "宗教改革"],
+
+    importance: 3,
+
+    summary:
+        "宗教改革・海外進出・王権強化が進んだイングランド近世の重要王朝。",
+
+    leaders: [
+        "ヘンリ8世：国教会成立",
+        "エリザベス1世：宗教統一・海上進出"
+    ],
+
+    peak: [
+        "イギリス国教会成立",
+        "スペイン無敵艦隊撃破",
+        "エリザベス朝演劇",
+        "海外進出"
+    ],
+
+    cause:
+        "王権強化とローマ教会との対立。",
+
+    result:
+        "1603年ステュアート朝へ。",
+
+    impact:
+        "イングランドの宗教的・海洋的国家形成を促進。",
+
+    trick:
+        "ヘンリ8世＝離婚問題→国教会。エリザベス1世＝1588年。"
+},
+
+
+{
+    id: "england-stuart",
+
+    region: "ヨーロッパ",
+    eras: ["近世"],
+
+    start: 1603,
+    end: 1714,
+
+    date: "1603〜1714年",
+
+    name: "ステュアート朝",
+
+    tags: ["清教徒革命", "名誉革命", "権利章典"],
+
+    importance: 3,
+
+    summary:
+        "王権と議会の対立が激化し、清教徒革命・王政復古・名誉革命を経験。",
+
+    leaders: [
+        "チャールズ1世：清教徒革命で処刑",
+        "クロムウェル：共和政",
+        "ジェームズ2世：名誉革命で退位"
+    ],
+
+    peak: [
+        "清教徒革命",
+        "チャールズ1世処刑",
+        "王政復古",
+        "名誉革命",
+        "1689年権利章典"
+    ],
+
+    cause:
+        "国王の専制的統治と議会・宗教勢力との対立。",
+
+    result:
+        "立憲君主制が確立。",
+
+    impact:
+        "近代イギリス議会政治の基礎となった。",
+
+    trick:
+        "1688名誉革命→1689権利章典。"
+},
+
+
+{
+    id: "england-hanover",
+
+    region: "ヨーロッパ",
+    eras: ["近世", "近代"],
+
+    start: 1714,
+    end: 1901,
+
+    date: "1714〜1901年",
+
+    name: "ハノーヴァー朝",
+
+    tags: ["議院内閣制", "産業革命", "帝国"],
+
+    importance: 3,
+
+    summary:
+        "議院内閣制・産業革命・大英帝国の発展が進んだ時代。",
+
+    leaders: [
+        "ジョージ1世：議院内閣制の発達",
+        "ヴィクトリア女王：帝国の全盛期"
+    ],
+
+    peak: [
+        "産業革命",
+        "議院内閣制",
+        "大英帝国",
+        "世界の工場"
+    ],
+
+    cause:
+        "名誉革命後の議会政治と資本主義の発達。",
+
+    result:
+        "20世紀の世界大戦を経て帝国は縮小。",
+
+    impact:
+        "近代工業社会・自由主義政治のモデルを形成。",
+
+    trick:
+        "ヴィクトリア時代＝19世紀イギリスの繁栄。"
+},
+
+
+/* =========================================================
+   フランス
+   ========================================================= */
+
+{
+    id: "france-merovingian",
+
+    region: "ヨーロッパ",
+    eras: ["中世"],
+
+    start: 481,
+    end: 751,
+
+    date: "481〜751年",
+
+    name: "フランス・メロヴィング朝",
+
+    tags: ["クローヴィス", "フランク王国"],
+
+    importance: 2,
+
+    summary:
+        "クローヴィスの改宗によってカトリック教会との関係を強めた。",
+
+    leaders: [
+        "クローヴィス"
+    ],
+
+    peak: [
+        "カトリックへの改宗",
+        "フランク王国拡大"
+    ],
+
+    cause:
+        "フランク族の統合。",
+
+    result:
+        "カロリング朝へ。",
+
+    impact:
+        "フランス史と西欧キリスト教世界の基礎。",
+
+    trick:
+        "クローヴィス＝カトリック改宗。"
+},
+
+
+{
+    id: "france-carolingian",
+
+    region: "ヨーロッパ",
+    eras: ["中世"],
+
+    start: 751,
+    end: 987,
+
+    date: "751〜987年",
+
+    name: "フランス・カロリング朝",
+
+    tags: ["ピピン", "カール大帝", "ヴェルダン条約"],
+
+    importance: 3,
+
+    summary:
+        "ピピンとカール大帝の時代にフランク王国が大きく発展。",
+
+    leaders: [
+        "ピピン：カロリング朝創始",
+        "カール大帝：800年皇帝戴冠"
+    ],
+
+    peak: [
+        "カール大帝の帝国",
+        "800年皇帝戴冠",
+        "カロリング＝ルネサンス",
+        "843年ヴェルダン条約"
+    ],
+
+    cause:
+        "宮宰カロリング家の実力上昇。",
+
+    result:
+        "王国分割後、フランスではカペー朝へ。",
+
+    impact:
+        "フランス・ドイツ形成の出発点。",
+
+    trick:
+        "カール大帝＝フランク王国。"
+},
+
+
+{
+    id: "france-capetian",
+
+    region: "ヨーロッパ",
+    eras: ["中世"],
+
+    start: 987,
+    end: 1328,
+
+    date: "987〜1328年",
+
+    name: "フランス・カペー朝",
+
+    tags: ["カペー朝", "王権強化"],
+
+    importance: 2,
+
+    summary:
+        "フランス王権を徐々に強化し、後の中央集権国家形成につなげた。",
+
+    leaders: [
+        "ユーグ＝カペー",
+        "フィリップ2世",
+        "ルイ9世"
+    ],
+
+    peak: [
+        "王領拡大",
+        "王権強化",
+        "十字軍",
+        "パリの発展"
+    ],
+
+    cause:
+        "カロリング朝断絶後の王位継承。",
+
+    result:
+        "ヴァロワ朝へ。",
+
+    impact:
+        "フランス王権の中央集権化を進めた。",
+
+    trick:
+        "987年ユーグ＝カペー。"
+},
+
+
+{
+    id: "france-valois",
+
+    region: "ヨーロッパ",
+    eras: ["中世", "近世"],
+
+    start: 1328,
+    end: 1589,
+
+    date: "1328〜1589年",
+
+    name: "フランス・ヴァロワ朝",
+
+    tags: ["百年戦争", "宗教戦争"],
+
+    importance: 3,
+
+    summary:
+        "百年戦争、宗教戦争を経験しながらフランス王権を強化。",
+
+    leaders: [
+        "シャルル7世",
+        "ルイ11世",
+        "フランソワ1世",
+        "アンリ3世"
+    ],
+
+    peak: [
+        "百年戦争",
+        "ジャンヌ＝ダルク",
+        "王権強化",
+        "ユグノー戦争",
+        "ナントの王令への流れ"
+    ],
+
+    cause:
+        "フランス王位継承問題と英仏対立。",
+
+    result:
+        "ブルボン朝へ。",
+
+    impact:
+        "フランスの領域国家化と王権強化。",
+
+    trick:
+        "百年戦争＝フランス側ジャンヌ＝ダルク。"
+},
+
+
+{
+    id: "france-bourbon",
+
+    region: "ヨーロッパ",
+    eras: ["近世"],
+
+    start: 1589,
+    end: 1792,
+
+    date: "1589〜1792年",
+
+    name: "フランス・ブルボン朝",
+
+    tags: ["アンリ4世", "ルイ14世", "絶対王政"],
+
+    importance: 3,
+
+    summary:
+        "アンリ4世による宗教融和、ルイ14世による絶対王政が重要。",
+
+    leaders: [
+        "アンリ4世：ナントの王令",
+        "ルイ14世：絶対王政の最盛期"
+    ],
+
+    peak: [
+        "ナントの王令",
+        "ルイ14世",
+        "ヴェルサイユ宮殿",
+        "重商主義",
+        "フランスの覇権"
+    ],
+
+    cause:
+        "宗教戦争後の王権強化。",
+
+    result:
+        "フランス革命によって王政が崩壊。",
+
+    impact:
+        "絶対王政の代表例。",
+
+    trick:
+        "ルイ14世＝『太陽王』。コルベール＝重商主義。"
+},
+
+
+/* =========================================================
+   ロシア
+   ========================================================= */
+
+{
+    id: "russia-rurik",
+
+    region: "ヨーロッパ",
+    eras: ["中世", "近世"],
+
+    start: 862,
+    end: 1598,
+
+    date: "862〜1598年頃",
+
+    name: "ロシア・リューリク朝",
+
+    tags: ["キエフ公国", "モスクワ大公国"],
+
+    importance: 2,
+
+    summary:
+        "キエフ公国からモスクワ大公国へ発展。正教会を受容し、ロシア国家形成の基礎を築いた。",
+
+    leaders: [
+        "ウラディミル1世：キリスト教受容",
+        "イヴァン3世：モスクワ大公国強化",
+        "イヴァン4世：ツァーリを称する"
+    ],
+
+    peak: [
+        "キエフ公国",
+        "988年キリスト教受容",
+        "モンゴル支配からの自立",
+        "モスクワ中心化",
+        "ツァーリ称号"
+    ],
+
+    cause:
+        "東スラヴ諸勢力の統合。",
+
+    result:
+        "動乱期を経てロマノフ朝へ。",
+
+    impact:
+        "ロシア正教・モスクワ国家の形成。",
+
+    trick:
+        "988＝ウラディミル1世のキリスト教受容。"
+},
+
+
+{
+    id: "russia-romanov",
+
+    region: "ヨーロッパ",
+    eras: ["近世", "近代"],
+
+    start: 1613,
+    end: 1917,
+
+    date: "1613〜1917年",
+
+    name: "ロシア・ロマノフ朝",
+
+    tags: ["ピョートル1世", "エカチェリーナ2世", "帝国"],
+
+    importance: 3,
+
+    summary:
+        "ロシア帝国を形成し、ヨーロッパ・中央アジアへ領域を拡大。",
+
+    leaders: [
+        "ピョートル1世：西欧化・北方戦争",
+        "エカチェリーナ2世：領土拡大",
+        "アレクサンドル2世：農奴解放"
+    ],
+
+    peak: [
+        "ロシア帝国成立",
+        "サンクトペテルブルク",
+        "北方戦争",
+        "農奴解放令",
+        "シベリア・中央アジア進出"
+    ],
+
+    cause:
+        "動乱期後にロマノフ家が即位。",
+
+    result:
+        "ロシア革命で帝政崩壊。",
+
+    impact:
+        "ロシアをヨーロッパ列強・ユーラシア大国へ押し上げた。",
+
+    trick:
+        "ピョートル1世＝西欧化、エカチェリーナ2世＝啓蒙専制君主。"
+},
+
+
+{
+    id: "russia-ussr",
+
+    region: "ヨーロッパ",
+    eras: ["近代", "現代"],
+
+    start: 1917,
+    end: 1991,
+
+    date: "1917〜1991年",
+
+    name: "ロシア革命・ソ連",
+
+    tags: ["ロシア革命", "ソ連", "スターリン", "冷戦"],
+
+    importance: 3,
+
+    summary:
+        "ロシア革命によって帝政が崩壊。1922年ソ連成立。第二次世界大戦後は米国と並ぶ超大国となった。",
+
+    leaders: [
+        "レーニン：十月革命・ソビエト政権",
+        "スターリン：五カ年計画・集団化",
+        "ゴルバチョフ：ペレストロイカ"
+    ],
+
+    peak: [
+        "1917年二月革命・十月革命",
+        "1922年ソ連成立",
+        "五カ年計画",
+        "第二次世界大戦",
+        "冷戦",
+        "1991年ソ連解体"
+    ],
+
+    cause:
+        "第一次世界大戦による社会・経済危機と帝政への不満。",
+
+    result:
+        "1991年ソ連解体。",
+
+    impact:
+        "20世紀の社会主義・冷戦構造を形成。",
+
+    trick:
+        "二月革命→臨時政府→十月革命→ソ連。"
+},
+
+
+/* =========================================================
+   近代市民社会・絶対王政・世界大戦
+   ========================================================= */
+
+{
+    id: "absolutism",
+
+    region: "世界史テーマ",
+    eras: ["近世"],
+
+    start: 1500,
+    end: 1789,
+
+    date: "16〜18世紀",
+
+    name: "絶対王政",
+
+    tags: ["主権国家", "重商主義", "王権"],
+
+    importance: 3,
+
+    summary:
+        "近世ヨーロッパで国王が官僚・常備軍などを利用して王権を強化した政治体制。",
+
+    leaders: [
+        "ルイ14世",
+        "エリザベス1世",
+        "ピョートル1世"
+    ],
+
+    peak: [
+        "常備軍",
+        "官僚制",
+        "重商主義",
+        "海外植民地獲得",
+        "王権神授説"
+    ],
+
+    cause:
+        "封建的分権から主権国家形成へ移行。",
+
+    result:
+        "市民革命・啓蒙思想によって正当性が批判される。",
+
+    impact:
+        "近代国家形成の重要段階。",
+
+    trick:
+        "絶対王政＝何でも自由にできる王ではなく、近代国家形成期の王権強化。"
+},
+
+
+{
+    id: "modern-civil",
+
+    region: "世界史テーマ",
+    eras: ["近代"],
+
+    start: 1688,
+    end: 1914,
+
+    date: "17世紀末〜20世紀初頭",
+
+    name: "近代市民社会",
+
+    tags: ["啓蒙思想", "市民革命", "産業革命", "国民国家"],
+
+    importance: 3,
+
+    summary:
+        "自由・平等・権利・国民主権などを基礎とする近代社会が形成された時代。",
+
+    leaders: [
+        "ロック：社会契約・抵抗権",
+        "モンテスキュー：三権分立",
+        "ルソー：人民主権"
+    ],
+
+    peak: [
+        "名誉革命",
+        "アメリカ独立",
+        "フランス革命",
+        "産業革命",
+        "国民国家形成",
+        "社会主義思想"
+    ],
+
+    cause:
+        "商工業発展・啓蒙思想・市民階級の成長。",
+
+    result:
+        "国民国家・資本主義社会が世界へ拡大。",
+
+    impact:
+        "現代の政治・経済・社会制度の基盤となった。",
+
+    trick:
+        "思想→革命→政治制度→産業化、という流れを意識。"
+},
+
+
+{
+    id: "ww1",
+
+    region: "世界史テーマ",
+    eras: ["近代"],
+
+    start: 1914,
+    end: 1918,
+
+    date: "1914〜1918年",
+
+    name: "第一次世界大戦",
+
+    tags: ["総力戦", "帝国主義", "三国同盟", "三国協商"],
+
+    importance: 3,
+
+    summary:
+        "帝国主義列強の対立が背景となった初の大規模な総力戦。",
+
+    leaders: [
+        "ウィルソン：十四か条・国際連盟構想",
+        "レーニン：ロシア革命"
+    ],
+
+    peak: [
+        "サラエボ事件",
+        "塹壕戦",
+        "ロシア革命",
+        "アメリカ参戦",
+        "ドイツ敗北",
+        "ヴェルサイユ条約"
+    ],
+
+    cause:
+        "帝国主義・軍拡・同盟対立・バルカン情勢などが複合。",
+
+    result:
+        "ドイツ・オーストリア＝ハンガリー・オスマンなどが敗北。",
+
+    impact:
+        "国際連盟・民族自決・ロシア革命・中東再編につながった。",
+
+    trick:
+        "第一次大戦→ロシア革命→ヴェルサイユ体制。"
+},
+
+
+{
+    id: "ww2",
+
+    region: "世界史テーマ",
+    eras: ["近代", "現代"],
+
+    start: 1939,
+    end: 1945,
+
+    date: "1939〜1945年",
+
+    name: "第二次世界大戦",
+
+    tags: ["枢軸国", "連合国", "総力戦", "国際連合"],
+
+    importance: 3,
+
+    summary:
+        "ナチス・ドイツのポーランド侵攻を契機にヨーロッパ戦争が始まり、世界規模へ拡大。",
+
+    leaders: [
+        "ヒトラー：ナチス＝ドイツ",
+        "チャーチル：イギリス",
+        "ルーズベルト：アメリカ",
+        "スターリン：ソ連"
+    ],
+
+    peak: [
+        "ポーランド侵攻",
+        "独ソ戦",
+        "真珠湾攻撃",
+        "ノルマンディー上陸",
+        "ドイツ降伏",
+        "日本降伏",
+        "国際連合成立"
+    ],
+
+    cause:
+        "ヴェルサイユ体制への不満・世界恐慌・ファシズム・ドイツの拡張政策。",
+
+    result:
+        "枢軸国敗北。米ソ二極体制へ。",
+
+    impact:
+        "冷戦・脱植民地化・国際連合・欧州統合の背景となった。",
+
+    trick:
+        "第二次大戦後＝冷戦・脱植民地化・国連。"
+},
+
+
+{
+    id: "eu",
+
+    region: "ヨーロッパ",
+    eras: ["現代"],
+
+    start: 1951,
+    end: null,
+
+    date: "1951年〜現在",
+
+    name: "ヨーロッパ統合・EU",
+
+    tags: ["ECSC", "EEC", "EU", "マーストリヒト条約"],
+
+    importance: 3,
+
+    summary:
+        "第二次世界大戦後の欧州統合。石炭鉄鋼共同体からEUへ発展した。",
+
+    leaders: [
+        "シューマン：欧州統合構想",
+        "モネ：統合推進者"
+    ],
+
+    peak: [
+        "1951年ECSC",
+        "1957年ローマ条約",
+        "1993年EU発足",
+        "単一市場",
+        "ユーロ導入"
+    ],
+
+    cause:
+        "二度の世界大戦を経験した欧州で戦争再発防止と経済協力を目指した。",
+
+    result:
+        "加盟国間の政治・経済統合が深化。",
+
+    impact:
+        "現代の国際統合モデルの代表例。",
+
+    trick:
+        "ECSC→EEC→EU。1993年EU発足。"
+},
+
+
+/* =========================================================
+   イスラム・西アジア
+   ========================================================= */
+
+{
+    id: "rashidun",
+
+    region: "イスラム・西アジア",
+    eras: ["中世"],
+
+    start: 632,
+    end: 661,
+
+    date: "632〜661年",
+
+    name: "正統カリフ時代",
+
+    tags: ["ムハンマド", "カリフ", "イスラーム帝国"],
+
+    importance: 3,
+
+    summary:
+        "ムハンマド死後、正統カリフがイスラーム共同体を指導し、大規模な征服を開始。",
+
+    leaders: [
+        "アブー＝バクル",
+        "ウマル",
+        "ウスマーン",
+        "アリー"
+    ],
+
+    peak: [
+        "シリア征服",
+        "エジプト征服",
+        "ササン朝滅亡",
+        "イスラーム帝国拡大"
+    ],
+
+    cause:
+        "ムハンマド死後の共同体統合と征服活動。",
+
+    result:
+        "内戦を経てウマイヤ朝へ。",
+
+    impact:
+        "イスラーム帝国の急速な拡大。",
+
+    trick:
+        "正統カリフ＝4人。アリーの後にウマイヤ朝。"
+},
+
+
+{
+    id: "umayyad",
+
+    region: "イスラム・西アジア",
+    eras: ["中世"],
+
+    start: 661,
+    end: 750,
+
+    date: "661〜750年",
+
+    name: "ウマイヤ朝",
+
+    tags: ["ダマスクス", "イスラーム帝国", "アラブ人"],
+
+    importance: 3,
+
+    summary:
+        "首都をダマスクスに置き、イスラーム帝国を西方・東方へ大きく拡大。",
+
+    leaders: [
+        "ムアーウィヤ：王朝を創始",
+        "アブドゥル＝マリク：アラブ帝国化を推進"
+    ],
+
+    peak: [
+        "イベリア半島進出",
+        "中央アジア進出",
+        "アラブ語公用語化",
+        "貨幣改革"
+    ],
+
+    cause:
+        "第一次内乱後、ムアーウィヤが実権を掌握。",
+
+    result:
+        "アッバース革命によって滅亡。",
+
+    impact:
+        "イスラーム帝国が大西洋から中央アジアまで拡大。",
+
+    trick:
+        "ウマイヤ朝＝首都ダマスクス。"
+},
+
+
+{
+    id: "abbasid",
+
+    region: "イスラム・西アジア",
+    eras: ["中世"],
+
+    start: 750,
+    end: 1258,
+
+    date: "750〜1258年",
+
+    name: "アッバース朝",
+
+    tags: ["バグダード", "イスラーム文化", "ハールーン＝アッラシード"],
+
+    importance: 3,
+
+    summary:
+        "バグダードを中心にイスラーム文明が繁栄。ギリシア・ペルシア・インド文化の翻訳・研究が進んだ。",
+
+    leaders: [
+        "アブー＝アル＝アッバース",
+        "ハールーン＝アッラシード",
+        "アル＝マームーン"
+    ],
+
+    peak: [
+        "762年バグダード建設",
+        "イスラーム黄金時代",
+        "知恵の館",
+        "数学・医学・天文学",
+        "交易ネットワーク"
+    ],
+
+    cause:
+        "アッバース家がウマイヤ朝を打倒。",
+
+    result:
+        "1258年フラグ率いるモンゴル軍にバグダードを攻略される。",
+
+    impact:
+        "イスラーム文化がヨーロッパ・アジアの知的発展にも影響。",
+
+    trick:
+        "ウマイヤ＝ダマスクス、アッバース＝バグダード。"
+},
+
+
+{
+    id: "cordoba",
+
+    region: "イスラム・西アジア",
+    eras: ["中世"],
+
+    start: 756,
+    end: 1031,
+
+    date: "756〜1031年",
+
+    name: "後ウマイヤ朝",
+
+    tags: ["コルドバ", "アブド＝アッラフマーン3世"],
+
+    importance: 3,
+
+    summary:
+        "ウマイヤ家の生き残りがイベリア半島に建国。コルドバを中心にイスラーム文化が繁栄。",
+
+    leaders: [
+        "アブド＝アッラフマーン1世",
+        "アブド＝アッラフマーン3世"
+    ],
+
+    peak: [
+        "コルドバの繁栄",
+        "929年カリフ宣言",
+        "イスラーム・ユダヤ・キリスト教文化の交流"
+    ],
+
+    cause:
+        "アッバース朝成立時にウマイヤ家の一員がイベリアへ逃れた。",
+
+    result:
+        "1031年分裂しタイファ諸国へ。",
+
+    impact:
+        "中世ヨーロッパへのイスラーム文化伝播に重要。",
+
+    trick:
+        "後ウマイヤ朝＝イベリア半島。"
+},
+
+
+{
+    id: "seljuk",
+
+    region: "イスラム・西アジア",
+    eras: ["中世"],
+
+    start: 1037,
+    end: 1194,
+
+    date: "1037〜1194年",
+
+    name: "セルジューク朝",
+
+    tags: ["トルコ人", "ニザーミーヤ学院", "マムルーク"],
+
+    importance: 3,
+
+    summary:
+        "トルコ系イスラーム国家。スンナ派イスラームの復興を進め、ビザンツ帝国と対立。",
+
+    leaders: [
+        "トゥグリル＝ベク",
+        "アルプ＝アルスラーン",
+        "マリク＝シャー"
+    ],
+
+    peak: [
+        "1055年バグダード入城",
+        "1071年マンジケルトの戦い",
+        "ニザーミーヤ学院",
+        "スンナ派復興"
+    ],
+
+    cause:
+        "トルコ系遊牧民のイスラーム化と西アジア進出。",
+
+    result:
+        "諸地方政権へ分裂。",
+
+    impact:
+        "アナトリアへのトルコ人進出を促進し、後のオスマン帝国へつながる。",
+
+    trick:
+        "1071マンジケルト＝ビザンツ帝国が敗北。"
+},
+
+
+{
+    id: "hulagu",
+
+    region: "イスラム・西アジア",
+    eras: ["中世"],
+
+    start: 1256,
+    end: 1335,
+
+    date: "1256〜1335年頃",
+
+    name: "フラグの西征・イル＝ハン国",
+
+    tags: ["モンゴル", "バグダード", "イル＝ハン国"],
+
+    importance: 3,
+
+    summary:
+        "モンゴル帝国のフラグが西アジアへ進出。1258年バグダードを攻略しアッバース朝を滅ぼした。",
+
+    leaders: [
+        "フラグ",
+        "ガザン＝ハン：イスラーム改宗"
+    ],
+
+    peak: [
+        "アラムート攻略",
+        "1258年バグダード攻略",
+        "イル＝ハン国成立",
+        "ガザン＝ハンのイスラーム改宗"
+    ],
+
+    cause:
+        "モンゴル帝国の西方拡大。",
+
+    result:
+        "エジプトのマムルーク朝と対立し、最終的に分裂。",
+
+    impact:
+        "西アジアの政治地図を大きく変えた。",
+
+    trick:
+        "1258＝フラグ→バグダード→アッバース朝滅亡。"
+},
+
+
+{
+    id: "ottoman",
+
+    region: "イスラム・西アジア",
+    eras: ["中世", "近世", "近代"],
+
+    start: 1299,
+    end: 1922,
+
+    date: "1299〜1922年",
+
+    name: "オスマン帝国",
+
+    tags: ["トルコ", "メフメト2世", "スレイマン1世"],
+
+    importance: 3,
+
+    summary:
+        "アナトリアのトルコ系国家から発展し、東地中海・バルカン・中東を支配した大帝国。",
+
+    leaders: [
+        "メフメト2世：1453年コンスタンティノープル征服",
+        "スレイマン1世：帝国最盛期"
+    ],
+
+    peak: [
+        "1453年コンスタンティノープル征服",
+        "バルカン支配",
+        "ウィーン包囲",
+        "スレイマン1世期",
+        "イスラーム法と行政制度"
+    ],
+
+    cause:
+        "セルジューク系トルコ人のアナトリア進出とオスマン家の勢力拡大。",
+
+    result:
+        "第一次世界大戦敗北後、1922年スルタン制廃止。",
+
+    impact:
+        "東地中海・中東・バルカン史に長期的影響。",
+
+    trick:
+        "1453＝ビザンツ滅亡＋オスマン帝国。"
+},
+
+
+{
+    id: "safavid",
+
+    region: "イスラム・西アジア",
+    eras: ["近世"],
+
+    start: 1501,
+    end: 1736,
+
+    date: "1501〜1736年",
+
+    name: "サファヴィー朝",
+
+    tags: ["イラン", "シーア派", "イスファハーン"],
+
+    importance: 3,
+
+    summary:
+        "イラン地域を統一し、十二イマーム派シーア派を国教化。オスマン帝国と対抗した。",
+
+    leaders: [
+        "イスマーイール1世",
+        "アッバース1世"
+    ],
+
+    peak: [
+        "シーア派国教化",
+        "イスファハーンの繁栄",
+        "オスマン帝国との抗争",
+        "絹織物交易"
+    ],
+
+    cause:
+        "サファヴィー教団を基盤とした王朝形成。",
+
+    result:
+        "18世紀に弱体化し滅亡。",
+
+    impact:
+        "現代イランの宗派的・国家的基盤の形成に重要。",
+
+    trick:
+        "サファヴィー＝シーア派。オスマン＝スンナ派。"
+},
+
+
+/* =========================================================
+   インド
+   ========================================================= */
+
+{
+    id: "maurya",
+
+    region: "インド",
+    eras: ["古代"],
+
+    start: -322,
+    end: -185,
+
+    date: "前322〜前185年頃",
+
+    name: "マウリヤ朝",
+
+    tags: ["チャンドラグプタ", "アショーカ王", "仏教"],
+
+    importance: 3,
+
+    summary:
+        "インド史上初の大帝国。アショーカ王は仏教保護で有名。",
+
+    leaders: [
+        "チャンドラグプタ＝マウリヤ",
+        "アショーカ王"
+    ],
+
+    peak: [
+        "インド北部統一",
+        "アショーカ王",
+        "ダルマ政治",
+        "仏教保護",
+        "仏教布教"
+    ],
+
+    cause:
+        "アレクサンドロス大王の遠征後の北インド政治再編。",
+
+    result:
+        "地方勢力の台頭により衰退。",
+
+    impact:
+        "インド初の広域帝国として重要。",
+
+    trick:
+        "アショーカ王＝仏教。サーンチーなどの仏教遺跡。"
+},
+
+
+{
+    id: "kushan",
+
+    region: "インド",
+    eras: ["古代"],
+
+    start: 30,
+    end: 375,
+
+    date: "1〜4世紀頃",
+
+    name: "クシャーナ朝",
+
+    tags: ["カニシカ王", "ガンダーラ", "大乗仏教"],
+
+    importance: 3,
+
+    summary:
+        "中央アジアから北インドへ進出。シルクロード交易と仏教文化の交流を促進。",
+
+    leaders: [
+        "カニシカ王"
+    ],
+
+    peak: [
+        "シルクロード交易",
+        "ガンダーラ美術",
+        "大乗仏教の発展",
+        "東西文化交流"
+    ],
+
+    cause:
+        "月氏系勢力が中央アジアからインド北西部へ進出。",
+
+    result:
+        "諸勢力の台頭で分裂。",
+
+    impact:
+        "インド・中央アジア・中国の文化交流に重要。",
+
+    trick:
+        "クシャーナ＝ガンダーラ美術＋カニシカ＋シルクロード。"
+},
+
+
+{
+    id: "gupta",
+
+    region: "インド",
+    eras: ["古代"],
+
+    start: 320,
+    end: 550,
+
+    date: "320〜550年頃",
+
+    name: "グプタ朝",
+
+    tags: ["インド古典文化", "ヒンドゥー教", "ゼロ"],
+
+    importance: 3,
+
+    summary:
+        "インド古典文化が栄えた時代。数学・天文学・文学などが発展。",
+
+    leaders: [
+        "チャンドラグプタ2世"
+    ],
+
+    peak: [
+        "サンスクリット文学",
+        "カーリダーサ",
+        "数学・天文学",
+        "ヒンドゥー教発展",
+        "インド古典文化"
+    ],
+
+    cause:
+        "北インドの統合と交易発展。",
+
+    result:
+        "エフタルなどの侵入により衰退。",
+
+    impact:
+        "インド文化史上の古典期。",
+
+    trick:
+        "グプタ朝＝インド古典文化。"
+},
+
+
+{
+    id: "harsha",
+
+    region: "インド",
+    eras: ["中世"],
+
+    start: 606,
+    end: 647,
+
+    date: "606〜647年",
+
+    name: "ハルシャ＝ヴァルダナ朝",
+
+    tags: ["北インド", "仏教", "玄奘"],
+
+    importance: 2,
+
+    summary:
+        "北インドを一時統一。中国僧玄奘が訪れたことで有名。",
+
+    leaders: [
+        "ハルシャ王",
+        "玄奘：ナーランダーなどを訪問"
+    ],
+
+    peak: [
+        "北インド統合",
+        "仏教保護",
+        "玄奘の訪印",
+        "ナーランダー僧院"
+    ],
+
+    cause:
+        "北インドの諸勢力をハルシャが統合。",
+
+    result:
+        "王の死後分裂。",
+
+    impact:
+        "インドと中国の仏教交流を示す重要時代。",
+
+    trick:
+        "ハルシャ王＋玄奘。"
+},
+
+
+{
+    id: "delhi",
+
+    region: "インド",
+    eras: ["中世"],
+
+    start: 1206,
+    end: 1526,
+
+    date: "1206〜1526年",
+
+    name: "デリー＝スルタン朝",
+
+    tags: ["イスラーム", "トルコ系", "デリー"],
+
+    importance: 3,
+
+    summary:
+        "北インドを支配したイスラーム王朝群。奴隷王朝からロディー朝まで5王朝が交替。",
+
+    leaders: [
+        "クトゥブッディーン＝アイバク",
+        "アラーウッディーン＝ハルジー"
+    ],
+
+    peak: [
+        "デリー中心のイスラーム政権",
+        "南インドへの進出",
+        "イスラーム文化の定着"
+    ],
+
+    cause:
+        "ゴール朝など中央アジア系イスラーム勢力のインド進出。",
+
+    result:
+        "バーブルの侵入によってロディー朝が滅亡。",
+
+    impact:
+        "ムガル帝国成立の前段階。",
+
+    trick:
+        "1206＝デリー＝スルタン朝開始。1526＝ムガル帝国。"
+},
+
+
+{
+    id: "mughal",
+
+    region: "インド",
+    eras: ["近世", "近代"],
+
+    start: 1526,
+    end: 1857,
+
+    date: "1526〜1857年",
+
+    name: "ムガル帝国",
+
+    tags: ["バーブル", "アクバル", "タージ＝マハル"],
+
+    importance: 3,
+
+    summary:
+        "バーブルが建国。アクバル期に北インドを広く統一し、文化・交易が発展。",
+
+    leaders: [
+        "バーブル：建国者",
+        "アクバル：宗教融和・帝国拡大",
+        "シャー＝ジャハーン：タージ＝マハル",
+        "アウラングゼーブ：帝国最大版図"
+    ],
+
+    peak: [
+        "パーニーパットの戦い",
+        "アクバルの統治",
+        "宗教融和",
+        "タージ＝マハル",
+        "インド＝イスラーム文化"
+    ],
+
+    cause:
+        "中央アジア系のバーブルが北インドへ侵入。",
+
+    result:
+        "イギリス東インド会社の支配拡大後、1857年に名目上の帝国が終わる。",
+
+    impact:
+        "インド＝イスラーム文化の代表的国家。",
+
+    trick:
+        "アクバル＝宗教融和。シャー＝ジャハーン＝タージ＝マハル。"
+},
+
+
+/* =========================================================
+   アメリカ
+   ========================================================= */
+
+{
+    id: "us-independence",
+
+    region: "アメリカ",
+    eras: ["近代"],
+
+    start: 1776,
+    end: 1787,
+
+    date: "1776〜1787年",
+
+    name: "アメリカ独立",
+
+    tags: ["独立宣言", "合衆国憲法", "ワシントン"],
+
+    importance: 3,
+
+    summary:
+        "北米13植民地がイギリスから独立。近代市民革命の代表例。",
+
+    leaders: [
+        "ジョージ＝ワシントン",
+        "トマス＝ジェファソン"
+    ],
+
+    peak: [
+        "1776年独立宣言",
+        "ヨークタウンの戦い",
+        "1783年パリ条約",
+        "1787年合衆国憲法"
+    ],
+
+    cause:
+        "イギリスによる課税強化と植民地側の代表なき課税への反発。",
+
+    result:
+        "アメリカ合衆国成立。",
+
+    impact:
+        "フランス革命など後の市民革命に影響。",
+
+    trick:
+        "1776独立宣言→1783パリ条約→1787憲法。"
+},
+
+
+{
+    id: "us-civilwar",
+
+    region: "アメリカ",
+    eras: ["近代"],
+
+    start: 1861,
+    end: 1865,
+
+    date: "1861〜1865年",
+
+    name: "アメリカ南北戦争",
+
+    tags: ["奴隷制", "リンカン", "北部", "南部"],
+
+    importance: 3,
+
+    summary:
+        "奴隷制問題と州権問題などを背景に北部と南部が戦った内戦。",
+
+    leaders: [
+        "リンカン：北部・奴隷解放宣言",
+        "リー将軍：南軍"
+    ],
+
+    peak: [
+        "南部諸州の離脱",
+        "ゲティスバーグ",
+        "奴隷解放宣言",
+        "北軍勝利",
+        "合衆国再統一"
+    ],
+
+    cause:
+        "奴隷制をめぐる北部・南部の対立が激化。",
+
+    result:
+        "北部勝利。奴隷制廃止へ。",
+
+    impact:
+        "アメリカの工業化・中央集権化を促進。",
+
+    trick:
+        "リンカン＝奴隷解放宣言＋南北戦争。"
+},
+
+
+{
+    id: "us-hegemony",
+
+    region: "アメリカ",
+    eras: ["現代"],
+
+    start: 1945,
+    end: null,
+
+    date: "1945年〜現在",
+
+    name: "アメリカの世界的影響力・覇権",
+
+    tags: ["超大国", "冷戦", "ドル", "国際秩序"],
+
+    importance: 3,
+
+    summary:
+        "第二次世界大戦後、アメリカはソ連と並ぶ超大国となり、冷戦後は単独超大国期を経験。",
+
+    leaders: [
+        "トルーマン：冷戦初期政策",
+        "ケネディ：キューバ危機",
+        "レーガン：冷戦末期"
+    ],
+
+    peak: [
+        "ブレトン＝ウッズ体制",
+        "マーシャル＝プラン",
+        "NATO",
+        "冷戦",
+        "ソ連崩壊後の単極構造",
+        "グローバル経済"
+    ],
+
+    cause:
+        "第二次世界大戦後、欧州列強が疲弊し米国の経済・軍事力が突出。",
+
+    result:
+        "現在も国際政治・経済・文化に大きな影響を持つ。",
+
+    impact:
+        "戦後国際秩序・自由主義陣営の中心。",
+
+    trick:
+        "1945＝米ソ超大国化。1991＝ソ連崩壊で冷戦終結。"
+},
+
+
+/* =========================================================
+   中東近現代
+   ========================================================= */
+
+{
+    id: "middle-east-modern",
+
+    region: "イスラム・西アジア",
+    eras: ["近代", "現代"],
+
+    start: 1918,
+    end: null,
+
+    date: "第一次世界大戦後〜現在",
+
+    name: "近代・現代の中東情勢",
+
+    tags: ["民族主義", "委任統治", "石油", "イスラエル"],
+
+    importance: 3,
+
+    summary:
+        "オスマン帝国解体後、民族国家形成・委任統治・石油・アラブ＝イスラエル問題などが複雑に絡む。",
+
+    leaders: [
+        "ムスタファ＝ケマル：トルコ共和国建国",
+        "ナセル：エジプト民族主義",
+        "ホメイニ：イラン革命"
+    ],
+
+    peak: [
+        "オスマン帝国解体",
+        "委任統治制度",
+        "イスラエル建国",
+        "アラブ＝イスラエル戦争",
+        "1979年イラン革命",
+        "湾岸戦争",
+        "アラブの春"
+    ],
+
+    cause:
+        "帝国主義・民族主義・宗派・列強の利害・石油資源などが複合。",
+
+    result:
+        "現代まで地域紛争・国家形成・国際政治の重要地域となっている。",
+
+    impact:
+        "エネルギー・国際政治・宗教・民族問題を理解する鍵。",
+
+    trick:
+        "中東は一つの原因で説明しない。帝国解体・民族主義・宗派・列強・資源を関連づける。"
+},
+
+
+/* =========================================================
+   世界史上の重要テーマ
+   ========================================================= */
+
+{
+    id: "renaissance",
+
+    region: "ヨーロッパ",
+    eras: ["近世"],
+
+    start: 1300,
+    end: 1600,
+
+    date: "14〜16世紀頃",
+
+    name: "ルネサンス",
+
+    tags: ["人文主義", "イタリア", "古典復興"],
+
+    importance: 3,
+
+    summary:
+        "イタリア諸都市を中心に古代ギリシア・ローマ文化を再評価する文化運動。",
+
+    leaders: [
+        "レオナルド＝ダ＝ヴィンチ",
+        "ミケランジェロ",
+        "ラファエロ"
+    ],
+
+    peak: [
+        "人文主義",
+        "古典文化復興",
+        "遠近法",
+        "印刷術との結合"
+    ],
+
+    cause:
+        "都市・商業発展と古典文化への関心。",
+
+    result:
+        "宗教改革・科学革命・近代文化へ影響。",
+
+    impact:
+        "ヨーロッパの文化的転換点。",
+
+    trick:
+        "ルネサンス＝イタリア都市→北方へ拡大。"
+},
+
+
+{
+    id: "reformation",
+
+    region: "ヨーロッパ",
+    eras: ["近世"],
+
+    start: 1517,
+    end: 1648,
+
+    date: "1517〜1648年頃",
+
+    name: "宗教改革",
+
+    tags: ["ルター", "カルヴァン", "宗教戦争"],
+
+    importance: 3,
+
+    summary:
+        "カトリック教会への批判からプロテスタント諸派が成立。ヨーロッパの政治・社会を大きく変えた。",
+
+    leaders: [
+        "ルター：95か条の論題",
+        "カルヴァン：予定説",
+        "ヘンリ8世：イングランド国教会"
+    ],
+
+    peak: [
+        "1517年ルター",
+        "カルヴァン派",
+        "イギリス国教会",
+        "対抗宗教改革",
+        "三十年戦争",
+        "1648年ウェストファリア条約"
+    ],
+
+    cause:
+        "教会批判・免罪符問題・印刷術・各国王権の強化。",
+
+    result:
+        "プロテスタント諸国が成立し、宗教的多元化が進む。",
+
+    impact:
+        "近代国家・宗教的寛容・国際関係に影響。",
+
+    trick:
+        "ルター＝ドイツ、カルヴァン＝スイス、ヘンリ8世＝イングランド。"
+},
+
+
+{
+    id: "industrial",
+
+    region: "世界史テーマ",
+    eras: ["近代"],
+
+    start: 1760,
+    end: 1850,
+
+    date: "18世紀後半〜19世紀",
+
+    name: "産業革命",
+
+    tags: ["イギリス", "蒸気機関", "工場制"],
+
+    importance: 3,
+
+    summary:
+        "イギリスで始まった機械化・工場制生産への転換。",
+
+    leaders: [
+        "ワット：蒸気機関改良",
+        "アークライト：工場制機械工業"
+    ],
+
+    peak: [
+        "綿工業",
+        "蒸気機関",
+        "石炭・鉄",
+        "鉄道",
+        "都市化",
+        "労働者階級"
+    ],
+
+    cause:
+        "資本蓄積・農業革命・植民地貿易・技術革新など。",
+
+    result:
+        "工業社会・資本主義社会が形成。",
+
+    impact:
+        "帝国主義・社会主義・都市労働問題などにつながった。",
+
+    trick:
+        "最初＝イギリス。綿工業→蒸気機関→鉄道。"
+},
+
+
+{
+    id: "french-revolution",
+
+    region: "ヨーロッパ",
+    eras: ["近代"],
+
+    start: 1789,
+    end: 1799,
+
+    date: "1789〜1799年",
+
+    name: "フランス革命",
+
+    tags: ["人権宣言", "ジャコバン派", "ナポレオン"],
+
+    importance: 3,
+
+    summary:
+        "絶対王政と身分制社会を大きく変革した市民革命。",
+
+    leaders: [
+        "ルイ16世",
+        "ロベスピエール",
+        "ナポレオン"
+    ],
+
+    peak: [
+        "バスティーユ牢獄襲撃",
+        "人権宣言",
+        "共和政",
+        "恐怖政治",
+        "総裁政府",
+        "ナポレオン登場"
+    ],
+
+    cause:
+        "財政危機・身分制への不満・啓蒙思想・食糧問題。",
+
+    result:
+        "ナポレオンの台頭とヨーロッパ秩序の変化。",
+
+    impact:
+        "自由・平等・国民主権の理念を世界へ広げた。",
+
+    trick:
+        "1789＝革命開始。1792＝共和政。1793＝ルイ16世処刑。"
+},
+
+
+{
+    id: "napoleon",
+
+    region: "ヨーロッパ",
+    eras: ["近代"],
+
+    start: 1799,
+    end: 1815,
+
+    date: "1799〜1815年",
+
+    name: "ナポレオン時代",
+
+    tags: ["ナポレオン", "ナポレオン法典", "ウィーン体制"],
+
+    importance: 3,
+
+    summary:
+        "ナポレオンがフランスを支配し、ヨーロッパ各地へ影響を拡大。",
+
+    leaders: [
+        "ナポレオン＝ボナパルト"
+    ],
+
+    peak: [
+        "ナポレオン法典",
+        "大陸封鎖令",
+        "ロシア遠征",
+        "ライプツィヒの戦い",
+        "ワーテルロー",
+        "ウィーン会議"
+    ],
+
+    cause:
+        "フランス革命後の政治的不安定。",
+
+    result:
+        "1815年ナポレオン敗北。ウィーン体制成立。",
+
+    impact:
+        "法の平等・民族主義などをヨーロッパへ広めた。",
+
+    trick:
+        "1815＝ワーテルロー＋ウィーン会議。"
+},
+
+
+{
+    id: "ww-global",
+
+    region: "世界史テーマ",
+    eras: ["現代"],
+
+    start: 1945,
+    end: null,
+
+    date: "1945年〜",
+
+    name: "戦後世界・冷戦・脱植民地化",
+
+    tags: ["冷戦", "国連", "脱植民地化", "グローバル化"],
+
+    importance: 3,
+
+    summary:
+        "第二次世界大戦後、米ソ冷戦と植民地独立、国際機構の形成が進んだ。",
+
+    leaders: [
+        "トルーマン",
+        "スターリン",
+        "ネルー",
+        "毛沢東"
+    ],
+
+    peak: [
+        "国際連合成立",
+        "冷戦",
+        "NATO・ワルシャワ条約機構",
+        "アジア・アフリカ独立",
+        "キューバ危機",
+        "ソ連崩壊",
+        "グローバル化"
+    ],
+
+    cause:
+        "第二次世界大戦による国際秩序の再編。",
+
+    result:
+        "冷戦終結後、複雑な多極的国際社会へ。",
+
+    impact:
+        "現在の国際政治を理解する基本軸。",
+
+    trick:
+        "戦後史は『冷戦』『脱植民地化』『経済統合』の3本柱で整理。"
+}
+
+];
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+const state = {
+    era: "all",
+    region: "all",
+    keyword: ""
+};
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const timeline = document.getElementById("timeline");
+const search = document.getElementById("search");
+const reset = document.getElementById("reset");
+const resultCount = document.getElementById("resultCount");
+const totalCount = document.getElementById("totalCount");
+
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalPeriod = document.getElementById("modalPeriod");
+const modalContent = document.getElementById("modalContent");
+const modalClose = document.getElementById("modalClose");
+
+
+/* =========================================================
+   HELPER
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function stars(number) {
+
+    return "★".repeat(number) +
+           "☆".repeat(3 - number);
+
+}
+
+
+function yearLabel(year) {
+
+    if (year === null) {
+        return "現在";
+    }
+
+    if (year < 0) {
+        return `前${Math.abs(year)}年`;
+    }
+
+    return `${year}年`;
+
+}
+
+
+function searchable(item) {
+
+    return [
+        item.name,
+        item.summary,
+        item.region,
+        item.date,
+        ...(item.tags || []),
+        ...(item.leaders || []),
+        ...(item.peak || []),
+        item.trick
+    ]
+    .join(" ")
+    .toLowerCase();
+
+}
+
+
+/* =========================================================
+   FILTER
+   ========================================================= */
+
+function filteredData() {
+
+    const keyword =
+        state.keyword
+            .trim()
+            .toLowerCase();
+
+    return DATA
+        .filter(item => {
+
+            const eraMatch =
+                state.era === "all" ||
+                item.eras.includes(state.era);
+
+            const regionMatch =
+                state.region === "all" ||
+                item.region === state.region;
+
+            const keywordMatch =
+                keyword === "" ||
+                searchable(item).includes(keyword);
+
+            return eraMatch &&
+                   regionMatch &&
+                   keywordMatch;
+
+        })
+        .sort((a, b) => a.start - b.start);
+
+}
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function render() {
+
+    const items = filteredData();
+
+    resultCount.textContent =
+        `${items.length}件表示`;
+
+    totalCount.textContent =
+        DATA.length;
+
+    timeline.innerHTML = "";
+
+    if (items.length === 0) {
+
+        timeline.innerHTML = `
+            <div class="empty">
+                <strong>該当する項目がありません。</strong>
+                時代・地域・検索条件を変更してください。
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let lastEra = "";
+
+
+    items.forEach((item, index) => {
+
+        /*
+            複数時代にまたがる項目の場合は、
+            主な開始年代から時代を判定。
+        */
+
+        const primaryEra =
+            getPrimaryEra(item);
+
+
+        if (primaryEra !== lastEra) {
+
+            const divider =
+                document.createElement("div");
+
+            divider.className =
+                "era-divider";
+
+            divider.innerHTML = `
+                <span>
+                    ${escapeHTML(primaryEra)}
+                </span>
+            `;
+
+            timeline.appendChild(divider);
+
+            lastEra = primaryEra;
+        }
+
+
+        const article =
+            document.createElement("article");
+
+        article.className =
+            "timeline-item";
+
+
+        const tagHTML =
+            (item.tags || [])
+                .slice(0, 4)
+                .map(tag => `
+                    <span class="tag">
+                        ${escapeHTML(tag)}
+                    </span>
+                `)
+                .join("");
+
+
+        article.innerHTML = `
+
+            <div class="timeline-year">
+
+                ${escapeHTML(item.date)}
+
+                <span class="timeline-dot"></span>
+
+            </div>
+
+
+            <div class="history-card">
+
+                <div class="card-top">
+
+                    <div class="card-tags">
+
+                        <span class="tag important">
+                            ${escapeHTML(item.region)}
+                        </span>
+
+                        ${tagHTML}
+
+                    </div>
+
+                    <div class="card-stars">
+                        ${stars(item.importance)}
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    ${escapeHTML(item.name)}
+                </h3>
+
+
+                <div class="period">
+                    ${escapeHTML(item.date)}
+                </div>
+
+
+                <p class="card-summary">
+                    ${escapeHTML(item.summary)}
+                </p>
+
+
+                <div class="card-grid">
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            全盛期・重要事項
+                        </span>
+
+                        <div class="info-text">
+                            ${escapeHTML(
+                                (item.peak || [])[0] || "-"
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            重要人物
+                        </span>
+
+                        <div class="info-text">
+                            ${escapeHTML(
+                                (item.leaders || [])[0] || "-"
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            因果関係
+                        </span>
+
+                        <div class="info-text">
+                            ${escapeHTML(
+                                item.result || "-"
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div class="trick">
+                        ⚠ ${escapeHTML(item.trick)}
+                    </div>
+
+                    <button
+                        class="detail-button"
+                        data-id="${escapeHTML(item.id)}"
+                    >
+                        詳細を見る →
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        timeline.appendChild(article);
+
+    });
+
+
+    document
+        .querySelectorAll(".detail-button")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                openModal(button.dataset.id);
+
+            });
+
+        });
+
+}
+
+
+/* =========================================================
+   PRIMARY ERA
+   ========================================================= */
+
+function getPrimaryEra(item) {
+
+    if (
+        item.start < 500
+    ) {
+        return "古代";
+    }
+
+    if (
+        item.start < 1500
+    ) {
+        return "中世";
+    }
+
+    if (
+        item.start < 1800
+    ) {
+        return "近世";
+    }
+
+    if (
+        item.start < 1945
+    ) {
+        return "近代";
+    }
+
+    return "現代";
+
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+function openModal(id) {
+
+    const item =
+        DATA.find(
+            data => data.id === id
+        );
+
+    if (!item) return;
+
+
+    modalTitle.textContent =
+        item.name;
+
+    modalPeriod.textContent =
+        `${item.date} ｜ ${item.region}`;
+
+
+    const leaders =
+        (item.leaders || [])
+            .map(x => `<li>${escapeHTML(x)}</li>`)
+            .join("");
+
+
+    const peak =
+        (item.peak || [])
+            .map(x => `<li>${escapeHTML(x)}</li>`)
+            .join("");
+
+
+    modalContent.innerHTML = `
+
+        <div class="modal-section">
+
+            <p>
+                ${escapeHTML(item.summary)}
+            </p>
+
+        </div>
+
+
+        <div class="modal-columns">
+
+            <div class="modal-info">
+
+                <div class="modal-section">
+
+                    <h4>
+                        👑 重要人物
+                    </h4>
+
+                    <ul>
+                        ${leaders}
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-info">
+
+                <div class="modal-section">
+
+                    <h4>
+                        ★ 全盛期・重要事項
+                    </h4>
+
+                    <ul>
+                        ${peak}
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-section">
+
+            <h4>
+                ① なぜ成立・発生した？
+            </h4>
+
+            <p>
+                ${escapeHTML(item.cause)}
+            </p>
+
+        </div>
+
+
+        <div class="modal-section">
+
+            <h4>
+                ② 何が起きた？
+            </h4>
+
+            <p>
+                ${escapeHTML(item.summary)}
+            </p>
+
+        </div>
+
+
+        <div class="modal-section">
+
+            <h4>
+                ③ その結果どうなった？
+            </h4>
+
+            <p>
+                ${escapeHTML(item.result)}
+            </p>
+
+        </div>
+
+
+        <div class="modal-section">
+
+            <h4>
+                ④ 世界史全体への影響
+            </h4>
+
+            <p>
+                ${escapeHTML(item.impact)}
+            </p>
+
+        </div>
+
+
+        <div class="modal-section">
+
+            <h4>
+                ⚠ 受験生が間違えやすいポイント
+            </h4>
+
+            <p style="color:var(--orange);">
+                ${escapeHTML(item.trick)}
+            </p>
+
+        </div>
+
+    `;
+
+
+    modal.classList.add("open");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+   ========================================================= */
+
+function closeModal() {
+
+    modal.classList.remove("open");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+modalClose.addEventListener(
+    "click",
+    closeModal
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === modal
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            modal.classList.contains("open")
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FILTER BUTTONS
+   ========================================================= */
+
+document
+    .querySelectorAll("[data-era]")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                state.era =
+                    button.dataset.era;
+
+                document
+                    .querySelectorAll("[data-era]")
+                    .forEach(btn => {
+
+                        btn.classList.toggle(
+                            "active",
+                            btn === button
+                        );
+
+                    });
+
+                render();
+
+            }
+        );
+
+    });
+
+
+document
+    .querySelectorAll("[data-region]")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                state.region =
+                    button.dataset.region;
+
+                document
+                    .querySelectorAll("[data-region]")
+                    .forEach(btn => {
+
+                        btn.classList.toggle(
+                            "active",
+                            btn === button
+                        );
+
+                    });
+
+                render();
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+search.addEventListener(
+    "input",
+    event => {
+
+        state.keyword =
+            event.target.value;
+
+        render();
+
+    }
+);
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+reset.addEventListener(
+    "click",
+    () => {
+
+        state.era = "all";
+        state.region = "all";
+        state.keyword = "";
+
+        search.value = "";
+
+        document
+            .querySelectorAll("[data-era]")
+            .forEach(button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.era === "all"
+                );
+
+            });
+
+
+        document
+            .querySelectorAll("[data-region]")
+            .forEach(button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.region === "all"
+                );
+
+            });
+
+
+        render();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* =========================================================
+   QUICK YEAR JUMP
+   ========================================================= */
+
+document
+    .querySelectorAll("[data-jump]")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const year =
+                    Number(button.dataset.jump);
+
+                /*
+                    指定年代に最も近い項目を探す。
+                */
+
+                const candidates =
+                    DATA
+                        .filter(item =>
+                            item.start <= year &&
+                            (
+                                item.end === null ||
+                                item.end >= year
+                            )
+                        )
+                        .sort(
+                            (a,b) =>
+                                Math.abs(a.start - year) -
+                                Math.abs(b.start - year)
+                        );
+
+
+                if (candidates.length) {
+
+                    const target =
+                        document.querySelector(
+                            `[data-id="${candidates[0].id}"]`
+                        );
+
+                }
+
+
+                const targetItem =
+                    candidates[0];
+
+
+                if (!targetItem) return;
+
+
+                /*
+                    現在のフィルターを解除し、
+                    その年代の項目を見える状態にする。
+                */
+
+                state.era = "all";
+                state.region = "all";
+                state.keyword = "";
+
+                search.value = "";
+
+
+                document
+                    .querySelectorAll("[data-era]")
+                    .forEach(btn => {
+
+                        btn.classList.toggle(
+                            "active",
+                            btn.dataset.era === "all"
+                        );
+
+                    });
+
+
+                document
+                    .querySelectorAll("[data-region]")
+                    .forEach(btn => {
+
+                        btn.classList.toggle(
+                            "active",
+                            btn.dataset.region === "all"
+                        );
+
+                    });
+
+
+                render();
+
+
+                setTimeout(() => {
+
+                    const cards =
+                        [
+                            ...document.querySelectorAll(
+                                ".history-card"
+                            )
+                        ];
+
+
+                    const index =
+                        filteredData()
+                            .findIndex(
+                                item =>
+                                    item.id ===
+                                    targetItem.id
+                            );
+
+
+                    if (
+                        cards[index]
+                    ) {
+
+                        cards[index].scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+                    }
+
+                }, 50);
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   KEYBOARD SHORTCUT
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "/" &&
+            document.activeElement !== search
+        ) {
+
+            event.preventDefault();
+
+            search.focus();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
