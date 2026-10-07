@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>世界史ポータル｜事件の因果関係・論述対策</title>
+
+<style>
+:root{
+    --bg:#080d18;
+    --bg2:#0e1626;
+    --card:#141e31;
+    --card2:#19253a;
+    --line:#2a3a55;
+    --text:#edf4ff;
+    --sub:#aab8ce;
+
+    --blue:#60a5fa;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --yellow:#facc15;
+    --orange:#fb923c;
+    --red:#fb7185;
+    --purple:#a78bfa;
+
+    --shadow:0 15px 40px rgba(0,0,0,.32);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    color:var(--text);
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(96,165,250,.10),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 90% 5%,
+            rgba(167,139,250,.08),
+            transparent 25%
+        ),
+        var(--bg);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+    line-height:1.75;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    padding:55px 20px 48px;
+    border-bottom:1px solid var(--line);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(96,165,250,.10),
+            rgba(167,139,250,.08)
+        );
+}
+
+.header-inner{
+    max-width:1250px;
+    margin:auto;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 15px;
+
+    color:var(--text);
+    text-decoration:none;
+
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
+    border-radius:10px;
+
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateY(-1px);
+}
+
+.kicker{
+    margin-top:34px;
+
+    color:var(--cyan);
+
+    font-size:.82rem;
+    font-weight:900;
+
+    letter-spacing:.13em;
+}
+
+h1{
+    margin:8px 0 15px;
+
+    font-size:clamp(2rem,5vw,3.6rem);
+    line-height:1.15;
+}
+
+.header-description{
+    max-width:900px;
+
+    margin:0;
+
+    color:var(--sub);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+    max-width:1250px;
+    margin:auto;
+
+    padding:35px 20px 80px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro-box{
+    margin-bottom:25px;
+
+    padding:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(96,165,250,.08),
+            rgba(167,139,250,.06)
+        );
+
+    border:1px solid var(--line);
+    border-radius:15px;
+}
+
+.intro-box strong{
+    color:var(--cyan);
+}
+
+.logic-flow{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+
+    margin-top:14px;
+}
+
+.logic-item{
+    padding:7px 12px;
+
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:999px;
+
+    font-size:.85rem;
+    font-weight:800;
+}
+
+.logic-arrow{
+    color:var(--blue);
+    font-weight:900;
+}
+
+
+/* =========================
+   CONTROL PANEL
+========================= */
+
+.control-panel{
+    position:sticky;
+    top:10px;
+
+    z-index:100;
+
+    margin-bottom:30px;
+    padding:16px;
+
+    background:rgba(8,13,24,.94);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid var(--line);
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+}
+
+.search-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+
+    gap:10px;
+}
+
+.search{
+    width:100%;
+
+    padding:12px 14px;
+
+    color:var(--text);
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+    border-radius:10px;
+
+    outline:none;
+}
+
+.search:focus{
+    border-color:var(--blue);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(96,165,250,.12);
+}
+
+.reset-btn{
+    padding:0 17px;
+
+    color:var(--text);
+
+    background:var(--card2);
+
+    border:1px solid var(--line);
+    border-radius:10px;
+}
+
+.reset-btn:hover{
+    background:#273753;
+}
+
+.filter-line{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:12px;
+}
+
+.filter-label{
+    width:65px;
+
+    color:var(--sub);
+
+    font-size:.8rem;
+    font-weight:900;
+}
+
+.filter-btn{
+    padding:5px 11px;
+
+    color:var(--sub);
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+    border-radius:999px;
+
+    transition:.2s;
+}
+
+.filter-btn:hover{
+    color:var(--text);
+}
+
+.filter-btn.active{
+    color:var(--blue);
+
+    background:rgba(96,165,250,.13);
+
+    border-color:
+        rgba(96,165,250,.45);
+}
+
+.result-info{
+    margin-top:12px;
+
+    color:var(--sub);
+
+    font-size:.82rem;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin:38px 0 15px;
+}
+
+.section-title h2{
+    margin:0;
+
+    font-size:1.45rem;
+}
+
+.section-title span{
+    color:var(--sub);
+
+    font-size:.8rem;
+}
+
+
+/* =========================
+   EVENT CARD
+========================= */
+
+.event-list{
+    display:grid;
+
+    gap:13px;
+}
+
+.event-card{
+    overflow:hidden;
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+    border-radius:15px;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s,
+        transform .2s;
+}
+
+.event-card:hover{
+    border-color:#405576;
+
+    box-shadow:var(--shadow);
+}
+
+.event-header{
+    display:grid;
+    grid-template-columns:
+        95px
+        1fr
+        auto;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:17px 18px;
+
+    cursor:pointer;
+}
+
+.event-year{
+    color:var(--cyan);
+
+    font-size:.85rem;
+    font-weight:900;
+}
+
+.event-title{
+    margin:0;
+
+    font-size:1.08rem;
+    font-weight:900;
+}
+
+.event-subtitle{
+    margin-top:3px;
+
+    color:var(--sub);
+
+    font-size:.82rem;
+}
+
+.event-meta{
+    display:flex;
+    align-items:center;
+
+    gap:7px;
+}
+
+.badge{
+    padding:3px 8px;
+
+    font-size:.7rem;
+    white-space:nowrap;
+
+    border:1px solid var(--line);
+    border-radius:999px;
+}
+
+.era-badge{
+    color:var(--purple);
+}
+
+.region-badge{
+    color:var(--cyan);
+}
+
+.arrow{
+    margin-left:5px;
+
+    color:var(--sub);
+
+    font-size:1.1rem;
+
+    transition:.25s;
+}
+
+.event-card.open .arrow{
+    transform:rotate(180deg);
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.event-content{
+    display:none;
+
+    padding:0 18px 20px;
+
+    border-top:1px solid var(--line);
+}
+
+.event-card.open .event-content{
+    display:block;
+
+    animation:
+        slideDown .22s ease;
+}
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:translateY(-6px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.detail-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:17px;
+}
+
+.detail-box{
+    padding:17px;
+
+    background:var(--bg2);
+
+    border:1px solid var(--line);
+    border-radius:12px;
+}
+
+.detail-box h3{
+    display:flex;
+    align-items:center;
+
+    gap:7px;
+
+    margin:0 0 9px;
+
+    font-size:.95rem;
+}
+
+.detail-box p{
+    margin:0;
+
+    color:#c3cee0;
+
+    font-size:.88rem;
+}
+
+.background-box h3{
+    color:var(--orange);
+}
+
+.result-box h3{
+    color:var(--green);
+}
+
+.impact-box h3{
+    color:var(--blue);
+}
+
+
+/* =========================
+   ESSAY POINT
+========================= */
+
+.essay-box{
+    margin-top:13px;
+
+    padding:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(167,139,250,.10),
+            rgba(96,165,250,.06)
+        );
+
+    border:1px solid
+        rgba(167,139,250,.35);
+
+    border-radius:12px;
+}
+
+.essay-title{
+    margin-bottom:6px;
+
+    color:var(--purple);
+
+    font-size:.8rem;
+    font-weight:900;
+}
+
+.essay-box p{
+    margin:0;
+
+    color:#d4dcE9;
+
+    font-size:.88rem;
+}
+
+.essay-template{
+    margin-top:10px;
+
+    padding:11px 13px;
+
+    background:rgba(0,0,0,.18);
+
+    border-left:3px solid var(--purple);
+
+    color:#e4e9f3;
+
+    font-size:.86rem;
+}
+
+
+/* =========================
+   KEYWORDS
+========================= */
+
+.keyword-row{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:14px;
+}
+
+.keyword{
+    padding:4px 8px;
+
+    color:#bcd4ff;
+
+    background:rgba(96,165,250,.08);
+
+    border:1px solid
+        rgba(96,165,250,.22);
+
+    border-radius:7px;
+
+    font-size:.72rem;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    padding:50px 20px;
+
+    text-align:center;
+
+    color:var(--sub);
+
+    background:var(--card);
+
+    border:1px dashed var(--line);
+    border-radius:15px;
+}
+
+.empty h3{
+    color:var(--text);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:30px 20px;
+
+    text-align:center;
+
+    color:var(--sub);
+
+    border-top:1px solid var(--line);
+
+    font-size:.8rem;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .event-header{
+        grid-template-columns:
+            70px
+            1fr
+            auto;
+    }
+
+    .detail-grid{
+        grid-template-columns:1fr;
+    }
+
+    .filter-label{
+        width:100%;
+    }
+}
+
+
+@media(max-width:600px){
+
+    header{
+        padding:42px 15px 35px;
+    }
+
+    main{
+        padding:27px 13px 60px;
+    }
+
+    .search-row{
+        grid-template-columns:1fr;
+    }
+
+    .reset-btn{
+        padding:10px;
+    }
+
+    .event-header{
+        grid-template-columns:1fr auto;
+    }
+
+    .event-year{
+        grid-column:1 / -1;
+    }
+
+    .event-meta{
+        grid-column:1 / -1;
+    }
+
+    .arrow{
+        position:absolute;
+        right:17px;
+    }
+
+    .event-header{
+        position:relative;
+    }
+
+    .logic-arrow{
+        display:none;
+    }
+
+    .logic-item{
+        width:100%;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+    <a
+        href="index.html"
+        class="back-btn"
+    >
+        ← トップページへ戻る
+    </a>
+
+    <div class="kicker">
+        WORLD HISTORY PORTAL / PAGE 06
+    </div>
+
+    <h1>
+        事件の因果関係<br>
+        論述対策
+    </h1>
+
+    <p class="header-description">
+        世界史の論述で重要なのは、
+        「事件名を知っていること」だけではない。
+        なぜ起き、何が起こり、その結果として
+        世界がどう変化したのかまで理解しよう。
+    </p>
+
+</div>
+
+</header>
+
+
+<main>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro-box">
+
+    <strong>論述の基本公式</strong>
+
+    <p>
+        歴史的事件は「単独」で起こるものではありません。
+        前の時代の政治・社会・経済・宗教などの変化が
+        次の事件の原因となり、その事件の結果が
+        さらに次の時代を生み出します。
+    </p>
+
+    <div class="logic-flow">
+
+        <div class="logic-item">
+            背景・原因
+        </div>
+
+        <div class="logic-arrow">
+            →
+        </div>
+
+        <div class="logic-item">
+            事件
+        </div>
+
+        <div class="logic-arrow">
+            →
+        </div>
+
+        <div class="logic-item">
+            結果
+        </div>
+
+        <div class="logic-arrow">
+            →
+        </div>
+
+        <div class="logic-item">
+            長期的影響
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTROLS
+========================= -->
+
+<section class="control-panel">
+
+    <div class="search-row">
+
+        <input
+            id="searchInput"
+            class="search"
+            type="search"
+            placeholder="🔎 フランス革命・宗教改革・戦争名などを検索..."
+        >
+
+        <button
+            id="resetBtn"
+            class="reset-btn"
+        >
+            リセット
+        </button>
+
+    </div>
+
+
+    <div class="filter-line">
+
+        <span class="filter-label">
+            時代
+        </span>
+
+        <button
+            class="filter-btn active"
+            data-type="era"
+            data-value="all"
+        >
+            すべて
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="era"
+            data-value="古代"
+        >
+            古代
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="era"
+            data-value="中世"
+        >
+            中世
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="era"
+            data-value="近世"
+        >
+            近世
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="era"
+            data-value="近代"
+        >
+            近代
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="era"
+            data-value="現代"
+        >
+            現代
+        </button>
+
+    </div>
+
+
+    <div class="filter-line">
+
+        <span class="filter-label">
+            地域
+        </span>
+
+        <button
+            class="filter-btn active"
+            data-type="region"
+            data-value="all"
+        >
+            すべて
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="region"
+            data-value="中国"
+        >
+            中国・東アジア
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="region"
+            data-value="ヨーロッパ"
+        >
+            ヨーロッパ
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="region"
+            data-value="イスラーム"
+        >
+            イスラーム
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="region"
+            data-value="インド"
+        >
+            インド
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="region"
+            data-value="アメリカ"
+        >
+            アメリカ
+        </button>
+
+        <button
+            class="filter-btn"
+            data-type="region"
+            data-value="世界"
+        >
+            世界史横断
+        </button>
+
+    </div>
+
+
+    <div
+        id="resultInfo"
+        class="result-info"
+    ></div>
+
+</section>
+
+
+<!-- =========================
+     EVENTS
+========================= -->
+
+<div id="eventContainer"></div>
+
+</main>
+
+
+<footer>
+    世界史ポータルサイト｜事件の因果関係・論述対策
+</footer>
+
+
+<script>
+
+/* =========================================================
+   EVENT DATA
+========================================================= */
+
+const events = [
+
+/* =========================================================
+   古代
+========================================================= */
+
+{
+    id:1,
+    year:"前5世紀",
+    era:"古代",
+    region:"ヨーロッパ",
+    title:"ペルシア戦争",
+    subtitle:"ギリシア諸ポリスとアケメネス朝ペルシアの対立",
+
+    background:
+    "アケメネス朝ペルシアは西アジアから小アジアへ勢力を広げ、イオニア地方のギリシア人都市も支配下に置いた。イオニアの反乱をアテネなどが支援したことから、ペルシアはギリシア本土への遠征を開始した。ペルシアの帝国的拡大と、ギリシア側のポリスによる自治維持への動きが衝突したことが直接的な背景である。",
+
+    result:
+    "ダレイオス1世・クセルクセス1世の遠征に対し、アテネやスパルタを中心とするギリシア諸ポリスが抵抗した。マラトンの戦い、サラミスの海戦などでギリシア側が勝利し、ペルシアのギリシア本土征服は失敗した。",
+
+    impact:
+    "アテネはサラミスの海戦などで大きな役割を果たし、エーゲ海での影響力を強めた。その後、アテネを中心とするデロス同盟が形成され、アテネ民主政と古典文化の発展につながった。一方、ポリス間の対立は後のペロポネソス戦争にもつながった。",
+
+    essay:
+    "ペルシア帝国の西方拡大とイオニアの反乱を背景にペルシア戦争が起こり、ギリシア諸ポリスがこれを撃退した。その結果アテネの海上覇権が強まり、民主政と文化が発展した。",
+
+    keywords:[
+        "アケメネス朝",
+        "イオニアの反乱",
+        "マラトン",
+        "サラミス",
+        "アテネ"
+    ]
+},
+
+{
+    id:2,
+    year:"前4世紀",
+    era:"古代",
+    region:"ヨーロッパ",
+    title:"アレクサンドロスの東方遠征",
+    subtitle:"ギリシア世界とオリエント世界の接近",
+
+    background:
+    "ギリシアではポリス間の抗争によって政治的統一が困難であった。一方、北方のマケドニアが勢力を拡大し、フィリッポス2世がギリシア諸ポリスを支配下に置いた。その後、アレクサンドロスが父の事業を継ぎ、アケメネス朝ペルシアへの遠征を開始した。",
+
+    result:
+    "アレクサンドロスはグラニコス、イッソス、ガウガメラなどの戦いでペルシア軍を破り、エジプトから中央アジア、インド西北部まで広大な領域を支配した。",
+
+    impact:
+    "ギリシア文化とオリエント文化が広範囲で接触し、ヘレニズム文化が成立した。アレクサンドリアなどの都市が建設され、地中海から西アジアにかけて交易・学術交流が活発化した。",
+
+    essay:
+    "マケドニアの台頭を背景にアレクサンドロスが東方遠征を行い、アケメネス朝を滅ぼして広大な帝国を形成した。その結果、ギリシア文化とオリエント文化が融合するヘレニズム文化が成立した。",
+
+    keywords:[
+        "マケドニア",
+        "アケメネス朝",
+        "ガウガメラ",
+        "ヘレニズム",
+        "アレクサンドリア"
+    ]
+},
+
+{
+    id:3,
+    year:"前3〜前1世紀",
+    era:"古代",
+    region:"中国",
+    title:"秦による中国統一",
+    subtitle:"戦国時代の分裂から中央集権国家へ",
+
+    background:
+    "春秋・戦国時代には諸侯国が長期間にわたって争い、富国強兵を進めた。なかでも秦は商鞅の改革によって農業と軍事を強化し、法家思想を基盤として中央集権化を進めた。その結果、秦王政が他の六国を順次滅ぼす力を得た。",
+
+    result:
+    "前221年、秦王政は中国を統一し、始皇帝を称した。郡県制を全国に広げ、度量衡・貨幣・文字を統一するなど中央集権的支配を進めた。しかし急激な徴税・労役などへの反発が強まり、始皇帝死後まもなく秦は滅亡した。",
+
+    impact:
+    "秦の統一そのものは短命だったが、中国を皇帝が中央から統治する国家モデルを成立させた。漢は秦の制度を受け継ぎつつ修正し、その後の中国王朝の政治制度に大きな影響を与えた。",
+
+    essay:
+    "戦国時代の富国強兵を背景に秦が諸国を征服して中国を統一し、郡県制などによる中央集権国家を形成した。しかし苛酷な支配への反発から短期間で滅亡し、漢がその制度を継承した。",
+
+    keywords:[
+        "戦国時代",
+        "商鞅",
+        "始皇帝",
+        "郡県制",
+        "法家"
+    ]
+},
+
+/* =========================================================
+   中世
+========================================================= */
+
+{
+    id:4,
+    year:"7世紀",
+    era:"中世",
+    region:"イスラーム",
+    title:"イスラーム共同体の成立",
+    subtitle:"アラビア半島の宗教的・政治的統合",
+
+    background:
+    "7世紀初頭のアラビア半島では部族社会が広がり、多神教が信仰されていた。メッカでは交易が発展する一方、社会的格差も存在した。ムハンマドは唯一神アッラーへの帰依を説き、従来の部族的結合を超えた共同体を形成しようとした。",
+
+    result:
+    "ムハンマドはメッカで迫害を受け、622年にメディナへ移住した。これがヒジュラである。メディナでイスラーム共同体を形成し、メッカを征服してアラビア半島の統合を進めた。",
+
+    impact:
+    "イスラームは宗教であると同時に政治・社会的共同体を形成する基盤となった。ムハンマド死後はカリフによる征服が進み、西アジア・北アフリカなどへ急速に勢力を拡大した。",
+
+    essay:
+    "アラビア半島の部族社会を背景にムハンマドが唯一神信仰を説き、ヒジュラを経てイスラーム共同体を形成した。その後、カリフによる征服が進み、イスラーム世界が急速に拡大した。",
+
+    keywords:[
+        "ムハンマド",
+        "メッカ",
+        "メディナ",
+        "ヒジュラ",
+        "イスラーム"
+    ]
+},
+
+{
+    id:5,
+    year:"8世紀",
+    era:"中世",
+    region:"イスラーム",
+    title:"アッバース革命とアッバース朝の成立",
+    subtitle:"ウマイヤ朝からアッバース朝へ",
+
+    background:
+    "ウマイヤ朝ではアラブ人ムスリムが政治的に優位に立ち、非アラブ人改宗者であるマワーリーなどの不満が蓄積した。また、シーア派など反ウマイヤ勢力も存在した。ホラーサーンではこうした不満が結びつき、アッバース家を支持する運動が成長した。",
+
+    result:
+    "アッバース家はホラーサーンを基盤に勢力を拡大し、750年にウマイヤ朝を倒した。アッバース朝はバグダードを建設して都とし、イスラーム帝国の政治・文化の中心を移した。",
+
+    impact:
+    "アッバース朝ではアラブ人中心の支配から、ペルシア人など非アラブ系勢力も参加するイスラーム帝国へ変化した。バグダードを中心に翻訳活動や学問が発展し、イスラーム黄金時代の基盤が形成された。",
+
+    essay:
+    "ウマイヤ朝のアラブ人優位の支配に対する非アラブ人改宗者などの不満を背景にアッバース革命が起こり、750年にアッバース朝が成立した。その結果バグダードを中心に政治・文化が発展した。",
+
+    keywords:[
+        "ウマイヤ朝",
+        "マワーリー",
+        "ホラーサーン",
+        "750年",
+        "バグダード"
+    ]
+},
+
+{
+    id:6,
+    year:"11〜13世紀",
+    era:"中世",
+    region:"ヨーロッパ",
+    title:"十字軍遠征",
+    subtitle:"宗教・政治・経済が複合した遠征運動",
+
+    background:
+    "11世紀末、セルジューク朝の進出によってビザンツ帝国が小アジアで圧迫され、皇帝アレクシオス1世は西欧に援軍を求めた。教皇側には教皇権を強化する狙いがあり、騎士には信仰上の動機だけでなく土地・名誉・富を求める動機も存在した。",
+
+    result:
+    "1095年、教皇ウルバヌス2世がクレルモン宗教会議で遠征を呼びかけ、1096年から第1回十字軍が始まった。1099年にエルサレムを占領したが、その後イスラーム勢力の反撃を受け、1291年に十字軍国家はマムルーク朝によって滅ぼされた。",
+
+    impact:
+    "十字軍は最終的な目的を達成できなかったが、地中海交易を活発化させ、ヴェネツィアなどイタリア都市の発展を促した。また東西の文化・商品・知識の交流が進む一方、キリスト教世界とイスラーム世界の対立意識も強まった。",
+
+    essay:
+    "セルジューク朝の進出によるビザンツ帝国の危機と教皇権強化などを背景に十字軍が始まった。エルサレム占領後もイスラーム勢力の反撃を受けて十字軍国家は消滅したが、地中海交易や東西交流の活発化につながった。",
+
+    keywords:[
+        "セルジューク朝",
+        "ウルバヌス2世",
+        "クレルモン宗教会議",
+        "エルサレム",
+        "イタリア都市"
+    ]
+},
+
+{
+    id:7,
+    year:"13世紀",
+    era:"中世",
+    region:"世界",
+    title:"モンゴル帝国の大征服",
+    subtitle:"ユーラシアの政治秩序と交流の変化",
+
+    background:
+    "中央アジアでは遊牧諸部族が存在し、テムジンはこれらを統合して1206年にチンギス＝ハンとなった。モンゴル軍は騎馬戦術や組織力を活用し、周辺国家への征服を進めた。",
+
+    result:
+    "モンゴル軍は中国北部・中央アジア・ロシア方面などへ急速に勢力を拡大した。帝国は分裂したものの、元・チャガタイ＝ハン国・イル＝ハン国・キプチャク＝ハン国などが成立した。",
+
+    impact:
+    "ユーラシアの広範囲がモンゴル勢力圏に組み込まれ、東西間の人・商品・情報の移動が活発化した。交易路の安全が一定程度確保され、ヨーロッパにもアジアの情報が伝わった。一方、征服戦争による人口減少や破壊も各地で生じた。",
+
+    essay:
+    "モンゴル帝国は遊牧民の統合を背景に急速な征服を行い、ユーラシアの広大な地域を支配した。その結果、東西交流が活発化する一方、征服による破壊や人口減少も生じた。",
+
+    keywords:[
+        "チンギス＝ハン",
+        "ユーラシア",
+        "元",
+        "イル＝ハン国",
+        "東西交流"
+    ]
+},
+
+/* =========================================================
+   近世
+========================================================= */
+
+{
+    id:8,
+    year:"15〜16世紀",
+    era:"近世",
+    region:"世界",
+    title:"大航海時代",
+    subtitle:"ヨーロッパの海外進出と世界規模の交流",
+
+    background:
+    "オスマン帝国の勢力拡大などにより、地中海東部を経由するアジア交易へのアクセスが難しくなった。またヨーロッパでは香辛料など東方物産への需要が高く、国家が航海事業を支援した。羅針盤や航海技術の発達も遠洋航海を可能にした。",
+
+    result:
+    "ポルトガルはアフリカ西岸を南下し、ヴァスコ＝ダ＝ガマがインド航路を開拓した。スペインの支援を受けたコロンブスは1492年にアメリカ大陸へ到達し、ヨーロッパ人による海外進出が急速に拡大した。",
+
+    impact:
+    "ヨーロッパ・アメリカ・アフリカ・アジアを結ぶ世界規模の交易が形成された。アメリカからヨーロッパへ銀や農作物が流入する一方、ヨーロッパ人による植民地支配や大西洋奴隷貿易も拡大した。",
+
+    essay:
+    "東方物産への需要やオスマン帝国の台頭、航海技術の発達を背景にヨーロッパ諸国が新航路を開拓した。その結果、世界規模の交易が形成され、植民地支配や大西洋奴隷貿易が拡大した。",
+
+    keywords:[
+        "ポルトガル",
+        "スペイン",
+        "コロンブス",
+        "ヴァスコ＝ダ＝ガマ",
+        "新大陸"
+    ]
+},
+
+{
+    id:9,
+    year:"16世紀",
+    era:"近世",
+    region:"ヨーロッパ",
+    title:"宗教改革",
+    subtitle:"カトリック教会への批判とプロテスタントの成立",
+
+    background:
+    "中世末期のカトリック教会では聖職者の腐敗や教会財政への批判が強まり、贖宥状の販売も批判対象となった。また印刷術の普及によって宗教的主張が広範囲へ伝わりやすくなっていた。",
+
+    result:
+    "1517年、ルターが贖宥状販売を批判する95か条の論題を発表した。宗教改革はドイツから各地へ広がり、カルヴァン派やイギリス国教会などが成立した。カトリック側も対抗宗教改革を進めた。",
+
+    impact:
+    "西ヨーロッパのキリスト教世界はカトリックとプロテスタントに分裂した。宗派対立は政治的対立とも結びつき、ドイツ農民戦争や三十年戦争などにつながった。また教育・出版・識字文化にも影響を与えた。",
+
+    essay:
+    "教会の腐敗への批判や贖宥状販売への反発、印刷術の普及を背景に宗教改革が始まり、プロテスタント諸派が成立した。その結果、西欧キリスト教世界が分裂し、宗派対立が政治・国際関係にも影響した。",
+
+    keywords:[
+        "ルター",
+        "95か条の論題",
+        "贖宥状",
+        "カルヴァン",
+        "対抗宗教改革"
+    ]
+},
+
+{
+    id:10,
+    year:"17世紀",
+    era:"近世",
+    region:"ヨーロッパ",
+    title:"三十年戦争とウェストファリア条約",
+    subtitle:"宗派対立から国際政治上の戦争へ",
+
+    background:
+    "宗教改革後の神聖ローマ帝国ではカトリックとプロテスタントの対立が続いていた。さらにハプスブルク家の皇帝権強化に対する諸侯や周辺国の反発が重なり、1618年のベーメンでの反乱をきっかけに戦争が始まった。",
+
+    result:
+    "戦争はドイツを中心に拡大し、デンマーク、スウェーデン、フランスなども介入した。1648年のウェストファリア条約によって終結し、カルヴァン派の信仰も承認された。",
+
+    impact:
+    "神聖ローマ帝国の分権化が進み、フランスやスウェーデンが勢力を伸ばした。また国家間の外交関係を基盤とする近代的な国際秩序の形成につながったとされる。",
+
+    essay:
+    "宗教改革後の宗派対立にハプスブルク家への政治的反発が重なって三十年戦争が起こった。ウェストファリア条約で終結し、神聖ローマ帝国の分権化とフランスなどの台頭が進んだ。",
+
+    keywords:[
+        "三十年戦争",
+        "ハプスブルク家",
+        "ウェストファリア",
+        "フランス",
+        "スウェーデン"
+    ]
+},
+
+/* =========================================================
+   近代
+========================================================= */
+
+{
+    id:11,
+    year:"18世紀",
+    era:"近代",
+    region:"アメリカ",
+    title:"アメリカ独立革命",
+    subtitle:"植民地の自治要求と独立",
+
+    background:
+    "七年戦争後、イギリスは戦費を回収するため北米植民地への課税を強化した。植民地側では「代表なくして課税なし」という反発が強まり、イギリス本国との対立が深まった。さらに啓蒙思想の自然権や人民主権の考えも独立運動を支えた。",
+
+    result:
+    "1775年に独立戦争が始まり、1776年に独立宣言が発表された。フランスなどの支援も受けて植民地側が勝利し、1783年のパリ条約でイギリスがアメリカ合衆国の独立を承認した。",
+
+    impact:
+    "共和政国家が成立し、1787年には合衆国憲法が制定された。またアメリカ独立の理念はフランス革命やラテンアメリカの独立運動にも影響を与えた。",
+
+    essay:
+    "七年戦争後のイギリスによる植民地課税と代表権をめぐる対立を背景にアメリカ独立革命が起こった。独立宣言を経て独立を達成し、共和政と人民主権の理念を広めた。",
+
+    keywords:[
+        "七年戦争",
+        "代表なくして課税なし",
+        "独立宣言",
+        "パリ条約",
+        "合衆国憲法"
+    ]
+},
+
+{
+    id:12,
+    year:"1789年",
+    era:"近代",
+    region:"ヨーロッパ",
+    title:"フランス革命",
+    subtitle:"身分制社会から近代的政治秩序へ",
+
+    background:
+    "フランスでは身分制社会のもとで聖職者・貴族が特権を持ち、第三身分の負担が重かった。さらにアメリカ独立戦争への援助などによって財政危機が深刻化した。啓蒙思想が広がり、自由・平等・人民主権への関心も高まっていた。",
+
+    result:
+    "1789年に三部会が招集され、第三身分が国民議会を結成した。バスティーユ牢獄襲撃、人権宣言、王政廃止などを経て共和政が成立し、最終的にはナポレオンが権力を握った。",
+
+    impact:
+    "封建的特権の廃止や法の下の平等など近代市民社会の原則が広がった。また革命理念はヨーロッパ各地やラテンアメリカの民族運動・自由主義運動に影響した。一方、革命は恐怖政治や戦争を伴い、政治的急進化も生み出した。",
+
+    essay:
+    "身分制社会への不満、財政危機、啓蒙思想の普及を背景にフランス革命が起こった。封建的特権が廃止され、人権や法の下の平等が掲げられた結果、近代市民社会の形成に大きな影響を与えた。",
+
+    keywords:[
+        "三部会",
+        "バスティーユ牢獄",
+        "人権宣言",
+        "共和政",
+        "ナポレオン"
+    ]
+},
+
+{
+    id:13,
+    year:"18〜19世紀",
+    era:"近代",
+    region:"ヨーロッパ",
+    title:"産業革命",
+    subtitle:"工場制機械工業と資本主義社会の成立",
+
+    background:
+    "イギリスでは農業革命によって人口増加や労働力移動が進み、石炭・鉄資源にも恵まれていた。また国内市場や植民地市場、資本の蓄積が存在し、発明を事業化する条件が整っていた。こうした条件のもとで綿工業や蒸気機関が発達した。",
+
+    result:
+    "18世紀後半からイギリスで工場制機械工業が発展し、蒸気機関を利用した機械生産が拡大した。その後、鉄道や蒸気船などの交通技術も発達し、産業化は欧米各国へ広がった。",
+
+    impact:
+    "都市化が進み、資本家と労働者からなる近代的階級社会が形成された。大量生産・大量輸送によって世界市場が拡大する一方、労働問題も深刻化した。また工業国は原料・市場を求めて海外進出を強め、帝国主義と結びついた。",
+
+    essay:
+    "イギリスの資本蓄積、農業革命、資源、技術などを背景に産業革命が始まり、工場制機械工業が発展した。その結果、都市化と資本主義が進展し、労働問題や帝国主義の拡大にもつながった。",
+
+    keywords:[
+        "イギリス",
+        "農業革命",
+        "蒸気機関",
+        "工場制",
+        "資本主義"
+    ]
+},
+
+{
+    id:14,
+    year:"19世紀",
+    era:"近代",
+    region:"中国",
+    title:"アヘン戦争",
+    subtitle:"清とイギリスの貿易対立",
+
+    background:
+    "イギリスでは中国茶などへの需要が大きく、対中貿易赤字を抱えていた。そこでイギリス商人がインド産アヘンを中国へ密輸し、清ではアヘン中毒や銀流出が社会問題となった。清政府が林則徐を派遣してアヘンを没収・廃棄すると、イギリスが軍事行動を開始した。",
+
+    result:
+    "1840年に戦争が始まり、清は敗北した。1842年の南京条約によって香港島を割譲し、広州・上海など5港を開港した。その後、清は列強と相次いで不平等条約を結ぶことになった。",
+
+    impact:
+    "清の主権が制限され、中国は列強による半植民地化の圧力を受けるようになった。国内では清朝への批判が強まり、太平天国の乱や洋務運動、さらに清末の改革へとつながった。",
+
+    essay:
+    "イギリスの対中貿易赤字を背景にアヘン貿易が拡大し、清のアヘン取締りを契機にアヘン戦争が起こった。清の敗北後、不平等条約が結ばれ、中国の主権が制限されるようになった。",
+
+    keywords:[
+        "アヘン",
+        "林則徐",
+        "アヘン戦争",
+        "南京条約",
+        "不平等条約"
+    ]
+},
+
+{
+    id:15,
+    year:"19世紀",
+    era:"近代",
+    region:"ヨーロッパ",
+    title:"ドイツ帝国の成立",
+    subtitle:"ビスマルクによるドイツ統一",
+
+    background:
+    "19世紀のドイツでは多数の領邦が存在し、統一国家は形成されていなかった。プロイセンとオーストリアがドイツ統一の主導権を争う中、プロイセン首相ビスマルクは軍事力と外交を利用して統一を進めた。",
+
+    result:
+    "プロイセンはデンマーク戦争、普墺戦争、普仏戦争を経て統一を進め、1871年にドイツ帝国が成立した。プロイセン国王ヴィルヘルム1世が皇帝となり、ビスマルクが宰相となった。",
+
+    impact:
+    "ドイツがヨーロッパの強国となり、フランスとの対立が深まった。ビスマルクは同盟外交によってフランスを孤立させようとしたが、彼の退任後にドイツの対外政策が変化し、列強間の対立が激化した。",
+
+    essay:
+    "ドイツ諸邦の統一をめぐるプロイセンとオーストリアの対立を背景に、ビスマルクが戦争と外交を利用して統一を進めた。その結果1871年にドイツ帝国が成立し、列強間の勢力関係が変化した。",
+
+    keywords:[
+        "プロイセン",
+        "ビスマルク",
+        "普墺戦争",
+        "普仏戦争",
+        "ドイツ帝国"
+    ]
+},
+
+/* =========================================================
+   20世紀
+========================================================= */
+
+{
+    id:16,
+    year:"1914〜1918年",
+    era:"近代",
+    region:"世界",
+    title:"第一次世界大戦",
+    subtitle:"帝国主義・軍拡・同盟対立から総力戦へ",
+
+    background:
+    "19世紀末以降、列強は植民地獲得を競い、ドイツの台頭によって国際対立が激化した。三国同盟と三国協商という軍事的陣営が形成され、バルカン半島でも民族問題をめぐる対立が続いた。1914年のサラエボ事件をきっかけに同盟関係が連鎖して戦争が拡大した。",
+
+    result:
+    "オーストリア＝ハンガリーがセルビアに宣戦し、ロシア・ドイツ・フランス・イギリスなどが次々と参戦した。戦争は総力戦となり、1917年にはロシア革命とアメリカ参戦が起こった。1918年にドイツが降伏した。",
+
+    impact:
+    "ドイツ・オーストリア＝ハンガリー・オスマン・ロシアの帝国が崩壊し、東欧に新国家が成立した。ヴェルサイユ体制と国際連盟が成立したが、敗戦国への厳しい処理や民族問題を残し、後の第二次世界大戦の背景となった。",
+
+    essay:
+    "帝国主義的対立と軍拡、同盟対立、バルカンの民族問題を背景に第一次世界大戦が起こり、サラエボ事件を契機に世界規模へ拡大した。その結果、帝国が崩壊しヴェルサイユ体制が成立したが、新たな対立も残した。",
+
+    keywords:[
+        "帝国主義",
+        "三国同盟",
+        "三国協商",
+        "サラエボ事件",
+        "ヴェルサイユ体制"
+    ]
+},
+
+{
+    id:17,
+    year:"1917年",
+    era:"近代",
+    region:"ヨーロッパ",
+    title:"ロシア革命",
+    subtitle:"帝政ロシアから社会主義政権へ",
+
+    background:
+    "ロシアでは皇帝による専制政治への批判が強く、農民問題や労働者問題も深刻だった。さらに第一次世界大戦によって軍事的・経済的負担が増大し、政府への不満が高まった。",
+
+    result:
+    "1917年の二月革命でニコライ2世が退位し、臨時政府が成立した。しかし戦争継続などへの不満から支持を失い、同年の十月革命でボリシェヴィキが政権を握った。",
+
+    impact:
+    "世界初の社会主義政権が成立し、資本主義諸国との対立が生まれた。ソ連成立後、社会主義運動が世界各地へ広がり、20世紀の国際政治を大きく左右した。",
+
+    essay:
+    "帝政への不満や農民・労働者問題に加え、第一次世界大戦による社会的混乱を背景にロシア革命が起こった。十月革命でボリシェヴィキが政権を握り、世界初の社会主義国家形成につながった。",
+
+    keywords:[
+        "二月革命",
+        "十月革命",
+        "ボリシェヴィキ",
+        "レーニン",
+        "ソ連"
+    ]
+},
+
+{
+    id:18,
+    year:"1929年",
+    era:"近代",
+    region:"世界",
+    title:"世界恐慌",
+    subtitle:"アメリカ発の経済危機と国際秩序の動揺",
+
+    background:
+    "1920年代のアメリカでは大量生産と消費が拡大する一方、農業不況や所得格差などの問題が存在した。株式投機が過熱した後、1929年にニューヨーク株式市場が暴落し、金融危機が実体経済へ波及した。",
+
+    result:
+    "銀行破綻や企業倒産、失業が各国で拡大し、世界的な不況となった。各国は保護貿易や経済ブロック化を進め、イギリスはスターリング＝ブロック、フランスはフラン＝ブロックを形成した。",
+
+    impact:
+    "経済危機によって民主政治への不信が強まり、ドイツではナチ党が台頭した。各国の対立とブロック経済が国際協調を弱め、第二次世界大戦の重要な背景となった。",
+
+    essay:
+    "1929年の株価暴落を契機に世界恐慌が起こり、失業や企業倒産が拡大した。各国は保護貿易・経済ブロック化を進め、その結果国際協調が弱まり、ドイツなどでファシズムが台頭した。",
+
+    keywords:[
+        "1929年",
+        "ニューヨーク株式市場",
+        "世界恐慌",
+        "保護貿易",
+        "ファシズム"
+    ]
+},
+
+{
+    id:19,
+    year:"1939〜1945年",
+    era:"近代",
+    region:"世界",
+    title:"第二次世界大戦",
+    subtitle:"ヴェルサイユ体制の動揺とファシズムの拡大",
+
+    background:
+    "第一次世界大戦後のヴェルサイユ体制には敗戦国ドイツへの厳しい条件や民族問題が残った。さらに世界恐慌によって各国の社会不安が高まり、ドイツではヒトラー率いるナチ党が台頭した。ドイツ・イタリア・日本の領土拡張政策と英仏の宥和政策も戦争への道を進めた。",
+
+    result:
+    "1939年のドイツによるポーランド侵攻を契機にヨーロッパで戦争が始まり、日本の真珠湾攻撃によってアメリカも参戦した。連合国が勝利し、1945年にドイツ・日本が降伏した。",
+
+    impact:
+    "国際連合が成立し、アメリカとソ連が超大国として台頭した。ヨーロッパ諸国の国力が低下する一方、アジア・アフリカでは民族独立運動が強まり、脱植民地化が進んだ。また米ソ対立から冷戦が形成された。",
+
+    essay:
+    "ヴェルサイユ体制への不満と世界恐慌による社会不安を背景にファシズムが台頭し、ドイツ・イタリア・日本が領土拡張を進めた。第二次世界大戦の結果、国際連合が成立し、米ソ二極構造と脱植民地化が進んだ。",
+
+    keywords:[
+        "ヴェルサイユ体制",
+        "世界恐慌",
+        "ヒトラー",
+        "ポーランド侵攻",
+        "国際連合"
+    ]
+},
+
+{
+    id:20,
+    year:"1945年以降",
+    era:"現代",
+    region:"世界",
+    title:"冷戦の勃発",
+    subtitle:"第二次世界大戦後の米ソ対立",
+
+    background:
+    "第二次世界大戦後、アメリカとソ連はともに超大国となったが、自由主義・資本主義を掲げるアメリカと社会主義を掲げるソ連では政治・経済体制が大きく異なった。ソ連が東欧で親ソ政権を成立させたことに対し、アメリカは共産主義の拡大を防ぐ封じ込め政策を進めた。",
+
+    result:
+    "トルーマン＝ドクトリンやマーシャル＝プランによってアメリカは西側諸国を支援し、1949年にはNATOが成立した。ソ連側も東欧諸国をまとめ、後にワルシャワ条約機構を形成した。",
+
+    impact:
+    "世界はアメリカを中心とする西側とソ連を中心とする東側に分かれ、核兵器を背景とする軍拡競争が続いた。朝鮮戦争やベトナム戦争など、米ソが直接戦わない形の地域紛争にも影響を与えた。1991年のソ連解体によって冷戦は終結した。",
+
+    essay:
+    "第二次世界大戦後、資本主義と社会主義の体制対立、東欧をめぐる米ソの対立を背景に冷戦が始まった。その結果、世界が東西両陣営に分かれ、軍拡や地域紛争が続いたが、1991年のソ連解体で終結した。",
+
+    keywords:[
+        "トルーマン＝ドクトリン",
+        "マーシャル＝プラン",
+        "NATO",
+        "ワルシャワ条約機構",
+        "封じ込め"
+    ]
+},
+
+{
+    id:21,
+    year:"20世紀後半",
+    era:"現代",
+    region:"世界",
+    title:"脱植民地化",
+    subtitle:"アジア・アフリカ諸国の独立",
+
+    background:
+    "第二次世界大戦によってヨーロッパ列強の国力が低下し、植民地支配を維持する能力が弱まった。また民族自決の理念が広がり、植民地では民族運動が成長した。米ソも植民地主義に対して異なる立場から影響を与えた。",
+
+    result:
+    "1947年にインドとパキスタンが独立し、1950年代以降アジア・アフリカで独立国が相次いで成立した。1960年にはアフリカで多数の独立国が誕生し、「アフリカの年」と呼ばれた。",
+
+    impact:
+    "国際社会に多数の新興独立国が加わり、国際連合の構成も大きく変化した。新興国は米ソどちらの陣営にも完全には属さない非同盟の立場を模索し、第三世界として国際政治に影響を与えた。",
+
+    essay:
+    "第二次世界大戦による欧州列強の弱体化と民族自決の広がりを背景に脱植民地化が進んだ。その結果アジア・アフリカに多数の独立国が成立し、非同盟諸国が国際政治で存在感を強めた。",
+
+    keywords:[
+        "民族自決",
+        "インド独立",
+        "アフリカの年",
+        "非同盟",
+        "第三世界"
+    ]
+},
+
+{
+    id:22,
+    year:"1989〜1991年",
+    era:"現代",
+    region:"ヨーロッパ",
+    title:"冷戦の終結とソ連解体",
+    subtitle:"東欧革命からソ連崩壊へ",
+
+    background:
+    "ソ連では経済停滞や社会問題が深刻化し、ゴルバチョフがペレストロイカやグラスノスチを進めた。また東欧諸国へのソ連の軍事的介入が弱まり、各国で民主化運動が広がった。",
+
+    result:
+    "1989年にベルリンの壁が開放され、東欧諸国で共産党政権が相次いで崩壊した。1990年にはドイツが統一し、1991年12月にソ連が解体した。",
+
+    impact:
+    "約40年以上続いた冷戦構造が終わり、アメリカを中心とする国際秩序が形成された。一方、旧ソ連・東欧では市場経済化や政治改革が進み、民族問題や地域紛争など新たな課題も生じた。",
+
+    essay:
+    "ソ連の経済停滞とゴルバチョフの改革、東欧諸国の民主化運動を背景に冷戦終結が進んだ。ベルリンの壁崩壊と東欧革命を経て1991年にソ連が解体し、東西対立が終結した。",
+
+    keywords:[
+        "ゴルバチョフ",
+        "ペレストロイカ",
+        "ベルリンの壁",
+        "東欧革命",
+        "ソ連解体"
+    ]
+}
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentEra = "all";
+let currentRegion = "all";
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const container =
+    document.getElementById(
+        "eventContainer"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const resultInfo =
+    document.getElementById(
+        "resultInfo"
+    );
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function getFilteredEvents(){
+
+    const search =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+    return events.filter(event => {
+
+        const eraOK =
+            currentEra === "all" ||
+            event.era === currentEra;
+
+        const regionOK =
+            currentRegion === "all" ||
+            event.region === currentRegion;
+
+        const text = [
+            event.year,
+            event.era,
+            event.region,
+            event.title,
+            event.subtitle,
+            event.background,
+            event.result,
+            event.impact,
+            event.essay,
+            event.keywords.join(" ")
+        ]
+        .join(" ")
+        .toLowerCase();
+
+        const searchOK =
+            !search ||
+            text.includes(search);
+
+        return (
+            eraOK &&
+            regionOK &&
+            searchOK
+        );
+
+    });
+}
+
+
+/* =========================================================
+   EVENT CARD
+========================================================= */
+
+function createEventCard(event){
+
+    return `
+
+    <article
+        class="event-card"
+        data-id="${event.id}"
+    >
+
+        <div
+            class="event-header"
+            onclick="toggleEvent(${event.id})"
+        >
+
+            <div class="event-year">
+                ${event.year}
+            </div>
+
+
+            <div>
+
+                <h2 class="event-title">
+                    ${event.title}
+                </h2>
+
+                <div class="event-subtitle">
+                    ${event.subtitle}
+                </div>
+
+            </div>
+
+
+            <div class="event-meta">
+
+                <span class="badge era-badge">
+                    ${event.era}
+                </span>
+
+                <span class="badge region-badge">
+                    ${event.region}
+                </span>
+
+                <span class="arrow">
+                    ▼
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="event-content">
+
+            <div class="detail-grid">
+
+                <section
+                    class="detail-box background-box"
+                >
+
+                    <h3>
+                        🟠 背景・原因
+                    </h3>
+
+                    <p>
+                        ${event.background}
+                    </p>
+
+                </section>
+
+
+                <section
+                    class="detail-box result-box"
+                >
+
+                    <h3>
+                        🟢 結果
+                    </h3>
+
+                    <p>
+                        ${event.result}
+                    </p>
+
+                </section>
+
+
+                <section
+                    class="detail-box impact-box"
+                >
+
+                    <h3>
+                        🔵 影響
+                    </h3>
+
+                    <p>
+                        ${event.impact}
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <section class="essay-box">
+
+                <div class="essay-title">
+                    ✍️ 論述で使えるまとめ
+                </div>
+
+                <p>
+                    ${event.essay}
+                </p>
+
+                <div class="essay-template">
+                    <strong>論述の型：</strong>
+                    「〜を背景に【事件】が起こり、
+                    その結果〜となった。
+                    さらに〜へ影響した。」
+                </div>
+
+            </section>
+
+
+            <div class="keyword-row">
+
+                ${event.keywords
+                    .map(
+                        keyword =>
+                        `<span class="keyword">
+                            ${keyword}
+                        </span>`
+                    )
+                    .join("")}
+
+            </div>
+
+        </div>
+
+    </article>
+
+    `;
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+    const filtered =
+        getFilteredEvents();
+
+    if(filtered.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    該当する事件がありません
+                </h3>
+
+                <p>
+                    検索語やフィルターを
+                    変更してみてください。
+                </p>
+
+            </div>
+
+        `;
+
+    }else{
+
+        container.innerHTML = `
+
+            <div class="section-title">
+
+                <h2>
+                    重要事件一覧
+                </h2>
+
+                <span>
+                    事件をクリックして因果関係を確認
+                </span>
+
+            </div>
+
+            <div class="event-list">
+
+                ${filtered
+                    .map(createEventCard)
+                    .join("")}
+
+            </div>
+
+        `;
+    }
+
+    resultInfo.textContent =
+        `${filtered.length}件を表示中｜全${events.length}件`;
+
+}
+
+
+/* =========================================================
+   ACCORDION
+========================================================= */
+
+function toggleEvent(id){
+
+    const card =
+        document.querySelector(
+            `.event-card[data-id="${id}"]`
+        );
+
+    if(!card){
+        return;
+    }
+
+    card.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+document
+.querySelectorAll(".filter-btn")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const type =
+                button.dataset.type;
+
+            const value =
+                button.dataset.value;
+
+
+            document
+            .querySelectorAll(
+                `[data-type="${type}"]`
+            )
+            .forEach(btn => {
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            button.classList.add(
+                "active"
+            );
+
+
+            if(type === "era"){
+                currentEra = value;
+            }
+
+            if(type === "region"){
+                currentRegion = value;
+            }
+
+
+            render();
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+document
+.getElementById("resetBtn")
+.addEventListener(
+    "click",
+    () => {
+
+        searchInput.value = "";
+
+        currentEra = "all";
+        currentRegion = "all";
+
+
+        document
+        .querySelectorAll(".filter-btn")
+        .forEach(
+            btn =>
+            btn.classList.remove(
+                "active"
+            )
+        );
+
+
+        document
+        .querySelectorAll(
+            '[data-value="all"]'
+        )
+        .forEach(
+            btn =>
+            btn.classList.add(
+                "active"
+            )
+        );
+
+
+        render();
+
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD SHORTCUT
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "/" &&
+            document.activeElement.tagName !==
+            "INPUT"
+        ){
+
+            event.preventDefault();
+
+            searchInput.focus();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
