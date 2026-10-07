@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界史ポータル｜横のつながり</title>
+
+<style>
+:root{
+    --bg:#0b1020;
+    --bg2:#111827;
+    --card:#151d31;
+    --card2:#1b263d;
+    --line:#2b3854;
+    --text:#eef3ff;
+    --sub:#aab6cc;
+    --blue:#60a5fa;
+    --cyan:#22d3ee;
+    --purple:#a78bfa;
+    --green:#34d399;
+    --orange:#f59e0b;
+    --red:#fb7185;
+    --shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(96,165,250,.10),transparent 25%),
+        radial-gradient(circle at 85% 20%,rgba(167,139,250,.09),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.8;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   Header
+========================= */
+
+header{
+    position:relative;
+    overflow:hidden;
+    padding:70px 20px 55px;
+    border-bottom:1px solid var(--line);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(96,165,250,.12),
+            rgba(167,139,250,.08)
+        );
+}
+
+.header-inner{
+    max-width:1400px;
+    margin:auto;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:var(--text);
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
+    padding:9px 15px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateY(-1px);
+}
+
+.kicker{
+    margin-top:40px;
+    color:var(--cyan);
+    font-weight:700;
+    letter-spacing:.12em;
+    font-size:.85rem;
+}
+
+h1{
+    margin:8px 0 15px;
+    font-size:clamp(2rem,5vw,4rem);
+    line-height:1.15;
+}
+
+.header-description{
+    max-width:900px;
+    color:var(--sub);
+    font-size:1.05rem;
+}
+
+.header-description strong{
+    color:var(--text);
+}
+
+/* =========================
+   Navigation
+========================= */
+
+.quick-nav{
+    max-width:1400px;
+    margin:-25px auto 0;
+    padding:0 20px;
+    position:relative;
+}
+
+.quick-nav-inner{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:14px;
+    background:rgba(21,29,49,.95);
+    border:1px solid var(--line);
+    border-radius:15px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(12px);
+}
+
+.quick-nav a{
+    flex:0 0 auto;
+    color:var(--sub);
+    text-decoration:none;
+    padding:7px 13px;
+    border-radius:8px;
+    font-size:.9rem;
+}
+
+.quick-nav a:hover{
+    background:var(--card2);
+    color:var(--text);
+}
+
+/* =========================
+   Main
+========================= */
+
+main{
+    max-width:1400px;
+    margin:0 auto;
+    padding:45px 20px 80px;
+}
+
+.intro-box{
+    background:linear-gradient(
+        135deg,
+        rgba(96,165,250,.08),
+        rgba(167,139,250,.07)
+    );
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+.intro-box h2{
+    margin-top:0;
+}
+
+.intro-box p{
+    color:var(--sub);
+    margin-bottom:0;
+}
+
+/* =========================
+   Filter
+========================= */
+
+.filter-panel{
+    position:sticky;
+    top:10px;
+    z-index:50;
+    background:rgba(11,16,32,.92);
+    backdrop-filter:blur(16px);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:35px;
+    box-shadow:var(--shadow);
+}
+
+.search-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.search-input{
+    width:100%;
+    padding:13px 15px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--text);
+    outline:none;
+}
+
+.search-input:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(96,165,250,.12);
+}
+
+.reset-btn{
+    padding:0 17px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--card2);
+    color:var(--text);
+}
+
+.reset-btn:hover{
+    background:#263653;
+}
+
+.filter-group{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:7px;
+    margin-top:9px;
+}
+
+.filter-label{
+    color:var(--sub);
+    font-size:.85rem;
+    font-weight:700;
+    min-width:75px;
+}
+
+.filter-btn{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--sub);
+    border-radius:999px;
+    padding:6px 12px;
+    transition:.2s;
+}
+
+.filter-btn:hover{
+    color:var(--text);
+    border-color:#536582;
+}
+
+.filter-btn.active{
+    background:rgba(96,165,250,.16);
+    color:var(--blue);
+    border-color:rgba(96,165,250,.45);
+}
+
+.sort-row{
+    margin-top:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--sub);
+}
+
+.sort-select{
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:7px 10px;
+}
+
+.result-count{
+    margin-top:12px;
+    color:var(--sub);
+    font-size:.9rem;
+}
+
+/* =========================
+   Connection cards
+========================= */
+
+.connection-section{
+    margin-bottom:60px;
+    scroll-margin-top:130px;
+}
+
+.era-heading{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:18px;
+}
+
+.era-heading h2{
+    margin:0;
+    font-size:clamp(1.5rem,3vw,2.3rem);
+}
+
+.era-sub{
+    color:var(--sub);
+    font-size:.9rem;
+}
+
+.compare-table{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--card);
+    box-shadow:var(--shadow);
+}
+
+.region-column{
+    min-width:0;
+    border-right:1px solid var(--line);
+}
+
+.region-column:last-child{
+    border-right:none;
+}
+
+.region-header{
+    padding:15px 17px;
+    font-weight:800;
+    border-bottom:1px solid var(--line);
+    background:var(--card2);
+}
+
+.region-header.china{
+    color:#60a5fa;
+}
+
+.region-header.europe{
+    color:#a78bfa;
+}
+
+.region-header.islam{
+    color:#34d399;
+}
+
+.region-header.india{
+    color:#f59e0b;
+}
+
+.region-content{
+    padding:18px;
+}
+
+.event-title{
+    font-weight:800;
+    font-size:1.05rem;
+    margin-bottom:7px;
+}
+
+.event-date{
+    display:inline-block;
+    color:var(--sub);
+    font-size:.78rem;
+    border:1px solid var(--line);
+    padding:2px 7px;
+    border-radius:999px;
+    margin-bottom:10px;
+}
+
+.event-text{
+    color:var(--sub);
+    font-size:.92rem;
+    margin:0;
+}
+
+.event-text strong{
+    color:var(--text);
+}
+
+/* =========================
+   Connection explanation
+========================= */
+
+.connection-box{
+    margin-top:15px;
+    padding:23px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34,211,238,.06),
+            rgba(167,139,250,.06)
+        );
+}
+
+.connection-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 13px;
+    font-size:1.2rem;
+}
+
+.connection-title span{
+    display:inline-flex;
+    width:30px;
+    height:30px;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:rgba(34,211,238,.13);
+    color:var(--cyan);
+    font-weight:800;
+}
+
+.connection-box p{
+    color:#c5d0e4;
+    margin:0;
+}
+
+.exam-box{
+    margin-top:12px;
+    padding:18px 20px;
+    border-left:4px solid var(--orange);
+    background:rgba(245,158,11,.06);
+    border-radius:0 12px 12px 0;
+}
+
+.exam-box strong{
+    color:var(--orange);
+}
+
+.exam-box p{
+    color:var(--sub);
+    margin:6px 0 0;
+}
+
+/* =========================
+   Hidden
+========================= */
+
+.hidden{
+    display:none !important;
+}
+
+.no-result{
+    text-align:center;
+    padding:50px 20px;
+    border:1px dashed var(--line);
+    border-radius:16px;
+    color:var(--sub);
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:35px 20px;
+    text-align:center;
+    color:var(--sub);
+    font-size:.85rem;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:1000px){
+
+    .compare-table{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .region-column:nth-child(2){
+        border-right:none;
+    }
+
+    .region-column:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
+    }
+}
+
+@media(max-width:650px){
+
+    header{
+        padding:45px 16px 40px;
+    }
+
+    main{
+        padding:35px 14px 60px;
+    }
+
+    .quick-nav{
+        padding:0 14px;
+    }
+
+    .compare-table{
+        grid-template-columns:1fr;
+    }
+
+    .region-column{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
+
+    .region-column:last-child{
+        border-bottom:none;
+    }
+
+    .region-column:nth-child(2){
+        border-bottom:1px solid var(--line);
+    }
+
+    .search-row{
+        grid-template-columns:1fr;
+    }
+
+    .reset-btn{
+        padding:10px;
+    }
+
+    .filter-label{
+        width:100%;
+    }
+
+    .era-heading{
+        display:block;
+    }
+
+    .era-sub{
+        margin-top:4px;
+    }
+
+    .connection-box{
+        padding:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a href="index.html" class="back-btn">
+            ← トップページへ戻る
+        </a>
+
+        <div class="kicker">WORLD HISTORY PORTAL / PAGE 04</div>
+
+        <h1>横のつながり<br>解説ページ</h1>
+
+        <p class="header-description">
+            <strong>「そのとき、世界の別の場所では何が起きていた？」</strong><br>
+            世界史を地域ごとの暗記で終わらせず、
+            同じ年代の中国・ヨーロッパ・イスラーム世界・インドを横に並べ、
+            交易・宗教・戦争・国家形成がどう結びついていたのかを理解するためのページ。
+        </p>
+
+    </div>
+</header>
+
+
+<nav class="quick-nav">
+    <div class="quick-nav-inner">
+        <a href="#ancient">前2世紀</a>
+        <a href="#roman">4世紀</a>
+        <a href="#islam">7世紀</a>
+        <a href="#tang">8世紀</a>
+        <a href="#crusade">11〜12世紀</a>
+        <a href="#mongol">13世紀</a>
+        <a href="#renaissance">15〜16世紀</a>
+        <a href="#revolution">18世紀</a>
+        <a href="#imperialism">19世紀</a>
+        <a href="#worldwar">20世紀前半</a>
+        <a href="#coldwar">20世紀後半</a>
+    </div>
+</nav>
+
+
+<main>
+
+    <section class="intro-box">
+        <h2>このページの使い方</h2>
+
+        <p>
+            世界史の論述では、
+            「中国で○○が起きた」「ヨーロッパで○○が起きた」と
+            地域別に説明するだけでは不十分です。
+            <br><br>
+            重要なのは、
+            <strong>同じ時期に別地域で起きていた出来事を結びつけ、
+            なぜ世界規模の変化につながったのかを説明すること</strong>。
+            <br><br>
+            例えば13世紀なら、
+            「モンゴル帝国の拡大 → ユーラシアの広域交通 → 中国・中央アジア・イスラーム世界・ヨーロッパの接触」
+            というように、出来事を「→」でつなげて考える。
+            このページは、そのための論述トレーニング用データベースです。
+        </p>
+    </section>
+
+
+    <!-- ==============================
+         FILTER
+    =============================== -->
+
+    <section class="filter-panel">
+
+        <div class="search-row">
+
+            <input
+                id="searchInput"
+                class="search-input"
+                type="search"
+                placeholder="🔎 年代・人物・王朝・事件・用語で検索..."
+            >
+
+            <button id="resetBtn" class="reset-btn">
+                リセット
+            </button>
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <span class="filter-label">時代</span>
+
+            <button class="filter-btn active" data-era="all">
+                すべて
+            </button>
+
+            <button class="filter-btn" data-era="ancient">
+                古代
+            </button>
+
+            <button class="filter-btn" data-era="medieval">
+                中世
+            </button>
+
+            <button class="filter-btn" data-era="earlymodern">
+                近世
+            </button>
+
+            <button class="filter-btn" data-era="modern">
+                近代
+            </button>
+
+            <button class="filter-btn" data-era="contemporary">
+                現代
+            </button>
+
+        </div>
+
+
+        <div class="sort-row">
+
+            <span>並び順</span>
+
+            <select id="sortSelect" class="sort-select">
+                <option value="chronological">年代順</option>
+                <option value="importance">論述重要度順</option>
+            </select>
+
+        </div>
+
+        <div id="resultCount" class="result-count"></div>
+
+    </section>
+
+
+    <div id="connectionContainer"></div>
+
+
+</main>
+
+
+<footer>
+    世界史ポータルサイト｜横のつながり解説
+</footer>
+
+
+<script>
+
+/* =========================================================
+   横のつながりデータ
+   ========================================================= */
+
+const connections = [
+
+/* =========================================================
+   前2世紀
+   ========================================================= */
+
+{
+    id:"ancient",
+    era:"古代",
+    period:"前2世紀",
+    title:"シルクロード形成の背景",
+    subtitle:"漢・ヘレニズム世界・西アジア・インド世界がつながり始める",
+
+    regions:{
+
+        china:{
+            title:"前漢",
+            date:"前2世紀",
+            text:"漢の武帝が匈奴に対抗して西方へ進出。張騫の派遣を契機に中央アジアとの関係が深まり、絹などの中国産品が西方へ流れるルートが発達した。"
+        },
+
+        europe:{
+            title:"ヘレニズム世界",
+            date:"前2世紀",
+            text:"アレクサンドロス大王の東方遠征後に成立したヘレニズム諸国が衰退し、ローマが地中海世界で勢力を拡大。ギリシア文化とオリエント文化の融合が進んだ。"
+        },
+
+        islam:{
+            title:"西アジア・中央アジア",
+            date:"前2世紀",
+            text:"セレウコス朝の勢力が後退する一方、パルティアがイラン高原を中心に勢力を拡大。東西を結ぶ交易路の中継地域として西アジアの重要性が高まった。"
+        },
+
+        india:{
+            title:"マウリヤ朝後期",
+            date:"前2世紀",
+            text:"マウリヤ朝崩壊後、北西インドではギリシア系勢力なども進出。インドと中央アジアの接触が続き、後の仏教文化・交易ネットワーク形成につながる土台となった。"
+        }
+    },
+
+    explanation:`
+    前2世紀の世界を理解するポイントは、各地域が完全に独立して発展していたのではなく、
+    <strong>ユーラシアの中央部を介して政治・交易・文化のネットワークが形成され始めていた</strong>
+    ことである。漢の武帝は匈奴への対抗を目的として西方へ進出し、張騫を派遣した。
+    その結果、漢と中央アジアの諸地域との接触が深まり、中国産の絹が西方へ流れるルートが発達した。
+    一方、西側ではアレクサンドロス大王の東方遠征以来、ギリシア文化とオリエント文化が接触する
+    ヘレニズム世界が成立し、さらにローマが地中海世界へ進出していた。
+    つまり、東では漢、西ではローマが勢力を拡大し、その間に中央アジア・イラン地域が位置する構造が形成された。
+    シルクロードは一本の道路ではなく、複数の交易路がオアシス都市などを介してつながるネットワークであり、
+    商品だけでなく人・情報・宗教・技術も移動した点が重要である。
+    <br><br>
+    論述では「漢が絹を輸出した」だけで終わらせず、
+    <strong>漢の西方進出 → 中央アジアとの接触 → 東西交易の拡大 → 文化交流</strong>
+    という因果関係まで書くと、地域史が世界史へ変わる。
+    `,
+
+    exam:`
+    「シルクロード＝中国とローマが直接交易した道路」と考えないこと。
+    実際には中央アジア・イランなどの中継地域を経由する複数の交易路であり、
+    交易品が何度も商人の手を渡りながら移動した。
+    `
+},
+
+/* =========================================================
+   4世紀
+   ========================================================= */
+
+{
+    id:"roman",
+    era:"古代",
+    period:"4世紀",
+    title:"大帝国の変化と宗教の転換",
+    subtitle:"中国の分裂・ローマ帝国の変化・インドの繁栄",
+
+    regions:{
+
+        china:{
+            title:"魏晋南北朝",
+            date:"3〜4世紀",
+            text:"後漢滅亡後の分裂が続き、北方民族の進出も進む。中国では政治的分裂が続く一方、仏教が中央アジアから伝わり、社会に浸透していった。"
+        },
+
+        europe:{
+            title:"ローマ帝国",
+            date:"4世紀",
+            text:"コンスタンティヌス帝が帝国を再統一し、キリスト教を公認。帝国東部の重要性が増し、330年にはコンスタンティノープルへ遷都した。"
+        },
+
+        islam:{
+            title:"ササン朝",
+            date:"3〜4世紀",
+            text:"ササン朝ペルシアが成立し、ローマ帝国と西アジアの覇権を争った。ゾロアスター教を国家的に保護し、イラン文化の中心として発展した。"
+        },
+
+        india:{
+            title:"グプタ朝",
+            date:"4世紀〜",
+            text:"チャンドラグプタ1世以降、北インドでグプタ朝が勢力を拡大。サンスクリット文化、ヒンドゥー教、数学・天文学などが発展した。"
+        }
+    },
+
+    explanation:`
+    4世紀は、ユーラシア各地で<strong>古代の大帝国のあり方が変化した時代</strong>として比較すると理解しやすい。
+    中国では後漢滅亡後の分裂状態が続き、北方民族の進出とともに政治秩序が大きく変化した。
+    その一方で、中央アジア経由で仏教が中国へ広がり、政治的には分裂していても文化交流は継続した。
+    西方ではローマ帝国がコンスタンティヌス帝のもとで再統一され、キリスト教が公認された。
+    これは単なる宗教史ではなく、帝国の政治と宗教の関係が大きく変わったことを意味する。
+    さらにローマ帝国東方ではササン朝ペルシアが成立し、ローマとイランが西アジアの覇権を争った。
+    インドではグプタ朝が成立し、サンスクリット文化やヒンドゥー教が発展する。
+    <br><br>
+    この時代を横に見ると、
+    <strong>中国では仏教の受容、ローマではキリスト教の公認、インドではヒンドゥー文化の発展</strong>
+    というように、ユーラシア各地で宗教と政治権力の関係が再編されていたことが分かる。
+    「4世紀＝ローマだけ」と覚えるのではなく、宗教・帝国・文化の再編という共通テーマで捉えるとよい。
+    `,
+
+    exam:`
+    「コンスタンティヌス帝＝キリスト教を国教化」と短絡しない。
+    4世紀にはまず公認が重要で、国教化は後のテオドシウス帝の時代。
+    中国では仏教、インドではヒンドゥー文化の発展と比較すると整理しやすい。
+    `
+},
+
+/* =========================================================
+   7世紀
+   ========================================================= */
+
+{
+    id:"islam",
+    era:"中世",
+    period:"7世紀",
+    title:"イスラーム成立とユーラシア西部の大転換",
+    subtitle:"唐・ビザンツ・ササン朝・イスラームの同時進行",
+
+    regions:{
+
+        china:{
+            title:"唐の成立",
+            date:"618年",
+            text:"隋の滅亡後、李淵が唐を建国。太宗期に中央アジアへの影響力を拡大し、東アジアの国際秩序とシルクロード交易を活性化させた。"
+        },
+
+        europe:{
+            title:"ビザンツ帝国",
+            date:"7世紀",
+            text:"東ローマ帝国はササン朝と長く戦争を続けた後、イスラーム勢力の急速な拡大に直面。地中海東部・西アジアの政治地図が大きく変化した。"
+        },
+
+        islam:{
+            title:"イスラーム成立",
+            date:"7世紀",
+            text:"ムハンマドがアラビア半島でイスラームを成立させ、正統カリフ時代を経てウマイヤ朝へ。西アジア・北アフリカへ急速に勢力を広げた。"
+        },
+
+        india:{
+            title:"北インド諸勢力",
+            date:"7世紀",
+            text:"ハルシャ王が北インドの一部を統合。仏教・ヒンドゥー教・ジャイナ教などが共存し、インド洋交易を通じた地域間交流も続いた。"
+        }
+    },
+
+    explanation:`
+    7世紀は、世界史を横断して考える上で非常に重要である。中国では隋を継いだ唐が成立し、
+    東アジアだけでなく中央アジアにも勢力を伸ばした。一方、西アジアではイスラームが成立し、
+    ムハンマドの死後、正統カリフ・ウマイヤ朝の時代に急速に領域を拡大した。
+    この拡大は、単なる征服ではなく、従来のビザンツ帝国とササン朝が争っていた地域を
+    新しいイスラーム勢力が再編していく過程でもあった。
+    <br><br>
+    特に重要なのは、
+    <strong>ビザンツ帝国とササン朝の長期戦争による疲弊 → イスラーム勢力の台頭 → 西アジア・北アフリカの政治的再編</strong>
+    という流れである。
+    さらに東では唐が中央アジアへ進出しており、ユーラシア中央部では唐とイスラーム勢力が接近する。
+    そのため8世紀にはタラス河畔の戦いなどを通じて、唐とイスラーム世界の接触がさらに深まる。
+    <br><br>
+    つまり7世紀は、「中国・ヨーロッパ・イスラーム・インドを別々に覚える時代」ではなく、
+    <strong>唐とイスラーム世界がユーラシア中央部を介して同じ国際空間に入ってきた時代</strong>
+    として把握すると強い。
+    `
+},
+
+/* =========================================================
+   8世紀
+   ========================================================= */
+
+{
+    id:"tang",
+    era:"中世",
+    period:"8世紀",
+    title:"唐とイスラーム世界が中央アジアで接触",
+    subtitle:"タラス河畔の戦いと東西文化交流",
+
+    regions:{
+
+        china:{
+            title:"唐・玄宗",
+            date:"8世紀前半",
+            text:"唐は玄宗期に最盛期を迎える。中央アジアへの影響力を拡大したが、安史の乱によって国力が低下し、藩鎮勢力が強まった。"
+        },
+
+        europe:{
+            title:"フランク王国",
+            date:"8世紀",
+            text:"カロリング家が台頭し、ピピンが王位につく。のちのカール大帝による西ヨーロッパ統合へ向かう政治的基盤が形成された。"
+        },
+
+        islam:{
+            title:"アッバース朝",
+            date:"750年〜",
+            text:"ウマイヤ朝を倒してアッバース朝が成立。バグダードを中心にイスラーム世界の政治・文化・学問の中心が形成された。"
+        },
+
+        india:{
+            title:"地域王朝の競合",
+            date:"8世紀",
+            text:"北インドではプラティーハーラ朝・パーラ朝・ラーシュトラクータ朝が争い、南北インドの政治的分立が続いた。"
+        }
+    },
+
+    explanation:`
+    8世紀は、東アジアとイスラーム世界の接触が具体的に見える時代である。
+    唐は玄宗期に最盛期を迎え、中央アジアへの影響力を強めた。一方、西アジアではアッバース朝が成立し、
+    バグダードを中心とする新しいイスラーム世界の中心が形成された。
+    両者は中央アジアで接触し、751年のタラス河畔の戦いはその象徴的な出来事である。
+    <br><br>
+    この時代のポイントは、戦争そのものだけではない。
+    中央アジアにはソグド人などの商人が活動し、中国・イラン・インドなどを結ぶ交易網が存在していた。
+    そのため、政治的な軍事衝突があっても、交易や文化交流そのものが完全に止まるわけではない。
+    むしろ唐の都長安やアッバース朝のバグダードのような都市には、
+    異なる地域から人・商品・知識が集まった。
+    <br><br>
+    また、唐の安史の乱による弱体化とアッバース朝の成立は、
+    <strong>ユーラシア中央部の政治的主導権が変化していく流れ</strong>
+    として見ることができる。
+    「タラス河畔の戦い＝紙が伝わった」とだけ暗記するより、
+    <strong>唐とイスラーム世界の接触 → 中央アジアの交易網 → 技術・文化の移動</strong>
+    という構造で理解する方が論述に強い。
+    `
+},
+
+/* =========================================================
+   11〜12世紀
+   ========================================================= */
+
+{
+    id:"crusade",
+    era:"中世",
+    period:"11〜12世紀",
+    title:"十字軍・イスラーム世界・中国宋の商業発展",
+    subtitle:"宗教対立の裏側で交易と都市が成長",
+
+    regions:{
+
+        china:{
+            title:"宋",
+            date:"11〜12世紀",
+            text:"宋では農業生産の増大、紙幣の使用、都市・商業の発達が進んだ。海上交易も盛んになり、東南アジア・インド洋との関係が深まった。"
+        },
+
+        europe:{
+            title:"十字軍",
+            date:"1096年〜",
+            text:"西ヨーロッパの諸勢力が聖地奪回を掲げて東地中海へ進出。イスラーム勢力との軍事衝突だけでなく、東西の交易・文化接触も増えた。"
+        },
+
+        islam:{
+            title:"セルジューク朝",
+            date:"11〜12世紀",
+            text:"トルコ系のセルジューク朝が西アジアで勢力を拡大。ビザンツ帝国と対立し、後の十字軍をめぐる国際情勢の重要な背景となった。"
+        },
+
+        india:{
+            title:"チョーラ朝",
+            date:"11世紀",
+            text:"南インドのチョーラ朝がインド洋へ進出。東南アジアとの海上交易・文化交流を活発化させ、インド洋世界の結びつきを強めた。"
+        }
+    },
+
+    explanation:`
+    11〜12世紀は「十字軍＝キリスト教対イスラーム」という単純な対立だけで理解すると、
+    世界史の重要な部分を見落とす。確かに西ヨーロッパの諸勢力は聖地をめぐってイスラーム勢力と戦ったが、
+    同時期には地中海・インド洋・東アジアで交易が活発化していた。
+    中国の宋では都市経済と商業が発達し、海上交易が盛んになった。
+    南インドのチョーラ朝もインド洋へ進出し、東南アジアとの関係を強めている。
+    <br><br>
+    一方、西アジアではセルジューク朝が勢力を拡大し、ビザンツ帝国との対立が深まった。
+    こうした政治的緊張が十字軍の背景の一つとなる。
+    しかし十字軍によって東地中海地域への接触が増えると、
+    商品・知識・技術などの交流も進んだ。
+    つまり<strong>軍事的対立と経済・文化交流は同時に存在しうる</strong>。
+    <br><br>
+    論述では「十字軍によって東西交流が生まれた」と単純化せず、
+    <strong>もともと存在していた地中海・イスラーム世界・インド洋・東アジアの交易網の上に、
+    十字軍による軍事的接触が重なった</strong>
+    と説明すると、より立体的な答案になる。
+    `
+},
+
+/* =========================================================
+   13世紀
+   ========================================================= */
+
+{
+    id:"mongol",
+    era:"中世",
+    period:"13世紀",
+    title:"モンゴル帝国がユーラシアをつなぐ",
+    subtitle:"中国・イスラーム世界・ヨーロッパ・インドを横断する巨大変動",
+
+    regions:{
+
+        china:{
+            title:"元",
+            date:"1271〜1368年",
+            text:"フビライが国号を元とし、1279年に南宋を滅ぼして中国全土を支配。中国をモンゴル帝国の広域ネットワークへ組み込んだ。"
+        },
+
+        europe:{
+            title:"東ヨーロッパへのモンゴル侵入",
+            date:"13世紀",
+            text:"モンゴル軍が東欧へ進出。キエフ公国などが打撃を受け、東欧ではモンゴル支配下のジョチ・ウルスとの関係が重要となった。"
+        },
+
+        islam:{
+            title:"イル＝ハン国",
+            date:"13世紀",
+            text:"フラグが西アジアへ進出し、イル＝ハン国を形成。1258年にはバグダードを攻略し、アッバース朝カリフの政治的権威が大きく揺らいだ。"
+        },
+
+        india:{
+            title:"デリー＝スルタン朝",
+            date:"13世紀",
+            text:"北インドではデリーを中心とするイスラーム政権が発展。モンゴル勢力の西方進出は中央アジア・イランを通じてインド北部の政治にも影響した。"
+        }
+    },
+
+    explanation:`
+    13世紀は、世界史の「横のつながり」を理解するうえで最重要級の時代である。
+    チンギス＝ハンとその後継者たちはユーラシア各地を征服し、最終的に元・チャガタイ＝ハン国・イル＝ハン国・ジョチ＝ウルスなど、
+    巨大なモンゴル世界を形成した。
+    中国ではフビライが元を建国して南宋を滅ぼし、中国全土を支配した。
+    西アジアではフラグがバグダードを攻略し、アッバース朝の政治的権威を終わらせた。
+    東ヨーロッパにもモンゴル勢力が進出し、各地の政治秩序を変化させた。
+    <br><br>
+    モンゴル帝国の重要性は、単に「広大な領土を征服した」ことではない。
+    広域の支配が成立したことで、ユーラシアを横断する人・物・情報の移動が活発化した。
+    商人、外交使節、旅行者、宗教者などが長距離を移動し、
+    中国・中央アジア・イラン・ロシア・東ヨーロッパなどの接触が強まった。
+    その結果、中国の物産や技術、イスラーム世界の学問、ヨーロッパ側の情報などが広域に流動した。
+    一方で、征服戦争による破壊や人口移動も発生しており、
+    「モンゴル＝交流を促進した平和な帝国」とだけ理解するのは誤りである。
+    <br><br>
+    論述では、
+    <strong>征服による政治秩序の再編 → ユーラシアの交通網の拡大 → 交易・知識交流の活発化 → 東西交流の深化</strong>
+    という因果関係を示すと強い。
+    `
+},
+
+/* =========================================================
+   15〜16世紀
+   ========================================================= */
+
+{
+    id:"renaissance",
+    era:"近世",
+    period:"15〜16世紀",
+    title:"大航海時代と世界規模の交易網",
+    subtitle:"オスマン・明・ムガル・ヨーロッパの変化が海でつながる",
+
+    regions:{
+
+        china:{
+            title:"明・鄭和の航海",
+            date:"15世紀",
+            text:"明の永楽帝の命を受けた鄭和がインド洋へ大航海を行う。東南アジア・インド・アラビア・東アフリカまで広域の外交・交易関係を築いた。"
+        },
+
+        europe:{
+            title:"大航海時代",
+            date:"15〜16世紀",
+            text:"ポルトガル・スペインがアジアへの海上航路を求めて海外進出。1492年のコロンブス、1498年のヴァスコ＝ダ＝ガマなどが世界史を大きく変えた。"
+        },
+
+        islam:{
+            title:"オスマン帝国",
+            date:"15〜16世紀",
+            text:"メフメト2世が1453年にコンスタンティノープルを征服。東地中海を支配し、16世紀にはスレイマン1世のもとで大帝国となった。"
+        },
+
+        india:{
+            title:"ムガル帝国",
+            date:"16世紀",
+            text:"バーブルが1526年に建国。アクバルの時代に北インドを広く統合し、イスラームとインドの多様な文化を背景とする帝国を形成した。"
+        }
+    },
+
+    explanation:`
+    15〜16世紀は、従来のユーラシア交易が海洋進出によって世界規模へ拡大していく転換期である。
+    東アジアでは明の鄭和がインド洋を航海し、東南アジア・インド・アラビア・東アフリカまで接触した。
+    西ではオスマン帝国が1453年にコンスタンティノープルを征服し、東地中海の大国となった。
+    その一方、ポルトガルやスペインはアジアへの新航路を求めて大西洋・インド洋へ進出した。
+    <br><br>
+    ここで重要なのは、「ヨーロッパ人が突然世界を発見した」と考えないことである。
+    アジア・アフリカ・地中海では、すでに商人による広域交易網が存在していた。
+    ヨーロッパ諸国は、その既存のネットワークへ新しい海上ルートを接続しようとしたのである。
+    その結果、アメリカ大陸とユーラシア・アフリカが恒常的な海上交流で結ばれ、
+    銀・作物・人口・疫病などの移動が世界規模で進む。
+    <br><br>
+    またインドではムガル帝国が成立し、アクバルが北インドを統合する。
+    つまり同じ16世紀に、
+    <strong>ヨーロッパの海洋進出・オスマン帝国の拡大・明の海洋活動・ムガル帝国の成立</strong>
+    が並行して進んでいた。
+    これを「各地域の近世化が同時進行した」と捉えると、世界史の見通しが一気によくなる。
+    `
+},
+
+/* =========================================================
+   18世紀
+   ========================================================= */
+
+{
+    id:"revolution",
+    era:"近世",
+    period:"18世紀",
+    title:"啓蒙思想・産業革命・政治革命の前夜",
+    subtitle:"世界各地で「国家」と「社会」のあり方が変わる",
+
+    regions:{
+
+        china:{
+            title:"清・康熙〜乾隆",
+            date:"17〜18世紀",
+            text:"清は康熙帝・雍正帝・乾隆帝の時代に領域を拡大。中国統治を安定させる一方、人口増加と経済発展も進んだ。"
+        },
+
+        europe:{
+            title:"啓蒙思想・産業革命",
+            date:"18世紀",
+            text:"ロック・モンテスキュー・ルソーらの思想が政治社会を批判。イギリスでは産業革命が始まり、社会と経済の構造が変化した。"
+        },
+
+        islam:{
+            title:"オスマン帝国の変化",
+            date:"18世紀",
+            text:"オスマン帝国はヨーロッパ諸国との軍事力・経済力の差を意識するようになる。ロシアなどの台頭により領域維持が難しくなった。"
+        },
+
+        india:{
+            title:"ムガル帝国の衰退",
+            date:"18世紀",
+            text:"アウラングゼーブ死後、ムガル帝国の統制が弱まり、地方勢力が台頭。イギリス東インド会社がインド政治へ進出する条件が整った。"
+        }
+    },
+
+    explanation:`
+    18世紀は「近代の準備期間」として世界を横断すると理解しやすい。
+    中国では清が広大な領域を統治し、康熙帝・雍正帝・乾隆帝の時代に国家の安定と領域拡大が進んだ。
+    一方ヨーロッパでは啓蒙思想が広がり、専制政治や身分制社会に対する批判が強まった。
+    さらにイギリスでは産業革命が始まり、生産・交通・都市・労働のあり方が変化していく。
+    <br><br>
+    インドではアウラングゼーブ死後にムガル帝国の統制が弱まり、
+    地方勢力の台頭とともにイギリス東インド会社の政治的影響力が拡大する。
+    オスマン帝国もロシアなどのヨーロッパ勢力との競争に直面した。
+    つまり18世紀には、
+    <strong>ヨーロッパ内部の思想・経済変化が、やがてアジアの政治・経済秩序にも影響する構造</strong>
+    が形成されつつあった。
+    <br><br>
+    論述では「産業革命が起きた」で終わらず、
+    <strong>産業革命 → 工業製品・資本・軍事力の増大 → 海外市場・原料への需要 → 帝国主義</strong>
+    という19世紀へのつながりまで意識することが重要。
+    `
+},
+
+/* =========================================================
+   19世紀
+   ========================================================= */
+
+{
+    id:"imperialism",
+    era:"近代",
+    period:"19世紀",
+    title:"産業革命と帝国主義が世界を再編",
+    subtitle:"ヨーロッパの工業化が中国・インド・イスラーム世界を変える",
+
+    regions:{
+
+        china:{
+            title:"清・列強の進出",
+            date:"19世紀",
+            text:"アヘン戦争でイギリスに敗北し、不平等条約を結ぶ。その後も列強の進出が続き、国内では太平天国の乱など社会不安が拡大した。"
+        },
+
+        europe:{
+            title:"産業革命・国民国家",
+            date:"19世紀",
+            text:"工業化が進み、イギリス・フランスなどが世界市場へ進出。ドイツ・イタリアでは国民国家形成が進み、列強間競争が激化した。"
+        },
+
+        islam:{
+            title:"オスマン帝国の改革",
+            date:"19世紀",
+            text:"ヨーロッパ列強の圧力に対応するためタンジマートなどの改革を進めた。しかし民族運動や列強の介入によって領土縮小が続いた。"
+        },
+
+        india:{
+            title:"英領インド",
+            date:"19世紀",
+            text:"イギリス東インド会社の支配が拡大し、1857年のインド大反乱後、イギリス政府による直接統治へ移行。インドは帝国主義体制に組み込まれた。"
+        }
+    },
+
+    explanation:`
+    19世紀は、世界史の横のつながりを考える際に
+    <strong>産業革命と帝国主義の関係</strong>を軸にすると理解しやすい。
+    イギリスを中心に産業革命が進むと、工場で大量に生産された工業製品を販売する市場、
+    工業生産に必要な原料、さらに資本を投資する場所が求められた。
+    その結果、ヨーロッパ列強はアジア・アフリカへの進出を強めた。
+    <br><br>
+    中国ではアヘン戦争の敗北によって不平等条約体制が成立し、
+    インドではイギリスによる植民地支配が強化された。
+    オスマン帝国もヨーロッパ列強との軍事・経済格差に直面し、
+    タンジマートなどの近代化改革を進めた。
+    つまり19世紀の世界は、
+    <strong>ヨーロッパの工業化 → 国際競争の激化 → 海外市場・原料の獲得競争 → 帝国主義</strong>
+    という流れによって結びついていった。
+    <br><br>
+    ここで注意したいのは、アジアが単純に「何もできず支配された」と考えないこと。
+    清では洋務運動や変法運動、インドでは民族運動、オスマン帝国では改革運動など、
+    各地域で近代世界への対応が模索された。
+    したがって論述では、
+    <strong>「ヨーロッパの圧力」だけでなく「それに対するアジア側の改革・抵抗」</strong>
+    まで書くと評価されやすい。
+    `
+},
+
+/* =========================================================
+   20世紀前半
+   ========================================================= */
+
+{
+    id:"worldwar",
+    era:"近代",
+    period:"20世紀前半",
+    title:"世界大戦・革命・民族運動",
+    subtitle:"ヨーロッパの戦争が世界規模の政治変動を生む",
+
+    regions:{
+
+        china:{
+            title:"辛亥革命・中国革命",
+            date:"1911年〜",
+            text:"清朝が崩壊し中華民国が成立。その後、軍閥・国民党・共産党などが対立し、日本の侵略も加わって中国政治は大きく揺れた。"
+        },
+
+        europe:{
+            title:"世界大戦・ロシア革命",
+            date:"1914〜1945年",
+            text:"第一次世界大戦、ロシア革命、第二次世界大戦が発生。帝国が崩壊し、社会主義国家やファシズム国家が登場した。"
+        },
+
+        islam:{
+            title:"中東の再編",
+            date:"20世紀前半",
+            text:"第一次世界大戦後、オスマン帝国が解体。英仏の委任統治や民族運動が進み、中東の国境と政治秩序が大きく変化した。"
+        },
+
+        india:{
+            title:"インド民族運動",
+            date:"20世紀前半",
+            text:"ガンディーが非暴力・不服従を掲げて独立運動を指導。イギリス帝国支配への抵抗が大衆運動として広がった。"
+        }
+    },
+
+    explanation:`
+    20世紀前半の最大の特徴は、ヨーロッパを中心に起きた戦争や革命が
+    世界各地域の政治構造を変えたことである。
+    第一次世界大戦ではヨーロッパの列強が総力戦を行い、ロシアでは革命が起きて世界初の社会主義国家が成立した。
+    戦争によってオスマン帝国などの多民族帝国も崩壊し、中東では新しい国家・国境が形成された。
+    <br><br>
+    中国では辛亥革命によって清朝が崩壊し、その後の国民党と共産党の対立、
+    日本の侵略、日中戦争などを経て政治秩序が大きく変化した。
+    インドではガンディーを中心とする民族運動が成長し、
+    ヨーロッパ列強による植民地支配そのものが大きく揺らいでいく。
+    <br><br>
+    さらに第二次世界大戦後には、ヨーロッパ列強の国力低下と民族自決の理念の広がりによって、
+    アジア・アフリカで独立運動が加速する。
+    したがって、
+    <strong>世界大戦 → 帝国の弱体化・崩壊 → 民族運動の活発化 → 植民地帝国の解体</strong>
+    というつながりを押さえることが重要。
+    `
+},
+
+/* =========================================================
+   20世紀後半
+   ========================================================= */
+
+{
+    id:"coldwar",
+    era:"現代",
+    period:"20世紀後半",
+    title:"冷戦・中国革命・脱植民地化",
+    subtitle:"米ソ対立がアジア・中東・アフリカへ波及",
+
+    regions:{
+
+        china:{
+            title:"中華人民共和国",
+            date:"1949年〜",
+            text:"中国共産党が国共内戦に勝利し、中華人民共和国を建国。毛沢東時代の社会主義化を経て、1978年以降は鄧小平の改革開放へ転換した。"
+        },
+
+        europe:{
+            title:"冷戦下のヨーロッパ",
+            date:"1945〜1991年",
+            text:"第二次世界大戦後、アメリカとソ連を中心に東西陣営が形成。ドイツ分断、NATO・ワルシャワ条約機構など冷戦構造が成立した。"
+        },
+
+        islam:{
+            title:"中東と冷戦",
+            date:"20世紀後半",
+            text:"中東ではイスラエル建国、アラブ・イスラエル戦争、石油資源をめぐる国際政治などが展開。米ソ対立とも結びついた。"
+        },
+
+        india:{
+            title:"インド独立・非同盟",
+            date:"1947年〜",
+            text:"インドが独立し、ネルーは非同盟政策を推進。米ソのどちらにも完全には属さない第三世界の国際政治を形成した。"
+        }
+    },
+
+    explanation:`
+    第二次世界大戦後の世界では、ヨーロッパ列強中心の国際秩序から、
+    <strong>米ソを中心とする冷戦構造と、アジア・アフリカの新興独立国家が存在する世界</strong>
+    へと変化した。
+    中国では1949年に中華人民共和国が成立し、社会主義陣営の重要国となった。
+    しかし中国はソ連と常に同一歩調を取ったわけではなく、のちには中ソ対立も発生する。
+    <br><br>
+    インドは1947年に独立し、ネルーのもとで非同盟政策を推進した。
+    これは単純な「東側・西側」の二択ではなく、
+    植民地支配を経験した新興独立国が独自の外交路線を模索したことを示している。
+    中東ではイスラエル建国やアラブ・イスラエル戦争、石油をめぐる国際政治などが展開し、
+    米ソ対立とも複雑に結びついた。
+    <br><br>
+    したがって20世紀後半は、
+    <strong>冷戦＝米ソだけの対立</strong>
+    と考えないことが重要である。
+    冷戦は中国・朝鮮半島・ベトナム・中東・アフリカなど各地域の民族問題や国内対立と結びつき、
+    それぞれの地域で異なる形の国際政治を生み出した。
+    `
+}
+
+];
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const container = document.getElementById("connectionContainer");
+const searchInput = document.getElementById("searchInput");
+const resetBtn = document.getElementById("resetBtn");
+const resultCount = document.getElementById("resultCount");
+const sortSelect = document.getElementById("sortSelect");
+
+let currentEra = "all";
+
+
+/* =========================================================
+   検索対象テキスト
+   ========================================================= */
+
+function searchableText(item){
+
+    let text = [
+        item.era,
+        item.period,
+        item.title,
+        item.subtitle,
+        item.explanation,
+        item.exam
+    ];
+
+    Object.values(item.regions).forEach(region => {
+        text.push(
+            region.title,
+            region.date,
+            region.text
+        );
+    });
+
+    return text.join(" ").toLowerCase();
+}
+
+
+/* =========================================================
+   フィルター
+   ========================================================= */
+
+function getFilteredData(){
+
+    const query = searchInput.value
+        .trim()
+        .toLowerCase();
+
+    let data = connections.filter(item => {
+
+        const eraMatch =
+            currentEra === "all" ||
+            item.era === currentEra;
+
+        const searchMatch =
+            !query ||
+            searchableText(item).includes(query);
+
+        return eraMatch && searchMatch;
+    });
+
+
+    if(sortSelect.value === "importance"){
+
+        const priority = {
+            "13世紀":10,
+            "19世紀":9,
+            "20世紀前半":8,
+            "15〜16世紀":7,
+            "7世紀":6,
+            "8世紀":5,
+            "11〜12世紀":4,
+            "4世紀":3,
+            "前2世紀":2,
+            "20世紀後半":1
+        };
+
+        data.sort(
+            (a,b) =>
+            (priority[b.period] || 0) -
+            (priority[a.period] || 0)
+        );
+    }
+
+    return data;
+}
+
+
+/* =========================================================
+   カード生成
+   ========================================================= */
+
+function createRegion(title, className, region){
+
+    return `
+        <div class="region-column">
+
+            <div class="region-header ${className}">
+                ${title}
+            </div>
+
+            <div class="region-content">
+
+                <div class="event-title">
+                    ${region.title}
+                </div>
+
+                <div class="event-date">
+                    ${region.date}
+                </div>
+
+                <p class="event-text">
+                    ${region.text}
+                </p>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function createSection(item){
+
+    return `
+        <section
+            class="connection-section"
+            id="${item.id}"
+        >
+
+            <div class="era-heading">
+
+                <div>
+                    <h2>
+                        ${item.period}｜${item.title}
+                    </h2>
+
+                    <div class="era-sub">
+                        ${item.subtitle}
+                    </div>
+                </div>
+
+                <div class="era-sub">
+                    ${item.era}
+                </div>
+
+            </div>
+
+
+            <div class="compare-table">
+
+                ${createRegion(
+                    "🇨🇳 中国",
+                    "china",
+                    item.regions.china
+                )}
+
+                ${createRegion(
+                    "🏰 ヨーロッパ",
+                    "europe",
+                    item.regions.europe
+                )}
+
+                ${createRegion(
+                    "☪️ イスラーム・西アジア",
+                    "islam",
+                    item.regions.islam
+                )}
+
+                ${createRegion(
+                    "🪷 インド",
+                    "india",
+                    item.regions.india
+                )}
+
+            </div>
+
+
+            <div class="connection-box">
+
+                <h3 class="connection-title">
+                    <span>→</span>
+                    なぜ世界はつながったのか？
+                </h3>
+
+                <p>
+                    ${item.explanation}
+                </p>
+
+            </div>
+
+
+            <div class="exam-box">
+
+                <strong>
+                    🎯 論述・入試でのポイント
+                </strong>
+
+                <p>
+                    ${item.exam}
+                </p>
+
+            </div>
+
+        </section>
+    `;
+}
+
+
+/* =========================================================
+   Render
+   ========================================================= */
+
+function render(){
+
+    const data = getFilteredData();
+
+    resultCount.textContent =
+        `${data.length} / ${connections.length} 時代を表示中`;
+
+
+    if(data.length === 0){
+
+        container.innerHTML = `
+            <div class="no-result">
+                <h3>該当する時代がありません</h3>
+                <p>
+                    検索語を変えるか、フィルターをリセットしてください。
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        data.map(createSection).join("");
+}
+
+
+/* =========================================================
+   Era filter
+   ========================================================= */
+
+document.querySelectorAll("[data-era]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document
+            .querySelectorAll("[data-era]")
+            .forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+
+        currentEra = button.dataset.era;
+
+        render();
+    });
+
+});
+
+
+/* =========================================================
+   Search
+   ========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+
+/* =========================================================
+   Sort
+   ========================================================= */
+
+sortSelect.addEventListener(
+    "change",
+    render
+);
+
+
+/* =========================================================
+   Reset
+   ========================================================= */
+
+resetBtn.addEventListener("click", () => {
+
+    searchInput.value = "";
+
+    currentEra = "all";
+
+    document
+        .querySelectorAll("[data-era]")
+        .forEach(btn => btn.classList.remove("active"));
+
+    document
+        .querySelector('[data-era="all"]')
+        .classList.add("active");
+
+    sortSelect.value = "chronological";
+
+    render();
+});
+
+
+/* =========================================================
+   キーボードショートカット
+   ========================================================= */
+
+document.addEventListener("keydown", event => {
+
+    // / で検索欄へ
+    if(
+        event.key === "/" &&
+        document.activeElement.tagName !== "INPUT"
+    ){
+
+        event.preventDefault();
+
+        searchInput.focus();
+    }
+
+
+    // ESCで検索解除
+    if(event.key === "Escape"){
+
+        searchInput.blur();
+    }
+
+});
+
+
+/* =========================================================
+   初期表示
+   ========================================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
