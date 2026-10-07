@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共通テスト風・世界史模擬演習</title>
+
+<style>
+:root{
+  --bg:#0b1020;
+  --panel:#121a2d;
+  --panel2:#18223a;
+  --border:#2b3858;
+  --text:#edf2ff;
+  --muted:#9da9c4;
+  --accent:#6ea8ff;
+  --accent2:#7ee0c3;
+  --danger:#ff7373;
+  --warning:#ffd166;
+  --correct:#55d98a;
+  --shadow:0 12px 35px rgba(0,0,0,.28);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top right,rgba(70,100,180,.15),transparent 35%),
+    var(--bg);
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    Meiryo,
+    sans-serif;
+  line-height:1.75;
+}
+
+button{
+  font:inherit;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.88);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-weight:800;
+  letter-spacing:.03em;
+}
+
+.logo small{
+  display:block;
+  color:var(--muted);
+  font-size:.72rem;
+  font-weight:500;
+}
+
+.back-btn{
+  text-decoration:none;
+  color:var(--text);
+  border:1px solid var(--border);
+  background:var(--panel);
+  padding:8px 14px;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.back-btn:hover{
+  border-color:var(--accent);
+  transform:translateY(-1px);
+}
+
+main{
+  max-width:1050px;
+  margin:auto;
+  padding:45px 20px 80px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:32px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 12px;
+  border:1px solid rgba(110,168,255,.35);
+  color:var(--accent);
+  border-radius:999px;
+  font-size:.78rem;
+  margin-bottom:12px;
+}
+
+.hero h1{
+  font-size:clamp(1.8rem,4vw,3rem);
+  margin:0 0 10px;
+  letter-spacing:.02em;
+}
+
+.hero p{
+  color:var(--muted);
+  margin:0 auto;
+  max-width:760px;
+}
+
+.exam-info{
+  margin:28px auto;
+  max-width:900px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.info-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px;
+  text-align:center;
+}
+
+.info-box strong{
+  display:block;
+  font-size:1.2rem;
+}
+
+.info-box span{
+  color:var(--muted);
+  font-size:.82rem;
+}
+
+.start-panel{
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.start-panel h2{
+  margin-top:0;
+}
+
+.primary-btn,
+.secondary-btn{
+  border:0;
+  border-radius:11px;
+  padding:12px 20px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.primary-btn{
+  background:var(--accent);
+  color:#07101f;
+  font-weight:800;
+}
+
+.primary-btn:hover{
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+}
+
+.secondary-btn{
+  background:var(--panel2);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.secondary-btn:hover{
+  border-color:var(--accent);
+}
+
+#examArea{
+  display:none;
+}
+
+.progress-wrap{
+  position:sticky;
+  top:66px;
+  z-index:50;
+  padding:10px 0;
+  background:rgba(11,16,32,.9);
+  backdrop-filter:blur(10px);
+}
+
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:.85rem;
+  margin-bottom:6px;
+}
+
+.progress{
+  height:7px;
+  background:#202b45;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transition:.3s;
+}
+
+.question-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin:24px 0;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.question-header{
+  padding:18px 22px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+}
+
+.q-number{
+  font-weight:800;
+  color:var(--accent);
+}
+
+.q-tags{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.tag{
+  border:1px solid var(--border);
+  color:var(--muted);
+  border-radius:999px;
+  padding:2px 9px;
+  font-size:.72rem;
+}
+
+.question-body{
+  padding:22px;
+}
+
+.lead{
+  background:#0d1425;
+  border-left:3px solid var(--accent);
+  padding:18px;
+  border-radius:0 10px 10px 0;
+  margin-bottom:22px;
+}
+
+.lead-title{
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.underline{
+  text-decoration:underline;
+  text-decoration-color:var(--warning);
+  text-decoration-thickness:2px;
+  text-underline-offset:4px;
+}
+
+.question-text{
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+.options{
+  display:grid;
+  gap:10px;
+}
+
+.option{
+  position:relative;
+}
+
+.option input{
+  position:absolute;
+  opacity:0;
+}
+
+.option label{
+  display:block;
+  padding:13px 15px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  cursor:pointer;
+  background:#10182a;
+  transition:.2s;
+}
+
+.option label:hover{
+  border-color:var(--accent);
+  background:#16213a;
+}
+
+.option input:checked + label{
+  border-color:var(--accent);
+  background:rgba(110,168,255,.13);
+  box-shadow:0 0 0 1px rgba(110,168,255,.2);
+}
+
+.choice-letter{
+  display:inline-flex;
+  width:27px;
+  height:27px;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--border);
+  border-radius:50%;
+  margin-right:9px;
+  font-size:.8rem;
+  color:var(--accent2);
+}
+
+.answer-area{
+  display:none;
+  margin-top:18px;
+  padding:18px;
+  background:#0e1627;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.answer-area.show{
+  display:block;
+}
+
+.answer-correct{
+  color:var(--correct);
+  font-weight:800;
+}
+
+.answer-wrong{
+  color:var(--danger);
+  font-weight:800;
+}
+
+.explanation{
+  margin-top:10px;
+  color:#d8deed;
+}
+
+.explanation strong{
+  color:var(--warning);
+}
+
+.submit-area{
+  text-align:center;
+  padding:35px 0;
+}
+
+#resultArea{
+  display:none;
+}
+
+.result-hero{
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:32px 24px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.score{
+  font-size:clamp(3rem,10vw,5rem);
+  font-weight:900;
+  line-height:1;
+  margin:12px 0;
+}
+
+.score-message{
+  color:var(--muted);
+}
+
+.analysis-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:20px;
+}
+
+.analysis-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:22px;
+}
+
+.analysis-card h3{
+  margin-top:0;
+}
+
+.analysis-bar-row{
+  margin:14px 0;
+}
+
+.analysis-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:.86rem;
+  margin-bottom:5px;
+}
+
+.mini-bar{
+  height:8px;
+  background:#202b45;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.mini-bar span{
+  display:block;
+  height:100%;
+  background:var(--accent);
+  border-radius:99px;
+}
+
+.weakness{
+  border:1px solid rgba(255,209,102,.3);
+  background:rgba(255,209,102,.07);
+  border-radius:14px;
+  padding:18px;
+  margin-top:18px;
+}
+
+.weakness strong{
+  color:var(--warning);
+}
+
+.advice{
+  margin-top:10px;
+  color:#dbe2f0;
+}
+
+.review-section{
+  margin-top:28px;
+}
+
+.review-section h2{
+  margin-bottom:10px;
+}
+
+.review-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  margin:12px 0;
+  overflow:hidden;
+}
+
+.review-toggle{
+  width:100%;
+  background:none;
+  border:0;
+  color:var(--text);
+  padding:17px;
+  text-align:left;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.review-toggle:hover{
+  background:var(--panel2);
+}
+
+.review-content{
+  display:none;
+  padding:0 17px 18px;
+  border-top:1px solid var(--border);
+}
+
+.review-content.open{
+  display:block;
+}
+
+.review-answer{
+  color:var(--correct);
+  font-weight:800;
+}
+
+.retry-panel{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.note{
+  color:var(--muted);
+  font-size:.82rem;
+  margin-top:20px;
+}
+
+@media(max-width:700px){
+  .header-inner{
+    padding:12px 14px;
+  }
+
+  main{
+    padding:30px 13px 60px;
+  }
+
+  .exam-info,
+  .analysis-grid{
+    grid-template-columns:1fr;
+  }
+
+  .question-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .q-tags{
+    justify-content:flex-start;
+  }
+
+  .question-body{
+    padding:17px;
+  }
+
+  .progress-wrap{
+    top:58px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      世界史学習ポータル
+      <small>PAGE 07 / MOCK EXAM</small>
+    </div>
+    <a href="index.html" class="back-btn">← トップへ戻る</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="badge">共通テスト風・オリジナル模試</div>
+  <h1>世界史 模擬演習</h1>
+  <p>
+    会話文・史料・歴史的状況を読み取りながら解く、
+    共通テスト型の世界史トレーニング。
+    結果からあなたの弱点を自動分析します。
+  </p>
+</section>
+
+<div class="exam-info">
+  <div class="info-box">
+    <strong>15問</strong>
+    <span>四択形式</span>
+  </div>
+  <div class="info-box">
+    <strong>古代〜現代</strong>
+    <span>時代を横断</span>
+  </div>
+  <div class="info-box">
+    <strong>弱点分析</strong>
+    <span>時代 × 地域</span>
+  </div>
+</div>
+
+<section class="start-panel" id="startPanel">
+  <h2>第1回 世界史模擬演習</h2>
+  <p>
+    先に答えを見ず、資料と知識を組み合わせて考えてみよう。<br>
+    全15問終了後、間違えた分野を自動分析します。
+  </p>
+  <button class="primary-btn" id="startBtn">模試を開始する</button>
+</section>
+
+<section id="examArea">
+
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="progressText">0 / 15 問</span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <div id="questions"></div>
+
+  <div class="submit-area">
+    <button class="primary-btn" id="submitBtn">
+      採点して弱点分析を見る
+    </button>
+    <p class="note">
+      ※すべての問題に回答すると採点できます。
+    </p>
+  </div>
+
+</section>
+
+<section id="resultArea">
+
+  <div class="result-hero">
+    <div class="badge">RESULT</div>
+    <h1>模試結果</h1>
+
+    <div class="score">
+      <span id="scoreNumber">0</span>
+      <span style="font-size:.35em;"> / 15</span>
+    </div>
+
+    <div class="score-message" id="scoreMessage"></div>
+  </div>
+
+  <div class="analysis-grid">
+
+    <div class="analysis-card">
+      <h3>📚 時代別分析</h3>
+      <div id="eraAnalysis"></div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>🌍 地域別分析</h3>
+      <div id="regionAnalysis"></div>
+    </div>
+
+  </div>
+
+  <div class="weakness">
+    <div id="weaknessTitle"></div>
+    <div class="advice" id="weaknessAdvice"></div>
+  </div>
+
+  <div class="analysis-card" style="margin-top:18px;">
+    <h3>🎯 今回の学習アドバイス</h3>
+    <div id="overallAdvice"></div>
+  </div>
+
+  <div class="review-section">
+    <h2>📝 間違えた問題を復習</h2>
+    <p class="note">
+      間違えた問題だけを表示しています。クリックすると解説が開きます。
+    </p>
+    <div id="reviewList"></div>
+  </div>
+
+  <div class="retry-panel">
+    <button class="primary-btn" id="retryWrongBtn">
+      間違えた問題だけ解き直す
+    </button>
+    <button class="secondary-btn" id="retryAllBtn">
+      もう一度15問すべて解く
+    </button>
+  </div>
+
+</section>
+
+</main>
+
+<script>
+
+/* =========================================================
+   オリジナル問題データ
+   共通テスト型の「資料・状況→判断」を意識した構成
+   ========================================================= */
+
+const questions = [
+
+{
+  id:1,
+  era:"古代",
+  region:"ヨーロッパ",
+  topic:"古代ギリシア",
+  leadTitle:"【資料Ⅰ】ポリス世界について",
+  lead:`
+    紀元前5世紀ごろ、エーゲ海周辺では複数のポリスが発展した。
+    あるポリスでは市民が政治に参加する制度が整えられた一方、
+    別のポリスでは少数の市民による軍事的な統制が重視された。
+    このようなポリス間の対立は、やがて大規模な戦争にもつながった。
+  `,
+  question:"下線部の時代に、アテネと対立し、ペロポネソス戦争で中心的な役割を果たしたポリスはどれか。",
+  options:[
+    "スパルタ",
+    "テーベ",
+    "ミレトス",
+    "カルタゴ"
+  ],
+  answer:0,
+  explanation:`
+    正解はスパルタ。ペロポネソス戦争（前431〜前404年）は、
+    デロス同盟を率いたアテネと、ペロポネソス同盟の中心であった
+    スパルタの対立を軸として展開した。
+    アテネの海軍力とスパルタの陸軍力という違いも重要である。
+    「アテネ＝民主政・海軍」「スパルタ＝軍事的社会・陸軍」
+    という対応関係を押さえておこう。
+  `
+},
+
+{
+  id:2,
+  era:"古代",
+  region:"イスラム・西アジア",
+  topic:"古代西アジア",
+  leadTitle:"【会話文】古代西アジアの大国",
+  lead:`
+    生徒A「古代の西アジアでは、複数の王朝が広い領域を支配したんだね。」
+    <br>
+    生徒B「そう。特にアケメネス朝は、王の道路や駅伝制などを整備して広大な領域を統治したよ。」
+    <br>
+    先生「では、アケメネス朝の王で、都ペルセポリスの建設を進めた人物を考えてみよう。」
+  `,
+  question:"先生の説明に該当する人物として正しいものはどれか。",
+  options:[
+    "ダレイオス1世",
+    "ハンムラビ王",
+    "アッシュル＝バニパル",
+    "アレクサンドロス"
+  ],
+  answer:0,
+  explanation:`
+    正解はダレイオス1世。アケメネス朝ペルシアを大帝国へ発展させ、
+    州（サトラペイア）を置き、王の道や駅伝制を整備した。
+    また、ギリシア遠征を行い、ペルシア戦争の時代へつながる。
+    「ダレイオス1世＝帝国統治の整備＋ギリシア遠征」は重要な組合せ。
+  `
+},
+
+{
+  id:3,
+  era:"古代",
+  region:"中国・東アジア",
+  topic:"秦・漢",
+  leadTitle:"【資料Ⅱ】中国統一後の国家",
+  lead:`
+    紀元前3世紀、中国では戦国時代の分裂状態を終わらせた王朝が成立した。
+    この王朝は郡県制を全国に広げ、度量衡や文字などの統一を進めた。
+    しかし、その支配は長続きせず、反乱によって滅亡した。
+    その後、ある王朝が中国を再統一し、中央集権的な国家を発展させた。
+  `,
+  question:"資料中の「中国を再統一し、中央集権的な国家を発展させた王朝」に関する説明として正しいものはどれか。",
+  options:[
+    "武帝の時代に儒学を官学として重視した",
+    "始皇帝が法家思想を否定し、儒学のみを採用した",
+    "唐の太宗が均田制を初めて導入した",
+    "宋の太祖が郡県制を初めて中国全土に導入した"
+  ],
+  answer:0,
+  explanation:`
+    正解は漢の武帝。前漢の武帝は董仲舒の提言を受け、
+    儒学を官学として重視した。また、匈奴への遠征や張騫の派遣など、
+    対外政策も積極的に進めた。
+    秦＝法家を基盤とする統一、漢＝儒学を重視した帝国統治、
+    という流れを整理すると判断しやすい。
+  `
+},
+
+{
+  id:4,
+  era:"中世",
+  region:"イスラム・西アジア",
+  topic:"アッバース朝",
+  leadTitle:"【会話文】イスラーム世界の変化",
+  lead:`
+    8世紀、イスラーム世界では新しい王朝が成立した。
+    この王朝はイラクの都市を政治・文化の中心とし、
+    ペルシア系官僚なども登用した。
+    その後、イスラーム世界では地域ごとの自立が進んでいった。
+  `,
+  question:"この王朝として正しいものはどれか。",
+  options:[
+    "アッバース朝",
+    "ウマイヤ朝",
+    "ファーティマ朝",
+    "オスマン帝国"
+  ],
+  answer:0,
+  explanation:`
+    正解はアッバース朝。750年、アブー＝アル＝アッバースが
+    ウマイヤ朝を倒して成立した。首都バグダードは学問・文化の中心として発展した。
+    また、アラブ人中心の支配から、ペルシア人など非アラブ系ムスリムを
+    含む帝国的な統治へと変化した点も重要である。
+  `
+},
+
+{
+  id:5,
+  era:"中世",
+  region:"ヨーロッパ",
+  topic:"十字軍",
+  leadTitle:"【資料Ⅲ】西ヨーロッパと東地中海",
+  lead:`
+    11世紀末以降、西ヨーロッパの諸勢力は東地中海方面へ遠征を行った。
+    宗教的な目的だけでなく、諸侯・騎士の利害や交易など複数の要因が関係していた。
+    遠征を通じて東西の交流も活発になった。
+  `,
+  question:"この遠征についての説明として最も適切なものはどれか。",
+  options:[
+    "ローマ教皇の呼びかけが遠征の契機の一つとなった",
+    "イスラーム側が西ヨーロッパを統一するために開始した",
+    "モンゴル帝国の成立直後に開始された",
+    "ビザンツ帝国が西ヨーロッパを征服するために開始した"
+  ],
+  answer:0,
+  explanation:`
+    正解は「ローマ教皇の呼びかけが契機の一つ」。1095年、
+    教皇ウルバヌス2世がクレルモン宗教会議で遠征を呼びかけた。
+    背景には聖地エルサレムへの関心、ビザンツ帝国への支援、
+    諸侯・騎士の利害などがあった。
+    結果として、東西の交易・文化交流が活発化する一方、
+    東方のキリスト教徒とイスラーム勢力の対立も深まった。
+  `
+},
+
+{
+  id:6,
+  era:"中世",
+  region:"中国・東アジア",
+  topic:"モンゴル帝国",
+  leadTitle:"【会話文】ユーラシアの広域交流",
+  lead:`
+    13世紀、モンゴル高原から勢力を拡大した国家は、
+    中国から中央アジア・ロシア方面に及ぶ広大な領域を支配した。
+    その支配下では、人や物、情報の移動が活発になった。
+  `,
+  question:"モンゴル帝国の拡大によって生じた歴史的変化として正しいものはどれか。",
+  options:[
+    "ユーラシア東西の交流が活発化し、交易路の利用が進んだ",
+    "ヨーロッパと中国の交流が完全に途絶えた",
+    "イスラーム世界が消滅した",
+    "中国では科挙が永久に廃止された"
+  ],
+  answer:0,
+  explanation:`
+    正解は「ユーラシア東西の交流が活発化した」。
+    モンゴル帝国の広域支配により、東アジア・中央アジア・西アジア・
+    東ヨーロッパを結ぶ交通が比較的安定し、人・商品・情報の移動が活発になった。
+    マルコ＝ポーロの旅行記なども、この時代の東西交流を考える手掛かりとなる。
+  `
+},
+
+{
+  id:7,
+  era:"近世",
+  region:"ヨーロッパ",
+  topic:"宗教改革",
+  leadTitle:"【資料Ⅳ】16世紀の宗教状況",
+  lead:`
+    16世紀、西ヨーロッパでは教会のあり方を批判する動きが広がった。
+    ドイツではある神学者が教会の免罪符販売などを批判し、
+    聖書を信仰の基礎とする立場を強調した。
+    この運動は各地の政治的・社会的状況とも結びついた。
+  `,
+  question:"この運動に関する説明として正しいものはどれか。",
+  options:[
+    "ルターの主張はドイツ諸侯の支持を受けて広がった",
+    "ルターはイエズス会を創設した",
+    "宗教改革によってカトリック教会は存在しなくなった",
+    "宗教改革はフランス革命後に始まった"
+  ],
+  answer:0,
+  explanation:`
+    正解は「ルターの主張はドイツ諸侯の支持を受けて広がった」。
+    1517年、ルターが免罪符販売などを批判したことから宗教改革が進展した。
+    ドイツでは諸侯が皇帝や教会勢力との関係の中でルター派を支持する場合もあり、
+    宗教的問題が政治的対立と結びついた。
+    一方、カトリック側も対抗宗教改革を進め、イエズス会などが活動した。
+  `
+},
+
+{
+  id:8,
+  era:"近世",
+  region:"ヨーロッパ",
+  topic:"大航海時代",
+  leadTitle:"【資料Ⅴ】大西洋世界の形成",
+  lead:`
+    15世紀末以降、ヨーロッパ諸国は大西洋を越えて新しい航路・地域へ進出した。
+    背景には東方貿易への関心、イスラーム勢力を経由しない交易路の探索、
+    航海技術の発展などがあった。
+  `,
+  question:"この動きの結果として生じた変化として正しいものはどれか。",
+  options:[
+    "ヨーロッパ・アフリカ・アメリカを結ぶ大西洋交易が発展した",
+    "中国がヨーロッパを植民地化した",
+    "地中海交易がただちに完全消滅した",
+    "アメリカ大陸の諸文明がすべて近代国家へ移行した"
+  ],
+  answer:0,
+  explanation:`
+    正解は「大西洋交易が発展した」。
+    コロンブスの航海以後、ヨーロッパ諸国によるアメリカ大陸への進出が進み、
+    銀・砂糖などの商品、奴隷貿易などを含む大西洋世界が形成された。
+    また、アメリカ大陸からヨーロッパへの銀流入は世界経済にも大きな影響を与えた。
+  `
+},
+
+{
+  id:9,
+  era:"近世",
+  region:"ヨーロッパ",
+  topic:"フランス革命",
+  leadTitle:"【会話文】18世紀末のフランス",
+  lead:`
+    生徒A「フランスでは18世紀末に社会が大きく変化したんだよね。」
+    <br>
+    生徒B「うん。財政危機、身分制社会への不満、啓蒙思想などが背景にあった。」
+    <br>
+    先生「さらに革命後、ヨーロッパの政治秩序そのものにも大きな変化が起きた。」
+  `,
+  question:"フランス革命後の変化として正しいものはどれか。",
+  options:[
+    "ナポレオンの台頭を経て、ヨーロッパ各地へ革命の影響が及んだ",
+    "神聖ローマ帝国がただちに復活した",
+    "絶対王政がフランスで以前より強固になった",
+    "産業革命がフランス革命以前に完全に終了した"
+  ],
+  answer:0,
+  explanation:`
+    正解は「ナポレオンの台頭を経て、革命の影響が広がった」。
+    フランス革命は身分制社会を大きく揺さぶり、法の下の平等などの理念を広げた。
+    ナポレオンは征服を通じてフランスの制度をヨーロッパ各地へ広げた一方、
+    支配への反発から民族意識も刺激した。
+    その後、ウィーン体制によって革命以前の秩序を再構築しようとする動きが生じる。
+  `
+},
+
+{
+  id:10,
+  era:"近代",
+  region:"ヨーロッパ",
+  topic:"産業革命",
+  leadTitle:"【資料Ⅵ】18〜19世紀の社会変化",
+  lead:`
+    18世紀後半のイギリスでは、綿工業や蒸気機関などの発達によって
+    生産方法が大きく変化した。工場制機械工業が発展すると、
+    都市人口が増加し、新しい社会階級も形成された。
+  `,
+  question:"この変化と直接結びつく社会的現象として正しいものはどれか。",
+  options:[
+    "都市労働者階級の形成と労働問題の顕在化",
+    "封建領主による荘園制の復活",
+    "奴隷制を基盤とした農村社会への回帰",
+    "都市人口の減少と自給自足経済への移行"
+  ],
+  answer:0,
+  explanation:`
+    正解は「都市労働者階級の形成と労働問題の顕在化」。
+    産業革命によって工場制機械工業が発展し、
+    農村から都市へ人口が移動する都市化が進んだ。
+    一方、長時間労働などの問題も生じ、労働運動や社会主義思想の発展につながった。
+    「技術革新→工場制→都市化→労働問題→社会主義」という因果関係を覚えたい。
+  `
+},
+
+{
+  id:11,
+  era:"近代",
+  region:"中国・東アジア",
+  topic:"アヘン戦争",
+  leadTitle:"【資料Ⅶ】19世紀の中国とイギリス",
+  lead:`
+    19世紀前半、中国では清朝が外国貿易を広州に限定していた。
+    一方、イギリスでは中国茶などへの需要が高まる一方、
+    中国との貿易赤字が問題となった。
+    そこでイギリス商人によるある商品の中国への流入が拡大した。
+  `,
+  question:"この状況を背景として起こった戦争後の条約として正しいものはどれか。",
+  options:[
+    "南京条約",
+    "下関条約",
+    "ポーツマス条約",
+    "北京条約"
+  ],
+  answer:0,
+  explanation:`
+    正解は南京条約。アヘン流入をめぐる対立から1840年にアヘン戦争が始まり、
+    清が敗北すると1842年に南京条約が結ばれた。
+    香港島の割譲、上海など5港の開港、公行の廃止などが定められ、
+    清朝の対外関係に大きな変化をもたらした。
+    なお下関条約は日清戦争後の1895年である。
+  `
+},
+
+{
+  id:12,
+  era:"近代",
+  region:"中国・東アジア",
+  topic:"明治維新",
+  leadTitle:"【会話文】19世紀東アジアの変化",
+  lead:`
+    19世紀後半、日本では政治制度や社会制度が大きく改革された。
+    新政府は中央集権化を進め、徴兵制や地租改正などを実施した。
+    また、欧米諸国に追いつくことを目指して近代化を進めた。
+  `,
+  question:"この時期の日本について正しい説明はどれか。",
+  options:[
+    "廃藩置県によって中央集権的な国家体制を強化した",
+    "科挙を導入して官僚を登用した",
+    "鎖国を強化し外国との交流を完全に停止した",
+    "清朝が日本の政治改革を主導した"
+  ],
+  answer:0,
+  explanation:`
+    正解は「廃藩置県によって中央集権化を強化した」。
+    明治政府は1869年の版籍奉還、1871年の廃藩置県を通じて
+    藩を廃止し、中央政府が全国を直接統治する体制を整えた。
+    その後、徴兵令・地租改正・学校制度などを整備し、
+    富国強兵・殖産興業を進めた。
+  `
+},
+
+{
+  id:13,
+  era:"近代",
+  region:"ヨーロッパ",
+  topic:"第一次世界大戦",
+  leadTitle:"【資料Ⅷ】20世紀初頭の国際関係",
+  lead:`
+    20世紀初頭のヨーロッパでは、列強間の対立が強まっていた。
+    軍備拡張、植民地をめぐる競争、民族問題などが重なり、
+    複数の国が二つの陣営に分かれて対立した。
+    1914年、バルカン半島で起きた事件を契機に大戦が始まった。
+  `,
+  question:"第一次世界大戦後の国際秩序について正しいものはどれか。",
+  options:[
+    "国際連盟が設立された",
+    "ワルシャワ条約機構が設立された",
+    "EUが成立した",
+    "NATOが設立された"
+  ],
+  answer:0,
+  explanation:`
+    正解は国際連盟。第一次世界大戦後、アメリカ大統領ウィルソンが
+    提唱した国際協調の理念などを背景に、国際連盟が設立された。
+    ただしアメリカは上院の反対で加盟しなかった。
+    「第一次世界大戦→ヴェルサイユ体制→国際連盟」という流れを押さえよう。
+  `
+},
+
+{
+  id:14,
+  era:"現代",
+  region:"ヨーロッパ",
+  topic:"第二次世界大戦",
+  leadTitle:"【資料Ⅸ】戦間期から第二次世界大戦へ",
+  lead:`
+    第一次世界大戦後、ヨーロッパでは新しい国際秩序が形成されたが、
+    世界恐慌や各国の経済・政治的不安定化によって緊張が高まった。
+    ドイツではナチ党が勢力を拡大し、対外膨張政策を進めた。
+  `,
+  question:"第二次世界大戦後の国際関係として正しいものはどれか。",
+  options:[
+    "アメリカとソ連を中心とする冷戦構造が形成された",
+    "ヨーロッパ列強による植民地支配が以前より安定した",
+    "国際連盟がそのまま国際連合へ改組された",
+    "ドイツ帝国が復活した"
+  ],
+  answer:0,
+  explanation:`
+    正解は「アメリカとソ連を中心とする冷戦構造が形成された」。
+    第二次世界大戦後、アメリカとソ連は政治・経済・軍事・イデオロギー面で対立した。
+    1947年のトルーマン＝ドクトリンやマーシャル＝プラン、
+    ソ連側の対抗措置などから東西対立が明確になっていった。
+    なお国際連合は国際連盟とは別に1945年に成立した。
+  `
+},
+
+{
+  id:15,
+  era:"現代",
+  region:"イスラム・西アジア",
+  topic:"冷戦と中東",
+  leadTitle:"【会話文】第二次世界大戦後の中東",
+  lead:`
+    20世紀後半、中東では第二次世界大戦後の国際情勢、
+    植民地支配からの独立、パレスチナ問題などが複雑に絡み合った。
+    1948年にはイスラエルが建国され、周辺のアラブ諸国との間で戦争が起こった。
+  `,
+  question:"第二次世界大戦後の中東情勢について正しいものはどれか。",
+  options:[
+    "イスラエル建国をめぐって第一次中東戦争が起こった",
+    "オスマン帝国がイスラエルを建国した",
+    "冷戦終結後に初めて中東で国家間戦争が起こった",
+    "パレスチナ問題は19世紀以前に完全に解決していた"
+  ],
+  answer:0,
+  explanation:`
+    正解は「イスラエル建国をめぐって第一次中東戦争が起こった」。
+    1948年のイスラエル建国後、周辺アラブ諸国との間で第一次中東戦争が起こった。
+    その後も中東戦争が繰り返され、パレスチナ問題は国際政治上の重要な問題となった。
+    中東史では「帝国支配→民族運動→委任統治→イスラエル建国→中東戦争」
+    という大きな流れを意識すると整理しやすい。
+  `
+}
+
+];
+
+
+/* =========================================================
+   状態管理
+   ========================================================= */
+
+let currentQuestions = [...questions];
+let userAnswers = {};
+let submitted = false;
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const startPanel = document.getElementById("startPanel");
+const examArea = document.getElementById("examArea");
+const resultArea = document.getElementById("resultArea");
+const questionsEl = document.getElementById("questions");
+
+const progressText = document.getElementById("progressText");
+const progressPercent = document.getElementById("progressPercent");
+const progressBar = document.getElementById("progressBar");
+
+
+/* =========================================================
+   模試開始
+   ========================================================= */
+
+document.getElementById("startBtn").addEventListener("click", () => {
+  startExam(questions);
+});
+
+function startExam(questionSet){
+
+  currentQuestions = questionSet;
+  userAnswers = {};
+  submitted = false;
+
+  startPanel.style.display = "none";
+  resultArea.style.display = "none";
+  examArea.style.display = "block";
+
+  renderQuestions();
+  updateProgress();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================================================
+   問題描画
+   ========================================================= */
+
+function renderQuestions(){
+
+  questionsEl.innerHTML = "";
+
+  currentQuestions.forEach((q,index)=>{
+
+    const card = document.createElement("article");
+    card.className = "question-card";
+    card.dataset.id = q.id;
+
+    const letters = ["A","B","C","D"];
+
+    card.innerHTML = `
+      <div class="question-header">
+        <div>
+          <span class="q-number">第${index+1}問</span>
+        </div>
+
+        <div class="q-tags">
+          <span class="tag">${q.era}</span>
+          <span class="tag">${q.region}</span>
+          <span class="tag">${q.topic}</span>
+        </div>
+      </div>
+
+      <div class="question-body">
+
+        <div class="lead">
+          <div class="lead-title">${q.leadTitle}</div>
+          ${q.lead}
+        </div>
+
+        <div class="question-text">
+          ${q.question}
+        </div>
+
+        <div class="options">
+
+          ${q.options.map((option,i)=>`
+            <div class="option">
+              <input
+                type="radio"
+                name="q${q.id}"
+                id="q${q.id}_${i}"
+                value="${i}"
+              >
+
+              <label for="q${q.id}_${i}">
+                <span class="choice-letter">${letters[i]}</span>
+                ${option}
+              </label>
+            </div>
+          `).join("")}
+
+        </div>
+
+        <div class="answer-area" id="answer-${q.id}">
+        </div>
+
+      </div>
+    `;
+
+    questionsEl.appendChild(card);
+
+    card.querySelectorAll("input").forEach(input=>{
+      input.addEventListener("change",()=>{
+        userAnswers[q.id] = Number(input.value);
+        updateProgress();
+      });
+    });
+
+  });
+}
+
+
+/* =========================================================
+   進捗
+   ========================================================= */
+
+function updateProgress(){
+
+  const answered = Object.keys(userAnswers).length;
+  const total = currentQuestions.length;
+  const percent = Math.round((answered / total) * 100);
+
+  progressText.textContent = `${answered} / ${total} 問`;
+  progressPercent.textContent = `${percent}%`;
+  progressBar.style.width = `${percent}%`;
+}
+
+
+/* =========================================================
+   採点
+   ========================================================= */
+
+document.getElementById("submitBtn").addEventListener("click",()=>{
+
+  if(Object.keys(userAnswers).length !== currentQuestions.length){
+
+    const unanswered = currentQuestions.length -
+      Object.keys(userAnswers).length;
+
+    alert(`まだ${unanswered}問未回答です。すべて回答してください。`);
+    return;
+  }
+
+  submitted = true;
+
+  const result = calculateResult();
+
+  showAnswerFeedback(result);
+  showResult(result);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+});
+
+
+function calculateResult(){
+
+  let score = 0;
+  const wrong = [];
+
+  currentQuestions.forEach(q=>{
+
+    const selected = userAnswers[q.id];
+
+    if(selected === q.answer){
+      score++;
+    }else{
+      wrong.push(q);
+    }
+
+  });
+
+  return {
+    score,
+    wrong
+  };
+}
+
+
+/* =========================================================
+   各問題に正誤・解説表示
+   ========================================================= */
+
+function showAnswerFeedback(result){
+
+  currentQuestions.forEach(q=>{
+
+    const area = document.getElementById(`answer-${q.id}`);
+
+    const selected = userAnswers[q.id];
+    const correct = selected === q.answer;
+
+    area.classList.add("show");
+
+    area.innerHTML = `
+      <div class="${correct ? "answer-correct" : "answer-wrong"}">
+        ${correct ? "✓ 正解！" : "✕ 不正解"}
+      </div>
+
+      <div style="margin-top:7px;">
+        正答：
+        <strong>
+          ${["A","B","C","D"][q.answer]}．${q.options[q.answer]}
+        </strong>
+      </div>
+
+      <div class="explanation">
+        <strong>講師解説：</strong><br>
+        ${q.explanation}
+      </div>
+    `;
+
+  });
+}
+
+
+/* =========================================================
+   結果画面
+   ========================================================= */
+
+function showResult(result){
+
+  examArea.style.display = "none";
+  resultArea.style.display = "block";
+
+  document.getElementById("scoreNumber").textContent = result.score;
+
+  let message = "";
+
+  if(result.score === 15){
+    message = "満点！知識と資料読解の両方がかなり安定しています。";
+  }else if(result.score >= 12){
+    message = "かなり良い仕上がり。あとは細かい時代・地域の穴を埋めよう。";
+  }else if(result.score >= 9){
+    message = "基礎はできています。間違えた分野を重点的に復習すると伸びます。";
+  }else if(result.score >= 6){
+    message = "知識のつながりを整理する段階。間違えた問題を中心に復習しよう。";
+  }else{
+    message = "まずは時代の流れを作ろう。復習モードを使って一つずつ固めればOK。";
+  }
+
+  document.getElementById("scoreMessage").textContent = message;
+
+  renderAnalysis();
+  renderReview(result.wrong);
+}
+
+
+/* =========================================================
+   弱点分析
+   ========================================================= */
+
+function renderAnalysis(){
+
+  const eras = ["古代","中世","近世","近代","現代"];
+  const regions = [
+    "中国・東アジア",
+    "ヨーロッパ",
+    "イスラム・西アジア"
+  ];
+
+  const eraStats = createStats("era",eras);
+  const regionStats = createStats("region",regions);
+
+  renderStatBars(
+    document.getElementById("eraAnalysis"),
+    eraStats
+  );
+
+  renderStatBars(
+    document.getElementById("regionAnalysis"),
+    regionStats
+  );
+
+  const weakestEra = getWeakest(eraStats);
+  const weakestRegion = getWeakest(regionStats);
+
+  const eraRate =
+    weakestEra.total === 0
+    ? 0
+    : weakestEra.wrong / weakestEra.total;
+
+  const regionRate =
+    weakestRegion.total === 0
+    ? 0
+    : weakestRegion.wrong / weakestRegion.total;
+
+  let weakness;
+
+  /*
+   * 時代と地域を掛け合わせて、
+   * 最も弱点率が高い組み合わせを探す。
+   */
+
+  const combinations = [];
+
+  eras.forEach(era=>{
+
+    regions.forEach(region=>{
+
+      const qs = questions.filter(
+        q=>q.era===era && q.region===region
+      );
+
+      if(qs.length === 0) return;
+
+      let wrong = 0;
+
+      qs.forEach(q=>{
+        if(userAnswers[q.id] !== q.answer){
+          wrong++;
+        }
+      });
+
+      combinations.push({
+        era,
+        region,
+        total:qs.length,
+        wrong,
+        rate:wrong / qs.length
+      });
+
+    });
+
+  });
+
+  combinations.sort((a,b)=>{
+    if(b.rate !== a.rate){
+      return b.rate - a.rate;
+    }
+    return b.wrong - a.wrong;
+  });
+
+  const strongestWeakness = combinations[0];
+
+  if(strongestWeakness && strongestWeakness.wrong > 0){
+
+    weakness = strongestWeakness;
+
+    document.getElementById("weaknessTitle").innerHTML =
+      `あなたの弱点は <strong>【${weakness.era}${weakness.region}】</strong> です。`;
+
+    document.getElementById("weaknessAdvice").textContent =
+      getAdvice(weakness.era,weakness.region);
+
+  }else if(weakestEra.wrong > 0){
+
+    document.getElementById("weaknessTitle").innerHTML =
+      `今回の弱点は <strong>【${weakestEra.name}】</strong> です。`;
+
+    document.getElementById("weaknessAdvice").textContent =
+      getAdvice(weakestEra.name,"");
+
+  }else{
+
+    document.getElementById("weaknessTitle").innerHTML =
+      `🎉 今回は全問正解！`;
+
+    document.getElementById("weaknessAdvice").textContent =
+      "弱点は見つかりませんでした。次は資料の読み取りスピードと、似た用語の区別を意識してさらに精度を上げよう。";
+
+  }
+
+  document.getElementById("overallAdvice").innerHTML =
+    createOverallAdvice(eraStats,regionStats);
+
+}
+
+
+/* =========================================================
+   統計計算
+   ========================================================= */
+
+function createStats(key,names){
+
+  return names.map(name=>{
+
+    const qs = questions.filter(q=>q[key]===name);
+
+    let wrong = 0;
+
+    qs.forEach(q=>{
+      if(userAnswers[q.id] !== q.answer){
+        wrong++;
+      }
+    });
+
+    return {
+      name,
+      total:qs.length,
+      wrong,
+      correct:qs.length - wrong,
+      rate:qs.length
+        ? (qs.length - wrong) / qs.length
+        : 0
+    };
+
+  });
+
+}
+
+
+function getWeakest(stats){
+
+  const active = stats.filter(x=>x.total > 0);
+
+  active.sort((a,b)=>{
+
+    if(a.rate !== b.rate){
+      return a.rate - b.rate;
+    }
+
+    return b.wrong - a.wrong;
+
+  });
+
+  return active[0];
+}
+
+
+/* =========================================================
+   グラフ
+   ========================================================= */
+
+function renderStatBars(container,stats){
+
+  container.innerHTML = stats.map(stat=>{
+
+    const percent = Math.round(stat.rate * 100);
+
+    return `
+      <div class="analysis-bar-row">
+
+        <div class="analysis-label">
+          <span>${stat.name}</span>
+          <span>
+            ${stat.correct} / ${stat.total}
+            (${percent}%)
+          </span>
+        </div>
+
+        <div class="mini-bar">
+          <span style="width:${percent}%"></span>
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================================================
+   弱点別アドバイス
+   ========================================================= */
+
+function getAdvice(era,region){
+
+  const key = `${era}|${region}`;
+
+  const adviceMap = {
+
+    "古代|ヨーロッパ":
+      "ギリシア・ローマを中心に、「ポリス→ヘレニズム→ローマ帝国」という流れを復習しよう。人物名だけでなく、政治制度と領域拡大の因果関係を整理すると強くなります。",
+
+    "古代|中国・東アジア":
+      "殷・周・秦・漢の順序と、それぞれの統治制度を確認しよう。特に「封建制→郡県制」「法家→儒学重視」の変化を因果関係で整理するのがおすすめです。",
+
+    "古代|イスラム・西アジア":
+      "古代オリエント諸国家の位置関係と、アケメネス朝の統治制度を復習しよう。王朝名・都・代表的君主をセットで整理すると得点しやすくなります。",
+
+    "中世|ヨーロッパ":
+      "封建社会、キリスト教会、十字軍、都市の発展を一本の流れとして復習しよう。「なぜ十字軍が起こったのか」「その結果何が変わったのか」を説明できる状態が目標です。",
+
+    "中世|中国・東アジア":
+      "隋・唐から宋、さらにモンゴル帝国までの流れを確認しよう。科挙・均田制・租庸調・宋の社会経済など、制度と社会の関係を重点的に。",
+
+    "中世|イスラム・西アジア":
+      "ウマイヤ朝→アッバース朝→イスラーム世界の分裂という大きな流れを復習しよう。首都バグダード、アラブ人支配、ペルシア文化の影響を整理すると効果的です。",
+
+    "近世|ヨーロッパ":
+      "宗教改革・大航海時代・主権国家の形成を重点復習。単なる年代暗記ではなく、「なぜ起こったか→何が変わったか」を説明する練習をしよう。",
+
+    "近世|中国・東アジア":
+      "明・清の成立と対外関係を中心に復習しよう。モンゴル系勢力、満洲、海禁、朝貢関係などを地図と一緒に確認すると理解しやすいです。",
+
+    "近世|イスラム・西アジア":
+      "オスマン帝国・サファヴィー朝・ムガル帝国を比較しよう。イスラームの宗派や支配地域を整理すると、王朝の取り違えが減ります。",
+
+    "近代|ヨーロッパ":
+      "フランス革命からナポレオン、ウィーン体制、1848年革命、国民国家形成までを一連の流れで復習しよう。特に「革命→反動→再び革命」の流れが重要です。",
+
+    "近代|中国・東アジア":
+      "アヘン戦争→南京条約→列強の進出→洋務運動→日清戦争という流れを復習しよう。条約名と戦争の組み合わせを重点的に確認すると効果的です。",
+
+    "近代|イスラム・西アジア":
+      "オスマン帝国の弱体化、列強の進出、民族運動を中心に整理しよう。19世紀の帝国主義と中東の変化を関連づけるのがポイントです。",
+
+    "現代|ヨーロッパ":
+      "第一次世界大戦→ヴェルサイユ体制→世界恐慌→ファシズム→第二次世界大戦→冷戦という大きな流れを確認しよう。条約・国際機関の整理も重要です。",
+
+    "現代|中国・東アジア":
+      "辛亥革命→中華民国→国共内戦→中華人民共和国→改革開放という流れを復習しよう。人物だけでなく、国民党と共産党の関係変化を押さえよう。",
+
+    "現代|イスラム・西アジア":
+      "第一次世界大戦後の委任統治、イスラエル建国、中東戦争、石油問題をつなげて復習しよう。20世紀中東史は国際政治との関連が重要です。"
+
+  };
+
+  return adviceMap[key] ||
+    `${era}${region}の基本事項を、年代だけでなく「背景→出来事→結果」の順に整理して復習しましょう。`;
+}
+
+
+/* =========================================================
+   総合アドバイス
+   ========================================================= */
+
+function createOverallAdvice(eraStats,regionStats){
+
+  const totalWrong = questions.filter(
+    q=>userAnswers[q.id] !== q.answer
+  ).length;
+
+  if(totalWrong === 0){
+
+    return `
+      <p>
+        今回は全問正解です。非常に安定しています。
+        次のステップでは、資料文を読んだときに
+        「この資料はどの時代・地域を示しているか」を
+        素早く判断する練習をすると、共通テスト型への対応力がさらに上がります。
+      </p>
+    `;
+
+  }
+
+  const weakestEra = getWeakest(eraStats);
+  const weakestRegion = getWeakest(regionStats);
+
+  return `
+    <ul>
+      <li>
+        <strong>最優先：</strong>
+        ${weakestEra.name}の流れを時系列で復習する。
+      </li>
+      <li>
+        <strong>地域対策：</strong>
+        ${weakestRegion.name}の重要人物・王朝・条約を整理する。
+      </li>
+      <li>
+        <strong>共通テスト対策：</strong>
+        正答を暗記するだけでなく、
+        「なぜその選択肢が正しいのか」を一文で説明してみる。
+      </li>
+      <li>
+        <strong>復習のコツ：</strong>
+        間違えた問題は、正答だけでなく
+        他の3つの選択肢が「なぜ違うのか」まで確認する。
+      </li>
+    </ul>
+  `;
+
+}
+
+
+/* =========================================================
+   復習問題
+   ========================================================= */
+
+function renderReview(wrongQuestions){
+
+  const reviewList = document.getElementById("reviewList");
+
+  if(wrongQuestions.length === 0){
+
+    reviewList.innerHTML = `
+      <div class="analysis-card">
+        🎉 間違えた問題はありません！
+      </div>
+    `;
+
+    document.getElementById("retryWrongBtn")
+      .classList.add("hidden");
+
+    return;
+  }
+
+  document.getElementById("retryWrongBtn")
+    .classList.remove("hidden");
+
+  reviewList.innerHTML = wrongQuestions.map((q,index)=>{
+
+    return `
+      <div class="review-card">
+
+        <button class="review-toggle">
+          <span>
+            第${index+1}問　
+            ${q.topic}
+          </span>
+          <span>＋</span>
+        </button>
+
+        <div class="review-content">
+
+          <p>
+            <strong>正答：</strong>
+            <span class="review-answer">
+              ${["A","B","C","D"][q.answer]}．${q.options[q.answer]}
+            </span>
+          </p>
+
+          <p>
+            <strong>出題分野：</strong>
+            ${q.era} / ${q.region}
+          </p>
+
+          <p>
+            <strong>解説：</strong><br>
+            ${q.explanation}
+          </p>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+  document.querySelectorAll(".review-toggle")
+    .forEach(btn=>{
+
+      btn.addEventListener("click",()=>{
+
+        const content = btn.nextElementSibling;
+        content.classList.toggle("open");
+
+        const symbol = btn.querySelector("span:last-child");
+
+        symbol.textContent =
+          content.classList.contains("open")
+          ? "−"
+          : "＋";
+
+      });
+
+    });
+
+}
+
+
+/* =========================================================
+   間違えた問題だけ解き直す
+   ========================================================= */
+
+document.getElementById("retryWrongBtn")
+  .addEventListener("click",()=>{
+
+    const wrongQuestions = questions.filter(q=>{
+      return userAnswers[q.id] !== q.answer;
+    });
+
+    if(wrongQuestions.length === 0){
+
+      alert("間違えた問題はありません！");
+      return;
+
+    }
+
+    startExam(wrongQuestions);
+
+  });
+
+
+/* =========================================================
+   全問リトライ
+   ========================================================= */
+
+document.getElementById("retryAllBtn")
+  .addEventListener("click",()=>{
+
+    startExam(questions);
+
+  });
+
+
+/* =========================================================
+   キーボード操作
+   ========================================================= */
+
+document.addEventListener("keydown",(event)=>{
+
+  if(!examArea || examArea.style.display === "none"){
+    return;
+  }
+
+  /*
+   * 1〜4キーで現在表示されている問題の選択肢を選択。
+   * 共通テスト本番の操作そのものではなく、
+   * PC学習時の補助機能として実装。
+   */
+
+  if(["1","2","3","4"].includes(event.key)){
+
+    const cards = [...document.querySelectorAll(".question-card")];
+
+    const activeCard =
+      cards.find(card=>{
+        const rect = card.getBoundingClientRect();
+        return rect.top >= 0 && rect.top < window.innerHeight * .55;
+      });
+
+    if(!activeCard) return;
+
+    const inputs =
+      activeCard.querySelectorAll("input");
+
+    const index = Number(event.key) - 1;
+
+    if(inputs[index]){
+      inputs[index].click();
+    }
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
