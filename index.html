@@ -3,1026 +3,1153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090d16">
-<meta name="description" content="大学受験・世界史を古代から現代まで体系的に学ぶための総合学習ポータル">
-<title>WORLD HISTORY MASTER | 世界史学習ポータル</title>
+
+<title>世界史マスター｜大学受験世界史学習ポータル</title>
 
 <style>
 /* =========================================================
-   WORLD HISTORY MASTER
+   WORLD HISTORY PORTAL
    index.html
-   CSSはこのファイルだけで完結
+   HTML / CSS / JavaScript 完全1ファイル
    ========================================================= */
 
-:root {
-    --bg: #070b13;
-    --bg-soft: #0c1220;
-    --panel: rgba(17, 24, 39, 0.78);
-    --panel-strong: #111827;
-    --panel-light: #172033;
+:root{
+  --bg:#080c16;
+  --bg2:#0d1322;
+  --panel:#111827;
+  --panel2:#172033;
+  --panel3:#1c2940;
 
-    --text: #f4f7fb;
-    --text-soft: #aab4c5;
-    --text-dim: #6f7b90;
+  --border:#26344f;
+  --border-light:#344563;
 
-    --line: rgba(255,255,255,0.08);
-    --line-strong: rgba(255,255,255,0.14);
+  --text:#f4f7ff;
+  --text-soft:#c3ccdd;
+  --muted:#8996ad;
 
-    --blue: #5ea7ff;
-    --cyan: #38d9ff;
-    --purple: #9b7cff;
-    --gold: #ffc857;
-    --green: #51d88a;
-    --red: #ff6b7a;
-    --orange: #ff9d57;
+  --blue:#6ea8ff;
+  --cyan:#65d8e8;
+  --green:#62d9a3;
+  --yellow:#ffd166;
+  --orange:#ffad66;
+  --purple:#a98bff;
+  --red:#ff7373;
 
-    --shadow: 0 20px 60px rgba(0,0,0,.35);
-    --radius: 20px;
-    --radius-small: 13px;
+  --shadow:0 20px 50px rgba(0,0,0,.30);
+  --shadow-small:0 8px 24px rgba(0,0,0,.22);
 
-    --max-width: 1440px;
+  --radius:18px;
+  --radius-small:12px;
 }
 
-* {
-    box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at 15% 10%, rgba(94,167,255,.10), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(155,124,255,.10), transparent 28%),
-        radial-gradient(circle at 50% 90%, rgba(56,217,255,.06), transparent 35%),
-        var(--bg);
-    color: var(--text);
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Hiragino Kaku Gothic ProN",
-        "Hiragino Sans",
-        "Yu Gothic",
-        Meiryo,
-        sans-serif;
-    line-height: 1.7;
-    overflow-x: hidden;
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(110,168,255,.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(101,216,232,.07),
+      transparent 28%
+    ),
+    var(--bg);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+
+  line-height:1.7;
+  min-height:100vh;
 }
 
 button,
-a,
-input {
-    font: inherit;
+a{
+  font:inherit;
 }
 
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* 背景の装飾 */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: .25;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: linear-gradient(to bottom, black, transparent 90%);
+a{
+  color:inherit;
 }
 
 /* =========================================================
    HEADER
    ========================================================= */
 
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid var(--line);
-    background: rgba(7,11,19,.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:rgba(8,12,22,.86);
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(52,69,99,.55);
 }
 
-.header-inner {
-    width: min(var(--max-width), calc(100% - 32px));
-    min-height: 72px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+.header-inner{
+  max-width:1180px;
+  margin:0 auto;
+
+  padding:14px 22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.brand{
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.brand-mark {
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    border-radius: 12px;
-    color: white;
-    font-weight: 900;
-    font-size: 18px;
-    background:
-        linear-gradient(135deg, var(--blue), var(--purple));
-    box-shadow:
-        0 0 25px rgba(94,167,255,.25);
+.brand-icon{
+  width:42px;
+  height:42px;
+
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(110,168,255,.22),
+      rgba(101,216,232,.08)
+    );
+
+  border:1px solid rgba(110,168,255,.35);
+
+  font-size:1.25rem;
 }
 
-.brand-text strong {
-    display: block;
-    font-size: 15px;
-    letter-spacing: .08em;
+.brand-text{
+  line-height:1.25;
 }
 
-.brand-text span {
-    display: block;
-    color: var(--text-dim);
-    font-size: 10px;
-    letter-spacing: .15em;
+.brand-title{
+  font-weight:850;
+  letter-spacing:.02em;
 }
 
-.header-badge {
-    padding: 7px 11px;
-    border: 1px solid rgba(255,200,87,.25);
-    border-radius: 999px;
-    color: var(--gold);
-    background: rgba(255,200,87,.07);
-    font-size: 11px;
-    font-weight: 700;
+.brand-sub{
+  color:var(--muted);
+  font-size:.67rem;
+  letter-spacing:.14em;
+}
+
+.header-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  color:var(--muted);
+  font-size:.76rem;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px rgba(98,217,163,.7);
 }
 
 /* =========================================================
    MAIN
    ========================================================= */
 
-main {
-    width: min(var(--max-width), calc(100% - 32px));
-    margin: auto;
+main{
+  max-width:1180px;
+  margin:0 auto;
+
+  padding:
+    55px 22px
+    90px;
 }
 
 /* =========================================================
    HERO
    ========================================================= */
 
-.hero {
-    position: relative;
-    min-height: 550px;
-    display: grid;
-    align-items: center;
-    padding: 90px 0 65px;
+.hero{
+  position:relative;
+  overflow:hidden;
+
+  padding:55px 45px;
+
+  border:1px solid var(--border);
+  border-radius:26px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(18,28,47,.96),
+      rgba(13,20,34,.96)
+    );
+
+  box-shadow:var(--shadow);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
+.hero::before{
+  content:"";
+  position:absolute;
+
+  width:380px;
+  height:380px;
+
+  right:-150px;
+  top:-190px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110,168,255,.20),
+      transparent 70%
+    );
+
+  pointer-events:none;
 }
 
-.hero-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    padding: 8px 13px;
-    border: 1px solid rgba(94,167,255,.22);
-    border-radius: 999px;
-    color: var(--blue);
-    background: rgba(94,167,255,.07);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .08em;
+.hero::after{
+  content:"";
+  position:absolute;
+
+  width:260px;
+  height:260px;
+
+  left:-130px;
+  bottom:-150px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(101,216,232,.10),
+      transparent 70%
+    );
+
+  pointer-events:none;
 }
 
-.hero-kicker::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan);
+.hero-content{
+  position:relative;
+  z-index:2;
+
+  max-width:760px;
 }
 
-.hero h1 {
-    margin: 0;
-    font-size: clamp(42px, 7vw, 86px);
-    line-height: 1.02;
-    letter-spacing: -.055em;
-    font-weight: 950;
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:5px 11px;
+
+  border:1px solid rgba(110,168,255,.35);
+  border-radius:999px;
+
+  color:var(--blue);
+
+  font-size:.72rem;
+  font-weight:750;
+  letter-spacing:.08em;
 }
 
-.hero h1 .gradient {
-    background:
-        linear-gradient(
-            100deg,
-            #fff 0%,
-            #9ecbff 35%,
-            #b49cff 70%,
-            #fff 100%
-        );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.hero h1{
+  margin:18px 0 12px;
+
+  font-size:
+    clamp(2.2rem,6vw,4.4rem);
+
+  line-height:1.12;
+  letter-spacing:-.04em;
 }
 
-.hero-lead {
-    max-width: 720px;
-    margin: 28px 0 0;
-    color: var(--text-soft);
-    font-size: clamp(15px, 2vw, 19px);
+.hero h1 span{
+  color:var(--blue);
 }
 
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 32px;
+.hero-description{
+  color:var(--text-soft);
+
+  max-width:700px;
+
+  font-size:
+    clamp(.94rem,2vw,1.08rem);
 }
 
-.primary-button,
-.secondary-button {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    padding: 0 20px;
-    border-radius: 13px;
-    font-weight: 800;
-    transition: .2s ease;
+.hero-description strong{
+  color:var(--text);
 }
 
-.primary-button {
-    color: #07101d;
-    background: linear-gradient(135deg, #79bdff, #54d7ff);
-    box-shadow: 0 12px 35px rgba(56,217,255,.18);
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+  margin-top:28px;
 }
 
-.primary-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(56,217,255,.28);
+.hero-button{
+  text-decoration:none;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  padding:11px 17px;
+
+  border-radius:11px;
+
+  transition:
+    transform .2s,
+    border-color .2s,
+    background .2s;
 }
 
-.secondary-button {
-    border: 1px solid var(--line-strong);
-    color: var(--text);
-    background: rgba(255,255,255,.035);
+.hero-button.primary{
+  background:var(--blue);
+  color:#07101e;
+
+  font-weight:800;
 }
 
-.secondary-button:hover {
-    background: rgba(255,255,255,.08);
-    transform: translateY(-2px);
+.hero-button.secondary{
+  background:rgba(255,255,255,.03);
+
+  border:1px solid var(--border-light);
+
+  color:var(--text);
 }
 
-/* Hero decorative globe */
-.hero-orbit {
-    position: absolute;
-    right: -120px;
-    top: 40px;
-    width: 540px;
-    height: 540px;
-    border: 1px solid rgba(94,167,255,.09);
-    border-radius: 50%;
-    pointer-events: none;
+.hero-button:hover{
+  transform:translateY(-2px);
 }
 
-.hero-orbit::before,
-.hero-orbit::after {
-    content: "";
-    position: absolute;
-    inset: 55px;
-    border: 1px solid rgba(155,124,255,.09);
-    border-radius: 50%;
-}
-
-.hero-orbit::after {
-    inset: 130px;
-    border-color: rgba(56,217,255,.10);
-}
-
-.orbit-dot {
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 20px var(--cyan);
-    top: 105px;
-    right: 72px;
-}
-
-.hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 50px;
-    max-width: 850px;
-}
-
-.stat {
-    padding: 17px;
-    border: 1px solid var(--line);
-    border-radius: 15px;
-    background: rgba(255,255,255,.025);
-}
-
-.stat strong {
-    display: block;
-    font-size: 25px;
-    line-height: 1.2;
-}
-
-.stat span {
-    display: block;
-    margin-top: 3px;
-    color: var(--text-dim);
-    font-size: 11px;
+.hero-button.secondary:hover{
+  border-color:var(--blue);
+  background:rgba(110,168,255,.08);
 }
 
 /* =========================================================
-   SECTION
+   SECTION COMMON
    ========================================================= */
 
-.section {
-    padding: 55px 0;
+.section{
+  margin-top:50px;
 }
 
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 20px;
-    margin-bottom: 24px;
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+
+  gap:20px;
+
+  margin-bottom:18px;
 }
 
-.section-title {
-    margin: 0;
-    font-size: clamp(25px, 4vw, 38px);
-    line-height: 1.2;
-    letter-spacing: -.03em;
+.section-title{
+  margin:0;
+
+  font-size:
+    clamp(1.25rem,3vw,1.7rem);
+
+  letter-spacing:-.02em;
 }
 
-.section-description {
-    max-width: 600px;
-    margin: 7px 0 0;
-    color: var(--text-soft);
-    font-size: 14px;
-}
-
-.section-label {
-    color: var(--blue);
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: .15em;
+.section-description{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:.83rem;
 }
 
 /* =========================================================
-   FILTER DASHBOARD
+   QUICK NAV
    ========================================================= */
 
-.filter-panel {
-    padding: 22px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: rgba(15,22,35,.72);
-    box-shadow: var(--shadow);
+.quick-nav{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:12px;
 }
 
-.filter-group + .filter-group {
-    margin-top: 18px;
+.quick-card{
+  position:relative;
+
+  text-decoration:none;
+
+  padding:18px;
+
+  border:1px solid var(--border);
+  border-radius:var(--radius-small);
+
+  background:rgba(17,24,39,.82);
+
+  transition:
+    transform .22s,
+    border-color .22s,
+    background .22s;
+
+  overflow:hidden;
 }
 
-.filter-label {
-    display: block;
-    margin-bottom: 9px;
-    color: var(--text-dim);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .1em;
+.quick-card:hover{
+  transform:translateY(-4px);
+
+  border-color:var(--blue);
+
+  background:var(--panel2);
 }
 
-.filter-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+.quick-number{
+  color:var(--blue);
+
+  font-size:.68rem;
+  font-weight:800;
+
+  letter-spacing:.1em;
 }
 
-.filter-button {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 9px 13px;
-    color: var(--text-soft);
-    background: rgba(255,255,255,.025);
-    cursor: pointer;
-    transition: .18s ease;
-    font-size: 12px;
-    font-weight: 700;
+.quick-card h3{
+  margin:5px 0 3px;
+  font-size:1rem;
 }
 
-.filter-button:hover {
-    border-color: rgba(94,167,255,.35);
-    color: var(--text);
-}
-
-.filter-button.active {
-    color: #06111e;
-    border-color: transparent;
-    background: linear-gradient(135deg, #76baff, #54d8ff);
-}
-
-.search-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.search-box {
-    position: relative;
-}
-
-.search-box input {
-    width: 100%;
-    height: 48px;
-    padding: 0 16px 0 44px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    outline: none;
-    color: var(--text);
-    background: rgba(0,0,0,.18);
-}
-
-.search-box input:focus {
-    border-color: rgba(94,167,255,.55);
-    box-shadow: 0 0 0 3px rgba(94,167,255,.08);
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-dim);
-}
-
-.reset-button {
-    height: 48px;
-    padding: 0 16px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    color: var(--text-soft);
-    background: rgba(255,255,255,.04);
-    cursor: pointer;
+.quick-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:.76rem;
 }
 
 /* =========================================================
-   PAGE CARDS
+   ERA SELECTOR
    ========================================================= */
 
-.page-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 15px;
+.era-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,minmax(0,1fr));
+
+  gap:10px;
 }
 
-.page-card {
-    position: relative;
-    grid-column: span 4;
-    min-height: 225px;
-    display: flex;
-    flex-direction: column;
-    padding: 24px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.045),
-            rgba(255,255,255,.015)
-        );
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+.era-button{
+  position:relative;
+
+  border:1px solid var(--border);
+
+  background:var(--panel);
+
+  color:var(--text);
+
+  border-radius:14px;
+
+  padding:17px 12px;
+
+  cursor:pointer;
+
+  text-align:left;
+
+  transition:
+    transform .2s,
+    border-color .2s,
+    background .2s;
 }
 
-.page-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(94,167,255,.35);
-    box-shadow: 0 22px 60px rgba(0,0,0,.28);
+.era-button:hover{
+  transform:translateY(-3px);
+  border-color:var(--blue);
+  background:var(--panel2);
 }
 
-.page-card.featured {
-    grid-column: span 6;
-    min-height: 270px;
+.era-button.active{
+  border-color:var(--blue);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(110,168,255,.16),
+      rgba(17,24,39,.9)
+    );
 }
 
-.card-number {
-    color: var(--text-dim);
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: .12em;
+.era-number{
+  color:var(--blue);
+
+  font-size:.66rem;
+  font-weight:850;
+
+  letter-spacing:.08em;
 }
 
-.card-icon {
-    width: 49px;
-    height: 49px;
-    display: grid;
-    place-items: center;
-    margin: 15px 0 15px;
-    border-radius: 14px;
-    font-size: 22px;
-    background: rgba(94,167,255,.10);
+.era-name{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:.98rem;
+  font-weight:800;
 }
 
-.page-card:nth-child(2) .card-icon {
-    background: rgba(155,124,255,.10);
-}
+.era-detail{
+  display:block;
 
-.page-card:nth-child(3) .card-icon {
-    background: rgba(56,217,255,.10);
-}
+  margin-top:3px;
 
-.page-card:nth-child(4) .card-icon {
-    background: rgba(81,216,138,.10);
-}
+  color:var(--muted);
 
-.page-card:nth-child(5) .card-icon {
-    background: rgba(255,200,87,.10);
-}
-
-.page-card h3 {
-    margin: 0;
-    font-size: 21px;
-    line-height: 1.25;
-}
-
-.page-card p {
-    margin: 9px 0 20px;
-    color: var(--text-soft);
-    font-size: 13px;
-}
-
-.card-link {
-    margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: var(--blue);
-    font-size: 12px;
-    font-weight: 900;
-}
-
-.card-link::after {
-    content: "→";
-    transition: transform .2s ease;
-}
-
-.page-card:hover .card-link::after {
-    transform: translateX(4px);
-}
-
-.card-glow {
-    position: absolute;
-    width: 170px;
-    height: 170px;
-    right: -80px;
-    bottom: -90px;
-    border-radius: 50%;
-    background: rgba(94,167,255,.08);
-    filter: blur(25px);
-    pointer-events: none;
+  font-size:.68rem;
 }
 
 /* =========================================================
-   STUDY FLOW
+   REGION
    ========================================================= */
 
-.flow-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+.region-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:12px;
 }
 
-.flow-step {
-    position: relative;
-    min-height: 150px;
-    padding: 18px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: rgba(255,255,255,.025);
+.region-card{
+  position:relative;
+
+  min-height:145px;
+
+  padding:20px;
+
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+
+  background:var(--panel);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:
+    transform .22s,
+    border-color .22s,
+    background .22s;
 }
 
-.flow-step::after {
-    content: "→";
-    position: absolute;
-    top: 50%;
-    right: -17px;
-    transform: translateY(-50%);
-    color: var(--text-dim);
-    z-index: 2;
+.region-card::after{
+  content:"";
+
+  position:absolute;
+
+  width:130px;
+  height:130px;
+
+  right:-60px;
+  bottom:-70px;
+
+  border-radius:50%;
+
+  background:var(--region-color);
+
+  opacity:.09;
 }
 
-.flow-step:last-child::after {
-    display: none;
+.region-card:hover,
+.region-card.active{
+  transform:translateY(-4px);
+
+  border-color:var(--region-color);
+
+  background:var(--panel2);
 }
 
-.flow-number {
-    display: inline-grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 9px;
-    color: #06111e;
-    background: var(--blue);
-    font-size: 11px;
-    font-weight: 900;
+.region-icon{
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid var(--border);
+
+  font-size:1.1rem;
+
+  margin-bottom:12px;
 }
 
-.flow-step h4 {
-    margin: 13px 0 5px;
-    font-size: 14px;
+.region-card h3{
+  margin:0 0 3px;
+
+  font-size:.98rem;
 }
 
-.flow-step p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 11px;
+.region-card p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:.72rem;
 }
 
 /* =========================================================
-   ERAS
+   LEARNING ROUTE
    ========================================================= */
 
-.era-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+.route{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:12px;
 }
 
-.era-card {
-    position: relative;
-    min-height: 180px;
-    padding: 20px;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--panel);
+.route-card{
+  position:relative;
+
+  padding:18px;
+
+  border:1px solid var(--border);
+  border-radius:15px;
+
+  background:var(--panel);
 }
 
-.era-card small {
-    color: var(--text-dim);
-    font-size: 10px;
+.route-step{
+  color:var(--blue);
+
+  font-size:.68rem;
+  font-weight:850;
+
+  letter-spacing:.1em;
 }
 
-.era-card h3 {
-    margin: 8px 0 5px;
-    font-size: 19px;
+.route-card h3{
+  margin:5px 0 5px;
+
+  font-size:.95rem;
 }
 
-.era-card p {
-    margin: 0;
-    color: var(--text-soft);
-    font-size: 12px;
+.route-card p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:.74rem;
 }
 
-.era-line {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 19px;
-    height: 3px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--blue), transparent);
+.route-arrow{
+  position:absolute;
+
+  right:-15px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  z-index:3;
+
+  width:29px;
+  height:29px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--panel3);
+
+  border:1px solid var(--border);
+
+  color:var(--blue);
 }
 
 /* =========================================================
-   REGION GRID
+   SPECIAL MOCK EXAM
    ========================================================= */
 
-.region-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+.mock-banner{
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr auto;
+
+  align-items:center;
+
+  gap:25px;
+
+  padding:25px 27px;
+
+  border-radius:20px;
+
+  border:1px solid rgba(101,216,232,.28);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(101,216,232,.08),
+      rgba(110,168,255,.07),
+      rgba(17,24,39,.9)
+    );
+
+  overflow:hidden;
 }
 
-.region-card {
-    padding: 20px;
-    border: 1px solid var(--line);
-    border-radius: 17px;
-    background: rgba(255,255,255,.025);
+.mock-banner::before{
+  content:"";
+
+  position:absolute;
+
+  width:230px;
+  height:230px;
+
+  right:-80px;
+  top:-100px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(101,216,232,.18),
+      transparent 70%
+    );
 }
 
-.region-icon {
-    font-size: 27px;
+.mock-content{
+  position:relative;
+  z-index:1;
 }
 
-.region-card h3 {
-    margin: 9px 0 3px;
-    font-size: 16px;
+.mock-label{
+  color:var(--cyan);
+
+  font-size:.68rem;
+  font-weight:850;
+
+  letter-spacing:.12em;
 }
 
-.region-card p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 11px;
+.mock-banner h2{
+  margin:5px 0 5px;
+
+  font-size:1.25rem;
+}
+
+.mock-banner p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:.78rem;
+}
+
+.mock-button{
+  position:relative;
+  z-index:1;
+
+  text-decoration:none;
+
+  white-space:nowrap;
+
+  padding:11px 16px;
+
+  border-radius:10px;
+
+  background:var(--cyan);
+
+  color:#061319;
+
+  font-weight:850;
+
+  transition:.2s;
+}
+
+.mock-button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
 }
 
 /* =========================================================
-   EXAM MODE
+   SIX SPECIAL PAGES
    ========================================================= */
 
-.exam-box {
-    display: grid;
-    grid-template-columns: 1.3fr .7fr;
-    gap: 15px;
-    padding: 25px;
-    border: 1px solid rgba(255,200,87,.18);
-    border-radius: var(--radius);
-    background:
-        radial-gradient(circle at 100% 0%, rgba(255,200,87,.08), transparent 35%),
-        rgba(255,255,255,.025);
+.special-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:15px;
 }
 
-.exam-box h3 {
-    margin: 0;
-    font-size: 22px;
+.special-card{
+  position:relative;
+
+  display:flex;
+  align-items:flex-start;
+
+  gap:17px;
+
+  padding:21px;
+
+  text-decoration:none;
+
+  border:1px solid var(--border);
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17,24,39,.96),
+      rgba(13,19,32,.96)
+    );
+
+  overflow:hidden;
+
+  transition:
+    transform .22s,
+    border-color .22s,
+    box-shadow .22s;
 }
 
-.exam-box p {
-    color: var(--text-soft);
-    font-size: 13px;
+.special-card:hover{
+  transform:translateY(-4px);
+
+  border-color:var(--accent);
+
+  box-shadow:var(--shadow-small);
 }
 
-.exam-points {
-    display: grid;
-    gap: 9px;
+.special-icon{
+  flex:0 0 auto;
+
+  width:50px;
+  height:50px;
+
+  border-radius:14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(110,168,255,.15),
+      rgba(255,255,255,.025)
+    );
+
+  border:1px solid var(--border-light);
+
+  font-size:1.25rem;
 }
 
-.exam-point {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 10px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.035);
-    color: var(--text-soft);
-    font-size: 12px;
+.special-content{
+  min-width:0;
 }
 
-.exam-point span:first-child {
-    color: var(--gold);
+.special-number{
+  color:var(--blue);
+
+  font-size:.65rem;
+  font-weight:850;
+
+  letter-spacing:.1em;
+}
+
+.special-card h3{
+  margin:3px 0 4px;
+
+  font-size:1.02rem;
+}
+
+.special-card p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:.76rem;
+}
+
+.special-arrow{
+  position:absolute;
+
+  right:17px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  color:var(--muted);
+
+  transition:.2s;
+}
+
+.special-card:hover .special-arrow{
+  color:var(--blue);
+  right:13px;
+}
+
+/* =========================================================
+   FILTER PANEL
+   ========================================================= */
+
+.filter-panel{
+  margin-top:20px;
+
+  display:none;
+
+  padding:18px;
+
+  border:1px solid var(--border);
+
+  border-radius:15px;
+
+  background:var(--panel);
+}
+
+.filter-panel.show{
+  display:block;
+  animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(-5px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.filter-top{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  gap:15px;
+}
+
+.filter-title{
+  font-weight:800;
+}
+
+.clear-filter{
+  border:0;
+  background:none;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:.75rem;
+}
+
+.clear-filter:hover{
+  color:var(--text);
+}
+
+.filter-result{
+  margin-top:12px;
+
+  padding:12px;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.025);
+
+  color:var(--text-soft);
+
+  font-size:.8rem;
 }
 
 /* =========================================================
    FOOTER
    ========================================================= */
 
-footer {
-    margin-top: 40px;
-    padding: 35px 0 50px;
-    border-top: 1px solid var(--line);
+footer{
+  max-width:1180px;
+
+  margin:0 auto;
+
+  padding:
+    25px 22px
+    45px;
+
+  border-top:1px solid var(--border);
+
+  color:var(--muted);
+
+  font-size:.72rem;
+
+  text-align:center;
 }
 
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    color: var(--text-dim);
-    font-size: 11px;
-}
+.footer-title{
+  color:var(--text-soft);
 
-.footer-brand {
-    color: var(--text-soft);
-    font-weight: 800;
-}
+  font-weight:750;
 
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-
-:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-        animation: none !important;
-    }
-}
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 1000px) {
-
-    .hero {
-        min-height: auto;
-        padding: 75px 0 55px;
-    }
-
-    .hero-orbit {
-        opacity: .45;
-        right: -260px;
-    }
-
-    .page-card,
-    .page-card.featured {
-        grid-column: span 6;
-    }
-
-    .flow-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .flow-step:nth-child(3)::after {
-        display: none;
-    }
-
-    .era-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .region-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .exam-box {
-        grid-template-columns: 1fr;
-    }
+  margin-bottom:3px;
 }
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
-@media (max-width: 700px) {
+@media(max-width:900px){
 
-    main,
-    .header-inner {
-        width: min(100% - 22px, var(--max-width));
-    }
+  .quick-nav{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
 
-    .header-inner {
-        min-height: 62px;
-    }
+  .era-grid{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
 
-    .brand-text span,
-    .header-badge {
-        display: none;
-    }
+  .region-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
 
-    .hero {
-        padding: 55px 0 40px;
-    }
+  .route{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
 
-    .hero h1 {
-        font-size: clamp(39px, 13vw, 62px);
-    }
-
-    .hero-lead {
-        font-size: 14px;
-    }
-
-    .hero-orbit {
-        right: -330px;
-        top: 0;
-        opacity: .25;
-    }
-
-    .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        margin-top: 35px;
-    }
-
-    .section {
-        padding: 40px 0;
-    }
-
-    .section-heading {
-        display: block;
-    }
-
-    .filter-panel {
-        padding: 16px;
-    }
-
-    .search-row {
-        grid-template-columns: 1fr;
-    }
-
-    .page-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .page-card,
-    .page-card.featured {
-        grid-column: auto;
-        min-height: 210px;
-    }
-
-    .page-card.featured {
-        min-height: 230px;
-    }
-
-    .flow-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .flow-step {
-        min-height: auto;
-    }
-
-    .flow-step::after {
-        content: "↓";
-        top: auto;
-        right: auto;
-        left: 50%;
-        bottom: -18px;
-        transform: translateX(-50%);
-    }
-
-    .flow-step:nth-child(3)::after {
-        display: block;
-    }
-
-    .flow-step:last-child::after {
-        display: none;
-    }
-
-    .era-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .region-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .exam-box {
-        padding: 20px;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-    }
+  .route-arrow{
+    display:none;
+  }
 }
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
+@media(max-width:650px){
 
-@media (max-width: 430px) {
+  .header-inner{
+    padding:11px 14px;
+  }
 
-    .hero-actions {
-        flex-direction: column;
-    }
+  .header-status{
+    display:none;
+  }
 
-    .primary-button,
-    .secondary-button {
-        width: 100%;
-    }
+  main{
+    padding:
+      28px 13px
+      60px;
+  }
 
-    .hero-stats {
-        gap: 8px;
-    }
+  .hero{
+    padding:34px 22px;
 
-    .stat {
-        padding: 13px;
-    }
+    border-radius:20px;
+  }
 
-    .stat strong {
-        font-size: 21px;
-    }
+  .hero h1{
+    font-size:2.25rem;
+  }
 
-    .era-grid {
-        grid-template-columns: 1fr;
-    }
+  .section{
+    margin-top:38px;
+  }
+
+  .section-heading{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:3px;
+  }
+
+  .quick-nav,
+  .special-grid{
+    grid-template-columns:1fr;
+  }
+
+  .era-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .region-grid{
+    grid-template-columns:1fr;
+  }
+
+  .route{
+    grid-template-columns:1fr;
+  }
+
+  .mock-banner{
+    grid-template-columns:1fr;
+  }
+
+  .mock-button{
+    justify-self:start;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-button{
+    width:100%;
+  }
+}
+
+@media(max-width:390px){
+
+  .era-grid{
+    grid-template-columns:1fr;
+  }
+
+  .brand-sub{
+    display:none;
+  }
 }
 </style>
 </head>
+
 
 <body>
 
@@ -1031,26 +1158,45 @@ footer {
      ======================================================= -->
 
 <header class="header">
-    <div class="header-inner">
 
-        <a href="index.html" class="brand" aria-label="WORLD HISTORY MASTER ホーム">
-            <div class="brand-mark">WH</div>
+  <div class="header-inner">
 
-            <div class="brand-text">
-                <strong>WORLD HISTORY MASTER</strong>
-                <span>UNIVERSITY EXAM PORTAL</span>
-            </div>
-        </a>
+    <a href="index.html" class="brand">
 
-        <div class="header-badge">
-            COMPLETE WORLD HISTORY
+      <div class="brand-icon">
+        史
+      </div>
+
+      <div class="brand-text">
+
+        <div class="brand-title">
+          世界史 MASTER
         </div>
 
+        <div class="brand-sub">
+          WORLD HISTORY STUDY PORTAL
+        </div>
+
+      </div>
+
+    </a>
+
+    <div class="header-status">
+      <span class="status-dot"></span>
+      学習ポータル ONLINE
     </div>
+
+  </div>
+
 </header>
 
 
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
 <main>
+
 
 <!-- =======================================================
      HERO
@@ -1058,655 +1204,803 @@ footer {
 
 <section class="hero">
 
-    <div class="hero-orbit">
-        <div class="orbit-dot"></div>
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      UNIVERSITY ENTRANCE EXAM / WORLD HISTORY
     </div>
 
-    <div class="hero-content">
+    <h1>
+      世界史を<br>
+      <span>「つなげて」</span>攻略する。
+    </h1>
 
-        <div class="hero-kicker">
-            UNIVERSITY EXAM × WORLD HISTORY
+    <p class="hero-description">
+      年代を暗記するだけではなく、
+      <strong>人物・地域・制度・事件・因果関係</strong>
+      をつなげて理解するための大学受験世界史ポータル。
+      共通テストから難関私大・論述まで対応できる学習環境を目指します。
+    </p>
+
+    <div class="hero-actions">
+
+      <a
+        href="mock-exam.html"
+        class="hero-button primary"
+      >
+        🎯 模擬演習を始める
+      </a>
+
+      <a
+        href="#special-pages"
+        class="hero-button secondary"
+      >
+        6つの専門ページを見る
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     QUICK NAV
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+      <h2 class="section-title">
+        学習メニュー
+      </h2>
+
+      <p class="section-description">
+        今やりたい学習を選択
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="quick-nav">
+
+    <a href="timeline.html" class="quick-card">
+
+      <div class="quick-number">01 / TIMELINE</div>
+
+      <h3>年表から整理</h3>
+
+      <p>
+        古代から現代までの流れを時系列で確認
+      </p>
+
+    </a>
+
+
+    <a href="emperors.html" class="quick-card">
+
+      <div class="quick-number">02 / LEADERS</div>
+
+      <h3>人物から覚える</h3>
+
+      <p>
+        皇帝・国王・政治家・思想家を比較
+      </p>
+
+    </a>
+
+
+    <a href="connections.html" class="quick-card">
+
+      <div class="quick-number">03 / CONNECTIONS</div>
+
+      <h3>横のつながり</h3>
+
+      <p>
+        同じ時代の世界各地域を横断して理解
+      </p>
+
+    </a>
+
+
+    <a href="quiz.html" class="quick-card">
+
+      <div class="quick-number">04 / QUIZ</div>
+
+      <h3>一問一答</h3>
+
+      <p>
+        重要用語をテンポよく確認
+      </p>
+
+    </a>
+
+
+    <a href="causes.html" class="quick-card">
+
+      <div class="quick-number">05 / CAUSES</div>
+
+      <h3>因果関係を攻略</h3>
+
+      <p>
+        「なぜ起きた？」から論述力を鍛える
+      </p>
+
+    </a>
+
+
+    <a href="mock-exam.html" class="quick-card">
+
+      <div class="quick-number">06 / MOCK EXAM</div>
+
+      <h3>共通テスト模試</h3>
+
+      <p>
+        本番型演習＋自動弱点分析
+      </p>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     ERA SELECTOR
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+
+      <h2 class="section-title">
+        時代から探す
+      </h2>
+
+      <p class="section-description">
+        クリックすると、その時代の学習テーマを表示
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="era-grid">
+
+    <button
+      class="era-button"
+      data-era="古代"
+    >
+      <span class="era-number">01</span>
+      <span class="era-name">古代</span>
+      <span class="era-detail">
+        オリエント・ギリシア・ローマ・秦漢
+      </span>
+    </button>
+
+
+    <button
+      class="era-button"
+      data-era="中世"
+    >
+      <span class="era-number">02</span>
+      <span class="era-name">中世</span>
+      <span class="era-detail">
+        イスラーム・封建社会・唐宋・モンゴル
+      </span>
+    </button>
+
+
+    <button
+      class="era-button"
+      data-era="近世"
+    >
+      <span class="era-number">03</span>
+      <span class="era-name">近世</span>
+      <span class="era-detail">
+        大航海・宗教改革・明清・主権国家
+      </span>
+    </button>
+
+
+    <button
+      class="era-button"
+      data-era="近代"
+    >
+      <span class="era-number">04</span>
+      <span class="era-name">近代</span>
+      <span class="era-detail">
+        革命・産業化・帝国主義・国民国家
+      </span>
+    </button>
+
+
+    <button
+      class="era-button"
+      data-era="現代"
+    >
+      <span class="era-number">05</span>
+      <span class="era-name">現代</span>
+      <span class="era-detail">
+        世界大戦・冷戦・脱植民地化・現代世界
+      </span>
+    </button>
+
+  </div>
+
+
+  <div class="filter-panel" id="eraPanel">
+
+    <div class="filter-top">
+
+      <div class="filter-title" id="eraPanelTitle">
+        時代を選択
+      </div>
+
+      <button
+        class="clear-filter"
+        id="clearEra"
+      >
+        × 選択解除
+      </button>
+
+    </div>
+
+    <div
+      class="filter-result"
+      id="eraPanelResult"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     REGION SELECTOR
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+
+      <h2 class="section-title">
+        地域から探す
+      </h2>
+
+      <p class="section-description">
+        世界史は「地域同士の関係」を見ると一気に理解しやすくなる
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="region-grid">
+
+
+    <div
+      class="region-card"
+      data-region="中国・東アジア"
+      style="--region-color:#6ea8ff;"
+    >
+
+      <div class="region-icon">
+        🏯
+      </div>
+
+      <h3>
+        中国・東アジア
+      </h3>
+
+      <p>
+        中国史・朝鮮・日本・モンゴル・東南アジア
+      </p>
+
+    </div>
+
+
+    <div
+      class="region-card"
+      data-region="ヨーロッパ"
+      style="--region-color:#a98bff;"
+    >
+
+      <div class="region-icon">
+        🏛️
+      </div>
+
+      <h3>
+        ヨーロッパ
+      </h3>
+
+      <p>
+        ギリシア・ローマ・キリスト教・革命・世界大戦
+      </p>
+
+    </div>
+
+
+    <div
+      class="region-card"
+      data-region="イスラム・西アジア"
+      style="--region-color:#62d9a3;"
+    >
+
+      <div class="region-icon">
+        🕌
+      </div>
+
+      <h3>
+        イスラム・西アジア
+      </h3>
+
+      <p>
+        イスラーム帝国・オスマン・ペルシア・中東
+      </p>
+
+    </div>
+
+
+    <div
+      class="region-card"
+      data-region="アメリカ"
+      style="--region-color:#ffad66;"
+    >
+
+      <div class="region-icon">
+        🗽
+      </div>
+
+      <h3>
+        アメリカ
+      </h3>
+
+      <p>
+        独立革命・南北戦争・移民・大国化・冷戦
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+  <div
+    class="filter-panel"
+    id="regionPanel"
+  >
+
+    <div class="filter-top">
+
+      <div
+        class="filter-title"
+        id="regionPanelTitle"
+      >
+        地域を選択
+      </div>
+
+      <button
+        class="clear-filter"
+        id="clearRegion"
+      >
+        × 選択解除
+      </button>
+
+    </div>
+
+    <div
+      class="filter-result"
+      id="regionPanelResult"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     LEARNING ROUTE
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+
+      <h2 class="section-title">
+        おすすめ学習ルート
+      </h2>
+
+      <p class="section-description">
+        「覚える → つなげる → 解く」の順番で得点力へ
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="route">
+
+
+    <div class="route-card">
+
+      <div class="route-step">
+        STEP 01
+      </div>
+
+      <h3>
+        年表で全体像
+      </h3>
+
+      <p>
+        まず年代と出来事の位置関係をつかむ。
+      </p>
+
+      <div class="route-arrow">
+        →
+      </div>
+
+    </div>
+
+
+    <div class="route-card">
+
+      <div class="route-step">
+        STEP 02
+      </div>
+
+      <h3>
+        人物・王朝
+      </h3>
+
+      <p>
+        誰が何をしたのかを整理する。
+      </p>
+
+      <div class="route-arrow">
+        →
+      </div>
+
+    </div>
+
+
+    <div class="route-card">
+
+      <div class="route-step">
+        STEP 03
+      </div>
+
+      <h3>
+        因果・横の関係
+      </h3>
+
+      <p>
+        「なぜ？」と「同時代」をつなげる。
+      </p>
+
+      <div class="route-arrow">
+        →
+      </div>
+
+    </div>
+
+
+    <div class="route-card">
+
+      <div class="route-step">
+        STEP 04
+      </div>
+
+      <h3>
+        模試で実戦
+      </h3>
+
+      <p>
+        資料を読み、弱点を発見して復習する。
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     MOCK EXAM BANNER
+     ======================================================= -->
+
+<section class="section">
+
+  <div class="mock-banner">
+
+    <div class="mock-content">
+
+      <div class="mock-label">
+        NEW / MOCK EXAM
+      </div>
+
+      <h2>
+        共通テスト型・世界史模擬演習
+      </h2>
+
+      <p>
+        会話文・資料文を読みながら15問。
+        終了後は「時代 × 地域」で弱点を自動分析。
+      </p>
+
+    </div>
+
+    <a
+      href="mock-exam.html"
+      class="mock-button"
+    >
+      模試を開始 →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SIX SPECIAL PAGES
+     ======================================================= -->
+
+<section
+  class="section"
+  id="special-pages"
+>
+
+  <div class="section-heading">
+
+    <div>
+
+      <h2 class="section-title">
+        6つの専門ページ
+      </h2>
+
+      <p class="section-description">
+        目的別に使い分けて、世界史を立体的に攻略
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="special-grid">
+
+
+    <!-- 01 -->
+
+    <a
+      href="timeline.html"
+      class="special-card"
+    >
+
+      <div class="special-icon">
+        🕰️
+      </div>
+
+      <div class="special-content">
+
+        <div class="special-number">
+          SPECIAL PAGE 01
         </div>
 
-        <h1>
-            世界史を、<br>
-            <span class="gradient">「つながり」で制する。</span>
-        </h1>
+        <h3>
+          世界史年表
+        </h3>
 
-        <p class="hero-lead">
-            古代から現代まで。
-            王朝・皇帝・戦争・宗教・交易・革命をバラバラに暗記するのではなく、
-            「いつ・どこで・なぜ・何とつながるか」で整理する、大学受験向け世界史学習ポータル。
+        <p>
+          古代から現代までの主要王朝・国家・事件を
+          時系列で整理。年代の前後関係を一気に把握。
         </p>
 
-        <div class="hero-actions">
+      </div>
 
-            <a href="timeline.html" class="primary-button">
-                年表から始める
-                <span>→</span>
-            </a>
+      <div class="special-arrow">
+        →
+      </div>
 
-            <a href="#pages" class="secondary-button">
-                学習メニューを見る
-            </a>
+    </a>
 
+
+    <!-- 02 -->
+
+    <a
+      href="emperors.html"
+      class="special-card"
+    >
+
+      <div class="special-icon">
+        👑
+      </div>
+
+      <div class="special-content">
+
+        <div class="special-number">
+          SPECIAL PAGE 02
         </div>
 
-        <div class="hero-stats">
+        <h3>
+          皇帝・指導者データ
+        </h3>
 
-            <div class="stat">
-                <strong>5</strong>
-                <span>時代区分</span>
-            </div>
+        <p>
+          中国皇帝、ヨーロッパの君主、イスラームの支配者、
+          近現代の政治指導者まで比較して整理。
+        </p>
 
-            <div class="stat">
-                <strong>4+</strong>
-                <span>主要地域</span>
-            </div>
+      </div>
 
-            <div class="stat">
-                <strong>5</strong>
-                <span>専門学習ページ</span>
-            </div>
+      <div class="special-arrow">
+        →
+      </div>
 
-            <div class="stat">
-                <strong>∞</strong>
-                <span>つながる歴史</span>
-            </div>
+    </a>
 
+
+    <!-- 03 -->
+
+    <a
+      href="connections.html"
+      class="special-card"
+    >
+
+      <div class="special-icon">
+        🌐
+      </div>
+
+      <div class="special-content">
+
+        <div class="special-number">
+          SPECIAL PAGE 03
         </div>
 
-    </div>
+        <h3>
+          横のつながり解説
+        </h3>
+
+        <p>
+          「同じ時代に中国・ヨーロッパ・イスラームでは
+          何が起きていたか？」を横断比較。
+        </p>
+
+      </div>
+
+      <div class="special-arrow">
+        →
+      </div>
+
+    </a>
+
+
+    <!-- 04 -->
+
+    <a
+      href="quiz.html"
+      class="special-card"
+    >
+
+      <div class="special-icon">
+        🧠
+      </div>
+
+      <div class="special-content">
+
+        <div class="special-number">
+          SPECIAL PAGE 04
+        </div>
+
+        <h3>
+          一問一答クイズ
+        </h3>
+
+        <p>
+          共通テスト・私大入試で狙われる重要用語を
+          一問一答形式で高速チェック。
+        </p>
+
+      </div>
+
+      <div class="special-arrow">
+        →
+      </div>
+
+    </a>
+
+
+    <!-- 05 -->
+
+    <a
+      href="causes.html"
+      class="special-card"
+    >
+
+      <div class="special-icon">
+        🔗
+      </div>
+
+      <div class="special-content">
+
+        <div class="special-number">
+          SPECIAL PAGE 05
+        </div>
+
+        <h3>
+          事件の因果関係・論述
+        </h3>
+
+        <p>
+          「背景 → 出来事 → 結果 → 影響」を整理し、
+          難関大の論述問題にも対応できる思考力を鍛える。
+        </p>
+
+      </div>
+
+      <div class="special-arrow">
+        →
+      </div>
+
+    </a>
+
+
+    <!-- 06 -->
+
+    <a
+      href="mock-exam.html"
+      class="special-card"
+    >
+
+      <div class="special-icon">
+        🎯
+      </div>
+
+      <div class="special-content">
+
+        <div class="special-number">
+          SPECIAL PAGE 06
+        </div>
+
+        <h3>
+          共通テスト模擬演習
+        </h3>
+
+        <p>
+          資料読解型の四択問題に挑戦。
+          得点だけでなく「どの時代・地域が弱いか」まで分析。
+        </p>
+
+      </div>
+
+      <div class="special-arrow">
+        →
+      </div>
+
+    </a>
+
+
+  </div>
 
 </section>
 
-
-<!-- =======================================================
-     FILTER DASHBOARD
-     ======================================================= -->
-
-<section class="section" id="dashboard">
-
-    <div class="section-heading">
-
-        <div>
-            <div class="section-label">STUDY DASHBOARD</div>
-            <h2 class="section-title">今日の学習範囲を選ぶ</h2>
-
-            <p class="section-description">
-                時代と地域を組み合わせて、今日見るべき世界史の範囲を直感的に整理。
-            </p>
-        </div>
-
-    </div>
-
-
-    <div class="filter-panel">
-
-        <div class="filter-group">
-
-            <span class="filter-label">
-                ERA / 時代
-            </span>
-
-            <div class="filter-buttons" id="eraFilters">
-
-                <button class="filter-button active" data-filter="all">
-                    すべて
-                </button>
-
-                <button class="filter-button" data-filter="古代">
-                    古代
-                </button>
-
-                <button class="filter-button" data-filter="中世">
-                    中世
-                </button>
-
-                <button class="filter-button" data-filter="近世">
-                    近世
-                </button>
-
-                <button class="filter-button" data-filter="近代">
-                    近代
-                </button>
-
-                <button class="filter-button" data-filter="現代">
-                    現代
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="filter-group">
-
-            <span class="filter-label">
-                REGION / 地域
-            </span>
-
-            <div class="filter-buttons" id="regionFilters">
-
-                <button class="filter-button active" data-region="all">
-                    世界全体
-                </button>
-
-                <button class="filter-button" data-region="中国・東アジア">
-                    中国・東アジア
-                </button>
-
-                <button class="filter-button" data-region="ヨーロッパ">
-                    ヨーロッパ
-                </button>
-
-                <button class="filter-button" data-region="イスラム・西アジア">
-                    イスラム・西アジア
-                </button>
-
-                <button class="filter-button" data-region="インド">
-                    インド
-                </button>
-
-                <button class="filter-button" data-region="アメリカ">
-                    アメリカ
-                </button>
-
-                <button class="filter-button" data-region="世界史テーマ">
-                    世界史テーマ
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="search-row">
-
-            <div class="search-box">
-
-                <span class="search-icon">⌕</span>
-
-                <input
-                    id="searchInput"
-                    type="search"
-                    placeholder="例：秦、ローマ、フランス革命、イスラーム…"
-                    autocomplete="off"
-                >
-
-            </div>
-
-            <button class="reset-button" id="resetFilters">
-                リセット
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     5 SPECIAL PAGES
-     ======================================================= -->
-
-<section class="section" id="pages">
-
-    <div class="section-heading">
-
-        <div>
-            <div class="section-label">LEARNING MODULES</div>
-
-            <h2 class="section-title">
-                世界史を攻略する5つの武器
-            </h2>
-
-            <p class="section-description">
-                暗記だけに頼らず、「時間軸 → 人物 → 横のつながり → 知識確認 → 論述」
-                の順に理解を深める。
-            </p>
-        </div>
-
-    </div>
-
-
-    <div class="page-grid">
-
-        <!-- 01 -->
-        <a href="timeline.html" class="page-card featured">
-
-            <div class="card-number">01 / TIMELINE</div>
-
-            <div class="card-icon">⌛</div>
-
-            <h3>超詳細・世界史年表</h3>
-
-            <p>
-                古代から現代までの王朝・国家・戦争・革命を年代順に整理。
-                時代・地域フィルターにも対応。
-            </p>
-
-            <span class="card-link">
-                年表を見る
-            </span>
-
-            <div class="card-glow"></div>
-
-        </a>
-
-
-        <!-- 02 -->
-        <a href="emperors.html" class="page-card featured">
-
-            <div class="card-number">02 / LEADERS</div>
-
-            <div class="card-icon">♛</div>
-
-            <h3>皇帝・指導者データベース</h3>
-
-            <p>
-                始皇帝、アウグストゥス、カール大帝、ナポレオンなど、
-                世界史を動かした人物を「政策・業績・関連事件」で整理。
-            </p>
-
-            <span class="card-link">
-                人物データを見る
-            </span>
-
-            <div class="card-glow"></div>
-
-        </a>
-
-
-        <!-- 03 -->
-        <a href="connections.html" class="page-card">
-
-            <div class="card-number">03 / CONNECTIONS</div>
-
-            <div class="card-icon">⇄</div>
-
-            <h3>横のつながり</h3>
-
-            <p>
-                「中国で唐が栄えていた頃、ヨーロッパ・イスラーム世界では何が起きていた？」
-                を同時代比較で攻略。
-            </p>
-
-            <span class="card-link">
-                横のつながりを見る
-            </span>
-
-            <div class="card-glow"></div>
-
-        </a>
-
-
-        <!-- 04 -->
-        <a href="quiz.html" class="page-card">
-
-            <div class="card-number">04 / QUIZ</div>
-
-            <div class="card-icon">?</div>
-
-            <h3>一問一答クイズ</h3>
-
-            <p>
-                大学受験頻出事項を一問一答形式で確認。
-                知識の穴を見つけ、反復学習につなげる。
-            </p>
-
-            <span class="card-link">
-                クイズを始める
-            </span>
-
-            <div class="card-glow"></div>
-
-        </a>
-
-
-        <!-- 05 -->
-        <a href="causes.html" class="page-card">
-
-            <div class="card-number">05 / CAUSALITY</div>
-
-            <div class="card-icon">∴</div>
-
-            <h3>事件の因果関係・論述</h3>
-
-            <p>
-                「なぜ起きた？ → 何が起きた？ → 何をもたらした？」
-                を整理し、論述問題に対応できる理解を作る。
-            </p>
-
-            <span class="card-link">
-                因果関係を見る
-            </span>
-
-            <div class="card-glow"></div>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     STUDY FLOW
-     ======================================================= -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <div>
-            <div class="section-label">RECOMMENDED FLOW</div>
-
-            <h2 class="section-title">
-                おすすめの使い方
-            </h2>
-
-            <p class="section-description">
-                「覚える → つなげる → 解く → 説明する」まで持っていく。
-            </p>
-        </div>
-
-    </div>
-
-
-    <div class="flow-grid">
-
-        <div class="flow-step">
-
-            <span class="flow-number">01</span>
-
-            <h4>年表で全体像</h4>
-
-            <p>
-                まず年代と王朝の位置関係を把握。
-            </p>
-
-        </div>
-
-
-        <div class="flow-step">
-
-            <span class="flow-number">02</span>
-
-            <h4>人物を覚える</h4>
-
-            <p>
-                皇帝・王・政治家と政策をセットで確認。
-            </p>
-
-        </div>
-
-
-        <div class="flow-step">
-
-            <span class="flow-number">03</span>
-
-            <h4>横につなげる</h4>
-
-            <p>
-                同じ時代の別地域を比較。
-            </p>
-
-        </div>
-
-
-        <div class="flow-step">
-
-            <span class="flow-number">04</span>
-
-            <h4>一問一答</h4>
-
-            <p>
-                覚えた知識を高速チェック。
-            </p>
-
-        </div>
-
-
-        <div class="flow-step">
-
-            <span class="flow-number">05</span>
-
-            <h4>因果関係を説明</h4>
-
-            <p>
-                論述できるレベルまで理解。
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     ERAS
-     ======================================================= -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <div>
-            <div class="section-label">FIVE ERAS</div>
-
-            <h2 class="section-title">
-                5つの時代を俯瞰する
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="era-grid">
-
-        <div class="era-card">
-            <small>01</small>
-            <h3>古代</h3>
-            <p>
-                古代文明・ギリシア・ローマ・秦漢・インド古代国家など。
-            </p>
-            <div class="era-line"></div>
-        </div>
-
-
-        <div class="era-card">
-            <small>02</small>
-            <h3>中世</h3>
-            <p>
-                ビザンツ・イスラーム・封建社会・唐宋・十字軍・モンゴルなど。
-            </p>
-            <div class="era-line"></div>
-        </div>
-
-
-        <div class="era-card">
-            <small>03</small>
-            <h3>近世</h3>
-            <p>
-                大航海時代・宗教改革・絶対王政・清・オスマン・ムガルなど。
-            </p>
-            <div class="era-line"></div>
-        </div>
-
-
-        <div class="era-card">
-            <small>04</small>
-            <h3>近代</h3>
-            <p>
-                市民革命・産業革命・帝国主義・国民国家・世界大戦など。
-            </p>
-            <div class="era-line"></div>
-        </div>
-
-
-        <div class="era-card">
-            <small>05</small>
-            <h3>現代</h3>
-            <p>
-                冷戦・脱植民地化・中国・中東・EU・現代国際社会。
-            </p>
-            <div class="era-line"></div>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     REGIONS
-     ======================================================= -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <div>
-            <div class="section-label">WORLD REGIONS</div>
-
-            <h2 class="section-title">
-                地域から攻める
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="region-grid">
-
-        <div class="region-card">
-            <div class="region-icon">🐉</div>
-            <h3>中国・東アジア</h3>
-            <p>
-                殷・周・秦・漢から唐宋元明清、中華民国・中華人民共和国まで。
-            </p>
-        </div>
-
-
-        <div class="region-card">
-            <div class="region-icon">🏛️</div>
-            <h3>ヨーロッパ</h3>
-            <p>
-                ギリシア・ローマ、フランク、神聖ローマ帝国、英仏露、EUまで。
-            </p>
-        </div>
-
-
-        <div class="region-card">
-            <div class="region-icon">☪️</div>
-            <h3>イスラム・西アジア</h3>
-            <p>
-                正統カリフ、ウマイヤ、アッバース、セルジューク、オスマンなど。
-            </p>
-        </div>
-
-
-        <div class="region-card">
-            <div class="region-icon">🪷</div>
-            <h3>インド</h3>
-            <p>
-                マウリヤ・クシャーナ・グプタ・デリー＝スルタン朝・ムガルなど。
-            </p>
-        </div>
-
-
-        <div class="region-card">
-            <div class="region-icon">🗽</div>
-            <h3>アメリカ</h3>
-            <p>
-                アメリカ独立・南北戦争・世界大戦・冷戦・現代の世界的影響力。
-            </p>
-        </div>
-
-
-        <div class="region-card">
-            <div class="region-icon">🌍</div>
-            <h3>世界史テーマ</h3>
-            <p>
-                大航海時代・産業革命・帝国主義・世界大戦・冷戦などを横断。
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     EXAM MODE
-     ======================================================= -->
-
-<section class="section">
-
-    <div class="exam-box">
-
-        <div>
-
-            <div class="section-label">
-                EXAM STRATEGY
-            </div>
-
-            <h3>
-                難関大世界史で重要なのは<br>
-                「知識量」だけではない。
-            </h3>
-
-            <p>
-                難関大学では、単語を知っているだけでなく、
-                王朝・人物・宗教・交易・戦争・革命などを
-                「年代」「地域」「原因」「結果」の4方向から結びつける力が重要。
-            </p>
-
-            <a href="connections.html" class="primary-button">
-                横のつながりを鍛える
-                →
-            </a>
-
-        </div>
-
-
-        <div class="exam-points">
-
-            <div class="exam-point">
-                <span>★</span>
-                年代を正確にする
-            </div>
-
-            <div class="exam-point">
-                <span>★</span>
-                王朝と人物を結ぶ
-            </div>
-
-            <div class="exam-point">
-                <span>★</span>
-                同時代の地域を比較する
-            </div>
-
-            <div class="exam-point">
-                <span>★</span>
-                原因と結果を説明する
-            </div>
-
-            <div class="exam-point">
-                <span>★</span>
-                最後は自分の言葉で論述する
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 </main>
 
@@ -1717,354 +2011,334 @@ footer {
 
 <footer>
 
-    <div class="footer-inner">
+  <div class="footer-title">
+    世界史 MASTER — World History Study Portal
+  </div>
 
-        <div>
-            <div class="footer-brand">
-                WORLD HISTORY MASTER
-            </div>
-
-            <div>
-                Ancient → Medieval → Early Modern → Modern → Contemporary
-            </div>
-        </div>
-
-        <div>
-            © World History Learning Portal
-        </div>
-
-    </div>
+  <div>
+    年表・人物・地域・因果関係・演習をつないで、
+    世界史を「暗記」から「理解」へ。
+  </div>
 
 </footer>
 
 
+<!-- =======================================================
+     JAVASCRIPT
+     ======================================================= -->
+
 <script>
-/* =========================================================
-   WORLD HISTORY MASTER
-   JavaScript
-   ========================================================= */
-
-/*
-    このトップページのフィルターは、
-    「学習範囲を選ぶ → 専用ページへ進む」
-    という設計。
-
-    今後、timeline.html / emperors.html 等と
-    共通データを持たせたい場合は、この配列を
-    外部JSONなどに分離することも可能。
-*/
-
 
 /* =========================================================
-   1. 基本状態
+   ERA DATA
    ========================================================= */
 
-const state = {
-    era: "all",
-    region: "all",
-    keyword: ""
+const eraData = {
+
+  "古代":{
+    title:"古代世界を攻略",
+    text:
+      "オリエント諸国家、ギリシア・ローマ、中国の秦漢などを中心に、国家形成・宗教・帝国支配の基本構造を確認しましょう。"
+  },
+
+  "中世":{
+    title:"中世世界を攻略",
+    text:
+      "イスラーム世界の成立、キリスト教世界、唐宋・モンゴルなどを、宗教・交易・国家支配の関係から整理しましょう。"
+  },
+
+  "近世":{
+    title:"近世世界を攻略",
+    text:
+      "大航海時代、宗教改革、主権国家の形成、明清帝国などを中心に、世界規模の交流が進んだ時代として理解しましょう。"
+  },
+
+  "近代":{
+    title:"近代世界を攻略",
+    text:
+      "市民革命・産業革命・国民国家・帝国主義を、「革命 → 社会変化 → 国際競争」という流れでつなげて理解しましょう。"
+  },
+
+  "現代":{
+    title:"現代世界を攻略",
+    text:
+      "二度の世界大戦、世界恐慌、冷戦、脱植民地化などを中心に、20世紀の国際秩序がどう変化したかを整理しましょう。"
+  }
+
 };
 
 
 /* =========================================================
-   2. 学習コンテンツの簡易インデックス
-   ---------------------------------------------------------
-   将来的にページ数・検索対象を増やす場合は、
-   この配列に項目を追加する。
+   REGION DATA
    ========================================================= */
 
-const studyIndex = [
+const regionData = {
 
-    {
-        title: "超詳細・世界史年表",
-        page: "timeline.html",
-        eras: ["古代", "中世", "近世", "近代", "現代"],
-        regions: [
-            "中国・東アジア",
-            "ヨーロッパ",
-            "イスラム・西アジア",
-            "インド",
-            "アメリカ",
-            "世界史テーマ"
-        ]
-    },
+  "中国・東アジア":
+    "秦漢・隋唐・宋元・明清から近現代中国まで。王朝交代だけでなく、周辺地域との関係や制度の変化も意識すると強くなります。",
 
-    {
-        title: "皇帝・指導者データベース",
-        page: "emperors.html",
-        eras: ["古代", "中世", "近世", "近代", "現代"],
-        regions: [
-            "中国・東アジア",
-            "ヨーロッパ",
-            "イスラム・西アジア",
-            "インド",
-            "アメリカ"
-        ]
-    },
+  "ヨーロッパ":
+    "ギリシア・ローマ、キリスト教世界、宗教改革、主権国家、革命、産業化、帝国主義、世界大戦までを一本の流れで整理しましょう。",
 
-    {
-        title: "横のつながり",
-        page: "connections.html",
-        eras: ["古代", "中世", "近世", "近代", "現代"],
-        regions: [
-            "中国・東アジア",
-            "ヨーロッパ",
-            "イスラム・西アジア",
-            "インド",
-            "アメリカ"
-        ]
-    },
+  "イスラム・西アジア":
+    "イスラーム成立から諸王朝、オスマン・サファヴィー、近代中東まで。宗派・交易・帝国・列強の関係を整理するのがポイントです。",
 
-    {
-        title: "一問一答クイズ",
-        page: "quiz.html",
-        eras: ["古代", "中世", "近世", "近代", "現代"],
-        regions: [
-            "中国・東アジア",
-            "ヨーロッパ",
-            "イスラム・西アジア",
-            "インド",
-            "アメリカ"
-        ]
-    },
+  "アメリカ":
+    "先住民文明、ヨーロッパ勢力の進出、アメリカ独立、南北戦争、移民・工業化、大国化、20世紀の国際政治までを確認しましょう。"
 
-    {
-        title: "事件の因果関係・論述",
-        page: "causes.html",
-        eras: ["古代", "中世", "近世", "近代", "現代"],
-        regions: [
-            "中国・東アジア",
-            "ヨーロッパ",
-            "イスラム・西アジア",
-            "インド",
-            "アメリカ",
-            "世界史テーマ"
-        ]
+};
+
+
+/* =========================================================
+   ERA SELECTOR
+   ========================================================= */
+
+const eraButtons =
+  document.querySelectorAll(".era-button");
+
+const eraPanel =
+  document.getElementById("eraPanel");
+
+const eraPanelTitle =
+  document.getElementById("eraPanelTitle");
+
+const eraPanelResult =
+  document.getElementById("eraPanelResult");
+
+eraButtons.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const era = button.dataset.era;
+
+    const alreadyActive =
+      button.classList.contains("active");
+
+    eraButtons.forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+    if(alreadyActive){
+
+      eraPanel.classList.remove("show");
+
+      return;
     }
 
-];
+    button.classList.add("active");
 
+    eraPanelTitle.textContent =
+      eraData[era].title;
 
-/* =========================================================
-   3. DOM取得
-   ========================================================= */
+    eraPanelResult.innerHTML = `
+      <strong>${era}</strong><br>
+      ${eraData[era].text}
+      <br><br>
+      <span style="color:var(--blue);">
+        おすすめ：
+      </span>
+      年表で時代の流れを確認
+      → 人物・王朝を整理
+      → 因果関係を確認
+      → 模擬演習へ
+    `;
 
-const eraButtons = document.querySelectorAll(
-    "#eraFilters .filter-button"
-);
+    eraPanel.classList.add("show");
 
-const regionButtons = document.querySelectorAll(
-    "#regionFilters .filter-button"
-);
-
-const searchInput = document.getElementById("searchInput");
-const resetButton = document.getElementById("resetFilters");
-
-
-/* =========================================================
-   4. フィルター状態更新
-   ========================================================= */
-
-function updateEra(era) {
-
-    state.era = era;
-
-    eraButtons.forEach(button => {
-
-        const isActive =
-            button.dataset.filter === era;
-
-        button.classList.toggle("active", isActive);
-
-    });
-
-    updateDashboard();
-}
-
-
-function updateRegion(region) {
-
-    state.region = region;
-
-    regionButtons.forEach(button => {
-
-        const isActive =
-            button.dataset.region === region;
-
-        button.classList.toggle("active", isActive);
-
-    });
-
-    updateDashboard();
-}
-
-
-/* =========================================================
-   5. コンテンツの適合判定
-   ========================================================= */
-
-function matchesFilters(item) {
-
-    const eraMatch =
-        state.era === "all" ||
-        item.eras.includes(state.era);
-
-    const regionMatch =
-        state.region === "all" ||
-        item.regions.includes(state.region);
-
-    const keyword =
-        state.keyword.trim().toLowerCase();
-
-    const keywordMatch =
-        keyword === "" ||
-        item.title.toLowerCase().includes(keyword);
-
-    return eraMatch && regionMatch && keywordMatch;
-}
-
-
-/* =========================================================
-   6. ダッシュボード更新
-   ========================================================= */
-
-function updateDashboard() {
-
-    const cards = document.querySelectorAll(".page-card");
-
-    studyIndex.forEach((item, index) => {
-
-        const card = cards[index];
-
-        if (!card) return;
-
-        const visible = matchesFilters(item);
-
-        card.style.display =
-            visible ? "" : "none";
-
-    });
-
-    /*
-        すべて非表示になった場合でも、
-        ユーザーが検索条件を理解できるようにする。
-    */
-
-    const visibleCount =
-        studyIndex.filter(matchesFilters).length;
-
-    document.title =
-        visibleCount === studyIndex.length
-            ? "WORLD HISTORY MASTER | 世界史学習ポータル"
-            : `${visibleCount}件 | WORLD HISTORY MASTER`;
-}
-
-
-/* =========================================================
-   7. イベント
-   ========================================================= */
-
-eraButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        updateEra(button.dataset.filter);
-
-    });
+  });
 
 });
 
 
-regionButtons.forEach(button => {
+document
+  .getElementById("clearEra")
+  .addEventListener("click",()=>{
 
-    button.addEventListener("click", () => {
-
-        updateRegion(button.dataset.region);
-
+    eraButtons.forEach(btn=>{
+      btn.classList.remove("active");
     });
 
-});
+    eraPanel.classList.remove("show");
 
-
-searchInput.addEventListener("input", event => {
-
-    state.keyword =
-        event.target.value;
-
-    updateDashboard();
-
-});
-
-
-resetButton.addEventListener("click", () => {
-
-    state.era = "all";
-    state.region = "all";
-    state.keyword = "";
-
-    searchInput.value = "";
-
-    eraButtons.forEach(button => {
-
-        button.classList.toggle(
-            "active",
-            button.dataset.filter === "all"
-        );
-
-    });
-
-    regionButtons.forEach(button => {
-
-        button.classList.toggle(
-            "active",
-            button.dataset.region === "all"
-        );
-
-    });
-
-    updateDashboard();
-
-});
+  });
 
 
 /* =========================================================
-   8. キーボード操作
+   REGION SELECTOR
    ========================================================= */
 
-/*
-    /
-    → 検索欄へ移動
+const regionCards =
+  document.querySelectorAll(".region-card");
 
-    ESC
-    → 検索文字を消す
-*/
+const regionPanel =
+  document.getElementById("regionPanel");
 
-document.addEventListener("keydown", event => {
+const regionPanelTitle =
+  document.getElementById("regionPanelTitle");
 
-    if (
-        event.key === "/" &&
-        document.activeElement !== searchInput
-    ) {
+const regionPanelResult =
+  document.getElementById("regionPanelResult");
+
+regionCards.forEach(card=>{
+
+  card.addEventListener("click",()=>{
+
+    const region =
+      card.dataset.region;
+
+    const alreadyActive =
+      card.classList.contains("active");
+
+    regionCards.forEach(item=>{
+      item.classList.remove("active");
+    });
+
+    if(alreadyActive){
+
+      regionPanel.classList.remove("show");
+
+      return;
+    }
+
+    card.classList.add("active");
+
+    regionPanelTitle.textContent =
+      `${region}を攻略`;
+
+    regionPanelResult.innerHTML = `
+      <strong>${region}</strong><br>
+      ${regionData[region]}
+      <br><br>
+      <span style="color:var(--blue);">
+        おすすめ：
+      </span>
+      横のつながり解説で他地域との関係まで確認
+      → 一問一答で用語を確認
+      → 模擬演習で実戦
+    `;
+
+    regionPanel.classList.add("show");
+
+  });
+
+});
+
+
+document
+  .getElementById("clearRegion")
+  .addEventListener("click",()=>{
+
+    regionCards.forEach(card=>{
+      card.classList.remove("active");
+    });
+
+    regionPanel.classList.remove("show");
+
+  });
+
+
+/* =========================================================
+   HEADER STATUS
+   ========================================================= */
+
+const statusDot =
+  document.querySelector(".status-dot");
+
+setInterval(()=>{
+
+  statusDot.style.opacity =
+    statusDot.style.opacity === "0.45"
+    ? "1"
+    : "0.45";
+
+},1800);
+
+
+/* =========================================================
+   CARD KEYBOARD ACCESSIBILITY
+   ========================================================= */
+
+document
+  .querySelectorAll(".era-button,.region-card")
+  .forEach(element=>{
+
+    element.setAttribute("tabindex","0");
+
+    element.addEventListener("keydown",event=>{
+
+      if(event.key === "Enter" ||
+         event.key === " "){
 
         event.preventDefault();
-        searchInput.focus();
 
+        element.click();
+
+      }
+
+    });
+
+  });
+
+
+/* =========================================================
+   SIMPLE SCROLL REVEAL
+   ========================================================= */
+
+const revealElements =
+  document.querySelectorAll(
+    ".section,.special-card,.quick-card,.route-card"
+  );
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          entry.target.style.opacity = "1";
+          entry.target.style.transform =
+            "translateY(0)";
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.08
     }
+  );
 
-    if (event.key === "Escape") {
 
-        searchInput.blur();
+revealElements.forEach(element=>{
 
-    }
+  element.style.opacity = "0";
+
+  element.style.transform =
+    "translateY(12px)";
+
+  element.style.transition =
+    "opacity .5s ease, transform .5s ease";
+
+  observer.observe(element);
 
 });
 
 
 /* =========================================================
-   9. 初期化
+   CURRENT YEAR
    ========================================================= */
 
-updateDashboard();
+const year =
+  new Date().getFullYear();
+
+console.log(
+  `World History MASTER / ${year}`
+);
 
 </script>
 
