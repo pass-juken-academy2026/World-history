@@ -3,26 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>共通テスト風・世界史模擬演習</title>
+<meta name="theme-color" content="#050812">
+<title>世界史 MASTER | 共通テスト風 模擬演習</title>
 
 <style>
-:root{
-  --bg:#0b1020;
-  --panel:#121a2d;
-  --panel2:#18223a;
-  --border:#2b3858;
-  --text:#edf2ff;
-  --muted:#9da9c4;
-  --accent:#6ea8ff;
-  --accent2:#7ee0c3;
-  --danger:#ff7373;
-  --warning:#ffd166;
-  --correct:#55d98a;
-  --shadow:0 12px 35px rgba(0,0,0,.28);
-}
+/* =========================================================
+   WORLD HISTORY MASTER
+   MOCK EXAM / mock-exam.html
+   ========================================================= */
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
@@ -30,1865 +23,3244 @@ html{
 }
 
 body{
-  margin:0;
-  background:
-    radial-gradient(circle at top right,rgba(70,100,180,.15),transparent 35%),
-    var(--bg);
-  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  color:#edf5ff;
+  background:#050812;
   font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
+    "Noto Sans JP",
     "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
     Meiryo,
+    system-ui,
     sans-serif;
   line-height:1.75;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-10;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      circle at 15% 5%,
+      rgba(0,229,255,.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255,200,87,.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(40,90,255,.08),
+      transparent 35%
+    ),
+    #050812;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-9;
+  pointer-events:none;
+  opacity:.12;
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    );
+  background-size:50px 50px;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
 button{
   font:inherit;
 }
 
+::selection{
+  background:rgba(0,229,255,.28);
+  color:#fff;
+}
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root{
+  --bg:#050812;
+  --panel:#0b1220;
+  --panel2:#0e182a;
+  --panel3:#111d31;
+
+  --cyan:#00e5ff;
+  --cyan2:#65efff;
+  --blue:#377dff;
+
+  --gold:#ffc857;
+  --gold2:#ffe29a;
+
+  --green:#63e6a5;
+  --red:#ff7585;
+
+  --text:#edf5ff;
+  --muted:#899ab0;
+  --muted2:#5d6f87;
+
+  --border:rgba(130,160,195,.16);
+  --border-cyan:rgba(0,229,255,.35);
+  --border-gold:rgba(255,200,87,.38);
+
+  --shadow:
+    0 25px 70px rgba(0,0,0,.45);
+
+  --cyan-glow:
+    0 0 20px rgba(0,229,255,.25),
+    0 0 60px rgba(0,229,255,.08);
+
+  --gold-glow:
+    0 0 20px rgba(255,200,87,.25),
+    0 0 60px rgba(255,200,87,.08);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 header{
   position:sticky;
   top:0;
-  z-index:100;
-  backdrop-filter:blur(14px);
-  background:rgba(11,16,32,.88);
-  border-bottom:1px solid var(--border);
+  z-index:1000;
+  height:70px;
+
+  background:rgba(5,8,18,.84);
+  border-bottom:1px solid rgba(0,229,255,.12);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.25);
 }
 
 .header-inner{
-  max-width:1100px;
+  width:min(1250px,92%);
+  height:100%;
   margin:auto;
-  padding:14px 20px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:15px;
 }
 
 .logo{
-  font-weight:800;
-  letter-spacing:.03em;
-}
-
-.logo small{
-  display:block;
-  color:var(--muted);
-  font-size:.72rem;
-  font-weight:500;
-}
-
-.back-btn{
-  text-decoration:none;
-  color:var(--text);
-  border:1px solid var(--border);
-  background:var(--panel);
-  padding:8px 14px;
-  border-radius:10px;
-  transition:.2s;
-}
-
-.back-btn:hover{
-  border-color:var(--accent);
-  transform:translateY(-1px);
-}
-
-main{
-  max-width:1050px;
-  margin:auto;
-  padding:45px 20px 80px;
-}
-
-.hero{
-  text-align:center;
-  margin-bottom:32px;
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 12px;
-  border:1px solid rgba(110,168,255,.35);
-  color:var(--accent);
-  border-radius:999px;
-  font-size:.78rem;
-  margin-bottom:12px;
-}
-
-.hero h1{
-  font-size:clamp(1.8rem,4vw,3rem);
-  margin:0 0 10px;
-  letter-spacing:.02em;
-}
-
-.hero p{
-  color:var(--muted);
-  margin:0 auto;
-  max-width:760px;
-}
-
-.exam-info{
-  margin:28px auto;
-  max-width:900px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  display:flex;
+  align-items:center;
   gap:12px;
 }
 
-.info-box{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:15px;
-  text-align:center;
-}
+.logo-mark{
+  width:39px;
+  height:39px;
 
-.info-box strong{
-  display:block;
-  font-size:1.2rem;
-}
+  display:grid;
+  place-items:center;
 
-.info-box span{
-  color:var(--muted);
-  font-size:.82rem;
-}
-
-.start-panel{
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:28px;
-  box-shadow:var(--shadow);
-  text-align:center;
-  margin-bottom:28px;
-}
-
-.start-panel h2{
-  margin-top:0;
-}
-
-.primary-btn,
-.secondary-btn{
-  border:0;
+  border:1px solid rgba(0,229,255,.42);
   border-radius:11px;
-  padding:12px 20px;
-  cursor:pointer;
-  transition:.2s;
+
+  color:var(--cyan);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(0,229,255,.13),
+      rgba(0,229,255,.02)
+    );
+
+  box-shadow:var(--cyan-glow);
 }
 
-.primary-btn{
-  background:var(--accent);
-  color:#07101f;
+.logo-title{
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:.14em;
+}
+
+.logo-sub{
+  margin-top:2px;
+  color:var(--muted);
+  font-size:8px;
+  letter-spacing:.2em;
+}
+
+.back-btn{
+  padding:8px 13px;
+
+  border:1px solid var(--border);
+  border-radius:9px;
+
+  color:var(--muted);
+
+  background:rgba(255,255,255,.025);
+
+  font-size:11px;
+  font-weight:800;
+
+  transition:
+    .25s ease;
+}
+
+.back-btn:hover{
+  color:var(--cyan);
+  border-color:var(--border-cyan);
+  box-shadow:var(--cyan-glow);
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
+main{
+  padding-bottom:80px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+  padding:60px 0 35px;
+}
+
+.hero-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:7px 12px;
+
+  border:1px solid var(--border-cyan);
+  border-radius:999px;
+
+  background:rgba(0,229,255,.045);
+
+  color:var(--cyan2);
+
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.18em;
+}
+
+.hero-kicker::before{
+  content:"";
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+  background:var(--cyan);
+
+  box-shadow:0 0 12px var(--cyan);
+}
+
+.hero h1{
+  margin-top:20px;
+
+  font-size:
+    clamp(38px,6vw,68px);
+
+  line-height:1.05;
+  letter-spacing:-.05em;
+  font-weight:1000;
+}
+
+.hero h1 span{
+  color:var(--gold);
+  text-shadow:
+    0 0 25px rgba(255,200,87,.17);
+}
+
+.hero-description{
+  max-width:820px;
+  margin-top:18px;
+
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+}
+
+.exam-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:22px;
+}
+
+.info-chip{
+  padding:7px 11px;
+
+  border:1px solid var(--border);
+  border-radius:8px;
+
+  color:#a9bad0;
+
+  background:rgba(255,255,255,.025);
+
+  font-size:9px;
   font-weight:800;
 }
 
-.primary-btn:hover{
-  filter:brightness(1.08);
-  transform:translateY(-1px);
-}
 
-.secondary-btn{
-  background:var(--panel2);
-  color:var(--text);
+/* =========================================================
+   PANEL
+   ========================================================= */
+
+.panel{
+  position:relative;
+
+  margin-bottom:18px;
+  padding:25px;
+
   border:1px solid var(--border);
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14,24,41,.96),
+      rgba(7,13,24,.98)
+    );
+
+  box-shadow:var(--shadow);
 }
 
-.secondary-btn:hover{
-  border-color:var(--accent);
+.panel-title{
+  font-size:18px;
+  font-weight:1000;
 }
 
-#examArea{
-  display:none;
+.panel-description{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
 }
 
-.progress-wrap{
+
+/* =========================================================
+   START SCREEN
+   ========================================================= */
+
+.start-panel{
+  text-align:center;
+  padding:45px 25px;
+}
+
+.start-icon{
+  width:80px;
+  height:80px;
+  margin:0 auto 20px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--border-gold);
+  border-radius:22px;
+
+  color:var(--gold);
+  font-size:37px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,200,87,.12),
+      rgba(255,200,87,.025)
+    );
+
+  box-shadow:var(--gold-glow);
+}
+
+.start-panel h2{
+  font-size:25px;
+  font-weight:1000;
+}
+
+.start-panel p{
+  max-width:700px;
+  margin:10px auto 24px;
+
+  color:var(--muted);
+  font-size:12px;
+}
+
+.start-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  min-width:220px;
+  padding:14px 22px;
+
+  border:1px solid var(--border-gold);
+  border-radius:12px;
+
+  color:#fff0c2;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,200,87,.18),
+      rgba(255,200,87,.04)
+    );
+
+  font-weight:1000;
+
+  cursor:pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.start-button:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+  box-shadow:var(--gold-glow);
+}
+
+.start-note{
+  margin-top:13px;
+  color:var(--muted2);
+  font-size:9px;
+}
+
+
+/* =========================================================
+   EXAM TOP BAR
+   ========================================================= */
+
+.exam-top{
   position:sticky;
-  top:66px;
-  z-index:50;
-  padding:10px 0;
-  background:rgba(11,16,32,.9);
-  backdrop-filter:blur(10px);
+  top:70px;
+  z-index:100;
+
+  padding:12px 0;
+
+  background:rgba(5,8,18,.9);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  border-bottom:1px solid rgba(130,160,195,.08);
+}
+
+.exam-top-inner{
+  width:min(1100px,92%);
+  margin:auto;
 }
 
 .progress-info{
   display:flex;
   justify-content:space-between;
-  color:var(--muted);
-  font-size:.85rem;
+  align-items:center;
+  gap:10px;
+
   margin-bottom:6px;
+
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+}
+
+.progress-info strong{
+  color:var(--cyan);
 }
 
 .progress{
   height:7px;
-  background:#202b45;
-  border-radius:99px;
+
   overflow:hidden;
+
+  border-radius:999px;
+
+  background:#080d17;
+  border:1px solid rgba(130,160,195,.1);
 }
 
 .progress-bar{
+  width:0;
   height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  transition:.3s;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--blue)
+    );
+
+  box-shadow:
+    0 0 14px rgba(0,229,255,.45);
+
+  transition:width .3s ease;
 }
+
+
+/* =========================================================
+   QUESTION
+   ========================================================= */
 
 .question-card{
-  background:var(--panel);
+  margin-top:18px;
+  padding:24px;
+
   border:1px solid var(--border);
-  border-radius:18px;
-  margin:24px 0;
-  overflow:hidden;
-  box-shadow:var(--shadow);
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13,23,39,.95),
+      rgba(7,13,24,.98)
+    );
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.25);
 }
 
-.question-header{
-  padding:18px 22px;
-  border-bottom:1px solid var(--border);
+.question-meta{
   display:flex;
-  justify-content:space-between;
-  gap:15px;
-  align-items:center;
-}
-
-.q-number{
-  font-weight:800;
-  color:var(--accent);
-}
-
-.q-tags{
-  display:flex;
-  gap:6px;
   flex-wrap:wrap;
-  justify-content:flex-end;
+  align-items:center;
+  gap:7px;
 }
 
-.tag{
+.question-number{
+  color:var(--cyan);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.16em;
+}
+
+.badge{
+  padding:3px 8px;
+
   border:1px solid var(--border);
-  color:var(--muted);
   border-radius:999px;
-  padding:2px 9px;
-  font-size:.72rem;
-}
 
-.question-body{
-  padding:22px;
-}
+  color:var(--muted);
 
-.lead{
-  background:#0d1425;
-  border-left:3px solid var(--accent);
-  padding:18px;
-  border-radius:0 10px 10px 0;
-  margin-bottom:22px;
-}
+  background:rgba(255,255,255,.02);
 
-.lead-title{
+  font-size:8px;
   font-weight:800;
-  margin-bottom:8px;
 }
 
-.underline{
-  text-decoration:underline;
-  text-decoration-color:var(--warning);
+.source-label{
+  margin-top:18px;
+
+  color:var(--gold);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.15em;
+}
+
+.lead-box{
+  margin-top:8px;
+  padding:17px 18px;
+
+  border-left:3px solid var(--cyan);
+  border-radius:0 12px 12px 0;
+
+  color:#cbd9e9;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,229,255,.06),
+      rgba(0,229,255,.015)
+    );
+
+  font-size:12px;
+  line-height:2;
+}
+
+.underlined{
+  text-decoration:
+    underline 2px
+    rgba(255,200,87,.9);
+
   text-decoration-thickness:2px;
   text-underline-offset:4px;
+
+  color:#fff0bd;
 }
 
 .question-text{
-  font-weight:700;
-  margin-bottom:16px;
+  margin-top:21px;
+
+  color:#f0f6ff;
+
+  font-size:15px;
+  font-weight:950;
+  line-height:1.7;
 }
 
 .options{
   display:grid;
-  gap:10px;
+  gap:9px;
+
+  margin-top:17px;
 }
 
 .option{
   position:relative;
+
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+
+  padding:13px 15px;
+
+  border:1px solid var(--border);
+  border-radius:11px;
+
+  background:#09111f;
+
+  cursor:pointer;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.option:hover{
+  transform:translateX(2px);
+  border-color:rgba(0,229,255,.25);
+  background:#0d1829;
 }
 
 .option input{
   position:absolute;
   opacity:0;
+  pointer-events:none;
 }
 
-.option label{
-  display:block;
-  padding:13px 15px;
-  border:1px solid var(--border);
-  border-radius:11px;
-  cursor:pointer;
-  background:#10182a;
-  transition:.2s;
-}
+.option-letter{
+  flex:0 0 27px;
 
-.option label:hover{
-  border-color:var(--accent);
-  background:#16213a;
-}
-
-.option input:checked + label{
-  border-color:var(--accent);
-  background:rgba(110,168,255,.13);
-  box-shadow:0 0 0 1px rgba(110,168,255,.2);
-}
-
-.choice-letter{
-  display:inline-flex;
   width:27px;
   height:27px;
-  align-items:center;
-  justify-content:center;
-  border:1px solid var(--border);
-  border-radius:50%;
-  margin-right:9px;
-  font-size:.8rem;
-  color:var(--accent2);
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid rgba(130,160,195,.18);
+  border-radius:7px;
+
+  color:#8ea2ba;
+
+  font-size:10px;
+  font-weight:1000;
 }
 
-.answer-area{
-  display:none;
-  margin-top:18px;
-  padding:18px;
-  background:#0e1627;
-  border:1px solid var(--border);
-  border-radius:12px;
+.option-text{
+  padding-top:2px;
+
+  color:#cdd9e8;
+
+  font-size:12px;
+  line-height:1.6;
 }
 
-.answer-area.show{
-  display:block;
+.option.selected{
+  border-color:var(--border-cyan);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,229,255,.11),
+      rgba(0,229,255,.025)
+    );
+
+  box-shadow:
+    0 0 20px rgba(0,229,255,.05);
 }
 
-.answer-correct{
-  color:var(--correct);
-  font-weight:800;
+.option.selected .option-letter{
+  color:#041018;
+  border-color:var(--cyan);
+  background:var(--cyan);
+  box-shadow:0 0 14px rgba(0,229,255,.35);
 }
 
-.answer-wrong{
-  color:var(--danger);
-  font-weight:800;
-}
 
-.explanation{
-  margin-top:10px;
-  color:#d8deed;
-}
+/* =========================================================
+   SUBMIT
+   ========================================================= */
 
-.explanation strong{
-  color:var(--warning);
-}
-
-.submit-area{
+.submit-panel{
+  margin-top:20px;
   text-align:center;
-  padding:35px 0;
 }
 
-#resultArea{
-  display:none;
+.submit-button{
+  min-width:220px;
+  padding:13px 20px;
+
+  border:1px solid var(--border-cyan);
+  border-radius:11px;
+
+  color:#dfffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,229,255,.14),
+      rgba(0,229,255,.03)
+    );
+
+  font-size:12px;
+  font-weight:1000;
+
+  cursor:pointer;
+
+  transition:.25s ease;
 }
 
-.result-hero{
-  background:linear-gradient(145deg,var(--panel),var(--panel2));
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:32px 24px;
+.submit-button:hover:not(:disabled){
+  transform:translateY(-2px);
+  border-color:var(--cyan);
+  box-shadow:var(--cyan-glow);
+}
+
+.submit-button:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.submit-message{
+  margin-top:9px;
+  color:var(--muted);
+  font-size:9px;
+}
+
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+.result-header{
   text-align:center;
-  box-shadow:var(--shadow);
+  padding:35px 15px 20px;
+}
+
+.result-kicker{
+  color:var(--gold);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.2em;
+}
+
+.result-header h2{
+  margin-top:8px;
+  font-size:27px;
+  font-weight:1000;
 }
 
 .score{
-  font-size:clamp(3rem,10vw,5rem);
-  font-weight:900;
+  margin-top:22px;
+
+  color:var(--cyan);
+
+  font-size:
+    clamp(60px,11vw,105px);
+
   line-height:1;
-  margin:12px 0;
+  font-weight:1000;
+
+  text-shadow:
+    0 0 30px rgba(0,229,255,.22);
 }
 
-.score-message{
+.score small{
   color:var(--muted);
+  font-size:25px;
+  font-weight:800;
+}
+
+.result-message{
+  max-width:700px;
+  margin:18px auto 0;
+
+  color:#a9bad0;
+  font-size:12px;
+}
+
+
+/* =========================================================
+   ANALYSIS
+   ========================================================= */
+
+.analysis-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+
+  margin-bottom:17px;
+}
+
+.analysis-title h3{
+  font-size:17px;
+  font-weight:1000;
+}
+
+.analysis-title span{
+  color:var(--muted2);
+  font-size:8px;
+  letter-spacing:.15em;
 }
 
 .analysis-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin-top:20px;
-}
-
-.analysis-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:22px;
-}
-
-.analysis-card h3{
-  margin-top:0;
-}
-
-.analysis-bar-row{
-  margin:14px 0;
-}
-
-.analysis-label{
-  display:flex;
-  justify-content:space-between;
-  font-size:.86rem;
-  margin-bottom:5px;
-}
-
-.mini-bar{
-  height:8px;
-  background:#202b45;
-  border-radius:99px;
-  overflow:hidden;
-}
-
-.mini-bar span{
-  display:block;
-  height:100%;
-  background:var(--accent);
-  border-radius:99px;
-}
-
-.weakness{
-  border:1px solid rgba(255,209,102,.3);
-  background:rgba(255,209,102,.07);
-  border-radius:14px;
-  padding:18px;
-  margin-top:18px;
-}
-
-.weakness strong{
-  color:var(--warning);
-}
-
-.advice{
-  margin-top:10px;
-  color:#dbe2f0;
-}
-
-.review-section{
-  margin-top:28px;
-}
-
-.review-section h2{
-  margin-bottom:10px;
-}
-
-.review-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:15px;
-  margin:12px 0;
-  overflow:hidden;
-}
-
-.review-toggle{
-  width:100%;
-  background:none;
-  border:0;
-  color:var(--text);
-  padding:17px;
-  text-align:left;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
   gap:15px;
 }
 
-.review-toggle:hover{
-  background:var(--panel2);
+.analysis-box{
+  padding:18px;
+
+  border:1px solid var(--border);
+  border-radius:14px;
+
+  background:#09111e;
 }
 
-.review-content{
-  display:none;
-  padding:0 17px 18px;
-  border-top:1px solid var(--border);
+.analysis-box h4{
+  margin-bottom:13px;
+
+  color:#dceaff;
+
+  font-size:12px;
+  font-weight:900;
 }
 
-.review-content.open{
+.stat-row{
+  margin-top:11px;
+}
+
+.stat-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+
+  color:#aebed1;
+
+  font-size:9px;
+}
+
+.stat-head strong{
+  color:#e7f2ff;
+}
+
+.stat-track{
+  height:8px;
+  margin-top:5px;
+
+  overflow:hidden;
+
+  border-radius:999px;
+
+  background:#050a12;
+}
+
+.stat-fill{
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--blue)
+    );
+
+  transition:width .6s ease;
+}
+
+.stat-row.weak .stat-fill{
+  background:
+    linear-gradient(
+      90deg,
+      var(--red),
+      #ffb36a
+    );
+}
+
+.stat-row.weak .stat-head strong{
+  color:#ff9da9;
+}
+
+
+/* =========================================================
+   DIAGNOSIS
+   ========================================================= */
+
+.diagnosis{
+  position:relative;
+
+  margin-top:15px;
+  padding:22px;
+
+  overflow:hidden;
+
+  border:1px solid var(--border-gold);
+  border-radius:15px;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255,200,87,.08),
+      transparent 35%
+    ),
+    rgba(255,200,87,.025);
+
+  box-shadow:
+    0 0 35px rgba(255,200,87,.035);
+}
+
+.diagnosis::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--gold),
+      transparent
+    );
+
+  box-shadow:0 0 15px rgba(255,200,87,.4);
+}
+
+.diagnosis-label{
+  color:var(--gold);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.17em;
+}
+
+.diagnosis h3{
+  margin-top:8px;
+
+  color:#fff1c7;
+
+  font-size:18px;
+  line-height:1.5;
+}
+
+.diagnosis p{
+  margin-top:9px;
+
+  color:#b9aa88;
+
+  font-size:11px;
+  line-height:1.9;
+}
+
+.diagnosis strong{
+  color:#ffe5a0;
+}
+
+
+/* =========================================================
+   COMBINATION ANALYSIS
+   ========================================================= */
+
+.combo-list{
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+
+.combo-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+
+  padding:11px 13px;
+
+  border:1px solid rgba(130,160,195,.1);
+  border-radius:9px;
+
+  background:rgba(255,255,255,.018);
+}
+
+.combo-name{
+  color:#c8d6e7;
+  font-size:10px;
+}
+
+.combo-rate{
+  color:#ff9ca7;
+  font-size:10px;
+  font-weight:1000;
+}
+
+
+/* =========================================================
+   REVIEW
+   ========================================================= */
+
+.review-header{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+
+  margin-bottom:17px;
+}
+
+.review-header h3{
+  font-size:17px;
+  font-weight:1000;
+}
+
+.review-count{
+  color:var(--red);
+  font-size:9px;
+  font-weight:900;
+}
+
+.review-list{
+  display:grid;
+  gap:11px;
+}
+
+.review-item{
+  padding:16px;
+
+  border:1px solid rgba(255,117,133,.2);
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,117,133,.055),
+      rgba(255,255,255,.012)
+    );
+}
+
+.review-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.review-question{
+  margin-top:10px;
+
+  color:#edf4ff;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.answer-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+
+  margin-top:11px;
+}
+
+.answer-box{
+  padding:10px;
+
+  border-radius:9px;
+
+  background:#080e19;
+
+  font-size:9px;
+}
+
+.answer-box.yours{
+  border:1px solid rgba(255,117,133,.2);
+}
+
+.answer-box.correct{
+  border:1px solid rgba(99,230,165,.2);
+}
+
+.answer-label{
   display:block;
-}
 
-.review-answer{
-  color:var(--correct);
+  margin-bottom:3px;
+
+  color:var(--muted);
+
+  font-size:8px;
   font-weight:800;
 }
 
-.retry-panel{
+.answer-box.yours .answer-text{
+  color:#ffabb5;
+}
+
+.answer-box.correct .answer-text{
+  color:#83eab8;
+}
+
+.explanation{
+  margin-top:12px;
+  padding:12px;
+
+  border-left:2px solid var(--gold);
+
+  color:#aebed1;
+
+  background:rgba(255,200,87,.025);
+
+  font-size:10px;
+  line-height:1.9;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.action-row{
   display:flex;
-  gap:10px;
-  justify-content:center;
   flex-wrap:wrap;
-  margin-top:28px;
-}
+  justify-content:center;
+  gap:10px;
 
-.hidden{
-  display:none!important;
-}
-
-.note{
-  color:var(--muted);
-  font-size:.82rem;
   margin-top:20px;
 }
 
-@media(max-width:700px){
-  .header-inner{
-    padding:12px 14px;
+.action-button{
+  padding:11px 16px;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  color:#b8c8db;
+
+  background:#09111e;
+
+  font-size:10px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.action-button:hover{
+  transform:translateY(-2px);
+  border-color:var(--border-cyan);
+  color:var(--cyan);
+  box-shadow:var(--cyan-glow);
+}
+
+.action-button.gold{
+  border-color:var(--border-gold);
+  color:#ffe2a0;
+}
+
+.action-button.gold:hover{
+  border-color:var(--gold);
+  box-shadow:var(--gold-glow);
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty{
+  padding:25px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  border:1px dashed var(--border);
+  border-radius:12px;
+
+  font-size:11px;
+}
+
+
+/* =========================================================
+   HIDDEN
+   ========================================================= */
+
+.hidden{
+  display:none !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+  padding:35px 0 55px;
+
+  border-top:1px solid rgba(130,160,195,.08);
+
+  color:var(--muted2);
+
+  text-align:center;
+
+  font-size:8px;
+  letter-spacing:.15em;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:760px){
+
+  header{
+    height:62px;
   }
 
-  main{
-    padding:30px 13px 60px;
+  .logo-title{
+    font-size:11px;
   }
 
-  .exam-info,
+  .logo-sub{
+    display:none;
+  }
+
+  .back-btn{
+    padding:7px 9px;
+    font-size:9px;
+  }
+
+  .hero{
+    padding-top:42px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero-description{
+    font-size:12px;
+  }
+
+  .exam-top{
+    top:62px;
+  }
+
+  .panel,
+  .question-card{
+    padding:17px;
+  }
+
   .analysis-grid{
     grid-template-columns:1fr;
   }
 
-  .question-header{
-    align-items:flex-start;
-    flex-direction:column;
+  .answer-grid{
+    grid-template-columns:1fr;
   }
 
-  .q-tags{
-    justify-content:flex-start;
+}
+
+@media(max-width:430px){
+
+  .container{
+    width:91%;
   }
 
-  .question-body{
-    padding:17px;
+  .hero h1{
+    font-size:37px;
   }
 
-  .progress-wrap{
-    top:58px;
+  .exam-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
   }
+
+  .info-chip{
+    text-align:center;
+  }
+
+  .question-text{
+    font-size:14px;
+  }
+
+  .lead-box{
+    font-size:11px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto !important;
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+
 }
 </style>
 </head>
 
+
 <body>
+
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
 
 <header>
   <div class="header-inner">
-    <div class="logo">
-      世界史学習ポータル
-      <small>PAGE 07 / MOCK EXAM</small>
-    </div>
-    <a href="index.html" class="back-btn">← トップへ戻る</a>
+
+    <a href="index.html" class="logo">
+
+      <div class="logo-mark">
+        文
+      </div>
+
+      <div>
+        <div class="logo-title">
+          WORLD HISTORY MASTER
+        </div>
+
+        <div class="logo-sub">
+          MOCK EXAM / COMMON TEST STYLE
+        </div>
+      </div>
+
+    </a>
+
+    <a href="index.html" class="back-btn">
+      ← トップへ戻る
+    </a>
+
   </div>
 </header>
 
+
+<!-- =======================================================
+     HERO
+     ======================================================= -->
+
 <main>
 
-<section class="hero">
-  <div class="badge">共通テスト風・オリジナル模試</div>
-  <h1>世界史 模擬演習</h1>
-  <p>
-    会話文・史料・歴史的状況を読み取りながら解く、
-    共通テスト型の世界史トレーニング。
-    結果からあなたの弱点を自動分析します。
-  </p>
-</section>
+  <section class="container hero">
 
-<div class="exam-info">
-  <div class="info-box">
-    <strong>15問</strong>
-    <span>四択形式</span>
-  </div>
-  <div class="info-box">
-    <strong>古代〜現代</strong>
-    <span>時代を横断</span>
-  </div>
-  <div class="info-box">
-    <strong>弱点分析</strong>
-    <span>時代 × 地域</span>
-  </div>
-</div>
-
-<section class="start-panel" id="startPanel">
-  <h2>第1回 世界史模擬演習</h2>
-  <p>
-    先に答えを見ず、資料と知識を組み合わせて考えてみよう。<br>
-    全15問終了後、間違えた分野を自動分析します。
-  </p>
-  <button class="primary-btn" id="startBtn">模試を開始する</button>
-</section>
-
-<section id="examArea">
-
-  <div class="progress-wrap">
-    <div class="progress-info">
-      <span id="progressText">0 / 15 問</span>
-      <span id="progressPercent">0%</span>
+    <div class="hero-kicker">
+      PAGE 06 / MOCK EXAMINATION
     </div>
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-  </div>
 
-  <div id="questions"></div>
+    <h1>
+      世界史
+      <span>模擬演習</span>
+    </h1>
 
-  <div class="submit-area">
-    <button class="primary-btn" id="submitBtn">
-      採点して弱点分析を見る
-    </button>
-    <p class="note">
-      ※すべての問題に回答すると採点できます。
+    <p class="hero-description">
+      会話文・資料文を読み、知識だけではなく
+      「時代背景」「地域間の関係」「出来事の因果関係」から判断する
+      共通テスト風のオリジナル演習です。
+      全問終了後には、時代・地域ごとの失点を自動分析します。
     </p>
-  </div>
 
-</section>
-
-<section id="resultArea">
-
-  <div class="result-hero">
-    <div class="badge">RESULT</div>
-    <h1>模試結果</h1>
-
-    <div class="score">
-      <span id="scoreNumber">0</span>
-      <span style="font-size:.35em;"> / 15</span>
+    <div class="exam-info">
+      <span class="info-chip">全15問</span>
+      <span class="info-chip">4択形式</span>
+      <span class="info-chip">古代〜現代</span>
+      <span class="info-chip">中国・東アジア</span>
+      <span class="info-chip">ヨーロッパ</span>
+      <span class="info-chip">イスラム・西アジア</span>
+      <span class="info-chip">弱点自動分析</span>
+      <span class="info-chip">間違い再挑戦</span>
     </div>
 
-    <div class="score-message" id="scoreMessage"></div>
-  </div>
+  </section>
 
-  <div class="analysis-grid">
 
-    <div class="analysis-card">
-      <h3>📚 時代別分析</h3>
-      <div id="eraAnalysis"></div>
+  <!-- =====================================================
+       START
+       ===================================================== -->
+
+  <section
+    id="startPanel"
+    class="container panel start-panel"
+  >
+
+    <div class="start-icon">
+      ✍️
     </div>
 
-    <div class="analysis-card">
-      <h3>🌍 地域別分析</h3>
-      <div id="regionAnalysis"></div>
-    </div>
+    <h2>
+      共通テスト風・世界史模擬演習
+    </h2>
 
-  </div>
-
-  <div class="weakness">
-    <div id="weaknessTitle"></div>
-    <div class="advice" id="weaknessAdvice"></div>
-  </div>
-
-  <div class="analysis-card" style="margin-top:18px;">
-    <h3>🎯 今回の学習アドバイス</h3>
-    <div id="overallAdvice"></div>
-  </div>
-
-  <div class="review-section">
-    <h2>📝 間違えた問題を復習</h2>
-    <p class="note">
-      間違えた問題だけを表示しています。クリックすると解説が開きます。
+    <p>
+      15問すべてに回答すると自動採点。
+      その後、「古代・中世・近世・近代・現代」および
+      「中国・東アジア・ヨーロッパ・イスラム・西アジア」の
+      どこで失点したかを分析します。
     </p>
-    <div id="reviewList"></div>
-  </div>
 
-  <div class="retry-panel">
-    <button class="primary-btn" id="retryWrongBtn">
-      間違えた問題だけ解き直す
+    <button
+      id="startBtn"
+      class="start-button"
+      type="button"
+    >
+      模擬演習を開始
+      →
     </button>
-    <button class="secondary-btn" id="retryAllBtn">
-      もう一度15問すべて解く
-    </button>
-  </div>
 
-</section>
+    <div class="start-note">
+      ※すべてオリジナルの設問・解説です。
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       EXAM AREA
+       ===================================================== -->
+
+  <section
+    id="examArea"
+    class="hidden"
+  >
+
+    <div class="exam-top">
+
+      <div class="exam-top-inner">
+
+        <div class="progress-info">
+
+          <span id="progressText">
+            0 / 15 問回答
+          </span>
+
+          <span id="progressPercent">
+            0%
+          </span>
+
+        </div>
+
+        <div class="progress">
+          <div
+            id="progressBar"
+            class="progress-bar"
+          ></div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="questionsContainer"
+      class="container"
+    ></div>
+
+
+    <div class="container panel submit-panel">
+
+      <button
+        id="submitBtn"
+        class="submit-button"
+        type="button"
+        disabled
+      >
+        採点する
+      </button>
+
+      <div
+        id="submitMessage"
+        class="submit-message"
+      >
+        全問に回答すると採点できます。
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       RESULT
+       ===================================================== -->
+
+  <section
+    id="resultArea"
+    class="hidden"
+  >
+
+    <div class="container">
+
+      <div class="panel">
+
+        <div class="result-header">
+
+          <div class="result-kicker">
+            PERFORMANCE ANALYSIS
+          </div>
+
+          <h2>
+            模擬演習 結果
+          </h2>
+
+          <div class="score">
+            <span id="scoreNumber">0</span>
+            <small>
+              / <span id="scoreTotal">15</span>
+            </small>
+          </div>
+
+          <div
+            id="resultMessage"
+            class="result-message"
+          ></div>
+
+        </div>
+
+
+        <!-- ANALYSIS -->
+
+        <div class="analysis-title">
+          <h3>
+            弱点分析
+          </h3>
+
+          <span>
+            AUTOMATIC DIAGNOSIS
+          </span>
+        </div>
+
+        <div
+          id="analysisArea"
+        ></div>
+
+      </div>
+
+
+      <!-- REVIEW -->
+
+      <div class="panel">
+
+        <div class="review-header">
+
+          <h3>
+            間違えた問題の復習
+          </h3>
+
+          <span
+            id="reviewCount"
+            class="review-count"
+          >
+            0問
+          </span>
+
+        </div>
+
+        <div
+          id="reviewList"
+          class="review-list"
+        ></div>
+
+        <div class="action-row">
+
+          <button
+            id="retryWrongBtn"
+            class="action-button gold"
+            type="button"
+          >
+            間違えた問題だけ再挑戦
+          </button>
+
+          <button
+            id="retryAllBtn"
+            class="action-button"
+            type="button"
+          >
+            15問をもう一度
+          </button>
+
+          <button
+            id="backTopBtn"
+            class="action-button"
+            type="button"
+          >
+            トップへ戻る
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </main>
 
+
+<footer>
+  WORLD HISTORY MASTER / ORIGINAL MOCK EXAMINATION
+</footer>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+     ======================================================= -->
+
 <script>
+"use strict";
+
 
 /* =========================================================
-   オリジナル問題データ
-   共通テスト型の「資料・状況→判断」を意識した構成
+   問題データ
+   完全オリジナル
    ========================================================= */
 
-const questions = [
+const QUESTIONS = [
 
-{
-  id:1,
-  era:"古代",
-  region:"ヨーロッパ",
-  topic:"古代ギリシア",
-  leadTitle:"【資料Ⅰ】ポリス世界について",
-  lead:`
-    紀元前5世紀ごろ、エーゲ海周辺では複数のポリスが発展した。
-    あるポリスでは市民が政治に参加する制度が整えられた一方、
-    別のポリスでは少数の市民による軍事的な統制が重視された。
-    このようなポリス間の対立は、やがて大規模な戦争にもつながった。
-  `,
-  question:"下線部の時代に、アテネと対立し、ペロポネソス戦争で中心的な役割を果たしたポリスはどれか。",
-  options:[
-    "スパルタ",
-    "テーベ",
-    "ミレトス",
-    "カルタゴ"
-  ],
-  answer:0,
-  explanation:`
-    正解はスパルタ。ペロポネソス戦争（前431〜前404年）は、
-    デロス同盟を率いたアテネと、ペロポネソス同盟の中心であった
-    スパルタの対立を軸として展開した。
-    アテネの海軍力とスパルタの陸軍力という違いも重要である。
-    「アテネ＝民主政・海軍」「スパルタ＝軍事的社会・陸軍」
-    という対応関係を押さえておこう。
-  `
-},
+  {
+    id:1,
+    era:"古代",
+    region:"ヨーロッパ",
+    topic:"古代ギリシア",
+    leadTitle:"資料文",
+    lead:"紀元前5世紀ごろのギリシア世界について、ある生徒が次のようにまとめた。「ポリスと呼ばれる都市国家が形成され、それぞれ異なる政治制度を発達させた。なかでも、あるポリスでは市民による政治参加が進み、別のポリスでは軍事的な訓練を重視する社会が形成された。」",
+    question:"資料文の「軍事的な訓練を重視する社会」に当てはまるポリスとして最も適切なものを選べ。",
+    options:[
+      "アテネ",
+      "スパルタ",
+      "コリントス",
+      "ミレトス"
+    ],
+    answer:1,
+    explanation:"正解はスパルタ。スパルタでは征服したメッセニア人をヘイロータイとして支配し、市民男性の軍事訓練を重視する社会が形成された。一方、アテネでは市民による政治参加が発達し、直接民主政が成立していった。したがって、資料文の「軍事的な訓練を重視する社会」はスパルタと判断できる。"
+  },
 
-{
-  id:2,
-  era:"古代",
-  region:"イスラム・西アジア",
-  topic:"古代西アジア",
-  leadTitle:"【会話文】古代西アジアの大国",
-  lead:`
-    生徒A「古代の西アジアでは、複数の王朝が広い領域を支配したんだね。」
-    <br>
-    生徒B「そう。特にアケメネス朝は、王の道路や駅伝制などを整備して広大な領域を統治したよ。」
-    <br>
-    先生「では、アケメネス朝の王で、都ペルセポリスの建設を進めた人物を考えてみよう。」
-  `,
-  question:"先生の説明に該当する人物として正しいものはどれか。",
-  options:[
-    "ダレイオス1世",
-    "ハンムラビ王",
-    "アッシュル＝バニパル",
-    "アレクサンドロス"
-  ],
-  answer:0,
-  explanation:`
-    正解はダレイオス1世。アケメネス朝ペルシアを大帝国へ発展させ、
-    州（サトラペイア）を置き、王の道や駅伝制を整備した。
-    また、ギリシア遠征を行い、ペルシア戦争の時代へつながる。
-    「ダレイオス1世＝帝国統治の整備＋ギリシア遠征」は重要な組合せ。
-  `
-},
+  {
+    id:2,
+    era:"古代",
+    region:"イスラム・西アジア",
+    topic:"アケメネス朝",
+    leadTitle:"会話文",
+    lead:"先生「古代の西アジアでは、広大な領域を支配する帝国が成立しました。特にアケメネス朝ペルシアは、地方に総督を置くなどして広い領域を統治しました。」生徒「交通制度や貨幣制度を整えた王も重要ですね。」",
+    question:"会話文で説明されているアケメネス朝の統治を整備した人物として最も適切なものを選べ。",
+    options:[
+      "ハンムラビ王",
+      "ダレイオス1世",
+      "アショーカ王",
+      "アレクサンドロス大王"
+    ],
+    answer:1,
+    explanation:"正解はダレイオス1世。アケメネス朝の最盛期を築いた王で、サトラペイアと呼ばれる属州制度、王の道、貨幣制度などを整備して帝国統治を強化した。ハンムラビ王は古バビロニア王国、アショーカ王はマウリヤ朝、アレクサンドロス大王はマケドニア王国の人物である。"
+  },
 
-{
-  id:3,
-  era:"古代",
-  region:"中国・東アジア",
-  topic:"秦・漢",
-  leadTitle:"【資料Ⅱ】中国統一後の国家",
-  lead:`
-    紀元前3世紀、中国では戦国時代の分裂状態を終わらせた王朝が成立した。
-    この王朝は郡県制を全国に広げ、度量衡や文字などの統一を進めた。
-    しかし、その支配は長続きせず、反乱によって滅亡した。
-    その後、ある王朝が中国を再統一し、中央集権的な国家を発展させた。
-  `,
-  question:"資料中の「中国を再統一し、中央集権的な国家を発展させた王朝」に関する説明として正しいものはどれか。",
-  options:[
-    "武帝の時代に儒学を官学として重視した",
-    "始皇帝が法家思想を否定し、儒学のみを採用した",
-    "唐の太宗が均田制を初めて導入した",
-    "宋の太祖が郡県制を初めて中国全土に導入した"
-  ],
-  answer:0,
-  explanation:`
-    正解は漢の武帝。前漢の武帝は董仲舒の提言を受け、
-    儒学を官学として重視した。また、匈奴への遠征や張騫の派遣など、
-    対外政策も積極的に進めた。
-    秦＝法家を基盤とする統一、漢＝儒学を重視した帝国統治、
-    という流れを整理すると判断しやすい。
-  `
-},
+  {
+    id:3,
+    era:"古代",
+    region:"中国・東アジア",
+    topic:"漢",
+    leadTitle:"資料文",
+    lead:"前漢のある時期、国家は北方の遊牧民への遠征を進め、西方への進出も行った。また、儒学を国家統治と結びつける政策が進められた。この時期には国家による思想統制と官僚制の整備が進んだ。",
+    question:"資料文の時期の皇帝として最も適切なものを選べ。",
+    options:[
+      "始皇帝",
+      "漢の武帝",
+      "唐の太宗",
+      "宋の太祖"
+    ],
+    answer:1,
+    explanation:"正解は漢の武帝。武帝は匈奴への大規模な遠征を行い、張騫を西域へ派遣するなど積極的な対外政策を展開した。また、儒学を官学として重視する方向が強まり、前漢の皇帝権力と儒学の結びつきが強くなった。始皇帝は秦、唐の太宗は唐、宋の太祖は宋の人物なので時代が合わない。"
+  },
 
-{
-  id:4,
-  era:"中世",
-  region:"イスラム・西アジア",
-  topic:"アッバース朝",
-  leadTitle:"【会話文】イスラーム世界の変化",
-  lead:`
-    8世紀、イスラーム世界では新しい王朝が成立した。
-    この王朝はイラクの都市を政治・文化の中心とし、
-    ペルシア系官僚なども登用した。
-    その後、イスラーム世界では地域ごとの自立が進んでいった。
-  `,
-  question:"この王朝として正しいものはどれか。",
-  options:[
-    "アッバース朝",
-    "ウマイヤ朝",
-    "ファーティマ朝",
-    "オスマン帝国"
-  ],
-  answer:0,
-  explanation:`
-    正解はアッバース朝。750年、アブー＝アル＝アッバースが
-    ウマイヤ朝を倒して成立した。首都バグダードは学問・文化の中心として発展した。
-    また、アラブ人中心の支配から、ペルシア人など非アラブ系ムスリムを
-    含む帝国的な統治へと変化した点も重要である。
-  `
-},
+  {
+    id:4,
+    era:"中世",
+    region:"イスラム・西アジア",
+    topic:"イスラーム世界",
+    leadTitle:"資料文",
+    lead:"8世紀半ば、イスラーム世界では新しい王朝が成立した。この王朝はバグダードを中心に政治・経済・文化を発展させ、ギリシア語文献の翻訳などを通じて学問を発展させた。",
+    question:"資料文の王朝として最も適切なものを選べ。",
+    options:[
+      "ウマイヤ朝",
+      "アッバース朝",
+      "セルジューク朝",
+      "オスマン帝国"
+    ],
+    answer:1,
+    explanation:"正解はアッバース朝。750年に成立し、バグダードを都としてイスラーム文化を発展させた。特にギリシア語文献などの翻訳活動が活発となり、数学・医学・天文学などの学問も発展した。ウマイヤ朝はその前の王朝で、ダマスクスを中心とした。"
+  },
 
-{
-  id:5,
-  era:"中世",
-  region:"ヨーロッパ",
-  topic:"十字軍",
-  leadTitle:"【資料Ⅲ】西ヨーロッパと東地中海",
-  lead:`
-    11世紀末以降、西ヨーロッパの諸勢力は東地中海方面へ遠征を行った。
-    宗教的な目的だけでなく、諸侯・騎士の利害や交易など複数の要因が関係していた。
-    遠征を通じて東西の交流も活発になった。
-  `,
-  question:"この遠征についての説明として最も適切なものはどれか。",
-  options:[
-    "ローマ教皇の呼びかけが遠征の契機の一つとなった",
-    "イスラーム側が西ヨーロッパを統一するために開始した",
-    "モンゴル帝国の成立直後に開始された",
-    "ビザンツ帝国が西ヨーロッパを征服するために開始した"
-  ],
-  answer:0,
-  explanation:`
-    正解は「ローマ教皇の呼びかけが契機の一つ」。1095年、
-    教皇ウルバヌス2世がクレルモン宗教会議で遠征を呼びかけた。
-    背景には聖地エルサレムへの関心、ビザンツ帝国への支援、
-    諸侯・騎士の利害などがあった。
-    結果として、東西の交易・文化交流が活発化する一方、
-    東方のキリスト教徒とイスラーム勢力の対立も深まった。
-  `
-},
+  {
+    id:5,
+    era:"中世",
+    region:"ヨーロッパ",
+    topic:"十字軍",
+    leadTitle:"会話文",
+    lead:"生徒「中世ヨーロッパでは、宗教的な目的を掲げた遠征が行われましたが、それだけが原因だったわけではないのですか。」先生「その通りです。宗教的情熱に加え、諸侯や騎士、都市商人など、それぞれ異なる利害が重なっていました。また、東地中海との接触が増えることにもつながりました。」",
+    question:"会話文で説明されている出来事として最も適切なものを選べ。",
+    options:[
+      "十字軍",
+      "宗教改革",
+      "百年戦争",
+      "三十年戦争"
+    ],
+    answer:0,
+    explanation:"正解は十字軍。11世紀末から、聖地エルサレムなどの奪回を掲げて西ヨーロッパから遠征が行われた。宗教的要因だけでなく、諸侯・騎士・都市などの政治的・経済的利害も関係していた。東地中海世界との接触が増えたことも重要である。"
+  },
 
-{
-  id:6,
-  era:"中世",
-  region:"中国・東アジア",
-  topic:"モンゴル帝国",
-  leadTitle:"【会話文】ユーラシアの広域交流",
-  lead:`
-    13世紀、モンゴル高原から勢力を拡大した国家は、
-    中国から中央アジア・ロシア方面に及ぶ広大な領域を支配した。
-    その支配下では、人や物、情報の移動が活発になった。
-  `,
-  question:"モンゴル帝国の拡大によって生じた歴史的変化として正しいものはどれか。",
-  options:[
-    "ユーラシア東西の交流が活発化し、交易路の利用が進んだ",
-    "ヨーロッパと中国の交流が完全に途絶えた",
-    "イスラーム世界が消滅した",
-    "中国では科挙が永久に廃止された"
-  ],
-  answer:0,
-  explanation:`
-    正解は「ユーラシア東西の交流が活発化した」。
-    モンゴル帝国の広域支配により、東アジア・中央アジア・西アジア・
-    東ヨーロッパを結ぶ交通が比較的安定し、人・商品・情報の移動が活発になった。
-    マルコ＝ポーロの旅行記なども、この時代の東西交流を考える手掛かりとなる。
-  `
-},
+  {
+    id:6,
+    era:"中世",
+    region:"中国・東アジア",
+    topic:"モンゴル帝国",
+    leadTitle:"資料文",
+    lead:"13世紀、ユーラシア大陸では広大な領域を支配する国家が成立した。その支配地域では東西の交通が活発になり、商人や旅行者が長距離を移動することが可能となった。中国から西アジア、東ヨーロッパに至る地域が政治的に結びつけられた。",
+    question:"この帝国の基礎を築いた人物として最も適切なものを選べ。",
+    options:[
+      "チンギス＝ハン",
+      "ティムール",
+      "フビライ＝ハン",
+      "バーブル"
+    ],
+    answer:0,
+    explanation:"正解はチンギス＝ハン。1206年にモンゴル高原の諸部族を統合し、大規模な征服活動を開始した。フビライ＝ハンはその後の人物で、中国を支配して元を建国した。したがって「帝国の基礎を築いた人物」という問いではチンギス＝ハンが適切。"
+  },
 
-{
-  id:7,
-  era:"近世",
-  region:"ヨーロッパ",
-  topic:"宗教改革",
-  leadTitle:"【資料Ⅳ】16世紀の宗教状況",
-  lead:`
-    16世紀、西ヨーロッパでは教会のあり方を批判する動きが広がった。
-    ドイツではある神学者が教会の免罪符販売などを批判し、
-    聖書を信仰の基礎とする立場を強調した。
-    この運動は各地の政治的・社会的状況とも結びついた。
-  `,
-  question:"この運動に関する説明として正しいものはどれか。",
-  options:[
-    "ルターの主張はドイツ諸侯の支持を受けて広がった",
-    "ルターはイエズス会を創設した",
-    "宗教改革によってカトリック教会は存在しなくなった",
-    "宗教改革はフランス革命後に始まった"
-  ],
-  answer:0,
-  explanation:`
-    正解は「ルターの主張はドイツ諸侯の支持を受けて広がった」。
-    1517年、ルターが免罪符販売などを批判したことから宗教改革が進展した。
-    ドイツでは諸侯が皇帝や教会勢力との関係の中でルター派を支持する場合もあり、
-    宗教的問題が政治的対立と結びついた。
-    一方、カトリック側も対抗宗教改革を進め、イエズス会などが活動した。
-  `
-},
+  {
+    id:7,
+    era:"近世",
+    region:"ヨーロッパ",
+    topic:"宗教改革",
+    leadTitle:"資料文",
+    lead:"16世紀のヨーロッパでは、教会のあり方に対する批判が広がった。印刷技術の普及も新しい思想の伝播を助けた。ドイツでは教会の贖宥状販売などを批判する人物が現れ、その主張は各地へ広がっていった。",
+    question:"資料文における宗教改革の開始に深く関係する人物は誰か。",
+    options:[
+      "ルター",
+      "カルヴァン",
+      "イグナティウス＝ロヨラ",
+      "トマス＝モア"
+    ],
+    answer:0,
+    explanation:"正解はルター。1517年、ルターは贖宥状販売などを批判する主張を示し、宗教改革の大きな契機を作った。カルヴァンはその後、ジュネーヴを中心に宗教改革を進めた人物。イグナティウス＝ロヨラは対抗宗教改革の中心となるイエズス会を創設した。"
+  },
 
-{
-  id:8,
-  era:"近世",
-  region:"ヨーロッパ",
-  topic:"大航海時代",
-  leadTitle:"【資料Ⅴ】大西洋世界の形成",
-  lead:`
-    15世紀末以降、ヨーロッパ諸国は大西洋を越えて新しい航路・地域へ進出した。
-    背景には東方貿易への関心、イスラーム勢力を経由しない交易路の探索、
-    航海技術の発展などがあった。
-  `,
-  question:"この動きの結果として生じた変化として正しいものはどれか。",
-  options:[
-    "ヨーロッパ・アフリカ・アメリカを結ぶ大西洋交易が発展した",
-    "中国がヨーロッパを植民地化した",
-    "地中海交易がただちに完全消滅した",
-    "アメリカ大陸の諸文明がすべて近代国家へ移行した"
-  ],
-  answer:0,
-  explanation:`
-    正解は「大西洋交易が発展した」。
-    コロンブスの航海以後、ヨーロッパ諸国によるアメリカ大陸への進出が進み、
-    銀・砂糖などの商品、奴隷貿易などを含む大西洋世界が形成された。
-    また、アメリカ大陸からヨーロッパへの銀流入は世界経済にも大きな影響を与えた。
-  `
-},
+  {
+    id:8,
+    era:"近世",
+    region:"ヨーロッパ",
+    topic:"大航海時代",
+    leadTitle:"会話文",
+    lead:"先生「15〜16世紀のヨーロッパ諸国は、アジアとの直接交易を目指して海上航路の開拓を進めました。」生徒「西へ向かって航海した人物もいましたね。」先生「はい。その航海はヨーロッパ人にとってアメリカ大陸との接触につながりました。」",
+    question:"会話文で説明されている航海を行った人物として最も適切なものを選べ。",
+    options:[
+      "コロンブス",
+      "マゼラン",
+      "ヴァスコ＝ダ＝ガマ",
+      "ジェームズ＝クック"
+    ],
+    answer:0,
+    explanation:"正解はコロンブス。1492年、スペインの支援を受けて大西洋を西へ航海し、ヨーロッパ人にとってのアメリカ大陸との本格的な接触につながった。ヴァスコ＝ダ＝ガマはアフリカ南端を回ってインドへ到達した人物。マゼラン艦隊は世界周航を達成した。"
+  },
 
-{
-  id:9,
-  era:"近世",
-  region:"ヨーロッパ",
-  topic:"フランス革命",
-  leadTitle:"【会話文】18世紀末のフランス",
-  lead:`
-    生徒A「フランスでは18世紀末に社会が大きく変化したんだよね。」
-    <br>
-    生徒B「うん。財政危機、身分制社会への不満、啓蒙思想などが背景にあった。」
-    <br>
-    先生「さらに革命後、ヨーロッパの政治秩序そのものにも大きな変化が起きた。」
-  `,
-  question:"フランス革命後の変化として正しいものはどれか。",
-  options:[
-    "ナポレオンの台頭を経て、ヨーロッパ各地へ革命の影響が及んだ",
-    "神聖ローマ帝国がただちに復活した",
-    "絶対王政がフランスで以前より強固になった",
-    "産業革命がフランス革命以前に完全に終了した"
-  ],
-  answer:0,
-  explanation:`
-    正解は「ナポレオンの台頭を経て、革命の影響が広がった」。
-    フランス革命は身分制社会を大きく揺さぶり、法の下の平等などの理念を広げた。
-    ナポレオンは征服を通じてフランスの制度をヨーロッパ各地へ広げた一方、
-    支配への反発から民族意識も刺激した。
-    その後、ウィーン体制によって革命以前の秩序を再構築しようとする動きが生じる。
-  `
-},
+  {
+    id:9,
+    era:"近世",
+    region:"ヨーロッパ",
+    topic:"フランス革命",
+    leadTitle:"資料文",
+    lead:"18世紀末のフランスでは、財政危機、身分制社会への不満、啓蒙思想などが重なった。1789年、第三身分を中心とする政治的変動が始まり、自由や平等を掲げる文書が発表された。",
+    question:"資料文の時期に採択された文書として最も適切なものを選べ。",
+    options:[
+      "権利章典",
+      "フランス人権宣言",
+      "アメリカ独立宣言",
+      "大西洋憲章"
+    ],
+    answer:1,
+    explanation:"正解はフランス人権宣言。1789年8月、フランス革命の過程で採択され、自由・平等・国民主権などの理念を示した。権利章典はイギリス、アメリカ独立宣言は1776年の北米植民地、大西洋憲章は第二次世界大戦期の文書である。"
+  },
 
-{
-  id:10,
-  era:"近代",
-  region:"ヨーロッパ",
-  topic:"産業革命",
-  leadTitle:"【資料Ⅵ】18〜19世紀の社会変化",
-  lead:`
-    18世紀後半のイギリスでは、綿工業や蒸気機関などの発達によって
-    生産方法が大きく変化した。工場制機械工業が発展すると、
-    都市人口が増加し、新しい社会階級も形成された。
-  `,
-  question:"この変化と直接結びつく社会的現象として正しいものはどれか。",
-  options:[
-    "都市労働者階級の形成と労働問題の顕在化",
-    "封建領主による荘園制の復活",
-    "奴隷制を基盤とした農村社会への回帰",
-    "都市人口の減少と自給自足経済への移行"
-  ],
-  answer:0,
-  explanation:`
-    正解は「都市労働者階級の形成と労働問題の顕在化」。
-    産業革命によって工場制機械工業が発展し、
-    農村から都市へ人口が移動する都市化が進んだ。
-    一方、長時間労働などの問題も生じ、労働運動や社会主義思想の発展につながった。
-    「技術革新→工場制→都市化→労働問題→社会主義」という因果関係を覚えたい。
-  `
-},
+  {
+    id:10,
+    era:"近代",
+    region:"ヨーロッパ",
+    topic:"産業革命",
+    leadTitle:"資料文",
+    lead:"18世紀後半のイギリスでは、綿工業などで機械化が進み、工場制生産が広がった。蒸気機関の改良は生産や輸送の発展を後押しし、都市化や労働者階級の形成にもつながった。",
+    question:"資料文の産業革命に関連して、蒸気機関の改良で知られる人物を選べ。",
+    options:[
+      "ワット",
+      "ニュートン",
+      "ダーウィン",
+      "アダム＝スミス"
+    ],
+    answer:0,
+    explanation:"正解はジェームズ＝ワット。蒸気機関を改良し、工場や鉱山などで利用される蒸気動力の発展に大きく寄与した。ニュートンは近代科学、ダーウィンは進化論、アダム＝スミスは経済学・自由主義的経済思想で知られる。"
+  },
 
-{
-  id:11,
-  era:"近代",
-  region:"中国・東アジア",
-  topic:"アヘン戦争",
-  leadTitle:"【資料Ⅶ】19世紀の中国とイギリス",
-  lead:`
-    19世紀前半、中国では清朝が外国貿易を広州に限定していた。
-    一方、イギリスでは中国茶などへの需要が高まる一方、
-    中国との貿易赤字が問題となった。
-    そこでイギリス商人によるある商品の中国への流入が拡大した。
-  `,
-  question:"この状況を背景として起こった戦争後の条約として正しいものはどれか。",
-  options:[
-    "南京条約",
-    "下関条約",
-    "ポーツマス条約",
-    "北京条約"
-  ],
-  answer:0,
-  explanation:`
-    正解は南京条約。アヘン流入をめぐる対立から1840年にアヘン戦争が始まり、
-    清が敗北すると1842年に南京条約が結ばれた。
-    香港島の割譲、上海など5港の開港、公行の廃止などが定められ、
-    清朝の対外関係に大きな変化をもたらした。
-    なお下関条約は日清戦争後の1895年である。
-  `
-},
+  {
+    id:11,
+    era:"近代",
+    region:"中国・東アジア",
+    topic:"アヘン戦争",
+    leadTitle:"資料文",
+    lead:"19世紀前半、清とイギリスの貿易関係は緊張した。イギリス側によるアヘン密貿易と清朝による取り締まりを背景として戦争が起こり、清は敗北した。その後、清はイギリスとの条約を受け入れた。",
+    question:"この戦争の結果、清がイギリスとの間で結んだ条約はどれか。",
+    options:[
+      "南京条約",
+      "下関条約",
+      "北京条約",
+      "天津条約"
+    ],
+    answer:0,
+    explanation:"正解は南京条約。1842年、アヘン戦争で敗れた清はイギリスと南京条約を結び、香港島を割譲し、広州・上海など5港を開港した。この条約を出発点として清は列強との不平等条約関係に組み込まれていった。"
+  },
 
-{
-  id:12,
-  era:"近代",
-  region:"中国・東アジア",
-  topic:"明治維新",
-  leadTitle:"【会話文】19世紀東アジアの変化",
-  lead:`
-    19世紀後半、日本では政治制度や社会制度が大きく改革された。
-    新政府は中央集権化を進め、徴兵制や地租改正などを実施した。
-    また、欧米諸国に追いつくことを目指して近代化を進めた。
-  `,
-  question:"この時期の日本について正しい説明はどれか。",
-  options:[
-    "廃藩置県によって中央集権的な国家体制を強化した",
-    "科挙を導入して官僚を登用した",
-    "鎖国を強化し外国との交流を完全に停止した",
-    "清朝が日本の政治改革を主導した"
-  ],
-  answer:0,
-  explanation:`
-    正解は「廃藩置県によって中央集権化を強化した」。
-    明治政府は1869年の版籍奉還、1871年の廃藩置県を通じて
-    藩を廃止し、中央政府が全国を直接統治する体制を整えた。
-    その後、徴兵令・地租改正・学校制度などを整備し、
-    富国強兵・殖産興業を進めた。
-  `
-},
+  {
+    id:12,
+    era:"近代",
+    region:"中国・東アジア",
+    topic:"明治維新",
+    leadTitle:"会話文",
+    lead:"生徒「19世紀後半の東アジアでは、日本でも大きな政治変動が起こりました。」先生「はい。旧来の政治体制を改め、中央集権化、徴兵制、学校制度、産業育成などを進める新政府が成立しました。」",
+    question:"この政治変動の出発点として最も適切な出来事を選べ。",
+    options:[
+      "大政奉還",
+      "辛亥革命",
+      "五・四運動",
+      "甲午農民戦争"
+    ],
+    answer:0,
+    explanation:"正解は大政奉還。1867年、徳川慶喜が政権を朝廷に返上し、その後の王政復古などを経て明治政府が成立した。明治政府は廃藩置県、徴兵令、学制などを進め、日本の近代国家化を推進した。"
+  },
 
-{
-  id:13,
-  era:"近代",
-  region:"ヨーロッパ",
-  topic:"第一次世界大戦",
-  leadTitle:"【資料Ⅷ】20世紀初頭の国際関係",
-  lead:`
-    20世紀初頭のヨーロッパでは、列強間の対立が強まっていた。
-    軍備拡張、植民地をめぐる競争、民族問題などが重なり、
-    複数の国が二つの陣営に分かれて対立した。
-    1914年、バルカン半島で起きた事件を契機に大戦が始まった。
-  `,
-  question:"第一次世界大戦後の国際秩序について正しいものはどれか。",
-  options:[
-    "国際連盟が設立された",
-    "ワルシャワ条約機構が設立された",
-    "EUが成立した",
-    "NATOが設立された"
-  ],
-  answer:0,
-  explanation:`
-    正解は国際連盟。第一次世界大戦後、アメリカ大統領ウィルソンが
-    提唱した国際協調の理念などを背景に、国際連盟が設立された。
-    ただしアメリカは上院の反対で加盟しなかった。
-    「第一次世界大戦→ヴェルサイユ体制→国際連盟」という流れを押さえよう。
-  `
-},
+  {
+    id:13,
+    era:"近代",
+    region:"ヨーロッパ",
+    topic:"第一次世界大戦",
+    leadTitle:"資料文",
+    lead:"第一次世界大戦後、再び大規模な戦争が起こることを防ぐため、国際的な協力体制が模索された。アメリカ大統領ウィルソンは国際的な平和構想を提示し、その後、国際機関が設立された。",
+    question:"第一次世界大戦後に設立された国際機関はどれか。",
+    options:[
+      "国際連盟",
+      "国際連合",
+      "NATO",
+      "コミンテルン"
+    ],
+    answer:0,
+    explanation:"正解は国際連盟。1920年に発足し、国際協調によって平和を維持することを目指した。アメリカはウィルソンが設立を提唱したものの、国内政治上の事情から加盟しなかった。国際連合は第二次世界大戦後の1945年に成立した。"
+  },
 
-{
-  id:14,
-  era:"現代",
-  region:"ヨーロッパ",
-  topic:"第二次世界大戦",
-  leadTitle:"【資料Ⅸ】戦間期から第二次世界大戦へ",
-  lead:`
-    第一次世界大戦後、ヨーロッパでは新しい国際秩序が形成されたが、
-    世界恐慌や各国の経済・政治的不安定化によって緊張が高まった。
-    ドイツではナチ党が勢力を拡大し、対外膨張政策を進めた。
-  `,
-  question:"第二次世界大戦後の国際関係として正しいものはどれか。",
-  options:[
-    "アメリカとソ連を中心とする冷戦構造が形成された",
-    "ヨーロッパ列強による植民地支配が以前より安定した",
-    "国際連盟がそのまま国際連合へ改組された",
-    "ドイツ帝国が復活した"
-  ],
-  answer:0,
-  explanation:`
-    正解は「アメリカとソ連を中心とする冷戦構造が形成された」。
-    第二次世界大戦後、アメリカとソ連は政治・経済・軍事・イデオロギー面で対立した。
-    1947年のトルーマン＝ドクトリンやマーシャル＝プラン、
-    ソ連側の対抗措置などから東西対立が明確になっていった。
-    なお国際連合は国際連盟とは別に1945年に成立した。
-  `
-},
+  {
+    id:14,
+    era:"現代",
+    region:"ヨーロッパ",
+    topic:"冷戦",
+    leadTitle:"資料文",
+    lead:"第二次世界大戦後、世界ではアメリカとソ連を中心とした対立が強まった。ヨーロッパでは東西の政治・経済体制が分かれ、西側諸国は共同防衛体制を形成した。",
+    question:"1949年に西側諸国を中心として結成された軍事同盟はどれか。",
+    options:[
+      "ワルシャワ条約機構",
+      "NATO",
+      "EC",
+      "ASEAN"
+    ],
+    answer:1,
+    explanation:"正解はNATO（北大西洋条約機構）。1949年に成立し、アメリカ・西ヨーロッパ諸国などが参加した。これに対して東側陣営では1955年にワルシャワ条約機構が成立した。冷戦では軍事・経済・政治の各分野で東西対立が展開された。"
+  },
 
-{
-  id:15,
-  era:"現代",
-  region:"イスラム・西アジア",
-  topic:"冷戦と中東",
-  leadTitle:"【会話文】第二次世界大戦後の中東",
-  lead:`
-    20世紀後半、中東では第二次世界大戦後の国際情勢、
-    植民地支配からの独立、パレスチナ問題などが複雑に絡み合った。
-    1948年にはイスラエルが建国され、周辺のアラブ諸国との間で戦争が起こった。
-  `,
-  question:"第二次世界大戦後の中東情勢について正しいものはどれか。",
-  options:[
-    "イスラエル建国をめぐって第一次中東戦争が起こった",
-    "オスマン帝国がイスラエルを建国した",
-    "冷戦終結後に初めて中東で国家間戦争が起こった",
-    "パレスチナ問題は19世紀以前に完全に解決していた"
-  ],
-  answer:0,
-  explanation:`
-    正解は「イスラエル建国をめぐって第一次中東戦争が起こった」。
-    1948年のイスラエル建国後、周辺アラブ諸国との間で第一次中東戦争が起こった。
-    その後も中東戦争が繰り返され、パレスチナ問題は国際政治上の重要な問題となった。
-    中東史では「帝国支配→民族運動→委任統治→イスラエル建国→中東戦争」
-    という大きな流れを意識すると整理しやすい。
-  `
-}
+  {
+    id:15,
+    era:"現代",
+    region:"イスラム・西アジア",
+    topic:"中東問題",
+    leadTitle:"資料文",
+    lead:"第二次世界大戦後、パレスチナをめぐる問題は国際政治上の重要な争点となった。1948年にはイスラエルが建国され、これをきっかけとして周辺のアラブ諸国との戦争が始まった。",
+    question:"資料文で述べられている1948年に始まった戦争は何か。",
+    options:[
+      "第一次中東戦争",
+      "六日戦争",
+      "湾岸戦争",
+      "イラン・イラク戦争"
+    ],
+    answer:0,
+    explanation:"正解は第一次中東戦争。1948年のイスラエル建国後、周辺のアラブ諸国が介入して戦争が始まった。六日戦争は1967年、湾岸戦争は1990〜91年、イラン・イラク戦争は1980〜88年なので年代が異なる。"
+  }
 
 ];
 
 
 /* =========================================================
-   状態管理
+   STATE
    ========================================================= */
 
-let currentQuestions = [...questions];
+let currentQuestions = [...QUESTIONS];
+
 let userAnswers = {};
+
 let submitted = false;
 
 
 /* =========================================================
-   DOM
+   DOM HELPER
    ========================================================= */
 
-const startPanel = document.getElementById("startPanel");
-const examArea = document.getElementById("examArea");
-const resultArea = document.getElementById("resultArea");
-const questionsEl = document.getElementById("questions");
-
-const progressText = document.getElementById("progressText");
-const progressPercent = document.getElementById("progressPercent");
-const progressBar = document.getElementById("progressBar");
+const $ = id => document.getElementById(id);
 
 
 /* =========================================================
-   模試開始
+   HTML ESCAPE
    ========================================================= */
 
-document.getElementById("startBtn").addEventListener("click", () => {
-  startExam(questions);
-});
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
 
 function startExam(questionSet){
 
-  currentQuestions = questionSet;
+  if(!questionSet || questionSet.length === 0){
+    return;
+  }
+
+  currentQuestions = [...questionSet];
+
   userAnswers = {};
+
   submitted = false;
 
-  startPanel.style.display = "none";
-  resultArea.style.display = "none";
-  examArea.style.display = "block";
+  $("startPanel")
+    .classList
+    .add("hidden");
+
+  $("resultArea")
+    .classList
+    .add("hidden");
+
+  $("examArea")
+    .classList
+    .remove("hidden");
 
   renderQuestions();
+
   updateProgress();
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
 
 
 /* =========================================================
-   問題描画
+   RENDER QUESTIONS
    ========================================================= */
 
 function renderQuestions(){
 
-  questionsEl.innerHTML = "";
+  const container =
+    $("questionsContainer");
 
-  currentQuestions.forEach((q,index)=>{
+  container.innerHTML = "";
 
-    const card = document.createElement("article");
-    card.className = "question-card";
-    card.dataset.id = q.id;
+  currentQuestions.forEach(
+    (q,index) => {
 
-    const letters = ["A","B","C","D"];
+      const card =
+        document.createElement("article");
 
-    card.innerHTML = `
-      <div class="question-header">
-        <div>
-          <span class="q-number">第${index+1}問</span>
-        </div>
+      card.className =
+        "question-card";
 
-        <div class="q-tags">
-          <span class="tag">${q.era}</span>
-          <span class="tag">${q.region}</span>
-          <span class="tag">${q.topic}</span>
-        </div>
-      </div>
+      card.id =
+        `question-${q.id}`;
 
-      <div class="question-body">
 
-        <div class="lead">
-          <div class="lead-title">${q.leadTitle}</div>
-          ${q.lead}
-        </div>
+      /* META */
 
-        <div class="question-text">
-          ${q.question}
-        </div>
+      const meta =
+        document.createElement("div");
 
-        <div class="options">
+      meta.className =
+        "question-meta";
 
-          ${q.options.map((option,i)=>`
-            <div class="option">
-              <input
-                type="radio"
-                name="q${q.id}"
-                id="q${q.id}_${i}"
-                value="${i}"
-              >
+      meta.innerHTML = `
+        <span class="question-number">
+          QUESTION ${String(index+1).padStart(2,"0")}
+        </span>
 
-              <label for="q${q.id}_${i}">
-                <span class="choice-letter">${letters[i]}</span>
-                ${option}
-              </label>
-            </div>
-          `).join("")}
+        <span class="badge">
+          ${escapeHTML(q.era)}
+        </span>
 
-        </div>
+        <span class="badge">
+          ${escapeHTML(q.region)}
+        </span>
 
-        <div class="answer-area" id="answer-${q.id}">
-        </div>
+        <span class="badge">
+          ${escapeHTML(q.topic)}
+        </span>
+      `;
 
-      </div>
-    `;
 
-    questionsEl.appendChild(card);
+      /* SOURCE LABEL */
 
-    card.querySelectorAll("input").forEach(input=>{
-      input.addEventListener("change",()=>{
-        userAnswers[q.id] = Number(input.value);
-        updateProgress();
-      });
-    });
+      const sourceLabel =
+        document.createElement("div");
 
-  });
+      sourceLabel.className =
+        "source-label";
+
+      sourceLabel.textContent =
+        q.leadTitle;
+
+
+      /* LEAD */
+
+      const lead =
+        document.createElement("div");
+
+      lead.className =
+        "lead-box";
+
+      lead.innerHTML =
+        formatLead(q.lead);
+
+
+      /* QUESTION */
+
+      const question =
+        document.createElement("div");
+
+      question.className =
+        "question-text";
+
+      question.textContent =
+        q.question;
+
+
+      /* OPTIONS */
+
+      const options =
+        document.createElement("div");
+
+      options.className =
+        "options";
+
+
+      q.options.forEach(
+        (optionText,optIndex) => {
+
+          const label =
+            document.createElement("label");
+
+          label.className =
+            "option";
+
+          const letter =
+            String.fromCharCode(
+              65 + optIndex
+            );
+
+          label.innerHTML = `
+            <input
+              type="radio"
+              name="question-${q.id}"
+              value="${optIndex}"
+            >
+
+            <span class="option-letter">
+              ${letter}
+            </span>
+
+            <span class="option-text">
+              ${escapeHTML(optionText)}
+            </span>
+          `;
+
+
+          const input =
+            label.querySelector("input");
+
+
+          input.addEventListener(
+            "change",
+            () => {
+
+              userAnswers[q.id] =
+                Number(input.value);
+
+              options
+                .querySelectorAll(".option")
+                .forEach(
+                  el =>
+                    el.classList.remove(
+                      "selected"
+                    )
+                );
+
+              label.classList.add(
+                "selected"
+              );
+
+              updateProgress();
+
+            }
+          );
+
+
+          options.appendChild(label);
+
+        }
+      );
+
+
+      card.append(
+        meta,
+        sourceLabel,
+        lead,
+        question,
+        options
+      );
+
+
+      container.appendChild(card);
+
+    }
+  );
+
 }
 
 
 /* =========================================================
-   進捗
+   LEAD FORMAT
+   ========================================================= */
+
+function formatLead(text){
+
+  const escaped =
+    escapeHTML(text);
+
+  const keywords = [
+    "ポリス",
+    "軍事的な訓練を重視する社会",
+    "アケメネス朝ペルシア",
+    "地方に総督を置く",
+    "儒学を国家統治と結びつける",
+    "バグダード",
+    "ギリシア語文献の翻訳",
+    "宗教的な目的を掲げた遠征",
+    "東西の交通",
+    "贖宥状",
+    "印刷技術",
+    "アジアとの直接交易",
+    "アメリカ大陸",
+    "自由や平等",
+    "蒸気機関",
+    "アヘン密貿易",
+    "大政奉還",
+    "国際的な平和構想",
+    "西側諸国",
+    "イスラエルが建国"
+  ];
+
+  let result = escaped;
+
+  keywords.forEach(keyword => {
+
+    const safe =
+      escapeHTML(keyword);
+
+    result =
+      result.replace(
+        safe,
+        `<span class="underlined">${safe}</span>`
+      );
+
+  });
+
+  return result;
+
+}
+
+
+/* =========================================================
+   PROGRESS
    ========================================================= */
 
 function updateProgress(){
 
-  const answered = Object.keys(userAnswers).length;
-  const total = currentQuestions.length;
-  const percent = Math.round((answered / total) * 100);
+  const answered =
+    Object.keys(userAnswers).length;
 
-  progressText.textContent = `${answered} / ${total} 問`;
-  progressPercent.textContent = `${percent}%`;
-  progressBar.style.width = `${percent}%`;
+  const total =
+    currentQuestions.length;
+
+  const percent =
+    total === 0
+      ? 0
+      : Math.round(
+          answered / total * 100
+        );
+
+
+  $("progressText").textContent =
+    `${answered} / ${total} 問回答`;
+
+  $("progressPercent").textContent =
+    `${percent}%`;
+
+  $("progressBar").style.width =
+    `${percent}%`;
+
+
+  const complete =
+    answered === total;
+
+
+  $("submitBtn").disabled =
+    !complete;
+
+
+  if(complete){
+
+    $("submitMessage").textContent =
+      "全問回答済み。採点できます。";
+
+  }else{
+
+    $("submitMessage").textContent =
+      `あと ${total - answered} 問です。`;
+
+  }
+
 }
 
 
 /* =========================================================
-   採点
+   SUBMIT
    ========================================================= */
 
-document.getElementById("submitBtn").addEventListener("click",()=>{
+function submitExam(){
 
-  if(Object.keys(userAnswers).length !== currentQuestions.length){
+  if(
+    Object.keys(userAnswers).length
+    !== currentQuestions.length
+  ){
 
-    const unanswered = currentQuestions.length -
-      Object.keys(userAnswers).length;
+    alert(
+      "すべての問題に回答してください。"
+    );
 
-    alert(`まだ${unanswered}問未回答です。すべて回答してください。`);
     return;
   }
 
+
+  const result =
+    calculateResult();
+
   submitted = true;
 
-  const result = calculateResult();
-
-  showAnswerFeedback(result);
   showResult(result);
+
+}
+
+
+/* =========================================================
+   CALCULATE
+   ========================================================= */
+
+function calculateResult(){
+
+  let correct = 0;
+
+  const wrong = [];
+
+
+  currentQuestions.forEach(q => {
+
+    if(
+      userAnswers[q.id]
+      === q.answer
+    ){
+
+      correct++;
+
+    }else{
+
+      wrong.push(q);
+
+    }
+
+  });
+
+
+  return {
+
+    correct,
+
+    total:
+      currentQuestions.length,
+
+    wrong,
+
+    percent:
+      Math.round(
+        correct /
+        currentQuestions.length *
+        100
+      )
+
+  };
+
+}
+
+
+/* =========================================================
+   SHOW RESULT
+   ========================================================= */
+
+function showResult(result){
+
+  $("examArea")
+    .classList
+    .add("hidden");
+
+  $("resultArea")
+    .classList
+    .remove("hidden");
+
+
+  $("scoreNumber").textContent =
+    result.correct;
+
+  $("scoreTotal").textContent =
+    result.total;
+
+
+  let message;
+
+
+  if(result.percent >= 90){
+
+    message =
+      "かなり高い完成度です。知識の確認だけでなく、資料文から根拠を拾う精度も維持しましょう。";
+
+  }else if(result.percent >= 70){
+
+    message =
+      "かなり良い状態です。ここからは弱点分析に表示された時代・地域を優先して復習すると効率的です。";
+
+  }else if(result.percent >= 50){
+
+    message =
+      "基礎知識はあります。間違えた問題の解説を読み、単語ではなく「原因→出来事→結果」の流れで覚え直しましょう。";
+
+  }else{
+
+    message =
+      "ここから伸びる余地が大きいです。まずは間違えた問題を復習し、時代と地域の位置関係から整理していきましょう。";
+
+  }
+
+
+  $("resultMessage").textContent =
+    message;
+
+
+  renderAnalysis();
+
+  renderReview(result.wrong);
+
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
-});
 
-
-function calculateResult(){
-
-  let score = 0;
-  const wrong = [];
-
-  currentQuestions.forEach(q=>{
-
-    const selected = userAnswers[q.id];
-
-    if(selected === q.answer){
-      score++;
-    }else{
-      wrong.push(q);
-    }
-
-  });
-
-  return {
-    score,
-    wrong
-  };
 }
 
 
 /* =========================================================
-   各問題に正誤・解説表示
+   CREATE STATS
    ========================================================= */
 
-function showAnswerFeedback(result){
+function createStats(
+  key,
+  names
+){
 
-  currentQuestions.forEach(q=>{
+  return names
 
-    const area = document.getElementById(`answer-${q.id}`);
+    .map(name => {
 
-    const selected = userAnswers[q.id];
-    const correct = selected === q.answer;
+      const qs =
+        currentQuestions.filter(
+          q => q[key] === name
+        );
 
-    area.classList.add("show");
+      const total =
+        qs.length;
 
-    area.innerHTML = `
-      <div class="${correct ? "answer-correct" : "answer-wrong"}">
-        ${correct ? "✓ 正解！" : "✕ 不正解"}
-      </div>
+      const wrong =
+        qs.filter(
+          q =>
+            userAnswers[q.id]
+            !== q.answer
+        ).length;
 
-      <div style="margin-top:7px;">
-        正答：
-        <strong>
-          ${["A","B","C","D"][q.answer]}．${q.options[q.answer]}
-        </strong>
-      </div>
 
-      <div class="explanation">
-        <strong>講師解説：</strong><br>
-        ${q.explanation}
-      </div>
-    `;
+      return {
 
-  });
+        name,
+
+        total,
+
+        wrong,
+
+        rate:
+          total === 0
+            ? 0
+            : Math.round(
+                wrong / total * 100
+              )
+
+      };
+
+    })
+
+    .filter(
+      item => item.total > 0
+    );
+
 }
 
 
 /* =========================================================
-   結果画面
+   GET WEAKEST
    ========================================================= */
 
-function showResult(result){
+function getWeakest(stats){
 
-  examArea.style.display = "none";
-  resultArea.style.display = "block";
-
-  document.getElementById("scoreNumber").textContent = result.score;
-
-  let message = "";
-
-  if(result.score === 15){
-    message = "満点！知識と資料読解の両方がかなり安定しています。";
-  }else if(result.score >= 12){
-    message = "かなり良い仕上がり。あとは細かい時代・地域の穴を埋めよう。";
-  }else if(result.score >= 9){
-    message = "基礎はできています。間違えた分野を重点的に復習すると伸びます。";
-  }else if(result.score >= 6){
-    message = "知識のつながりを整理する段階。間違えた問題を中心に復習しよう。";
-  }else{
-    message = "まずは時代の流れを作ろう。復習モードを使って一つずつ固めればOK。";
+  if(!stats.length){
+    return null;
   }
 
-  document.getElementById("scoreMessage").textContent = message;
+  return [...stats].sort(
+    (a,b) =>
+      b.rate - a.rate
+      ||
+      b.wrong - a.wrong
+  )[0];
 
-  renderAnalysis();
-  renderReview(result.wrong);
 }
 
 
 /* =========================================================
-   弱点分析
+   RENDER ANALYSIS
    ========================================================= */
 
 function renderAnalysis(){
 
-  const eras = ["古代","中世","近世","近代","現代"];
+  const eras = [
+    "古代",
+    "中世",
+    "近世",
+    "近代",
+    "現代"
+  ];
+
   const regions = [
     "中国・東アジア",
     "ヨーロッパ",
     "イスラム・西アジア"
   ];
 
-  const eraStats = createStats("era",eras);
-  const regionStats = createStats("region",regions);
 
-  renderStatBars(
-    document.getElementById("eraAnalysis"),
-    eraStats
-  );
+  const eraStats =
+    createStats(
+      "era",
+      eras
+    );
 
-  renderStatBars(
-    document.getElementById("regionAnalysis"),
-    regionStats
-  );
+  const regionStats =
+    createStats(
+      "region",
+      regions
+    );
 
-  const weakestEra = getWeakest(eraStats);
-  const weakestRegion = getWeakest(regionStats);
 
-  const eraRate =
-    weakestEra.total === 0
-    ? 0
-    : weakestEra.wrong / weakestEra.total;
+  const weakestEra =
+    getWeakest(eraStats);
 
-  const regionRate =
-    weakestRegion.total === 0
-    ? 0
-    : weakestRegion.wrong / weakestRegion.total;
+  const weakestRegion =
+    getWeakest(regionStats);
 
-  let weakness;
-
-  /*
-   * 時代と地域を掛け合わせて、
-   * 最も弱点率が高い組み合わせを探す。
-   */
 
   const combinations = [];
 
-  eras.forEach(era=>{
 
-    regions.forEach(region=>{
+  eras.forEach(era => {
 
-      const qs = questions.filter(
-        q=>q.era===era && q.region===region
-      );
+    regions.forEach(region => {
 
-      if(qs.length === 0) return;
+      const qs =
+        currentQuestions.filter(
+          q =>
+            q.era === era
+            &&
+            q.region === region
+        );
 
-      let wrong = 0;
 
-      qs.forEach(q=>{
-        if(userAnswers[q.id] !== q.answer){
-          wrong++;
-        }
-      });
+      if(!qs.length){
+        return;
+      }
+
+
+      const wrong =
+        qs.filter(
+          q =>
+            userAnswers[q.id]
+            !== q.answer
+        ).length;
+
 
       combinations.push({
+
         era,
+
         region,
+
         total:qs.length,
+
         wrong,
-        rate:wrong / qs.length
+
+        rate:
+          Math.round(
+            wrong / qs.length * 100
+          )
+
       });
 
     });
 
   });
 
-  combinations.sort((a,b)=>{
-    if(b.rate !== a.rate){
-      return b.rate - a.rate;
-    }
-    return b.wrong - a.wrong;
-  });
 
-  const strongestWeakness = combinations[0];
-
-  if(strongestWeakness && strongestWeakness.wrong > 0){
-
-    weakness = strongestWeakness;
-
-    document.getElementById("weaknessTitle").innerHTML =
-      `あなたの弱点は <strong>【${weakness.era}${weakness.region}】</strong> です。`;
-
-    document.getElementById("weaknessAdvice").textContent =
-      getAdvice(weakness.era,weakness.region);
-
-  }else if(weakestEra.wrong > 0){
-
-    document.getElementById("weaknessTitle").innerHTML =
-      `今回の弱点は <strong>【${weakestEra.name}】</strong> です。`;
-
-    document.getElementById("weaknessAdvice").textContent =
-      getAdvice(weakestEra.name,"");
-
-  }else{
-
-    document.getElementById("weaknessTitle").innerHTML =
-      `🎉 今回は全問正解！`;
-
-    document.getElementById("weaknessAdvice").textContent =
-      "弱点は見つかりませんでした。次は資料の読み取りスピードと、似た用語の区別を意識してさらに精度を上げよう。";
-
-  }
-
-  document.getElementById("overallAdvice").innerHTML =
-    createOverallAdvice(eraStats,regionStats);
-
-}
+  combinations.sort(
+    (a,b) =>
+      b.rate - a.rate
+      ||
+      b.wrong - a.wrong
+  );
 
 
-/* =========================================================
-   統計計算
-   ========================================================= */
+  let html = `
 
-function createStats(key,names){
+    <div class="analysis-grid">
 
-  return names.map(name=>{
+      <div class="analysis-box">
 
-    const qs = questions.filter(q=>q[key]===name);
+        <h4>
+          時代別・失点率
+        </h4>
 
-    let wrong = 0;
-
-    qs.forEach(q=>{
-      if(userAnswers[q.id] !== q.answer){
-        wrong++;
-      }
-    });
-
-    return {
-      name,
-      total:qs.length,
-      wrong,
-      correct:qs.length - wrong,
-      rate:qs.length
-        ? (qs.length - wrong) / qs.length
-        : 0
-    };
-
-  });
-
-}
-
-
-function getWeakest(stats){
-
-  const active = stats.filter(x=>x.total > 0);
-
-  active.sort((a,b)=>{
-
-    if(a.rate !== b.rate){
-      return a.rate - b.rate;
-    }
-
-    return b.wrong - a.wrong;
-
-  });
-
-  return active[0];
-}
-
-
-/* =========================================================
-   グラフ
-   ========================================================= */
-
-function renderStatBars(container,stats){
-
-  container.innerHTML = stats.map(stat=>{
-
-    const percent = Math.round(stat.rate * 100);
-
-    return `
-      <div class="analysis-bar-row">
-
-        <div class="analysis-label">
-          <span>${stat.name}</span>
-          <span>
-            ${stat.correct} / ${stat.total}
-            (${percent}%)
-          </span>
-        </div>
-
-        <div class="mini-bar">
-          <span style="width:${percent}%"></span>
-        </div>
+        ${renderBars(eraStats)}
 
       </div>
-    `;
-
-  }).join("");
-
-}
 
 
-/* =========================================================
-   弱点別アドバイス
-   ========================================================= */
+      <div class="analysis-box">
 
-function getAdvice(era,region){
+        <h4>
+          地域別・失点率
+        </h4>
 
-  const key = `${era}|${region}`;
+        ${renderBars(regionStats)}
 
-  const adviceMap = {
+      </div>
 
-    "古代|ヨーロッパ":
-      "ギリシア・ローマを中心に、「ポリス→ヘレニズム→ローマ帝国」という流れを復習しよう。人物名だけでなく、政治制度と領域拡大の因果関係を整理すると強くなります。",
+    </div>
 
-    "古代|中国・東アジア":
-      "殷・周・秦・漢の順序と、それぞれの統治制度を確認しよう。特に「封建制→郡県制」「法家→儒学重視」の変化を因果関係で整理するのがおすすめです。",
-
-    "古代|イスラム・西アジア":
-      "古代オリエント諸国家の位置関係と、アケメネス朝の統治制度を復習しよう。王朝名・都・代表的君主をセットで整理すると得点しやすくなります。",
-
-    "中世|ヨーロッパ":
-      "封建社会、キリスト教会、十字軍、都市の発展を一本の流れとして復習しよう。「なぜ十字軍が起こったのか」「その結果何が変わったのか」を説明できる状態が目標です。",
-
-    "中世|中国・東アジア":
-      "隋・唐から宋、さらにモンゴル帝国までの流れを確認しよう。科挙・均田制・租庸調・宋の社会経済など、制度と社会の関係を重点的に。",
-
-    "中世|イスラム・西アジア":
-      "ウマイヤ朝→アッバース朝→イスラーム世界の分裂という大きな流れを復習しよう。首都バグダード、アラブ人支配、ペルシア文化の影響を整理すると効果的です。",
-
-    "近世|ヨーロッパ":
-      "宗教改革・大航海時代・主権国家の形成を重点復習。単なる年代暗記ではなく、「なぜ起こったか→何が変わったか」を説明する練習をしよう。",
-
-    "近世|中国・東アジア":
-      "明・清の成立と対外関係を中心に復習しよう。モンゴル系勢力、満洲、海禁、朝貢関係などを地図と一緒に確認すると理解しやすいです。",
-
-    "近世|イスラム・西アジア":
-      "オスマン帝国・サファヴィー朝・ムガル帝国を比較しよう。イスラームの宗派や支配地域を整理すると、王朝の取り違えが減ります。",
-
-    "近代|ヨーロッパ":
-      "フランス革命からナポレオン、ウィーン体制、1848年革命、国民国家形成までを一連の流れで復習しよう。特に「革命→反動→再び革命」の流れが重要です。",
-
-    "近代|中国・東アジア":
-      "アヘン戦争→南京条約→列強の進出→洋務運動→日清戦争という流れを復習しよう。条約名と戦争の組み合わせを重点的に確認すると効果的です。",
-
-    "近代|イスラム・西アジア":
-      "オスマン帝国の弱体化、列強の進出、民族運動を中心に整理しよう。19世紀の帝国主義と中東の変化を関連づけるのがポイントです。",
-
-    "現代|ヨーロッパ":
-      "第一次世界大戦→ヴェルサイユ体制→世界恐慌→ファシズム→第二次世界大戦→冷戦という大きな流れを確認しよう。条約・国際機関の整理も重要です。",
-
-    "現代|中国・東アジア":
-      "辛亥革命→中華民国→国共内戦→中華人民共和国→改革開放という流れを復習しよう。人物だけでなく、国民党と共産党の関係変化を押さえよう。",
-
-    "現代|イスラム・西アジア":
-      "第一次世界大戦後の委任統治、イスラエル建国、中東戦争、石油問題をつなげて復習しよう。20世紀中東史は国際政治との関連が重要です。"
-
-  };
-
-  return adviceMap[key] ||
-    `${era}${region}の基本事項を、年代だけでなく「背景→出来事→結果」の順に整理して復習しましょう。`;
-}
+  `;
 
 
-/* =========================================================
-   総合アドバイス
-   ========================================================= */
+  const totalWrong =
+    currentQuestions.filter(
+      q =>
+        userAnswers[q.id]
+        !== q.answer
+    ).length;
 
-function createOverallAdvice(eraStats,regionStats){
 
-  const totalWrong = questions.filter(
-    q=>userAnswers[q.id] !== q.answer
-  ).length;
+  let diagnosisTitle;
+  let diagnosisText;
+
 
   if(totalWrong === 0){
 
-    return `
-      <p>
-        今回は全問正解です。非常に安定しています。
-        次のステップでは、資料文を読んだときに
-        「この資料はどの時代・地域を示しているか」を
-        素早く判断する練習をすると、共通テスト型への対応力がさらに上がります。
-      </p>
-    `;
+    diagnosisTitle =
+      "完全攻略。今回の弱点はありません。";
+
+    diagnosisText =
+      "全問正解です。次は別の問題セットや、より難しい資料文問題に進み、同じ精度を維持できるか確認しましょう。";
+
+  }else{
+
+    diagnosisTitle =
+      buildDiagnosisTitle(
+        weakestEra,
+        weakestRegion
+      );
+
+    diagnosisText =
+      buildDiagnosisAdvice(
+        weakestEra,
+        weakestRegion
+      );
 
   }
 
-  const weakestEra = getWeakest(eraStats);
-  const weakestRegion = getWeakest(regionStats);
 
-  return `
-    <ul>
-      <li>
-        <strong>最優先：</strong>
-        ${weakestEra.name}の流れを時系列で復習する。
-      </li>
-      <li>
-        <strong>地域対策：</strong>
-        ${weakestRegion.name}の重要人物・王朝・条約を整理する。
-      </li>
-      <li>
-        <strong>共通テスト対策：</strong>
-        正答を暗記するだけでなく、
-        「なぜその選択肢が正しいのか」を一文で説明してみる。
-      </li>
-      <li>
-        <strong>復習のコツ：</strong>
-        間違えた問題は、正答だけでなく
-        他の3つの選択肢が「なぜ違うのか」まで確認する。
-      </li>
-    </ul>
+  html += `
+
+    <div class="diagnosis">
+
+      <div class="diagnosis-label">
+        WEAKNESS DIAGNOSIS
+      </div>
+
+      <h3>
+        ${escapeHTML(diagnosisTitle)}
+      </h3>
+
+      <p>
+        ${escapeHTML(diagnosisText)}
+      </p>
+
+    </div>
+
   `;
 
-}
+
+  if(combinations.length){
+
+    const top =
+      combinations.slice(0,3);
 
 
-/* =========================================================
-   復習問題
-   ========================================================= */
+    html += `
 
-function renderReview(wrongQuestions){
+      <div
+        class="analysis-box"
+        style="margin-top:15px;"
+      >
 
-  const reviewList = document.getElementById("reviewList");
+        <h4>
+          特に注意したい「時代 × 地域」
+        </h4>
 
-  if(wrongQuestions.length === 0){
+        <div class="combo-list">
 
-    reviewList.innerHTML = `
-      <div class="analysis-card">
-        🎉 間違えた問題はありません！
-      </div>
-    `;
+          ${top.map(item => `
 
-    document.getElementById("retryWrongBtn")
-      .classList.add("hidden");
+            <div class="combo-item">
 
-    return;
-  }
+              <span class="combo-name">
+                ${escapeHTML(item.era)}
+                ×
+                ${escapeHTML(item.region)}
+              </span>
 
-  document.getElementById("retryWrongBtn")
-    .classList.remove("hidden");
+              <span class="combo-rate">
+                ${item.wrong}/${item.total}問ミス
+              </span>
 
-  reviewList.innerHTML = wrongQuestions.map((q,index)=>{
+            </div>
 
-    return `
-      <div class="review-card">
-
-        <button class="review-toggle">
-          <span>
-            第${index+1}問　
-            ${q.topic}
-          </span>
-          <span>＋</span>
-        </button>
-
-        <div class="review-content">
-
-          <p>
-            <strong>正答：</strong>
-            <span class="review-answer">
-              ${["A","B","C","D"][q.answer]}．${q.options[q.answer]}
-            </span>
-          </p>
-
-          <p>
-            <strong>出題分野：</strong>
-            ${q.era} / ${q.region}
-          </p>
-
-          <p>
-            <strong>解説：</strong><br>
-            ${q.explanation}
-          </p>
+          `).join("")}
 
         </div>
 
       </div>
+
     `;
 
-  }).join("");
+  }
 
-  document.querySelectorAll(".review-toggle")
-    .forEach(btn=>{
 
-      btn.addEventListener("click",()=>{
-
-        const content = btn.nextElementSibling;
-        content.classList.toggle("open");
-
-        const symbol = btn.querySelector("span:last-child");
-
-        symbol.textContent =
-          content.classList.contains("open")
-          ? "−"
-          : "＋";
-
-      });
-
-    });
+  $("analysisArea").innerHTML =
+    html;
 
 }
 
 
 /* =========================================================
-   間違えた問題だけ解き直す
+   DIAGNOSIS TITLE
    ========================================================= */
 
-document.getElementById("retryWrongBtn")
-  .addEventListener("click",()=>{
+function buildDiagnosisTitle(
+  era,
+  region
+){
 
-    const wrongQuestions = questions.filter(q=>{
-      return userAnswers[q.id] !== q.answer;
-    });
-
-    if(wrongQuestions.length === 0){
-
-      alert("間違えた問題はありません！");
-      return;
-
-    }
-
-    startExam(wrongQuestions);
-
-  });
-
-
-/* =========================================================
-   全問リトライ
-   ========================================================= */
-
-document.getElementById("retryAllBtn")
-  .addEventListener("click",()=>{
-
-    startExam(questions);
-
-  });
-
-
-/* =========================================================
-   キーボード操作
-   ========================================================= */
-
-document.addEventListener("keydown",(event)=>{
-
-  if(!examArea || examArea.style.display === "none"){
-    return;
+  if(!era && !region){
+    return "弱点を特定できませんでした。";
   }
 
-  /*
-   * 1〜4キーで現在表示されている問題の選択肢を選択。
-   * 共通テスト本番の操作そのものではなく、
-   * PC学習時の補助機能として実装。
-   */
 
-  if(["1","2","3","4"].includes(event.key)){
+  if(era && region){
 
-    const cards = [...document.querySelectorAll(".question-card")];
+    return `あなたの弱点は【${era.name} × ${region.name}】です。`;
 
-    const activeCard =
-      cards.find(card=>{
-        const rect = card.getBoundingClientRect();
-        return rect.top >= 0 && rect.top < window.innerHeight * .55;
+  }
+
+
+  if(era){
+
+    return `あなたの弱点は【${era.name}】です。`;
+
+  }
+
+
+  return `あなたの弱点は【${region.name}】です。`;
+
+}
+
+
+/* =========================================================
+   DIAGNOSIS ADVICE
+   ========================================================= */
+
+function buildDiagnosisAdvice(
+  era,
+  region
+){
+
+  const eraAdvice = {
+
+    "古代":
+      "古代は王朝・帝国の成立順だけでなく、政治制度・宗教・交易がどの地域で発達したのかを整理しましょう。",
+
+    "中世":
+      "中世は宗教勢力、王朝、交易路の関係を横断して確認しましょう。特にイスラーム世界とヨーロッパの接触を時系列で整理すると強くなります。",
+
+    "近世":
+      "近世は宗教改革・大航海・主権国家の成立を別々に覚えず、同時代のヨーロッパ社会の変化としてつなげて復習しましょう。",
+
+    "近代":
+      "近代は革命・産業革命・帝国主義・民族運動を、原因→展開→結果の順番で整理しましょう。",
+
+    "現代":
+      "現代は第二次世界大戦後の国際秩序、冷戦、地域紛争を年代順に並べ、各事件の前後関係を確認しましょう。"
+
+  };
+
+
+  const regionAdvice = {
+
+    "中国・東アジア":
+      "中国・東アジアでは、王朝の交代だけでなく、周辺民族との関係・制度・対外関係までセットで復習しましょう。",
+
+    "ヨーロッパ":
+      "ヨーロッパでは、宗教改革・主権国家・革命・産業化・帝国主義を一本の流れとして整理すると正誤問題に強くなります。",
+
+    "イスラム・西アジア":
+      "イスラーム・西アジアでは、イスラーム諸王朝の交代、交易、ヨーロッパとの関係を年代順に整理しましょう。"
+
+  };
+
+
+  let advice = "";
+
+
+  if(era){
+    advice += eraAdvice[era.name] || "";
+  }
+
+
+  if(region){
+    advice += " " + (
+      regionAdvice[region.name] || ""
+    );
+  }
+
+
+  return advice.trim();
+
+}
+
+
+/* =========================================================
+   RENDER BARS
+   ========================================================= */
+
+function renderBars(stats){
+
+  if(!stats.length){
+
+    return `
+      <div class="empty">
+        該当する問題はありません。
+      </div>
+    `;
+
+  }
+
+
+  return stats.map(
+    stat => `
+
+      <div
+        class="stat-row
+        ${stat.rate >= 50 ? "weak" : ""}"
+      >
+
+        <div class="stat-head">
+
+          <span>
+            ${escapeHTML(stat.name)}
+          </span>
+
+          <strong>
+            ${stat.wrong}/${stat.total}問
+            （${stat.rate}%）
+          </strong>
+
+        </div>
+
+        <div class="stat-track">
+
+          <div
+            class="stat-fill"
+            style="width:${stat.rate}%"
+          ></div>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
+
+}
+
+
+/* =========================================================
+   REVIEW
+   ========================================================= */
+
+function renderReview(
+  wrongQuestions
+){
+
+  const list =
+    $("reviewList");
+
+
+  $("reviewCount").textContent =
+    `${wrongQuestions.length}問`;
+
+
+  if(!wrongQuestions.length){
+
+    list.innerHTML = `
+      <div class="empty">
+        🎉 全問正解！
+        今回復習する問題はありません。
+      </div>
+    `;
+
+    $("retryWrongBtn").disabled =
+      true;
+
+    return;
+
+  }
+
+
+  $("retryWrongBtn").disabled =
+    false;
+
+
+  list.innerHTML =
+    wrongQuestions.map(
+      (q,index) => {
+
+        const chosen =
+          userAnswers[q.id];
+
+
+        const chosenText =
+          chosen === undefined
+            ? "未回答"
+            : q.options[chosen];
+
+
+        return `
+
+          <article class="review-item">
+
+            <div class="review-meta">
+
+              <span class="badge">
+                ${escapeHTML(q.era)}
+              </span>
+
+              <span class="badge">
+                ${escapeHTML(q.region)}
+              </span>
+
+              <span class="badge">
+                ${escapeHTML(q.topic)}
+              </span>
+
+            </div>
+
+
+            <div class="review-question">
+
+              ${index + 1}.
+              ${escapeHTML(q.question)}
+
+            </div>
+
+
+            <div class="answer-grid">
+
+              <div class="answer-box yours">
+
+                <span class="answer-label">
+                  あなたの回答
+                </span>
+
+                <span class="answer-text">
+                  ${escapeHTML(chosenText)}
+                </span>
+
+              </div>
+
+
+              <div class="answer-box correct">
+
+                <span class="answer-label">
+                  正解
+                </span>
+
+                <span class="answer-text">
+                  ${escapeHTML(q.options[q.answer])}
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="explanation">
+
+              <strong>
+                プロ講師の解説
+              </strong>
+
+              <br>
+
+              ${escapeHTML(q.explanation)}
+
+            </div>
+
+          </article>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* =========================================================
+   BUTTON EVENTS
+   ========================================================= */
+
+$("startBtn").addEventListener(
+  "click",
+  () => startExam(QUESTIONS)
+);
+
+
+$("submitBtn").addEventListener(
+  "click",
+  submitExam
+);
+
+
+$("retryAllBtn").addEventListener(
+  "click",
+  () => {
+
+    startExam(QUESTIONS);
+
+  }
+);
+
+
+$("retryWrongBtn").addEventListener(
+  "click",
+  () => {
+
+    /*
+      重要：
+      currentQuestions から間違いを抽出する。
+
+      これにより、
+
+      15問
+      ↓
+      間違い5問
+      ↓
+      その5問を再挑戦
+      ↓
+      さらに間違い2問
+
+      と絞り込んでも、分析対象が勝手に
+      15問へ戻らない。
+    */
+
+    const wrongQuestions =
+      currentQuestions.filter(
+        q =>
+          userAnswers[q.id]
+          !== q.answer
+      );
+
+
+    if(!wrongQuestions.length){
+      return;
+    }
+
+
+    startExam(
+      wrongQuestions
+    );
+
+  }
+);
+
+
+$("backTopBtn").addEventListener(
+  "click",
+  () => {
+
+    window.location.href =
+      "index.html";
+
+  }
+);
+
+
+/* =========================================================
+   KEYBOARD 1〜4
+   ========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      $("examArea")
+        .classList
+        .contains("hidden")
+    ){
+      return;
+    }
+
+
+    if(
+      !["1","2","3","4"].includes(
+        event.key
+      )
+    ){
+      return;
+    }
+
+
+    const cards =
+      [
+        ...document.querySelectorAll(
+          ".question-card"
+        )
+      ];
+
+
+    if(!cards.length){
+      return;
+    }
+
+
+    /*
+      現在画面上部に最も近い問題を
+      キーボード操作対象にする。
+    */
+
+    let targetCard =
+      cards.find(card => {
+
+        const rect =
+          card.getBoundingClientRect();
+
+        return (
+          rect.top >= 60
+          &&
+          rect.top <
+            window.innerHeight * .7
+        );
+
       });
 
-    if(!activeCard) return;
+
+    if(!targetCard){
+
+      targetCard =
+        cards.find(card => {
+
+          const rect =
+            card.getBoundingClientRect();
+
+          return rect.bottom > 0;
+
+        });
+
+    }
+
+
+    if(!targetCard){
+      return;
+    }
+
 
     const inputs =
-      activeCard.querySelectorAll("input");
+      targetCard.querySelectorAll(
+        'input[type="radio"]'
+      );
 
-    const index = Number(event.key) - 1;
 
-    if(inputs[index]){
-      inputs[index].click();
+    const target =
+      inputs[
+        Number(event.key) - 1
+      ];
+
+
+    if(target){
+
+      target.checked = true;
+
+      target.dispatchEvent(
+        new Event(
+          "change",
+          {bubbles:true}
+        )
+      );
+
     }
 
   }
+);
 
-});
+
+/* =========================================================
+   INITIAL STATE
+   ========================================================= */
+
+$("examArea")
+  .classList
+  .add("hidden");
+
+$("resultArea")
+  .classList
+  .add("hidden");
+
+$("startPanel")
+  .classList
+  .remove("hidden");
+
+
+/* =========================================================
+   CONSOLE CHECK
+   ========================================================= */
+
+console.log(
+  "WORLD HISTORY MASTER MOCK EXAM:",
+  QUESTIONS.length,
+  "questions loaded."
+);
 
 </script>
 
