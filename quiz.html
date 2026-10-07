@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界史ポータル｜一問一答</title>
+
+<style>
+:root{
+    --bg:#080d18;
+    --bg2:#0f1728;
+    --card:#141d2f;
+    --card2:#1b263c;
+    --line:#293852;
+    --text:#edf3ff;
+    --sub:#aab7cd;
+    --blue:#60a5fa;
+    --cyan:#22d3ee;
+    --green:#34d399;
+    --yellow:#facc15;
+    --orange:#fb923c;
+    --red:#fb7185;
+    --purple:#a78bfa;
+    --shadow:0 12px 35px rgba(0,0,0,.3);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(96,165,250,.10),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(167,139,250,.08),
+            transparent 25%
+        ),
+        var(--bg);
+    color:var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+    line-height:1.7;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    padding:55px 20px 45px;
+    border-bottom:1px solid var(--line);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(96,165,250,.10),
+            rgba(167,139,250,.08)
+        );
+}
+
+.header-inner{
+    max-width:1250px;
+    margin:auto;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:var(--text);
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
+    padding:9px 15px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateY(-1px);
+}
+
+.kicker{
+    margin-top:35px;
+    color:var(--cyan);
+    font-size:.82rem;
+    font-weight:800;
+    letter-spacing:.12em;
+}
+
+h1{
+    font-size:clamp(2rem,5vw,3.7rem);
+    line-height:1.15;
+    margin:8px 0 15px;
+}
+
+.header-description{
+    max-width:850px;
+    color:var(--sub);
+    margin:0;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+    max-width:1250px;
+    margin:auto;
+    padding:35px 20px 80px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:
+        repeat(4,1fr);
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:17px;
+}
+
+.stat-label{
+    color:var(--sub);
+    font-size:.78rem;
+}
+
+.stat-value{
+    font-size:1.8rem;
+    font-weight:900;
+    margin-top:3px;
+}
+
+/* =========================
+   CONTROL PANEL
+========================= */
+
+.control-panel{
+    position:sticky;
+    top:10px;
+    z-index:100;
+    background:rgba(8,13,24,.92);
+    backdrop-filter:blur(15px);
+    border:1px solid var(--line);
+    border-radius:17px;
+    padding:17px;
+    margin-bottom:30px;
+    box-shadow:var(--shadow);
+}
+
+.search-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    margin-bottom:13px;
+}
+
+.search{
+    width:100%;
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    outline:none;
+}
+
+.search:focus{
+    border-color:var(--blue);
+    box-shadow:
+        0 0 0 3px
+        rgba(96,165,250,.12);
+}
+
+.reset-btn{
+    border:1px solid var(--line);
+    background:var(--card2);
+    color:var(--text);
+    border-radius:10px;
+    padding:0 16px;
+}
+
+.reset-btn:hover{
+    background:#263653;
+}
+
+.filter-line{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:9px;
+}
+
+.filter-label{
+    width:70px;
+    color:var(--sub);
+    font-size:.82rem;
+    font-weight:800;
+}
+
+.filter-btn{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--sub);
+    border-radius:999px;
+    padding:5px 11px;
+    transition:.2s;
+}
+
+.filter-btn:hover{
+    color:var(--text);
+}
+
+.filter-btn.active{
+    color:var(--blue);
+    background:rgba(96,165,250,.14);
+    border-color:rgba(96,165,250,.45);
+}
+
+.mode-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+}
+
+.mode-btn{
+    flex:1;
+    min-width:130px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--sub);
+    padding:9px 12px;
+    border-radius:9px;
+}
+
+.mode-btn.active{
+    color:var(--text);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(96,165,250,.18),
+            rgba(167,139,250,.15)
+        );
+    border-color:rgba(96,165,250,.45);
+}
+
+.result-info{
+    margin-top:12px;
+    color:var(--sub);
+    font-size:.85rem;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:15px;
+    margin:40px 0 15px;
+}
+
+.section-title h2{
+    margin:0;
+    font-size:1.45rem;
+}
+
+.section-title span{
+    color:var(--sub);
+    font-size:.8rem;
+}
+
+/* =========================
+   QUIZ CARD
+========================= */
+
+.quiz-list{
+    display:grid;
+    gap:13px;
+}
+
+.quiz-card{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:15px;
+    overflow:hidden;
+    transition:
+        border-color .2s,
+        transform .2s,
+        box-shadow .2s;
+}
+
+.quiz-card:hover{
+    border-color:#3c4e6d;
+    box-shadow:var(--shadow);
+}
+
+.quiz-top{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 16px 7px;
+}
+
+.number{
+    color:var(--sub);
+    font-size:.8rem;
+    font-weight:800;
+}
+
+.badge{
+    font-size:.72rem;
+    padding:3px 8px;
+    border-radius:999px;
+    border:1px solid var(--line);
+}
+
+.region-badge{
+    color:var(--cyan);
+}
+
+.era-badge{
+    color:var(--purple);
+}
+
+.importance{
+    margin-left:auto;
+    letter-spacing:1px;
+    font-size:.9rem;
+}
+
+.star3{
+    color:var(--yellow);
+}
+
+.star2{
+    color:var(--orange);
+}
+
+.star1{
+    color:var(--sub);
+}
+
+.favorite-btn{
+    border:none;
+    background:transparent;
+    color:#53627b;
+    font-size:1.35rem;
+    line-height:1;
+    padding:3px 0 3px 7px;
+    transition:.2s;
+}
+
+.favorite-btn:hover{
+    transform:scale(1.15);
+}
+
+.favorite-btn.active{
+    color:#facc15;
+}
+
+.question{
+    padding:3px 16px 15px;
+    font-size:1.03rem;
+    font-weight:750;
+}
+
+/* =========================
+   ANSWER
+========================= */
+
+.answer-area{
+    padding:0 16px 16px;
+}
+
+.answer-cover{
+    border:1px solid rgba(251,113,133,.45);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(127,29,29,.65),
+            rgba(185,28,28,.72)
+        );
+    border-radius:10px;
+    color:#ffd9de;
+    padding:13px 15px;
+    cursor:pointer;
+    user-select:none;
+    position:relative;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.answer-cover::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(255,255,255,.035) 4px
+        );
+    pointer-events:none;
+}
+
+.answer-cover:hover{
+    filter:brightness(1.12);
+}
+
+.cover-label{
+    position:relative;
+    z-index:1;
+    font-weight:900;
+}
+
+.answer-content{
+    display:none;
+    border:1px solid rgba(52,211,153,.35);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(52,211,153,.08),
+            rgba(96,165,250,.06)
+        );
+    border-radius:10px;
+    padding:15px;
+}
+
+.answer-content.show{
+    display:block;
+    animation:
+        answerIn .22s ease;
+}
+
+@keyframes answerIn{
+    from{
+        opacity:0;
+        transform:translateY(-5px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.answer-label{
+    color:var(--green);
+    font-size:.72rem;
+    font-weight:900;
+    margin-bottom:3px;
+}
+
+.answer{
+    font-size:1.2rem;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.explanation{
+    color:#bdc9dc;
+    font-size:.9rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    color:var(--sub);
+    border-top:1px solid var(--line);
+    padding:30px 20px;
+    font-size:.82rem;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+    border:1px dashed var(--line);
+    border-radius:15px;
+    padding:50px 20px;
+    color:var(--sub);
+}
+
+.empty h3{
+    color:var(--text);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .dashboard{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .filter-label{
+        width:100%;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:42px 15px 35px;
+    }
+
+    main{
+        padding:28px 13px 60px;
+    }
+
+    .dashboard{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .search-row{
+        grid-template-columns:1fr;
+    }
+
+    .reset-btn{
+        padding:10px;
+    }
+
+    .mode-btn{
+        min-width:100%;
+    }
+
+    .quiz-top{
+        flex-wrap:wrap;
+    }
+
+    .importance{
+        margin-left:0;
+    }
+
+    .favorite-btn{
+        margin-left:auto;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html" class="back-btn">
+            ← トップページへ戻る
+        </a>
+
+        <div class="kicker">
+            WORLD HISTORY PORTAL / PAGE 05
+        </div>
+
+        <h1>
+            世界史<br>
+            一問一答
+        </h1>
+
+        <p class="header-description">
+            共通テスト・私大入試で落としたくない重要用語を、
+            赤シート感覚でセルフチェック。
+            答えを隠した状態から自分で思い出し、
+            分からなかった問題はチェックして後から復習しよう。
+        </p>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
+
+    <section class="dashboard">
+
+        <div class="stat">
+            <div class="stat-label">
+                総問題数
+            </div>
+            <div class="stat-value" id="totalCount">
+                0
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">
+                ★★★ 最重要
+            </div>
+            <div class="stat-value" id="importantCount">
+                0
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">
+                チェック済み
+            </div>
+            <div class="stat-value" id="favoriteCount">
+                0
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">
+                復習モード
+            </div>
+            <div class="stat-value">
+                ON
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTROLS
+    ========================= -->
+
+    <section class="control-panel">
+
+        <div class="search-row">
+
+            <input
+                id="searchInput"
+                class="search"
+                type="search"
+                placeholder="🔎 人名・用語・王朝・事件を検索..."
+            >
+
+            <button
+                id="resetBtn"
+                class="reset-btn"
+            >
+                リセット
+            </button>
+
+        </div>
+
+
+        <div class="filter-line">
+
+            <span class="filter-label">
+                時代
+            </span>
+
+            <button
+                class="filter-btn active"
+                data-filter-type="era"
+                data-value="all"
+            >
+                すべて
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="era"
+                data-value="古代"
+            >
+                古代
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="era"
+                data-value="中世"
+            >
+                中世
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="era"
+                data-value="近世"
+            >
+                近世
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="era"
+                data-value="近代"
+            >
+                近代
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="era"
+                data-value="現代"
+            >
+                現代
+            </button>
+
+        </div>
+
+
+        <div class="filter-line">
+
+            <span class="filter-label">
+                地域
+            </span>
+
+            <button
+                class="filter-btn active"
+                data-filter-type="region"
+                data-value="all"
+            >
+                すべて
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="region"
+                data-value="中国"
+            >
+                中国・東アジア
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="region"
+                data-value="ヨーロッパ"
+            >
+                ヨーロッパ
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="region"
+                data-value="イスラーム"
+            >
+                イスラーム
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="region"
+                data-value="インド"
+            >
+                インド
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="region"
+                data-value="アメリカ"
+            >
+                アメリカ
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="region"
+                data-value="世界"
+            >
+                世界史横断
+            </button>
+
+        </div>
+
+
+        <div class="filter-line">
+
+            <span class="filter-label">
+                重要度
+            </span>
+
+            <button
+                class="filter-btn active"
+                data-filter-type="importance"
+                data-value="all"
+            >
+                すべて
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="importance"
+                data-value="3"
+            >
+                ★★★
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="importance"
+                data-value="2"
+            >
+                ★★☆
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter-type="importance"
+                data-value="1"
+            >
+                ★☆☆
+            </button>
+
+        </div>
+
+
+        <div class="mode-row">
+
+            <button
+                class="mode-btn active"
+                id="allMode"
+            >
+                📚 全問題
+            </button>
+
+            <button
+                class="mode-btn"
+                id="unansweredMode"
+            >
+                🔵 未チェック問題
+            </button>
+
+            <button
+                class="mode-btn"
+                id="reviewMode"
+            >
+                ⭐ 復習モード
+            </button>
+
+        </div>
+
+
+        <div
+            id="resultInfo"
+            class="result-info"
+        ></div>
+
+    </section>
+
+
+    <!-- =========================
+         QUIZ
+    ========================= -->
+
+    <div id="quizContainer"></div>
+
+</main>
+
+
+<footer>
+    世界史ポータルサイト｜一問一答セルフチェック
+</footer>
+
+
+<script>
+
+/* =========================================================
+   問題データ
+   ★★★ = 最重要
+   ★★☆ = 重要
+   ★☆☆ = 発展・確認
+   ========================================================= */
+
+const questions = [
+
+/* =========================================================
+   古代・中国
+========================================================= */
+
+{
+ id:1,
+ era:"古代",
+ region:"中国",
+ importance:3,
+ question:"前221年、中国を初めて統一して皇帝を称した人物は誰か？",
+ answer:"秦の始皇帝（嬴政）",
+ explanation:"秦王政は戦国七雄を滅ぼして中国を統一し、皇帝の称号を創設。郡県制、度量衡・文字・貨幣の統一など中央集権化を進めた。"
+},
+
+{
+ id:2,
+ era:"古代",
+ region:"中国",
+ importance:3,
+ question:"前漢の武帝が北方の遊牧民族・匈奴への対抗策として派遣した人物は誰か？",
+ answer:"張騫",
+ explanation:"張騫の西域派遣をきっかけに漢と中央アジアとの関係が深まり、後のシルクロード発展につながった。"
+},
+
+{
+ id:3,
+ era:"古代",
+ region:"中国",
+ importance:3,
+ question:"前漢の武帝が西方遠征などを通じて勢力を拡大した時代に、国家が保護した思想は何か？",
+ answer:"儒学",
+ explanation:"董仲舒の献策などを背景に、儒学が官学として重視され、皇帝支配を支える思想として発展した。"
+},
+
+{
+ id:4,
+ era:"古代",
+ region:"中国",
+ importance:3,
+ question:"後漢の時代に製紙法を改良した宦官は誰か？",
+ answer:"蔡倫",
+ explanation:"蔡倫は105年に紙の製法を改良したとされる。紙は後に中国から中央アジア・イスラーム世界を経てヨーロッパへ伝わった。"
+},
+
+{
+ id:5,
+ era:"古代",
+ region:"中国",
+ importance:3,
+ question:"三国時代の魏・蜀・呉のうち、曹操を基盤として華北を支配した国はどこか？",
+ answer:"魏",
+ explanation:"曹操は後漢末の実力者。死後、子の曹丕が後漢を滅ぼして魏を建国した。"
+},
+
+{
+ id:6,
+ era:"古代",
+ region:"中国",
+ importance:3,
+ question:"隋を建国して南北朝の分裂を統一した人物は誰か？",
+ answer:"文帝（楊堅）",
+ explanation:"581年に隋を建国し、589年に陳を滅ぼして中国を統一。科挙や均田制などの制度整備も進めた。"
+},
+
+/* =========================================================
+   古代・インド
+========================================================= */
+
+{
+ id:7,
+ era:"古代",
+ region:"インド",
+ importance:3,
+ question:"インドを初めて大規模に統一したマウリヤ朝の初代君主は誰か？",
+ answer:"チャンドラグプタ",
+ explanation:"チャンドラグプタはマウリヤ朝を建国し、北インドの広範囲を統一した。"
+},
+
+{
+ id:8,
+ era:"古代",
+ region:"インド",
+ importance:3,
+ question:"仏教に帰依し、ダルマによる統治を行ったマウリヤ朝の王は誰か？",
+ answer:"アショーカ王",
+ explanation:"カリンガ征服後に仏教へ接近。各地に磨崖碑・石柱碑を建て、仏教の保護と道徳政治を進めた。"
+},
+
+{
+ id:9,
+ era:"古代",
+ region:"インド",
+ importance:3,
+ question:"4世紀ごろから北インドを支配し、サンスクリット文化が栄えた王朝は何か？",
+ answer:"グプタ朝",
+ explanation:"グプタ朝ではヒンドゥー教・サンスクリット文学・数学・天文学などが発展し、古典文化が栄えた。"
+},
+
+/* =========================================================
+   古代・ヨーロッパ
+========================================================= */
+
+{
+ id:10,
+ era:"古代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"アテネ民主政の全盛期を指導した政治家は誰か？",
+ answer:"ペリクレス",
+ explanation:"ペリクレス時代のアテネでは民主政が発展し、パルテノン神殿などの文化も栄えた。"
+},
+
+{
+ id:11,
+ era:"古代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"東方遠征によってギリシア文化とオリエント文化の融合を進めた人物は誰か？",
+ answer:"アレクサンドロス大王",
+ explanation:"アケメネス朝を滅ぼして広大な帝国を形成。ヘレニズム文化の成立につながった。"
+},
+
+{
+ id:12,
+ era:"古代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ガリア遠征を行い、共和政ローマ末期の政治的実権を握った人物は誰か？",
+ answer:"ユリウス＝カエサル",
+ explanation:"ガリアを征服し、ポンペイウスらと対立。内戦に勝利して独裁権力を握ったが、紀元前44年に暗殺された。"
+},
+
+{
+ id:13,
+ era:"古代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ローマ帝国の初代皇帝とされ、元首政を開始した人物は誰か？",
+ answer:"アウグストゥス（オクタウィアヌス）",
+ explanation:"カエサル暗殺後の内戦を制し、共和政の形式を残しながら実質的な皇帝支配を開始した。"
+},
+
+{
+ id:14,
+ era:"古代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"313年のミラノ勅令でキリスト教を公認したローマ皇帝は誰か？",
+ answer:"コンスタンティヌス帝",
+ explanation:"キリスト教を公認し、330年には都をコンスタンティノープルへ移した。"
+},
+
+{
+ id:15,
+ era:"古代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"キリスト教を国教化したローマ皇帝は誰か？",
+ answer:"テオドシウス帝",
+ explanation:"4世紀末にキリスト教を国教化し、ローマ帝国の宗教政策を大きく転換した。"
+},
+
+/* =========================================================
+   中世・中国
+========================================================= */
+
+{
+ id:16,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"618年に唐を建国した人物は誰か？",
+ answer:"李淵（高祖）",
+ explanation:"隋末の混乱の中で唐を建国。その後、息子の太宗が統治体制を整えた。"
+},
+
+{
+ id:17,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"唐の最盛期を築き、律令政治を整備した皇帝は誰か？",
+ answer:"太宗（李世民）",
+ explanation:"貞観の治と呼ばれる安定した政治を行い、中央アジアにも勢力を広げた。"
+},
+
+{
+ id:18,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"中国史上、正式に皇帝となった唯一の女性は誰か？",
+ answer:"則天武后（武則天）",
+ explanation:"唐を一時中断して周を建国。科挙官僚を登用するなど、従来の貴族勢力を抑える政治を進めた。"
+},
+
+{
+ id:19,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"宋を建国し、節度使の勢力を抑えて中央集権化を進めた人物は誰か？",
+ answer:"宋の太祖（趙匡胤）",
+ explanation:"960年に宋を建国。文治主義を進め、軍人勢力による政変を防ぐ体制を整えた。"
+},
+
+{
+ id:20,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"モンゴル帝国の第5代ハンで、元を建国した人物は誰か？",
+ answer:"フビライ",
+ explanation:"1271年に国号を元とし、1279年に南宋を滅ぼして中国全土を支配した。"
+},
+
+{
+ id:21,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"明を建国し、皇帝独裁体制を強化した人物は誰か？",
+ answer:"洪武帝（朱元璋）",
+ explanation:"元を倒して明を建国。宰相を廃止するなど皇帝権力を強化した。"
+},
+
+{
+ id:22,
+ era:"中世",
+ region:"中国",
+ importance:3,
+ question:"鄭和に大航海を行わせた明の皇帝は誰か？",
+ answer:"永楽帝",
+ explanation:"明の国威を示すため鄭和をインド洋方面へ派遣。東南アジア・インド・アラビア・東アフリカなどと外交関係を結んだ。"
+},
+
+/* =========================================================
+   中世・イスラーム
+========================================================= */
+
+{
+ id:23,
+ era:"中世",
+ region:"イスラーム",
+ importance:3,
+ question:"イスラーム教を成立させた預言者は誰か？",
+ answer:"ムハンマド",
+ explanation:"610年ごろ啓示を受け、唯一神アッラーへの服従を説いた。622年にメディナへ移住したヒジュラがイスラーム暦の起点となる。"
+},
+
+{
+ id:24,
+ era:"中世",
+ region:"イスラーム",
+ importance:3,
+ question:"イスラーム共同体成立後、ムハンマドの後継者として選ばれた初代カリフは誰か？",
+ answer:"アブー＝バクル",
+ explanation:"正統カリフ時代の初代カリフ。アラビア半島の統一を進めた。"
+},
+
+{
+ id:25,
+ era:"中世",
+ region:"イスラーム",
+ importance:3,
+ question:"ウマイヤ朝を倒して750年に成立した王朝は何か？",
+ answer:"アッバース朝",
+ explanation:"バグダードを都としてイスラーム世界の政治・文化の中心を形成した。"
+},
+
+{
+ id:26,
+ era:"中世",
+ region:"イスラーム",
+ importance:3,
+ question:"アッバース朝の全盛期を代表し、『千夜一夜物語』でも知られるカリフは誰か？",
+ answer:"ハールーン＝アッラシード",
+ explanation:"8〜9世紀のアッバース朝を代表するカリフ。バグダードの繁栄とイスラーム文化の発展を象徴する人物。"
+},
+
+{
+ id:27,
+ era:"中世",
+ region:"イスラーム",
+ importance:3,
+ question:"十字軍と戦い、エルサレムを奪回した人物は誰か？",
+ answer:"サラディン（サラーフ＝アッディーン）",
+ explanation:"アイユーブ朝を建国。1187年のヒッティーンの戦いで十字軍を破り、エルサレムを奪回した。"
+},
+
+{
+ id:28,
+ era:"中世",
+ region:"イスラーム",
+ importance:3,
+ question:"1453年にコンスタンティノープルを征服したオスマン帝国の君主は誰か？",
+ answer:"メフメト2世",
+ explanation:"東ローマ帝国を滅ぼし、コンスタンティノープルをイスタンブルとしてオスマン帝国の中心にした。"
+},
+
+/* =========================================================
+   中世・ヨーロッパ
+========================================================= */
+
+{
+ id:29,
+ era:"中世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"フランク王国を大きく発展させ、西ヨーロッパの広大な地域を支配した王は誰か？",
+ answer:"カール大帝",
+ explanation:"西ヨーロッパの広範囲を統合し、800年にローマ皇帝の冠を授けられた。カロリング＝ルネサンスも進めた。"
+},
+
+{
+ id:30,
+ era:"中世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"1066年にイングランドを征服したノルマンディー公は誰か？",
+ answer:"ウィリアム1世",
+ explanation:"ノルマン征服によってイングランド王となり、封建的支配を強化した。"
+},
+
+{
+ id:31,
+ era:"中世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"東ローマ帝国で『ローマ法大全』を編纂させた皇帝は誰か？",
+ answer:"ユスティニアヌス帝",
+ explanation:"6世紀の東ローマ皇帝。ローマ法大全を編纂させ、地中海世界への領土回復も試みた。"
+},
+
+/* =========================================================
+   中世・モンゴル
+========================================================= */
+
+{
+ id:32,
+ era:"中世",
+ region:"世界",
+ importance:3,
+ question:"モンゴル帝国を建国し、チンギス＝ハンを称した人物は誰か？",
+ answer:"テムジン",
+ explanation:"1206年にモンゴル諸部族を統一してチンギス＝ハンとなり、中央アジア方面へ大征服を開始した。"
+},
+
+{
+ id:33,
+ era:"中世",
+ region:"世界",
+ importance:3,
+ question:"1258年にバグダードを攻略し、イル＝ハン国の基礎を築いたモンゴルの王族は誰か？",
+ answer:"フラグ",
+ explanation:"モンゴル軍を率いて西アジアへ進出し、アッバース朝を滅ぼした。"
+},
+
+/* =========================================================
+   近世・中国
+========================================================= */
+
+{
+ id:34,
+ era:"近世",
+ region:"中国",
+ importance:3,
+ question:"清の最盛期を代表し、三藩の乱を鎮圧して中国支配を安定させた皇帝は誰か？",
+ answer:"康熙帝",
+ explanation:"清の第4代皇帝。台湾を支配下に置き、ロシアとのネルチンスク条約も結んだ。"
+},
+
+{
+ id:35,
+ era:"近世",
+ region:"中国",
+ importance:3,
+ question:"清の最大領域を形成した皇帝は誰か？",
+ answer:"乾隆帝",
+ explanation:"ジュンガル・新疆などへ進出し、清の最大版図を形成した。一方、18世紀後半には財政難も進行した。"
+},
+
+/* =========================================================
+   近世・ヨーロッパ
+========================================================= */
+
+{
+ id:36,
+ era:"近世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"絶対王政の典型とされ、「朕は国家なり」と結びつけて説明されるフランス王は誰か？",
+ answer:"ルイ14世",
+ explanation:"ヴェルサイユ宮殿を中心に王権を強化し、フランス絶対王政の最盛期を築いた。"
+},
+
+{
+ id:37,
+ era:"近世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"イギリスで権利章典が制定されるきっかけとなった名誉革命の時期の国王は誰か？",
+ answer:"ジェームズ2世",
+ explanation:"カトリック政策などに反発が集まり、1688年の名誉革命で王位を追われた。"
+},
+
+{
+ id:38,
+ era:"近世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ロシアを西欧化し、バルト海進出を進めた皇帝は誰か？",
+ answer:"ピョートル1世",
+ explanation:"西欧式の軍制・行政制度を導入し、北方戦争でスウェーデンを破ってバルト海への出口を確保した。"
+},
+
+{
+ id:39,
+ era:"近世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"プロイセンを強国化し、啓蒙専制君主の代表とされる人物は誰か？",
+ answer:"フリードリヒ2世",
+ explanation:"軍事力を強化し、オーストリアと七年戦争を戦った。宗教寛容など啓蒙専制的政策も進めた。"
+},
+
+{
+ id:40,
+ era:"近世",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"フランス革命後に皇帝となり、ヨーロッパ各地へ勢力を拡大した人物は誰か？",
+ answer:"ナポレオン",
+ explanation:"ナポレオン法典を制定し、フランス革命の理念を一部地域へ広げる一方、軍事的覇権を追求した。"
+},
+
+/* =========================================================
+   近世・インド
+========================================================= */
+
+{
+ id:41,
+ era:"近世",
+ region:"インド",
+ importance:3,
+ question:"1526年にムガル帝国を建国した人物は誰か？",
+ answer:"バーブル",
+ explanation:"ティムールの子孫を称し、パーニーパットの戦いでロディー朝を破って北インドにムガル帝国を建国した。"
+},
+
+{
+ id:42,
+ era:"近世",
+ region:"インド",
+ importance:3,
+ question:"宗教融和政策を進め、ムガル帝国の統治を安定させた皇帝は誰か？",
+ answer:"アクバル",
+ explanation:"ジズヤを一時廃止するなど非ムスリムへの寛容政策を取り、多様な民族・宗教を統合した。"
+},
+
+{
+ id:43,
+ era:"近世",
+ region:"インド",
+ importance:3,
+ question:"ムガル帝国でイスラーム教徒としての政策を強化し、ジズヤを復活させた皇帝は誰か？",
+ answer:"アウラングゼーブ",
+ explanation:"ムガル帝国最大の領域を形成した一方、イスラーム法を重視し、非ムスリムへの政策を厳格化した。"
+},
+
+/* =========================================================
+   近世・イスラーム
+========================================================= */
+
+{
+ id:44,
+ era:"近世",
+ region:"イスラーム",
+ importance:3,
+ question:"オスマン帝国の最盛期を築き、ウィーン包囲を行ったスルタンは誰か？",
+ answer:"スレイマン1世",
+ explanation:"16世紀のオスマン帝国を最盛期へ導き、ヨーロッパ・西アジア・北アフリカにまたがる大帝国を統治した。"
+},
+
+{
+ id:45,
+ era:"近世",
+ region:"イスラーム",
+ importance:2,
+ question:"イランでサファヴィー朝を建国し、シーア派十二イマーム派を国教化した人物は誰か？",
+ answer:"イスマーイール1世",
+ explanation:"1501年にサファヴィー朝を成立させ、シーア派を国家宗教とするイラン国家の基盤を築いた。"
+},
+
+{
+ id:46,
+ era:"近世",
+ region:"イスラーム",
+ importance:2,
+ question:"サファヴィー朝の最盛期を築き、イスファハーンを整備した君主は誰か？",
+ answer:"アッバース1世",
+ explanation:"軍制改革を行い、オスマン帝国やポルトガル勢力と争った。イスファハーンを国際都市として発展させた。"
+},
+
+/* =========================================================
+   近代・中国
+========================================================= */
+
+{
+ id:47,
+ era:"近代",
+ region:"中国",
+ importance:3,
+ question:"アヘン戦争後、清がイギリスと結んだ条約は何か？",
+ answer:"南京条約",
+ explanation:"1842年に締結。香港島の割譲、上海など5港の開港などを認め、清の不平等条約体制の出発点となった。"
+},
+
+{
+ id:48,
+ era:"近代",
+ region:"中国",
+ importance:3,
+ question:"清を倒して中華民国の成立につながった1911年の革命は何か？",
+ answer:"辛亥革命",
+ explanation:"武昌蜂起をきっかけに革命が広がり、1912年に清朝が滅亡。孫文が臨時大総統となった。"
+},
+
+{
+ id:49,
+ era:"近代",
+ region:"中国",
+ importance:3,
+ question:"中国国民党を率いて国民政府を樹立した人物は誰か？",
+ answer:"蔣介石",
+ explanation:"国民革命軍を率いて北伐を進め、1928年に南京国民政府を成立させた。"
+},
+
+{
+ id:50,
+ era:"近代",
+ region:"中国",
+ importance:3,
+ question:"1949年に中華人民共和国を建国した中国共産党の指導者は誰か？",
+ answer:"毛沢東",
+ explanation:"国共内戦で国民党を台湾へ追いやり、中華人民共和国を成立させた。大躍進政策や文化大革命も重要。"
+},
+
+{
+ id:51,
+ era:"現代",
+ region:"中国",
+ importance:3,
+ question:"1978年以降、中国で改革開放政策を進めた指導者は誰か？",
+ answer:"鄧小平",
+ explanation:"市場経済的要素を導入し、経済特区の設置などを通じて中国経済の改革開放を進めた。"
+},
+
+/* =========================================================
+   近代・ヨーロッパ
+========================================================= */
+
+{
+ id:52,
+ era:"近代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ドイツ統一を主導し、「鉄血政策」で知られるプロイセン首相は誰か？",
+ answer:"ビスマルク",
+ explanation:"鉄血政策を掲げ、普仏戦争などを通じて1871年にドイツ帝国を成立させた。"
+},
+
+{
+ id:53,
+ era:"近代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ロシア革命を指導し、ソヴィエト政権を成立させた人物は誰か？",
+ answer:"レーニン",
+ explanation:"ボリシェヴィキを率いて十月革命を成功させ、世界初の社会主義国家建設を進めた。"
+},
+
+{
+ id:54,
+ era:"近代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ロシアで社会主義体制を強化し、五カ年計画を推進した人物は誰か？",
+ answer:"スターリン",
+ explanation:"ソ連の指導者として強力な工業化・農業集団化を進める一方、粛清などの独裁的統治を行った。"
+},
+
+{
+ id:55,
+ era:"近代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ドイツでナチ党を率い、1933年に首相となった人物は誰か？",
+ answer:"ヒトラー",
+ explanation:"独裁体制を確立し、再軍備・領土拡張を進めて第二次世界大戦を引き起こした。"
+},
+
+{
+ id:56,
+ era:"近代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"第二次世界大戦中のイギリス首相として対独戦争を指導した人物は誰か？",
+ answer:"チャーチル",
+ explanation:"ナチス・ドイツに対する抗戦を主導し、米ソとの連携を進めた。"
+},
+
+/* =========================================================
+   近代・アメリカ
+========================================================= */
+
+{
+ id:57,
+ era:"近代",
+ region:"アメリカ",
+ importance:3,
+ question:"アメリカ独立戦争で植民地軍を率い、初代大統領となった人物は誰か？",
+ answer:"ジョージ＝ワシントン",
+ explanation:"独立戦争で大陸軍総司令官を務め、独立後の1789年に初代大統領となった。"
+},
+
+{
+ id:58,
+ era:"近代",
+ region:"アメリカ",
+ importance:3,
+ question:"アメリカ南北戦争時の大統領で、奴隷解放宣言を発表した人物は誰か？",
+ answer:"リンカン",
+ explanation:"北部を率いて南北戦争を戦い、奴隷解放宣言を発表。戦争後に暗殺された。"
+},
+
+{
+ id:59,
+ era:"近代",
+ region:"アメリカ",
+ importance:3,
+ question:"世界恐慌後、ニューディール政策を行ったアメリカ大統領は誰か？",
+ answer:"フランクリン＝ローズヴェルト",
+ explanation:"公共事業や社会保障制度などを含むニューディール政策を進め、第二次世界大戦では連合国を指導した。"
+},
+
+/* =========================================================
+   現代
+========================================================= */
+
+{
+ id:60,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"第二次世界大戦後、インド独立運動を指導した人物は誰か？",
+ answer:"ガンディー",
+ explanation:"非暴力・不服従を掲げてイギリス支配に抵抗した。インド独立運動を大衆的な運動へ発展させた。"
+},
+
+{
+ id:61,
+ era:"現代",
+ region:"インド",
+ importance:3,
+ question:"1947年に独立したインドの初代首相となり、非同盟政策を進めた人物は誰か？",
+ answer:"ネルー",
+ explanation:"インドの初代首相。米ソいずれの陣営にも完全には属さない非同盟外交を進めた。"
+},
+
+{
+ id:62,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"第二次世界大戦後、東西両陣営の対立として展開された国際的な対立を何というか？",
+ answer:"冷戦",
+ explanation:"アメリカを中心とする西側とソ連を中心とする東側が軍事・政治・経済・思想面で対立した。"
+},
+
+{
+ id:63,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"1989年に崩壊し、東西冷戦終結の象徴となった建造物は何か？",
+ answer:"ベルリンの壁",
+ explanation:"東西ベルリンを隔てていた壁。1989年の開放・崩壊は東欧革命と冷戦終結を象徴する出来事となった。"
+},
+
+{
+ id:64,
+ era:"現代",
+ region:"ヨーロッパ",
+ importance:3,
+ question:"ソ連でペレストロイカやグラスノスチを進めた最後の最高指導者は誰か？",
+ answer:"ゴルバチョフ",
+ explanation:"改革によってソ連体制の再編を試み、東欧諸国への介入を弱めた。1991年にソ連は解体した。"
+},
+
+{
+ id:65,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"南アフリカ共和国でアパルトヘイト撤廃後、初の黒人大統領となった人物は誰か？",
+ answer:"ネルソン＝マンデラ",
+ explanation:"反アパルトヘイト運動を指導し、長期の投獄を経て1994年に大統領となった。"
+},
+
+{
+ id:66,
+ era:"現代",
+ region:"アメリカ",
+ importance:2,
+ question:"1980年代のアメリカでレーガノミクスを推進した大統領は誰か？",
+ answer:"ロナルド＝レーガン",
+ explanation:"減税・規制緩和などを重視する政策を進め、冷戦末期の米ソ関係にも大きな影響を与えた。"
+},
+
+/* =========================================================
+   世界史横断
+========================================================= */
+
+{
+ id:67,
+ era:"古代",
+ region:"世界",
+ importance:3,
+ question:"中国から中央アジア・西アジアを経て地中海世界へつながった交易ネットワークを何というか？",
+ answer:"シルクロード",
+ explanation:"絹などの商品だけでなく、宗教・技術・文化・人々が移動した広域の交易ネットワーク。"
+},
+
+{
+ id:68,
+ era:"中世",
+ region:"世界",
+ importance:3,
+ question:"13世紀、ユーラシアの広範囲を征服して東西交流を活発化させた帝国は何か？",
+ answer:"モンゴル帝国",
+ explanation:"チンギス＝ハンに始まる征服によって広大な領域を形成。交易・外交・文化交流が活発化した。"
+},
+
+{
+ id:69,
+ era:"近世",
+ region:"世界",
+ importance:3,
+ question:"15〜16世紀、ヨーロッパ諸国が海路でアジアや新大陸へ進出した動きを何というか？",
+ answer:"大航海時代",
+ explanation:"ポルトガル・スペインなどが新航路を開拓。世界規模の交易・植民地支配・文化交流が進んだ。"
+},
+
+{
+ id:70,
+ era:"近世",
+ region:"世界",
+ importance:3,
+ question:"1492年に大西洋を横断し、ヨーロッパ人にとっての「新大陸」への航路を開いた人物は誰か？",
+ answer:"コロンブス",
+ explanation:"スペインの支援を受けて西回りでアジアを目指し、アメリカ大陸に到達した。"
+},
+
+{
+ id:71,
+ era:"近世",
+ region:"世界",
+ importance:3,
+ question:"1498年、アフリカ南端を回ってインドのカリカットに到達したポルトガル人航海者は誰か？",
+ answer:"ヴァスコ＝ダ＝ガマ",
+ explanation:"喜望峰を経由するインド航路を開拓し、ポルトガルのインド洋進出を可能にした。"
+},
+
+{
+ id:72,
+ era:"近代",
+ region:"世界",
+ importance:3,
+ question:"18世紀後半からイギリスを中心に始まり、生産を機械化した大規模な経済変化を何というか？",
+ answer:"産業革命",
+ explanation:"工場制機械工業が発展し、都市化・資本主義・労働者階級の形成など社会構造を大きく変えた。"
+},
+
+{
+ id:73,
+ era:"近代",
+ region:"世界",
+ importance:3,
+ question:"19世紀後半、列強がアジア・アフリカなどへ進出し、植民地獲得を競った動きを何というか？",
+ answer:"帝国主義",
+ explanation:"工業化した列強が市場・原料・投資先などを求めて海外進出を強めた。"
+},
+
+{
+ id:74,
+ era:"近代",
+ region:"世界",
+ importance:3,
+ question:"1914年に始まり、ヨーロッパを中心として世界規模へ拡大した戦争は何か？",
+ answer:"第一次世界大戦",
+ explanation:"三国同盟と三国協商などの対立を背景に発生。総力戦となり、ロシア革命や帝国の崩壊につながった。"
+},
+
+{
+ id:75,
+ era:"近代",
+ region:"世界",
+ importance:3,
+ question:"1929年のニューヨーク株式市場の暴落をきっかけに世界へ拡大した経済危機を何というか？",
+ answer:"世界恐慌",
+ explanation:"世界的な不況と失業を生み、各国の保護貿易化や政治的急進化を促した。"
+},
+
+{
+ id:76,
+ era:"近代",
+ region:"世界",
+ importance:3,
+ question:"1939年にドイツのポーランド侵攻をきっかけに始まった戦争は何か？",
+ answer:"第二次世界大戦",
+ explanation:"枢軸国と連合国が戦った史上最大規模の戦争。1945年に枢軸国の敗北で終結した。"
+},
+
+{
+ id:77,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"第二次世界大戦後、アジア・アフリカなどの植民地が独立していった現象を何というか？",
+ answer:"脱植民地化",
+ explanation:"民族自決の広がりとヨーロッパ列強の国力低下を背景に、20世紀後半に多くの新興独立国が成立した。"
+},
+
+{
+ id:78,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"第二次世界大戦後、米ソのどちらの陣営にも完全には属さない外交を目指した国々の立場を何というか？",
+ answer:"非同盟",
+ explanation:"ネルー、ナセル、ティトーなどが中心となり、植民地支配から独立した国々が独自の外交路線を模索した。"
+},
+
+{
+ id:79,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"1991年に解体し、冷戦構造の終結を決定づけた国家は何か？",
+ answer:"ソ連（ソビエト連邦）",
+ explanation:"ゴルバチョフの改革、東欧革命、民族問題などを経て1991年に解体。15の共和国が独立した。"
+},
+
+{
+ id:80,
+ era:"現代",
+ region:"世界",
+ importance:3,
+ question:"1993年に発足した、ヨーロッパ統合をさらに進めた組織は何か？",
+ answer:"EU（ヨーロッパ連合）",
+ explanation:"マーストリヒト条約に基づき発足。経済だけでなく政治・社会面でもヨーロッパ統合を進めた。"
+}
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentEra = "all";
+let currentRegion = "all";
+let currentImportance = "all";
+let currentMode = "all";
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem(
+            "worldHistoryQuizFavorites"
+        ) || "[]"
+    );
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const quizContainer =
+    document.getElementById(
+        "quizContainer"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const resultInfo =
+    document.getElementById(
+        "resultInfo"
+    );
+
+const totalCount =
+    document.getElementById(
+        "totalCount"
+    );
+
+const importantCount =
+    document.getElementById(
+        "importantCount"
+    );
+
+const favoriteCount =
+    document.getElementById(
+        "favoriteCount"
+    );
+
+
+/* =========================================================
+   Stars
+========================================================= */
+
+function stars(level){
+
+    if(level === 3){
+        return `<span class="star3">★★★</span>`;
+    }
+
+    if(level === 2){
+        return `<span class="star2">★★☆</span>`;
+    }
+
+    return `<span class="star1">★☆☆</span>`;
+}
+
+
+/* =========================================================
+   Search
+========================================================= */
+
+function getSearchText(q){
+
+    return [
+        q.question,
+        q.answer,
+        q.explanation,
+        q.era,
+        q.region
+    ]
+    .join(" ")
+    .toLowerCase();
+}
+
+
+/* =========================================================
+   Filter
+========================================================= */
+
+function getFilteredQuestions(){
+
+    const search =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+    return questions.filter(q => {
+
+        const eraOK =
+            currentEra === "all" ||
+            q.era === currentEra;
+
+        const regionOK =
+            currentRegion === "all" ||
+            q.region === currentRegion;
+
+        const importanceOK =
+            currentImportance === "all" ||
+            String(q.importance) ===
+            String(currentImportance);
+
+        const modeOK =
+            currentMode === "all" ||
+            (
+                currentMode === "unanswered" &&
+                !favorites.includes(q.id)
+            ) ||
+            (
+                currentMode === "review" &&
+                favorites.includes(q.id)
+            );
+
+        const searchOK =
+            !search ||
+            getSearchText(q).includes(search);
+
+        return (
+            eraOK &&
+            regionOK &&
+            importanceOK &&
+            modeOK &&
+            searchOK
+        );
+
+    });
+}
+
+
+/* =========================================================
+   Save favorites
+========================================================= */
+
+function saveFavorites(){
+
+    localStorage.setItem(
+        "worldHistoryQuizFavorites",
+        JSON.stringify(favorites)
+    );
+
+}
+
+
+/* =========================================================
+   Toggle favorite
+========================================================= */
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(
+                item => item !== id
+            );
+
+    }else{
+
+        favorites.push(id);
+
+    }
+
+    saveFavorites();
+
+    updateStats();
+
+    render();
+
+}
+
+
+/* =========================================================
+   Create card
+========================================================= */
+
+function createCard(q,index){
+
+    const isFavorite =
+        favorites.includes(q.id);
+
+    return `
+
+        <article
+            class="quiz-card"
+            data-id="${q.id}"
+        >
+
+            <div class="quiz-top">
+
+                <span class="number">
+                    Q${q.id}
+                </span>
+
+                <span class="badge region-badge">
+                    ${q.region}
+                </span>
+
+                <span class="badge era-badge">
+                    ${q.era}
+                </span>
+
+                <span class="importance">
+                    ${stars(q.importance)}
+                </span>
+
+                <button
+                    class="
+                        favorite-btn
+                        ${isFavorite ? "active" : ""}
+                    "
+                    onclick="
+                        toggleFavorite(${q.id})
+                    "
+                    title="
+                        ${isFavorite
+                            ? "チェックを外す"
+                            : "復習用にチェック"}
+                    "
+                >
+                    ${isFavorite ? "★" : "☆"}
+                </button>
+
+            </div>
+
+
+            <div class="question">
+                ${q.question}
+            </div>
+
+
+            <div class="answer-area">
+
+                <div
+                    class="answer-cover"
+                    onclick="showAnswer(${q.id})"
+                    id="cover-${q.id}"
+                >
+                    <span class="cover-label">
+                        🔴 タップして答えを表示
+                    </span>
+                </div>
+
+
+                <div
+                    class="answer-content"
+                    id="answer-${q.id}"
+                >
+
+                    <div class="answer-label">
+                        ANSWER
+                    </div>
+
+                    <div class="answer">
+                        ${q.answer}
+                    </div>
+
+                    <div class="explanation">
+                        ${q.explanation}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+}
+
+
+/* =========================================================
+   Render
+========================================================= */
+
+function render(){
+
+    const filtered =
+        getFilteredQuestions();
+
+    if(filtered.length === 0){
+
+        quizContainer.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    該当する問題がありません
+                </h3>
+
+                <p>
+                    検索条件またはフィルターを
+                    変更してください。
+                </p>
+
+            </div>
+
+        `;
+
+    }else{
+
+        quizContainer.innerHTML = `
+
+            <div class="section-title">
+
+                <h2>
+                    一問一答
+                </h2>
+
+                <span>
+                    答えを思い出してからタップ
+                </span>
+
+            </div>
+
+            <div class="quiz-list">
+
+                ${filtered
+                    .map(createCard)
+                    .join("")}
+
+            </div>
+        `;
+    }
+
+
+    updateStats();
+
+}
+
+
+/* =========================================================
+   Show answer
+========================================================= */
+
+function showAnswer(id){
+
+    const cover =
+        document.getElementById(
+            `cover-${id}`
+        );
+
+    const answer =
+        document.getElementById(
+            `answer-${id}`
+        );
+
+    if(!cover || !answer){
+        return;
+    }
+
+    cover.style.display = "none";
+
+    answer.classList.add("show");
+
+}
+
+
+/* =========================================================
+   Stats
+========================================================= */
+
+function updateStats(){
+
+    totalCount.textContent =
+        questions.length;
+
+    importantCount.textContent =
+        questions.filter(
+            q => q.importance === 3
+        ).length;
+
+    favoriteCount.textContent =
+        favorites.length;
+
+    const filtered =
+        getFilteredQuestions();
+
+    let modeText = "全問題";
+
+    if(currentMode === "review"){
+        modeText =
+            "⭐ 復習モード";
+    }
+
+    if(currentMode === "unanswered"){
+        modeText =
+            "🔵 未チェック問題";
+    }
+
+    resultInfo.textContent =
+        `${filtered.length}問を表示中｜${modeText}`;
+}
+
+
+/* =========================================================
+   Filter buttons
+========================================================= */
+
+document
+.querySelectorAll(".filter-btn")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const type =
+                button.dataset.filterType;
+
+            const value =
+                button.dataset.value;
+
+
+            document
+            .querySelectorAll(
+                `[data-filter-type="${type}"]`
+            )
+            .forEach(btn =>
+                btn.classList.remove(
+                    "active"
+                )
+            );
+
+            button.classList.add(
+                "active"
+            );
+
+
+            if(type === "era"){
+                currentEra = value;
+            }
+
+            if(type === "region"){
+                currentRegion = value;
+            }
+
+            if(type === "importance"){
+                currentImportance = value;
+            }
+
+            render();
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   Mode buttons
+========================================================= */
+
+const allMode =
+    document.getElementById(
+        "allMode"
+    );
+
+const unansweredMode =
+    document.getElementById(
+        "unansweredMode"
+    );
+
+const reviewMode =
+    document.getElementById(
+        "reviewMode"
+    );
+
+
+function setMode(mode){
+
+    currentMode = mode;
+
+    [
+        allMode,
+        unansweredMode,
+        reviewMode
+    ]
+    .forEach(btn =>
+        btn.classList.remove(
+            "active"
+        )
+    );
+
+
+    if(mode === "all"){
+        allMode.classList.add(
+            "active"
+        );
+    }
+
+    if(mode === "unanswered"){
+        unansweredMode.classList.add(
+            "active"
+        );
+    }
+
+    if(mode === "review"){
+        reviewMode.classList.add(
+            "active"
+        );
+    }
+
+    render();
+
+}
+
+
+allMode.addEventListener(
+    "click",
+    () => setMode("all")
+);
+
+unansweredMode.addEventListener(
+    "click",
+    () => setMode("unanswered")
+);
+
+reviewMode.addEventListener(
+    "click",
+    () => setMode("review")
+);
+
+
+/* =========================================================
+   Search
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+
+/* =========================================================
+   Reset
+========================================================= */
+
+document
+.getElementById("resetBtn")
+.addEventListener(
+    "click",
+    () => {
+
+        searchInput.value = "";
+
+        currentEra = "all";
+        currentRegion = "all";
+        currentImportance = "all";
+        currentMode = "all";
+
+
+        document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn =>
+            btn.classList.remove(
+                "active"
+            )
+        );
+
+
+        document
+        .querySelectorAll(
+            '[data-value="all"]'
+        )
+        .forEach(btn =>
+            btn.classList.add(
+                "active"
+            )
+        );
+
+
+        setMode("all");
+
+    }
+);
+
+
+/* =========================================================
+   Keyboard shortcut
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "/" &&
+            document.activeElement.tagName !==
+            "INPUT"
+        ){
+
+            event.preventDefault();
+
+            searchInput.focus();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   初期化
+========================================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
