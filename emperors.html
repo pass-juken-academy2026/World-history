@@ -3024,8 +3024,605 @@ const USER_EXPANSION = [
 {id:"exp_124",name:"ヘーゲル",en:"",affiliation:"思想・宗教・文化",era:"古代〜近現代",region:"世界",importance:2,period:"",summary:"ドイツ観念論を代表する哲学者。弁証法で知られる。",achievements:["歴史を精神の発展として捉えた", "弁証法を体系化"],traps:["マルクスはヘーゲルの影響を受けつつ唯物論へ転換。"],aliases:["ヘーゲル"]},
 {id:"exp_125",name:"ダーウィン",en:"",affiliation:"思想・宗教・文化",era:"古代〜近現代",region:"世界",importance:2,period:"",summary:"進化論を提唱した自然科学者。",achievements:["『種の起源』", "自然選択説を提唱"],traps:["社会ダーウィニズムなどへの後世の応用とは区別。"],aliases:["ダーウィン"]},
 {id:"exp_126",name:"フロイト",en:"",affiliation:"思想・宗教・文化",era:"古代〜近現代",region:"世界",importance:2,period:"",summary:"精神分析学を創始した思想家・医師。",achievements:["無意識の概念を重視", "精神分析学を体系化"],traps:["ダーウィンとは19世紀後半〜20世紀初頭の別分野。"],aliases:["フロイト"]}
+{id:"add_001",name:"サルゴン",en:"Sargon",affiliation:"アッカド帝国",era:"古代",region:"西アジア",importance:2,period:"前24世紀頃",summary:"アッカド帝国を建設し、メソポタミアを広域的に統合した君主。",achievements:["アッカド帝国を建設","シュメール諸都市を征服","メソポタミア統一を推進"],traps:["ハンムラビはバビロン第1王朝であり、サルゴンとは時代が大きく異なる。"],aliases:["アッカドのサルゴン"]},
 
-];
+{id:"add_002",name:"ナラム＝シン",en:"Naram-Sin",affiliation:"アッカド帝国",era:"古代",region:"西アジア",importance:2,period:"前23世紀頃",summary:"アッカド帝国の最盛期を築いた王。王権の神格化でも知られる。",achievements:["アッカド帝国を拡大","王権の神格化を推進","メソポタミア北部まで勢力を拡大"],traps:["サルゴンの後継世代にあたる。"],aliases:["ナラム・シン"]},
+
+{id:"add_003",name:"ウル＝ナンム",en:"Ur-Nammu",affiliation:"ウル第3王朝",era:"古代",region:"西アジア",importance:2,period:"前21世紀頃",summary:"ウル第3王朝を建設した王。古代メソポタミアの法典でも重要。",achievements:["ウル第3王朝を建設","ウルを中心に統治を再編","ウル＝ナンム法典を制定"],traps:["ハンムラビ法典より古い法典として区別する。"],aliases:["ウル・ナンム","ウルナンム"]},
+
+{id:"add_004",name:"シュルギ",en:"Shulgi",affiliation:"ウル第3王朝",era:"古代",region:"西アジア",importance:1,period:"前21世紀頃",summary:"ウル第3王朝の王。行政制度や統治体制を整備した。",achievements:["行政制度を整備","道路・駅伝網を整備","ウル第3王朝の支配を強化"],traps:["ウル＝ナンムの後継者として整理する。"],aliases:["シュルギ王"]},
+
+{id:"add_005",name:"アッシュル＝ナツィルパル2世",en:"Ashurnasirpal II",affiliation:"新アッシリア帝国",era:"古代",region:"西アジア",importance:1,period:"前883〜859年",summary:"新アッシリア帝国の領土拡大を進めた王。",achievements:["軍事遠征を積極的に実施","新アッシリア帝国を拡大","カルフを重要都市として整備"],traps:["アッシュルバニパルとは別人。"],aliases:["アッシュルナツィルパル2世"]},
+
+{id:"add_006",name:"ティグラト＝ピレセル3世",en:"Tiglath-Pileser III",affiliation:"新アッシリア帝国",era:"古代",region:"西アジア",importance:2,period:"前745〜727年",summary:"新アッシリア帝国の軍事・行政改革を進めた王。",achievements:["常備軍を強化","属州制度を整備","帝国の領域を大幅に拡大"],traps:["新アッシリア帝国の再編者として重要。"],aliases:["ティグラト・ピレセル3世"]},
+
+{id:"add_007",name:"ネブカドネザル2世",en:"Nebuchadnezzar II",affiliation:"新バビロニア王国",era:"古代",region:"西アジア",importance:3,period:"前605〜562年",summary:"新バビロニア王国の最盛期を築いた王。ユダ王国征服で重要。",achievements:["ユダ王国を征服","バビロンを繁栄させた","バビロン捕囚を生じさせた"],traps:["ネブカドネザル2世は新バビロニア王国。アッシリア帝国とは別。"],aliases:["ネブカドネツァル2世","ネブカドネザル"]},
+
+{id:"add_008",name:"ダレイオス3世",en:"Darius III",affiliation:"アケメネス朝ペルシア",era:"古代",region:"西アジア",importance:2,period:"前336〜330年",summary:"アケメネス朝ペルシア最後の王。アレクサンドロス大王に敗れた。",achievements:["アケメネス朝最後の王","イッソスの戦いで敗北","ガウガメラの戦いで敗北"],traps:["ダレイオス1世・クセルクセス1世とは別人。"],aliases:["ダリウス3世"]},
+
+{id:"add_009",name:"クセルクセス1世",en:"Xerxes I",affiliation:"アケメネス朝ペルシア",era:"古代",region:"西アジア",importance:3,period:"前486〜465年",summary:"ギリシア遠征を行ったアケメネス朝の王。",achievements:["ギリシア遠征を実施","テルモピュライの戦い","サラミスの海戦で敗北"],traps:["ダレイオス3世はアレクサンドロス大王と戦った人物。"],aliases:["クセルクセス"]},
+
+{id:"add_010",name:"カンビュセス2世",en:"Cambyses II",affiliation:"アケメネス朝ペルシア",era:"古代",region:"西アジア・エジプト",importance:2,period:"前530〜522年",summary:"アケメネス朝ペルシアの王。エジプトを征服した。",achievements:["エジプトを征服","ペルシア帝国の領土を拡大","アケメネス朝の支配を強化"],traps:["エジプト征服はカンビュセス2世、帝国制度整備はダレイオス1世と整理。"],aliases:["カンビュセス"]},
+
+{id:"add_011",name:"クレイステネス",en:"Cleisthenes",affiliation:"アテネ",era:"古代",region:"ギリシア",importance:3,period:"前6世紀",summary:"アテネ民主政の基礎を整えた政治家。",achievements:["部族制を再編","五百人評議会を整備","陶片追放を導入"],traps:["ソロンの改革より後の民主政改革者。"],aliases:["クレイステネス"]},
+
+{id:"add_012",name:"テミストクレス",en:"Themistocles",affiliation:"アテネ",era:"古代",region:"ギリシア",importance:2,period:"前5世紀",summary:"ペルシア戦争期のアテネ政治家。海軍強化を進めた。",achievements:["アテネ海軍を強化","サラミスの海戦を指導","ペルシア軍を撃破"],traps:["ペリクレスより前の人物。"],aliases:["テミストクレス"]},
+
+{id:"add_013",name:"アルキビアデス",en:"Alcibiades",affiliation:"アテネ",era:"古代",region:"ギリシア",importance:1,period:"前5世紀",summary:"ペロポネソス戦争期のアテネ政治家・軍人。",achievements:["シチリア遠征を推進","アテネ政治に大きな影響","スパルタ側とも関係を持った"],traps:["ペリクレスとは世代が異なる。"],aliases:["アルキビアデス"]},
+
+{id:"add_014",name:"フィリッポス2世",en:"Philip II",affiliation:"マケドニア王国",era:"古代",region:"ギリシア",importance:3,period:"前359〜336年",summary:"マケドニアを強国化し、ギリシア世界を支配した王。",achievements:["マケドニア軍を改革","カイロネイアの戦いで勝利","コリントス同盟を結成"],traps:["アレクサンドロス大王の父。ペルシア遠征開始前に暗殺された。"],aliases:["フィリップ2世"]},
+
+{id:"add_015",name:"カッサンドロス",en:"Cassander",affiliation:"マケドニア・ディアドコイ",era:"古代",region:"地中海",importance:1,period:"前4世紀",summary:"アレクサンドロス大王死後のディアドコイ戦争で台頭した人物。",achievements:["マケドニアを支配","アンティパトロス家の勢力を継承","ディアドコイ戦争に参加"],traps:["アレクサンドロス大王本人ではない。"],aliases:["カッサンドロス"]},
+
+{id:"add_016",name:"セレウコス1世",en:"Seleucus I",affiliation:"セレウコス朝",era:"古代",region:"西アジア",importance:2,period:"前305〜281年",summary:"アレクサンドロス大王死後にセレウコス朝を建設した人物。",achievements:["セレウコス朝を建設","シリア・メソポタミアを支配","東方領域を広く支配"],traps:["プトレマイオス朝のプトレマイオス1世とは別のディアドコイ。"],aliases:["セレウコス1世ニカトル"]},
+
+{id:"add_017",name:"プトレマイオス1世",en:"Ptolemy I",affiliation:"プトレマイオス朝",era:"古代",region:"エジプト",importance:2,period:"前305〜282年",summary:"エジプトを支配しプトレマイオス朝を建設した人物。",achievements:["プトレマイオス朝を建設","アレクサンドリアを発展","ヘレニズム文化を保護"],traps:["クレオパトラ7世はプトレマイオス朝末期の女王。"],aliases:["プトレマイオス1世ソテル"]},
+
+{id:"add_018",name:"ピュロス",en:"Pyrrhus",affiliation:"エピロス王国",era:"古代",region:"地中海",importance:1,period:"前3世紀",summary:"ローマと戦ったエピロス王。『ピュロスの勝利』で知られる。",achievements:["イタリアへ遠征","ヘラクレアの戦いで勝利","アスクルムの戦いで勝利"],traps:["勝利しても損害が大きい『ピュロスの勝利』の語源。"],aliases:["ピュロス王"]},
+
+{id:"add_019",name:"ハンニバル",en:"Hannibal Barca",affiliation:"カルタゴ",era:"古代",region:"地中海",importance:3,period:"前247〜183年頃",summary:"第二次ポエニ戦争でローマを苦しめたカルタゴの将軍。",achievements:["アルプス越えを実行","カンネーの戦いでローマ軍を撃破","第二次ポエニ戦争を指導"],traps:["カルタゴ側の人物で、ローマのスキピオと対立。"],aliases:["ハンニバル・バルカ"]},
+
+{id:"add_020",name:"スキピオ＝アフリカヌス",en:"Scipio Africanus",affiliation:"ローマ共和国",era:"古代",region:"ローマ",importance:3,period:"前236〜183年頃",summary:"第二次ポエニ戦争でハンニバルを破ったローマの将軍。",achievements:["ザマの戦いで勝利","カルタゴを破る","アフリカヌスの称号を得る"],traps:["ハンニバルを破ったローマ側の人物。"],aliases:["スキピオ・アフリカヌス"]},
+
+{id:"add_021",name:"グラックス兄弟",en:"Gracchi Brothers",affiliation:"ローマ共和国",era:"古代",region:"ローマ",importance:2,period:"前2世紀",summary:"ローマ共和国末期の社会改革を進めた兄弟。",achievements:["土地改革を推進","平民の利益を主張","共和政末期の社会対立を激化させた"],traps:["兄ティベリウス、弟ガイウスの兄弟。"],aliases:["グラックス兄弟","ティベリウス・グラックス","ガイウス・グラックス"]},
+
+{id:"add_022",name:"スッラ",en:"Sulla",affiliation:"ローマ共和国",era:"古代",region:"ローマ",importance:2,period:"前138〜78年",summary:"ローマ共和国末期の軍人・政治家。独裁官となった。",achievements:["マリウス派と対立","ローマを武力で占領","終身独裁官として改革"],traps:["カエサルより前の共和政末期の独裁者。"],aliases:["ルキウス・コルネリウス・スッラ"]},
+
+{id:"add_023",name:"マリウス",en:"Marius",affiliation:"ローマ共和国",era:"古代",region:"ローマ",importance:2,period:"前157〜86年",summary:"ローマ軍制改革と内乱で重要なローマ政治家・軍人。",achievements:["軍制改革を進めた","北アフリカ・北方で軍事活動","スッラと内戦"],traps:["スッラとは対立関係。"],aliases:["ガイウス・マリウス"]},
+
+{id:"add_024",name:"ティベリウス",en:"Tiberius",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:2,period:"在位14〜37年",summary:"アウグストゥスの後継者としてローマ帝国第2代皇帝となった。",achievements:["アウグストゥスの後継者","ライン方面の防衛を維持","皇帝権力を継承"],traps:["ティベリウスは初期ローマ皇帝。グラックス兄弟とは別人。"],aliases:["ティベリウス帝"]},
+
+{id:"add_025",name:"クラウディウス",en:"Claudius",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:2,period:"在位41〜54年",summary:"ローマ帝国第4代皇帝。ブリタニア征服を進めた。",achievements:["ブリタニア遠征","属州統治を強化","行政制度を整備"],traps:["ネロの前の皇帝で、ネロの養父。"],aliases:["クラウディウス帝"]},
+
+{id:"add_026",name:"ウェスパシアヌス",en:"Vespasian",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:2,period:"在位69〜79年",summary:"四皇帝の年を経て即位したフラウィウス朝初代皇帝。",achievements:["フラウィウス朝を開始","財政を再建","コロッセウム建設を開始"],traps:["ネロ死後の混乱を収束させた人物。"],aliases:["ウェスパシアヌス帝"]},
+
+{id:"add_027",name:"ティトゥス",en:"Titus",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:1,period:"在位79〜81年",summary:"ウェスパシアヌスの子。エルサレム陥落とコロッセウム完成で知られる。",achievements:["エルサレムを陥落させた軍を指揮","コロッセウムを完成","ヴェスヴィオ火山噴火に対応"],traps:["ウェスパシアヌスの子でドミティアヌスの兄。"],aliases:["ティトゥス帝"]},
+
+{id:"add_028",name:"ドミティアヌス",en:"Domitian",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:1,period:"在位81〜96年",summary:"フラウィウス朝最後の皇帝。皇帝権力を強化した。",achievements:["皇帝権力を強化","国境防衛を進めた","専制的統治を行った"],traps:["五賢帝の一人ではない。"],aliases:["ドミティアヌス帝"]},
+
+{id:"add_029",name:"ネルウァ",en:"Nerva",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:1,period:"在位96〜98年",summary:"五賢帝時代の最初の皇帝。",achievements:["養子による後継者選定","元老院との関係改善","トラヤヌスを後継者に指名"],traps:["五賢帝の最初。"],aliases:["ネルウァ帝"]},
+
+{id:"add_030",name:"アントニヌス＝ピウス",en:"Antoninus Pius",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:2,period:"在位138〜161年",summary:"五賢帝の一人。安定した統治を行った皇帝。",achievements:["帝国内の平和を維持","法制度を整備","ハドリアヌスの後継者"],traps:["マルクス＝アウレリウスの養父。"],aliases:["アントニヌス・ピウス"]},
+
+{id:"add_031",name:"セプティミウス＝セウェルス",en:"Septimius Severus",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:2,period:"在位193〜211年",summary:"軍事力を背景に即位したセウェルス朝初代皇帝。",achievements:["セウェルス朝を開始","軍隊を重視","ブリタニア遠征"],traps:["カラカラの父。"],aliases:["セウェルス帝"]},
+
+{id:"add_032",name:"ガレリウス",en:"Galerius",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:1,period:"3〜4世紀",summary:"ディオクレティアヌスの共同統治者として迫害政策などに関わった。",achievements:["テトラルキアの一員","キリスト教迫害を実施","311年に迫害停止令"],traps:["コンスタンティヌスのミラノ勅令とは区別する。"],aliases:["ガレリウス"]},
+
+{id:"add_033",name:"コンスタンティウス2世",en:"Constantius II",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:1,period:"在位337〜361年",summary:"コンスタンティヌス大帝の子。帝国再統合を進めた。",achievements:["東方を中心に統治","ペルシアと戦った","単独皇帝となった"],traps:["コンスタンティヌス大帝の息子。"],aliases:["コンスタンティウス2世"]},
+
+{id:"add_034",name:"テオドシウス1世",en:"Theodosius I",affiliation:"ローマ帝国",era:"古代",region:"ローマ",importance:3,period:"在位379〜395年",summary:"キリスト教を国教化し、帝国東西分裂直前の最後の単独皇帝。",achievements:["キリスト教を国教化","ニカイア派を支持","帝国を最後に単独統治"],traps:["395年の帝国分割は彼の死後の東西分裂につながる。"],aliases:["テオドシウス大帝"]},
+
+{id:"add_035",name:"ユスティヌス1世",en:"Justin I",affiliation:"東ローマ帝国",era:"中世",region:"東地中海",importance:1,period:"在位518〜527年",summary:"ユスティニアヌス1世の叔父で東ローマ皇帝。",achievements:["ユスティニアヌスを後継者として育成","東ローマ帝国を統治","正統派キリスト教を支持"],traps:["ユスティニアヌス1世とは別人。"],aliases:["ユスティヌス1世"]},
+
+{id:"add_036",name:"バシレイオス2世",en:"Basil II",affiliation:"ビザンツ帝国",era:"中世",region:"東ヨーロッパ",importance:2,period:"在位976〜1025年",summary:"ビザンツ帝国の最盛期を支えた皇帝。",achievements:["ブルガリアを征服","帝国領域を拡大","皇帝権力を強化"],traps:["ユスティニアヌス1世より約500年後の皇帝。"],aliases:["バシレイオス2世"]},
+
+{id:"add_037",name:"アレクシオス1世",en:"Alexios I Komnenos",affiliation:"ビザンツ帝国",era:"中世",region:"東地中海",importance:2,period:"在位1081〜1118年",summary:"コムネノス朝を開始し、十字軍時代のビザンツ帝国を統治した皇帝。",achievements:["コムネノス朝を開始","セルジューク朝と対立","第1回十字軍を迎えた"],traps:["第1回十字軍時代のビザンツ皇帝。"],aliases:["アレクシオス1世コムネノス"]},
+
+{id:"add_038",name:"バルバロッサ",en:"Frederick I Barbarossa",affiliation:"神聖ローマ帝国",era:"中世",region:"西ヨーロッパ",importance:2,period:"在位1155〜1190年",summary:"神聖ローマ皇帝フリードリヒ1世。イタリア政策と十字軍で重要。",achievements:["イタリア都市と対立","ロンバルディア同盟と戦った","第3回十字軍に参加"],traps:["フリードリヒ2世とは別人。"],aliases:["フリードリヒ1世","赤髭王"]},
+
+{id:"add_039",name:"フリードリヒ2世",en:"Frederick II",affiliation:"神聖ローマ帝国",era:"中世",region:"西ヨーロッパ",importance:3,period:"在位1215〜1250年",summary:"神聖ローマ皇帝。シチリア王国を基盤に多文化的統治を行った。",achievements:["シチリア王国を統治","第6回十字軍でエルサレムを回復","教皇と対立"],traps:["フリードリヒ1世バルバロッサの孫。"],aliases:["フリードリヒ2世"]},
+
+{id:"add_040",name:"フィリップ2世",en:"Philip II of France",affiliation:"フランス王国",era:"中世",region:"西ヨーロッパ",importance:2,period:"在位1180〜1223年",summary:"フランス王権を強化し、イングランド王ジョンと対立した王。",achievements:["カペー朝の王権を拡大","ノルマンディーを獲得","ブーヴィーヌの戦いで勝利"],traps:["スペインのフェリペ2世とは別人。"],aliases:["フィリップ2世尊厳王","フィリップ＝オーギュスト"]},
+
+{id:"add_041",name:"ジョン王",en:"John of England",affiliation:"イングランド王国",era:"中世",region:"西ヨーロッパ",importance:3,period:"在位1199〜1216年",summary:"マグナ＝カルタを承認したイングランド王。",achievements:["マグナ＝カルタに署名","フランス王フィリップ2世と対立","王権と諸侯の対立を深めた"],traps:["リチャード1世の弟。"],aliases:["ジョン欠地王","ジョン王"]},
+
+{id:"add_042",name:"エドワード1世",en:"Edward I",affiliation:"イングランド王国",era:"中世",region:"西ヨーロッパ",importance:2,period:"在位1272〜1307年",summary:"イングランド王。議会制度やウェールズ・スコットランド政策で重要。",achievements:["ウェールズ征服","スコットランドへ進出","模範議会を招集"],traps:["エドワード3世とは別人。"],aliases:["エドワード1世長脛王"]},
+
+{id:"add_043",name:"エドワード3世",en:"Edward III",affiliation:"イングランド王国",era:"中世",region:"西ヨーロッパ",importance:2,period:"在位1327〜1377年",summary:"百年戦争初期のイングランド王。",achievements:["百年戦争を開始","クレシーの戦いで勝利","イングランド議会政治を発展"],traps:["百年戦争開始期の王。"],aliases:["エドワード3世"]},
+
+{id:"add_044",name:"ジャンヌ＝ダルク",en:"Joan of Arc",affiliation:"フランス王国",era:"中世",region:"西ヨーロッパ",importance:3,period:"15世紀",summary:"百年戦争末期にフランス側で活躍した人物。",achievements:["オルレアン解放に貢献","シャルル7世の戴冠を支援","百年戦争のフランス側の象徴となった"],traps:["王ではなく宗教的・軍事的象徴人物。"],aliases:["ジャンヌ・ダルク"]},
+
+{id:"add_045",name:"シャルル7世",en:"Charles VII",affiliation:"フランス王国",era:"中世",region:"西ヨーロッパ",importance:2,period:"在位1422〜1461年",summary:"百年戦争末期のフランス王。王権と常備軍を強化した。",achievements:["ジャンヌ＝ダルクの支援を受けた","百年戦争を終結へ導いた","常備軍を整備"],traps:["シャルルマーニュとは別人。"],aliases:["シャルル7世"]},
+
+{id:"add_046",name:"イサベル1世",en:"Isabella I of Castile",affiliation:"カスティリャ王国",era:"近世",region:"イベリア半島",importance:3,period:"在位1474〜1504年",summary:"フェルナンド2世とともにスペイン統一を進めた女王。",achievements:["グラナダ王国を征服","コロンブスを支援","スペイン王権を強化"],traps:["イングランド女王エリザベス1世とは別人。"],aliases:["イサベル1世","カスティリャ女王"]},
+
+{id:"add_047",name:"フェルナンド2世",en:"Ferdinand II of Aragon",affiliation:"アラゴン王国",era:"近世",region:"イベリア半島",importance:3,period:"在位1479〜1516年",summary:"イサベル1世とともにスペイン統一を進めた王。",achievements:["カスティリャとの共同統治","グラナダ征服","海外進出を支援"],traps:["神聖ローマ皇帝フェルディナント2世とは別人。"],aliases:["フェルナンド2世","アラゴン王"]},
+
+{id:"add_048",name:"マヌエル1世",en:"Manuel I of Portugal",affiliation:"ポルトガル王国",era:"近世",region:"イベリア半島",importance:2,period:"在位1495〜1521年",summary:"ポルトガル海上帝国の発展期を支えた国王。",achievements:["ヴァスコ＝ダ＝ガマの航海を支援","インド航路を活用","ポルトガルの海外帝国を拡大"],traps:["スペイン王ではなくポルトガル王。"],aliases:["マヌエル1世"]},
+
+{id:"add_049",name:"ヴァスコ＝ダ＝ガマ",en:"Vasco da Gama",affiliation:"ポルトガル",era:"近世",region:"大航海時代",importance:3,period:"15〜16世紀",summary:"ヨーロッパからインドへの海路を開拓したポルトガルの航海者。",achievements:["喜望峰を経由してインドへ到達","ヨーロッパとインドの海上交易を結んだ","ポルトガルのインド洋進出に貢献"],traps:["コロンブスは西回りでアメリカへ到達。"],aliases:["バスコ・ダ・ガマ","ヴァスコ・ダ・ガマ"]},
+
+{id:"add_050",name:"バルトロメウ＝ディアス",en:"Bartolomeu Dias",affiliation:"ポルトガル",era:"近世",region:"大航海時代",importance:2,period:"15世紀",summary:"アフリカ南端の喜望峰に到達したポルトガルの航海者。",achievements:["アフリカ南端に到達","インド航路開拓への道を開いた","喜望峰を発見した"],traps:["インド到達はヴァスコ＝ダ＝ガマ。"],aliases:["バルトロメウ・ディアス","ディアス"]},
+
+{id:"add_051",name:"エンリケ航海王子",en:"Henry the Navigator",affiliation:"ポルトガル王国",era:"近世",region:"大航海時代",importance:3,period:"15世紀",summary:"ポルトガルの大航海を支援した王族。",achievements:["航海事業を支援","アフリカ西岸探検を促進","ポルトガル海洋進出の基盤を形成"],traps:["本人がインド航路を発見したわけではない。"],aliases:["エンリケ航海王子"]},
+
+{id:"add_052",name:"エルナン＝コルテス",en:"Hernán Cortés",affiliation:"スペイン",era:"近世",region:"アメリカ",importance:3,period:"16世紀",summary:"アステカ帝国を征服したスペインの征服者。",achievements:["アステカ帝国を征服","テノチティトランを攻略","スペインのメキシコ支配を開始"],traps:["インカ帝国征服はピサロ。"],aliases:["コルテス","エルナン・コルテス"]},
+
+{id:"add_053",name:"フランシスコ＝ピサロ",en:"Francisco Pizarro",affiliation:"スペイン",era:"近世",region:"アメリカ",importance:3,period:"16世紀",summary:"インカ帝国を征服したスペインの征服者。",achievements:["インカ帝国を征服","アタワルパを捕らえた","ペルー支配の基礎を築いた"],traps:["アステカ帝国はコルテス、インカ帝国はピサロ。"],aliases:["ピサロ","フランシスコ・ピサロ"]},
+
+{id:"add_054",name:"アタワルパ",en:"Atahualpa",affiliation:"インカ帝国",era:"近世",region:"南アメリカ",importance:2,period:"16世紀",summary:"インカ帝国最後期の皇帝。ピサロに捕らえられた。",achievements:["インカ内戦で勝利","ピサロの軍と接触","スペイン征服の過程で処刑された"],traps:["スペイン側ではなくインカ帝国側の人物。"],aliases:["アタワルパ"]},
+
+{id:"add_055",name:"シャー＝イスマーイール1世",en:"Ismail I",affiliation:"サファヴィー朝",era:"近世",region:"西アジア",importance:3,period:"在位1501〜1524年",summary:"サファヴィー朝を建設し、シーア派十二イマーム派を国教化した君主。",achievements:["サファヴィー朝を建設","十二イマーム派を国教化","イラン地域を統合"],traps:["オスマン帝国のスレイマン1世と対立関係。"],aliases:["イスマーイール1世","シャー・イスマーイール"]},
+
+{id:"add_056",name:"スレイマン1世",en:"Suleiman I",affiliation:"オスマン帝国",era:"近世",region:"西アジア・地中海",importance:3,period:"在位1520〜1566年",summary:"オスマン帝国の最盛期を築いた皇帝。",achievements:["ハンガリーへ進出","ウィーン包囲","法典整備と帝国統治を強化"],traps:["サファヴィー朝イスマーイール1世と対立。"],aliases:["スレイマン大帝","壮麗者スレイマン"]},
+
+{id:"add_057",name:"セリム1世",en:"Selim I",affiliation:"オスマン帝国",era:"近世",region:"西アジア",importance:2,period:"在位1512〜1520年",summary:"オスマン帝国の東方・南方拡大を進めた皇帝。",achievements:["マムルーク朝を滅ぼした","エジプト・シリアを獲得","イスラム世界でのオスマン帝国の地位を高めた"],traps:["スレイマン1世の父。"],aliases:["ヤヴズ・セリム"]},
+
+{id:"add_058",name:"メフメト2世",en:"Mehmed II",affiliation:"オスマン帝国",era:"近世",region:"東地中海",importance:3,period:"在位1451〜1481年",summary:"コンスタンティノープルを征服したオスマン帝国の皇帝。",achievements:["1453年コンスタンティノープル征服","東ローマ帝国を滅ぼした","オスマン帝国の首都をイスタンブルへ"],traps:["1453年の征服者。"],aliases:["メフメト2世","征服王"]},
+
+{id:"add_059",name:"バーブル",en:"Babur",affiliation:"ムガル帝国",era:"近世",region:"南アジア",importance:3,period:"1483〜1530年",summary:"インドにムガル帝国を建設した君主。",achievements:["1526年パーニーパットの戦いで勝利","ムガル帝国を建設","ティムール朝の血統を継承"],traps:["アクバルはバーブルの孫。"],aliases:["バーブル"]},
+
+{id:"add_060",name:"シャー＝ジャハーン",en:"Shah Jahan",affiliation:"ムガル帝国",era:"近世",region:"南アジア",importance:3,period:"在位1628〜1658年",summary:"ムガル帝国の皇帝。タージ＝マハル建設で知られる。",achievements:["タージ＝マハルを建設","ムガル帝国の繁栄を支えた","デリーを整備"],traps:["アクバルの後継者ではなく、アクバルの孫世代。"],aliases:["シャー・ジャハーン"]},
+
+{id:"add_061",name:"シヴァージー",en:"Shivaji",affiliation:"マラーター王国",era:"近世",region:"南アジア",importance:2,period:"17世紀",summary:"マラーター王国を建設し、ムガル帝国に対抗した人物。",achievements:["マラーター勢力を形成","ムガル帝国に抵抗","マラーター王国を建設"],traps:["ムガル皇帝ではない。"],aliases:["シヴァージー"]},
+
+{id:"add_062",name:"グル＝ナーナク",en:"Guru Nanak",affiliation:"シク教",era:"近世",region:"南アジア",importance:3,period:"15〜16世紀",summary:"シク教の創始者。",achievements:["シク教を創始","ヒンドゥー教・イスラーム双方の影響を受けた宗教思想を展開","カースト制を批判"],traps:["ムガル皇帝ではなく宗教指導者。"],aliases:["ナーナク"]},
+
+{id:"add_063",name:"ルイ13世",en:"Louis XIII",affiliation:"フランス王国",era:"近世",region:"西ヨーロッパ",importance:2,period:"在位1610〜1643年",summary:"フランス王。宰相リシュリューとともに王権を強化した。",achievements:["リシュリューを登用","王権強化を推進","三十年戦争に介入"],traps:["ルイ14世の父。"],aliases:["ルイ13世"]},
+
+{id:"add_064",name:"リシュリュー",en:"Cardinal Richelieu",affiliation:"フランス王国",era:"近世",region:"西ヨーロッパ",importance:3,period:"17世紀",summary:"ルイ13世の宰相。フランス絶対王政形成に重要な政治家。",achievements:["王権を強化","ユグノー勢力を抑制","三十年戦争で反ハプスブルク政策"],traps:["ルイ14世の宰相ではなくルイ13世期の宰相。"],aliases:["リシュリュー","リシュリュー枢機卿"]},
+
+{id:"add_065",name:"マザラン",en:"Jules Mazarin",affiliation:"フランス王国",era:"近世",region:"西ヨーロッパ",importance:2,period:"17世紀",summary:"ルイ14世の幼少期にフランス政治を主導した宰相。",achievements:["フロンドの乱を鎮圧","王権を維持","三十年戦争終結に関与"],traps:["リシュリューの後継的立場で、ルイ14世の時代。"],aliases:["マザラン"]},
+
+{id:"add_066",name:"コルベール",en:"Jean-Baptiste Colbert",affiliation:"フランス王国",era:"近世",region:"西ヨーロッパ",importance:3,period:"17世紀",summary:"ルイ14世の財務総監。重商主義政策を推進した。",achievements:["重商主義を推進","国内産業を保護","フランス東インド会社を支援"],traps:["絶対王政の経済政策担当者。"],aliases:["コルベール","ジャン＝バティスト・コルベール"]},
+
+{id:"add_067",name:"ウィリアム3世",en:"William III",affiliation:"イングランド王国",era:"近世",region:"西ヨーロッパ",importance:3,period:"在位1689〜1702年",summary:"名誉革命後にイングランド王となり、権利の章典を受け入れた。",achievements:["名誉革命","権利の章典","議会政治の発展"],traps:["ジェームズ2世を追放した側。"],aliases:["ウィリアム3世","オラニエ公ウィレム"]},
+
+{id:"add_068",name:"ジェームズ2世",en:"James II",affiliation:"イングランド王国",era:"近世",region:"西ヨーロッパ",importance:3,period:"在位1685〜1688年",summary:"名誉革命で王位を追われたイングランド王。",achievements:["カトリック政策を推進","議会と対立","名誉革命で退位"],traps:["名誉革命で追放された国王。"],aliases:["ジェームズ2世"]},
+
+{id:"add_069",name:"アン女王",en:"Anne",affiliation:"イギリス",era:"近世",region:"西ヨーロッパ",importance:2,period:"在位1702〜1714年",summary:"イングランドとスコットランドの合同後、最初のグレートブリテン女王。",achievements:["1707年合同法","グレートブリテン王国成立","スペイン継承戦争期を統治"],traps:["1707年にイングランドとスコットランドが合同。"],aliases:["アン女王"]},
+
+{id:"add_070",name:"ジョージ1世",en:"George I",affiliation:"イギリス",era:"近世",region:"西ヨーロッパ",importance:2,period:"在位1714〜1727年",summary:"ハノーヴァー朝初代イギリス国王。議会政治の発展期に統治した。",achievements:["ハノーヴァー朝を開始","内閣政治が発展","ウォルポール時代につながる"],traps:["ステュアート朝ではなくハノーヴァー朝。"],aliases:["ジョージ1世"]},
+
+{id:"add_071",name:"ロバート＝ウォルポール",en:"Robert Walpole",affiliation:"イギリス",era:"近世",region:"西ヨーロッパ",importance:3,period:"18世紀",summary:"イギリスで初期の首相として内閣政治を発展させた政治家。",achievements:["内閣政治を発展","長期政権を形成","議会政治を安定化"],traps:["国王ではなく政治家。"],aliases:["ウォルポール"]},
+
+{id:"add_072",name:"ジェームズ＝ワット",en:"James Watt",affiliation:"イギリス",era:"近代",region:"西ヨーロッパ",importance:3,period:"18世紀",summary:"蒸気機関を改良し、産業革命に大きな影響を与えた技術者。",achievements:["蒸気機関を改良","工場制機械工業の発展を促進","産業革命を支えた"],traps:["蒸気機関を最初に発明した人物と単純に同一視しない。"],aliases:["ワット"]},
+
+{id:"add_073",name:"ジョージ＝スティーヴンソン",en:"George Stephenson",affiliation:"イギリス",era:"近代",region:"西ヨーロッパ",importance:2,period:"19世紀",summary:"蒸気機関車の発展に貢献した技術者。",achievements:["蒸気機関車を改良","鉄道輸送の発展に貢献","産業革命の交通革命を促進"],traps:["ワットは蒸気機関、スティーヴンソンは鉄道。"],aliases:["スティーヴンソン"]},
+
+{id:"add_074",name:"ロバート＝オーウェン",en:"Robert Owen",affiliation:"イギリス",era:"近代",region:"西ヨーロッパ",importance:3,period:"19世紀",summary:"空想的社会主義者。労働環境改善と協同組合を主張した。",achievements:["工場労働者の待遇改善","協同組合思想を展開","ニュー＝ラナークで改革を実施"],traps:["マルクスより前の空想的社会主義者。"],aliases:["オーウェン"]},
+
+{id:"add_075",name:"サン＝シモン",en:"Saint-Simon",affiliation:"フランス",era:"近代",region:"西ヨーロッパ",importance:2,period:"19世紀",summary:"空想的社会主義の代表的思想家。",achievements:["産業社会の再編を構想","生産者中心の社会を構想","空想的社会主義に影響"],traps:["マルクスの科学的社会主義とは区別。"],aliases:["サン＝シモン"]},
+
+{id:"add_076",name:"フーリエ",en:"Charles Fourier",affiliation:"フランス",era:"近代",region:"西ヨーロッパ",importance:2,period:"19世紀",summary:"空想的社会主義者。共同体による社会改革を構想した。",achievements:["ファランジュ構想","協同社会を構想","空想的社会主義を展開"],traps:["オーウェンやサン＝シモンとともに整理。"],aliases:["シャルル・フーリエ","フーリエ"]},
+
+{id:"add_077",name:"ルイ＝ブラン",en:"Louis Blanc",affiliation:"フランス",era:"近代",region:"西ヨーロッパ",importance:2,period:"19世紀",summary:"1848年フランス二月革命で活躍した社会主義者。",achievements:["国立作業場を提唱","労働者の権利を主張","二月革命期の臨時政府に参加"],traps:["1848年革命期の人物。"],aliases:["ルイ・ブラン"]},
+
+{id:"add_078",name:"ラファイエット",en:"Lafayette",affiliation:"フランス・アメリカ",era:"近代",region:"大西洋世界",importance:2,period:"18〜19世紀",summary:"アメリカ独立革命とフランス革命の双方に関わった人物。",achievements:["アメリカ独立戦争に参加","フランス人権宣言の起草に関与","自由主義を支持"],traps:["ロベスピエールとは異なる立場の穏健派。"],aliases:["ラファイエット","ラ・ファイエット"]},
+
+{id:"add_079",name:"シェイエス",en:"Emmanuel Joseph Sieyès",affiliation:"フランス革命",era:"近代",region:"フランス",importance:3,period:"18〜19世紀",summary:"フランス革命初期の政治思想家。第三身分の代表的論客。",achievements:["『第三身分とは何か』を著した","国民議会形成を支持","ブリュメール18日のクーデタに関与"],traps:["ロベスピエールより穏健な政治家として区別。"],aliases:["シェイエス","エマニュエル・シェイエス"]},
+
+{id:"add_080",name:"タレーラン",en:"Talleyrand",affiliation:"フランス",era:"近代",region:"ヨーロッパ",importance:3,period:"18〜19世紀",summary:"フランス革命からナポレオン、王政復古まで生き残った外交家。",achievements:["ウィーン会議でフランス外交を主導","ナポレオン政権で外交を担当","正統主義を利用してフランスの地位を回復"],traps:["メッテルニヒはオーストリア側の中心人物。"],aliases:["タレーラン"]},
+
+{id:"add_081",name:"カヴール",en:"Camillo Cavour",affiliation:"サルデーニャ王国",era:"近代",region:"イタリア",importance:3,period:"19世紀",summary:"イタリア統一を主導したサルデーニャ王国の政治家。",achievements:["サルデーニャ王国を近代化","フランスと協力してオーストリアと戦った","イタリア統一を外交面から推進"],traps:["ガリバルディは軍事・民衆運動、カヴールは外交・政治。"],aliases:["カミッロ・カヴール","カヴール"]},
+
+{id:"add_082",name:"ガリバルディ",en:"Giuseppe Garibaldi",affiliation:"イタリア統一運動",era:"近代",region:"イタリア",importance:3,period:"19世紀",summary:"イタリア統一運動の軍人・革命家。",achievements:["千人隊を率いた","両シチリア王国を征服","ヴィットーリオ＝エマヌエーレ2世に領土を献上"],traps:["カヴールは外交、ガリバルディは軍事行動。"],aliases:["ジュゼッペ・ガリバルディ","ガリバルディ"]},
+
+{id:"add_083",name:"マッツィーニ",en:"Giuseppe Mazzini",affiliation:"イタリア統一運動",era:"近代",region:"イタリア",importance:3,period:"19世紀",summary:"青年イタリアを結成し、共和主義的なイタリア統一を主張した思想家。",achievements:["青年イタリアを結成","共和制による統一を主張","民族主義運動に影響"],traps:["カヴールの立憲君主制路線とは異なる。"],aliases:["ジュゼッペ・マッツィーニ","マッツィーニ"]},
+
+{id:"add_084",name:"ヴィットーリオ＝エマヌエーレ2世",en:"Victor Emmanuel II",affiliation:"サルデーニャ王国・イタリア王国",era:"近代",region:"イタリア",importance:3,period:"19世紀",summary:"イタリア統一を完成させた初代イタリア国王。",achievements:["サルデーニャ王として統一運動を支援","1861年イタリア王国成立","ローマを首都とする統一を完成"],traps:["イタリア統一の国王。"],aliases:["ヴィットーリオ・エマヌエーレ2世"]},
+
+{id:"add_085",name:"レオポルド2世",en:"Leopold II",affiliation:"ベルギー",era:"近代",region:"アフリカ・ヨーロッパ",importance:3,period:"19世紀",summary:"コンゴ自由国を私領として支配したベルギー国王。",achievements:["コンゴ自由国を支配","アフリカ分割期の植民地支配","ベルリン会議後のコンゴ問題で重要"],traps:["ベルギー本国の植民地ではなく、当初は国王個人の支配領域。"],aliases:["レオポルド2世"]},
+
+{id:"add_086",name:"セシル＝ローズ",en:"Cecil Rhodes",affiliation:"イギリス帝国",era:"近代",region:"アフリカ",importance:3,period:"19世紀",summary:"アフリカ南部のイギリス帝国主義を推進した人物。",achievements:["南アフリカで鉱山事業を拡大","ローデシアの植民地化を推進","帝国主義政策を推進"],traps:["ローズはアフリカ南部、レオポルド2世はコンゴ。"],aliases:["セシル・ローズ"]},
+
+{id:"add_087",name:"ムハンマド＝アリー",en:"Muhammad Ali of Egypt",affiliation:"エジプト",era:"近代",region:"北アフリカ",importance:3,period:"19世紀",summary:"エジプトを近代化し、オスマン帝国から自立性を高めた支配者。",achievements:["エジプトを近代化","軍制改革","綿花生産を拡大"],traps:["預言者ムハンマドとは別人。"],aliases:["ムハンマド・アリー"]},
+
+{id:"add_088",name:"イスマーイール＝パシャ",en:"Ismail Pasha",affiliation:"エジプト",era:"近代",region:"北アフリカ",importance:2,period:"19世紀",summary:"エジプトの近代化を進めた総督。スエズ運河開通期に統治した。",achievements:["スエズ運河開通期の統治者","近代化政策を推進","財政悪化から欧州の介入を招いた"],traps:["ムハンマド＝アリー朝の人物。"],aliases:["イスマーイール・パシャ"]},
+
+{id:"add_089",name:"ディズレーリ",en:"Benjamin Disraeli",affiliation:"イギリス",era:"近代",region:"西ヨーロッパ",importance:3,period:"19世紀",summary:"イギリスの保守党政治家。帝国主義政策を推進した首相。",achievements:["インド帝国成立を推進","ヴィクトリア女王をインド皇帝に","帝国主義政策を推進"],traps:["グラッドストンは自由党で対照的。"],aliases:["ベンジャミン・ディズレーリ","ディズレーリ"]},
+
+{id:"add_090",name:"グラッドストン",en:"William Gladstone",affiliation:"イギリス",era:"近代",region:"西ヨーロッパ",importance:3,period:"19世紀",summary:"イギリス自由党の政治家。ディズレーリと対立した。",achievements:["自由党政権を率いた","選挙法改革を推進","アイルランド問題に取り組んだ"],traps:["ディズレーリは保守党、グラッドストンは自由党。"],aliases:["ウィリアム・グラッドストン","グラッドストーン"]},
+
+{id:"add_091",name:"ウィルソン",en:"Woodrow Wilson",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:3,period:"20世紀",summary:"第一次世界大戦期のアメリカ大統領。民族自決と国際連盟構想を提唱した。",achievements:["十四か条の原則","国際連盟を提唱","第一次世界大戦後の講和を主導"],traps:["国際連盟は提唱したが、アメリカは加盟しなかった。"],aliases:["ウッドロウ・ウィルソン","ウィルソン大統領"]},
+
+{id:"add_092",name:"クレマンソー",en:"Georges Clemenceau",affiliation:"フランス",era:"近代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"第一次世界大戦後のフランス首相。ヴェルサイユ条約でドイツに厳しい姿勢を示した。",achievements:["ヴェルサイユ会議を主導","ドイツへの賠償・安全保障を重視","フランスの対独強硬論を代表"],traps:["ウィルソンの民族自決論とは対照的な面がある。"],aliases:["ジョルジュ・クレマンソー","クレマンソー"]},
+
+{id:"add_093",name:"ロイド＝ジョージ",en:"David Lloyd George",affiliation:"イギリス",era:"近代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"第一次世界大戦期のイギリス首相。パリ講和会議の主要人物。",achievements:["第一次世界大戦中の首相","パリ講和会議に参加","ドイツへの制裁と欧州秩序の調整を図った"],traps:["三巨頭の一人として整理。"],aliases:["ロイド・ジョージ"]},
+
+{id:"add_094",name:"フランツ＝フェルディナント",en:"Franz Ferdinand",affiliation:"オーストリア＝ハンガリー帝国",era:"近代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"サライェヴォ事件で暗殺され、第一次世界大戦の直接的契機となった皇位継承者。",achievements:["オーストリア皇位継承者","1914年サライェヴォ事件で暗殺","第一次世界大戦の直接的契機"],traps:["皇帝ではなく皇太子。"],aliases:["フランツ・フェルディナント","フェルディナント大公"]},
+
+{id:"add_095",name:"パウル＝フォン＝ヒンデンブルク",en:"Paul von Hindenburg",affiliation:"ドイツ国",era:"近代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"ワイマール共和国の大統領。ヒトラーを首相に任命した。",achievements:["第一次世界大戦の軍人","ワイマール共和国大統領","1933年ヒトラーを首相に任命"],traps:["ヒトラーではなく大統領。"],aliases:["ヒンデンブルク"]},
+
+{id:"add_096",name:"ヘルマン＝ゲーリング",en:"Hermann Göring",affiliation:"ナチス・ドイツ",era:"近代",region:"ヨーロッパ",importance:2,period:"20世紀",summary:"ナチス政権の主要幹部。空軍総司令官などを務めた。",achievements:["ナチス政権の中枢","ドイツ空軍を指揮","四カ年計画を担当"],traps:["ヒトラー本人ではなくナチス政権の幹部。"],aliases:["ゲーリング"]},
+
+{id:"add_097",name:"ハインリヒ＝ヒムラー",en:"Heinrich Himmler",affiliation:"ナチス・ドイツ",era:"近代",region:"ヨーロッパ",importance:2,period:"20世紀",summary:"SSを率いたナチス政権の主要幹部。",achievements:["SSを拡大","警察機構を掌握","ナチスの迫害政策に関与"],traps:["ゲーリングは空軍、ヒムラーはSS。"],aliases:["ヒムラー"]},
+
+{id:"add_098",name:"エルヴィン＝ロンメル",en:"Erwin Rommel",affiliation:"ドイツ国",era:"近代",region:"ヨーロッパ・北アフリカ",importance:2,period:"20世紀",summary:"第二次世界大戦中のドイツ軍人。北アフリカ戦線で知られる。",achievements:["北アフリカ戦線を指揮","機甲戦術で知られた","ノルマンディー防衛にも関与"],traps:["政治指導者ヒトラーとは区別。"],aliases:["ロンメル","砂漠の狐"]},
+
+{id:"add_099",name:"ハリー＝トルーマン",en:"Harry Truman",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:3,period:"20世紀",summary:"第二次世界大戦末期から冷戦初期のアメリカ大統領。",achievements:["原爆使用を決定","マーシャル＝プラン","トルーマン＝ドクトリン"],traps:["ローズヴェルトの死後に大統領となった。"],aliases:["トルーマン","ハリー・トルーマン"]},
+
+{id:"add_100",name:"ドワイト＝アイゼンハワー",en:"Dwight Eisenhower",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:2,period:"20世紀",summary:"第二次世界大戦の連合軍司令官を経てアメリカ大統領となった人物。",achievements:["ノルマンディー上陸作戦を指揮","NATO軍最高司令官","冷戦期のアメリカ大統領"],traps:["トルーマンの後の大統領。"],aliases:["アイゼンハワー","ドワイト・アイゼンハワー"]},
+{id:"add_101",name:"アショーカ王",en:"Ashoka",affiliation:"マウリヤ朝",era:"古代",region:"南アジア",importance:3,period:"前3世紀",summary:"マウリヤ朝の最盛期を築き、仏教を保護したインドの王。",achievements:["カリンガ戦争後に仏教を保護","石柱碑・磨崖碑を建立","ダルマによる統治を推進"],traps:["チャンドラグプタはマウリヤ朝の建国者。"],aliases:["アショーカ","アショカ王"]},
+
+{id:"add_102",name:"チャンドラグプタ＝マウリヤ",en:"Chandragupta Maurya",affiliation:"マウリヤ朝",era:"古代",region:"南アジア",importance:3,period:"前4世紀",summary:"マウリヤ朝を建国し、北インドを統一した王。",achievements:["マウリヤ朝を建国","マガダを中心に北インドを統一","セレウコス1世と講和"],traps:["アショーカはチャンドラグプタの孫。"],aliases:["チャンドラグプタ"]},
+
+{id:"add_103",name:"カニシカ王",en:"Kanishka",affiliation:"クシャーナ朝",era:"古代",region:"中央アジア・南アジア",importance:3,period:"2世紀頃",summary:"クシャーナ朝の最盛期を築き、大乗仏教の発展と関係する王。",achievements:["クシャーナ朝を拡大","大乗仏教を保護","中央アジアとインドを結ぶ交易を促進"],traps:["アショーカはマウリヤ朝。カニシカはクシャーナ朝。"],aliases:["カニシカ"]},
+
+{id:"add_104",name:"ハルシャ＝ヴァルダナ",en:"Harsha",affiliation:"ヴァルダナ朝",era:"中世",region:"南アジア",importance:2,period:"7世紀",summary:"北インドを広く統合した君主。玄奘との関係でも重要。",achievements:["北インドを統合","仏教を保護","玄奘を保護した"],traps:["グプタ朝の君主ではない。"],aliases:["ハルシャ王","ハルシャ"]},
+
+{id:"add_105",name:"ラージャラージャ1世",en:"Rajaraja I",affiliation:"チョーラ朝",era:"中世",region:"南インド",importance:2,period:"10〜11世紀",summary:"南インドのチョーラ朝を強大化した王。",achievements:["南インドを統一的に支配","海軍を強化","スリランカへ進出"],traps:["北インドの王朝ではない。"],aliases:["ラージャラージャ1世"]},
+
+{id:"add_106",name:"ラージェーンドラ1世",en:"Rajendra I",affiliation:"チョーラ朝",era:"中世",region:"南インド",importance:2,period:"11世紀",summary:"チョーラ朝の海上進出をさらに拡大した王。",achievements:["東南アジアへ遠征","ベンガル方面へ進出","チョーラ朝の海上勢力を拡大"],traps:["ラージャラージャ1世の後継者。"],aliases:["ラージェーンドラ1世"]},
+
+{id:"add_107",name:"サムドラグプタ",en:"Samudragupta",affiliation:"グプタ朝",era:"古代",region:"南アジア",importance:2,period:"4世紀",summary:"グプタ朝の領土拡大を進めた王。",achievements:["北インドを広く征服","南インドへ遠征","グプタ朝の勢力を拡大"],traps:["チャンドラグプタ2世とは別のグプタ朝君主。"],aliases:["サムドラグプタ"]},
+
+{id:"add_108",name:"チャンドラグプタ2世",en:"Chandragupta II",affiliation:"グプタ朝",era:"古代",region:"南アジア",importance:2,period:"4〜5世紀",summary:"グプタ朝の最盛期を築いた王。",achievements:["西インドを征服","交易を発展させた","グプタ文化の繁栄を支えた"],traps:["マウリヤ朝のチャンドラグプタとは別人。"],aliases:["チャンドラグプタ2世","ヴィクラマーディティヤ"]},
+
+{id:"add_109",name:"マハトマ＝ガンディー",en:"Mahatma Gandhi",affiliation:"インド国民会議",era:"近現代",region:"南アジア",importance:3,period:"20世紀",summary:"インド独立運動を非暴力・不服従によって指導した人物。",achievements:["非暴力・不服従運動","塩の行進","インド独立運動を指導"],traps:["ネルーは独立後の初代首相。"],aliases:["ガンディー","マハトマ・ガンディー"]},
+
+{id:"add_110",name:"ジャワハルラール＝ネルー",en:"Jawaharlal Nehru",affiliation:"インド",era:"近現代",region:"南アジア",importance:3,period:"20世紀",summary:"インド独立後の初代首相。非同盟外交を推進した。",achievements:["インド初代首相","非同盟外交を推進","計画経済を導入"],traps:["ガンディーは首相ではない。"],aliases:["ネルー","ジャワハルラール・ネルー"]},
+
+{id:"add_111",name:"ムハンマド＝アリー＝ジンナー",en:"Muhammad Ali Jinnah",affiliation:"ムスリム連盟・パキスタン",era:"近現代",region:"南アジア",importance:3,period:"20世紀",summary:"パキスタン建国運動を指導した政治家。",achievements:["ムスリム連盟を指導","二民族論を主張","パキスタン建国を実現"],traps:["ネルーはインド側の指導者。"],aliases:["ジンナー","ムハンマド・アリー・ジンナー"]},
+
+{id:"add_112",name:"スカルノ",en:"Sukarno",affiliation:"インドネシア",era:"近現代",region:"東南アジア",importance:3,period:"20世紀",summary:"インドネシア独立運動を指導し、初代大統領となった人物。",achievements:["インドネシア独立を指導","初代大統領","バンドン会議を主導"],traps:["ホー＝チ＝ミンはベトナムの独立運動指導者。"],aliases:["スカルノ"]},
+
+{id:"add_113",name:"ホー＝チ＝ミン",en:"Ho Chi Minh",affiliation:"ベトナム",era:"近現代",region:"東南アジア",importance:3,period:"20世紀",summary:"ベトナム独立運動を指導した革命家。",achievements:["ベトナム民主共和国を建国","フランス植民地支配に抵抗","ベトナム戦争期の北ベトナムを指導"],traps:["スカルノはインドネシア。"],aliases:["ホー・チ・ミン"]},
+
+{id:"add_114",name:"ゴ＝ディン＝ジエム",en:"Ngo Dinh Diem",affiliation:"南ベトナム",era:"近現代",region:"東南アジア",importance:2,period:"20世紀",summary:"ベトナム共和国初代大統領。ベトナム戦争初期の南ベトナムを統治した。",achievements:["南ベトナム政権を指導","反共産主義政策","アメリカの支援を受けた"],traps:["ホー＝チ＝ミンは北ベトナム側。"],aliases:["ゴ・ディン・ジエム"]},
+
+{id:"add_115",name:"リー＝クアンユー",en:"Lee Kuan Yew",affiliation:"シンガポール",era:"近現代",region:"東南アジア",importance:2,period:"20世紀",summary:"シンガポールの初代首相。都市国家の発展を主導した。",achievements:["シンガポール自治・独立を主導","経済発展を推進","東南アジアの国家建設で重要"],traps:["独立運動の時代と戦後の国家建設を区別。"],aliases:["リー・クアンユー"]},
+
+{id:"add_116",name:"アウン＝サン",en:"Aung San",affiliation:"ビルマ",era:"近現代",region:"東南アジア",importance:2,period:"20世紀",summary:"ビルマ独立運動の指導者。アウンサンスーチーの父。",achievements:["ビルマ独立運動を指導","英領ビルマからの独立交渉","1947年に暗殺"],traps:["アウンサンスーチーとは親子関係。"],aliases:["アウン・サン"]},
+
+{id:"add_117",name:"ホセ＝リサール",en:"José Rizal",affiliation:"フィリピン",era:"近現代",region:"東南アジア",importance:2,period:"19世紀",summary:"フィリピン民族運動の思想的指導者。",achievements:["民族意識を高める著作を発表","スペイン植民地支配を批判","フィリピン民族運動に影響"],traps:["武装革命家として単純化しない。"],aliases:["ホセ・リサール"]},
+
+{id:"add_118",name:"エミリオ＝アギナルド",en:"Emilio Aguinaldo",affiliation:"フィリピン",era:"近現代",region:"東南アジア",importance:2,period:"19〜20世紀",summary:"フィリピン独立運動を指導し、初代大統領となった人物。",achievements:["スペインからの独立を宣言","フィリピン共和国を指導","アメリカとのフィリピン＝アメリカ戦争を戦った"],traps:["リサールは思想家、アギナルドは政治・軍事指導者。"],aliases:["アギナルド"]},
+
+{id:"add_119",name:"スハルト",en:"Suharto",affiliation:"インドネシア",era:"近現代",region:"東南アジア",importance:2,period:"20世紀",summary:"インドネシアで長期政権を築いた大統領。",achievements:["スカルノ後に権力を掌握","新秩序体制を構築","経済開発を推進"],traps:["スカルノの後継政権。"],aliases:["スハルト"]},
+
+{id:"add_120",name:"ナセル",en:"Gamal Abdel Nasser",affiliation:"エジプト",era:"近現代",region:"中東・北アフリカ",importance:3,period:"20世紀",summary:"エジプト大統領。スエズ運河国有化とアラブ民族主義で重要。",achievements:["スエズ運河を国有化","アラブ民族主義を推進","非同盟運動と関係"],traps:["サダトはナセルの後継大統領。"],aliases:["ガマール・アブドゥル・ナセル","ナセル"]},
+
+{id:"add_121",name:"アンワル＝サダト",en:"Anwar Sadat",affiliation:"エジプト",era:"近現代",region:"中東・北アフリカ",importance:3,period:"20世紀",summary:"エジプト大統領。イスラエルとの和平を進めた。",achievements:["イスラエルと和平交渉","キャンプ＝デーヴィッド合意","エジプト・イスラエル平和条約"],traps:["ナセルは前任者。"],aliases:["サダト","アンワル・サダト"]},
+
+{id:"add_122",name:"ダヴィド＝ベン＝グリオン",en:"David Ben-Gurion",affiliation:"イスラエル",era:"近現代",region:"中東",importance:3,period:"20世紀",summary:"イスラエル建国を主導した政治家。",achievements:["1948年イスラエル独立宣言","初代首相","イスラエル国家建設を主導"],traps:["ナセルはエジプト側。"],aliases:["ベン・グリオン","ダヴィド・ベン＝グリオン"]},
+
+{id:"add_123",name:"ゴルダ＝メイア",en:"Golda Meir",affiliation:"イスラエル",era:"近現代",region:"中東",importance:2,period:"20世紀",summary:"イスラエルの女性首相。第四次中東戦争期に政権を担当した。",achievements:["イスラエル首相","第四次中東戦争期を指導","イスラエル外交を主導"],traps:["ベン・グリオンは建国期の首相。"],aliases:["ゴルダ・メイア"]},
+
+{id:"add_124",name:"ヤセル＝アラファト",en:"Yasser Arafat",affiliation:"PLO・パレスチナ",era:"近現代",region:"中東",importance:3,period:"20世紀",summary:"パレスチナ解放運動を指導した政治家。",achievements:["PLOを指導","オスロ合意に参加","パレスチナ自治政府を率いた"],traps:["イスラエル側のベン・グリオンとは立場が異なる。"],aliases:["アラファト","ヤーセル・アラファート"]},
+
+{id:"add_125",name:"ホメイニ",en:"Ruhollah Khomeini",affiliation:"イラン",era:"近現代",region:"中東",importance:3,period:"20世紀",summary:"イラン革命を指導し、イスラーム共和国を成立させた宗教指導者。",achievements:["1979年イラン革命を指導","イラン・イスラーム共和国を成立","イスラーム共和制を確立"],traps:["パフラヴィー朝を倒した革命指導者。"],aliases:["ルーホッラー・ホメイニ","ホメイニ師"]},
+
+{id:"add_126",name:"レザー＝シャー",en:"Reza Shah Pahlavi",affiliation:"イラン",era:"近現代",region:"中東",importance:2,period:"20世紀",summary:"パフラヴィー朝を建設し、イランの近代化を進めた君主。",achievements:["パフラヴィー朝を建設","中央集権化","世俗化・近代化を推進"],traps:["ホメイニはパフラヴィー朝を倒した側。"],aliases:["レザー・シャー"]},
+
+{id:"add_127",name:"ムスタファ＝ケマル",en:"Mustafa Kemal Atatürk",affiliation:"トルコ",era:"近現代",region:"中東・ヨーロッパ",importance:3,period:"20世紀",summary:"トルコ共和国を建国し、世俗化・近代化を進めた指導者。",achievements:["トルコ共和国を建国","カリフ制を廃止","世俗化・近代化を推進"],traps:["オスマン帝国のスルタンではない。"],aliases:["アタテュルク","ムスタファ・ケマル"]},
+
+{id:"add_128",name:"ファイサル1世",en:"Faisal I",affiliation:"イラク・アラブ王国",era:"近現代",region:"中東",importance:2,period:"20世紀",summary:"第一次世界大戦後のアラブ民族運動とイラク王国で重要な人物。",achievements:["アラブ反乱に参加","シリア王国を短期間統治","イラク王国初代国王"],traps:["オスマン帝国崩壊後の中東再編と関連。"],aliases:["ファイサル1世"]},
+
+{id:"add_129",name:"ハーシム＝アミール",en:"Sharif Hussein",affiliation:"ヒジャーズ王国",era:"近現代",region:"中東",importance:2,period:"20世紀",summary:"アラブ反乱を指導したメッカのシャリーフ。",achievements:["1916年アラブ反乱","オスマン帝国に対抗","アラブ民族国家構想を推進"],traps:["ファイサル1世の父。"],aliases:["フサイン・イブン・アリー","フサイン・ビン・アリー"]},
+
+{id:"add_130",name:"レオニダス1世",en:"Leonidas I",affiliation:"スパルタ",era:"古代",region:"ギリシア",importance:2,period:"前5世紀",summary:"ペルシア戦争でテルモピュライの戦いを指揮したスパルタ王。",achievements:["テルモピュライの戦いで抵抗","スパルタ軍を率いた","ペルシア戦争の象徴的人物"],traps:["クセルクセス1世はペルシア側。"],aliases:["レオニダス1世"]},
+
+{id:"add_131",name:"リュクルゴス",en:"Lycurgus",affiliation:"スパルタ",era:"古代",region:"ギリシア",importance:2,period:"古代",summary:"伝承上のスパルタの制度改革者。",achievements:["スパルタの軍事的社会制度と関連","共同食事制度などの伝承と結び付く","スパルタ社会の形成に影響"],traps:["実在性には議論がある。"],aliases:["リュクルゴス"]},
+
+{id:"add_132",name:"エピクロス",en:"Epicurus",affiliation:"ギリシア哲学",era:"古代",region:"地中海",importance:2,period:"前4〜3世紀",summary:"快楽主義を説いた古代ギリシアの哲学者。",achievements:["エピクロス派を形成","精神的平静を重視","原子論を発展させた"],traps:["ストア派とは異なる哲学。"],aliases:["エピクロス"]},
+
+{id:"add_133",name:"ゼノン",en:"Zeno of Citium",affiliation:"ストア派",era:"古代",region:"地中海",importance:2,period:"前4〜3世紀",summary:"ストア派を創始した哲学者。",achievements:["ストア派を創始","理性と自然に従う生き方を説いた","ヘレニズム哲学に影響"],traps:["エピクロスは快楽主義。"],aliases:["キティオンのゼノン"]},
+
+{id:"add_134",name:"プロティノス",en:"Plotinus",affiliation:"新プラトン主義",era:"古代",region:"地中海",importance:1,period:"3世紀",summary:"新プラトン主義を代表する哲学者。",achievements:["新プラトン主義を発展","一者からの流出を説いた","後世のキリスト教思想に影響"],traps:["プラトン本人とは別人。"],aliases:["プロティノス"]},
+
+{id:"add_135",name:"アリストファネス",en:"Aristophanes",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:1,period:"前5世紀",summary:"古代アテネの喜劇作家。",achievements:["政治風刺喜劇を制作","アテネ民主政社会を描写","古代ギリシア文化史で重要"],traps:["哲学者ではなく劇作家。"],aliases:["アリストファネス"]},
+
+{id:"add_136",name:"ソフォクレス",en:"Sophocles",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:1,period:"前5世紀",summary:"古代ギリシア三大悲劇詩人の一人。",achievements:["悲劇作品を制作","ギリシア演劇を発展","アテネ文化を代表"],traps:["アイスキュロス・エウリピデスとともに三大悲劇詩人。"],aliases:["ソフォクレス"]},
+
+{id:"add_137",name:"アイスキュロス",en:"Aeschylus",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:1,period:"前5世紀",summary:"古代ギリシア最古の三大悲劇詩人の一人。",achievements:["悲劇文学を発展","ペルシア戦争を題材とした作品","ギリシア演劇史で重要"],traps:["ソフォクレス・エウリピデスと区別。"],aliases:["アイスキュロス"]},
+
+{id:"add_138",name:"エウリピデス",en:"Euripides",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:1,period:"前5世紀",summary:"古代ギリシア三大悲劇詩人の一人。",achievements:["人間心理を重視した悲劇","女性や異邦人を題材にした作品","古代演劇に影響"],traps:["三大悲劇詩人の一人。"],aliases:["エウリピデス"]},
+
+{id:"add_139",name:"ヘロドトス",en:"Herodotus",affiliation:"古代ギリシア",era:"古代",region:"地中海",importance:3,period:"前5世紀",summary:"ペルシア戦争を記した『歴史』で知られる歴史家。",achievements:["『歴史』を著した","ペルシア戦争を記録","ギリシアとオリエントの文化を記述"],traps:["トゥキディデスはペロポネソス戦争を記述。"],aliases:["ヘロドトス"]},
+
+{id:"add_140",name:"トゥキディデス",en:"Thucydides",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:3,period:"前5世紀",summary:"ペロポネソス戦争を記録した歴史家。",achievements:["『歴史』を著した","ペロポネソス戦争を記述","史料批判的な歴史叙述を重視"],traps:["ヘロドトスはペルシア戦争。"],aliases:["トゥキュディデス","トゥキディデス"]},
+
+{id:"add_141",name:"アルキメデス",en:"Archimedes",affiliation:"ヘレニズム世界",era:"古代",region:"地中海",importance:2,period:"前3世紀",summary:"古代ギリシアの数学者・科学者。",achievements:["浮力の原理","数学研究","シラクサ防衛に関わった"],traps:["哲学者ではなく数学・科学分野の人物。"],aliases:["アルキメデス"]},
+
+{id:"add_142",name:"エウクレイデス",en:"Euclid",affiliation:"ヘレニズム世界",era:"古代",region:"エジプト",importance:2,period:"前3世紀",summary:"『原論』で知られる数学者。",achievements:["『原論』を著した","幾何学を体系化","後世の数学教育に大きな影響"],traps:["アルキメデスとは別の数学者。"],aliases:["ユークリッド","エウクレイデス"]},
+
+{id:"add_143",name:"プラトン",en:"Plato",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:3,period:"前4世紀",summary:"ソクラテスの弟子で、アカデメイアを創設した哲学者。",achievements:["アカデメイアを創設","イデア論","『国家』を著した"],traps:["アリストテレスはプラトンの弟子。"],aliases:["プラトン"]},
+
+{id:"add_144",name:"アリストテレス",en:"Aristotle",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:3,period:"前4世紀",summary:"プラトンの弟子で、アレクサンドロス大王の師。",achievements:["論理学を体系化","自然学・政治学などを研究","アレクサンドロス大王の教育に関与"],traps:["プラトンの弟子でアレクサンドロスの師。"],aliases:["アリストテレス"]},
+
+{id:"add_145",name:"ソクラテス",en:"Socrates",affiliation:"古代ギリシア",era:"古代",region:"ギリシア",importance:3,period:"前5世紀",summary:"問答法で知られる古代ギリシアの哲学者。",achievements:["問答法を重視","倫理的探究を行った","プラトンらに影響"],traps:["著作を残しておらず、主に弟子の記述から知られる。"],aliases:["ソクラテス"]},
+
+{id:"add_146",name:"孔子",en:"Confucius",affiliation:"儒家",era:"古代",region:"中国",importance:3,period:"前6〜5世紀",summary:"儒家思想の祖。仁・礼を重視した思想家。",achievements:["儒家思想を形成","仁・礼を重視","後世の中国政治思想に大きな影響"],traps:["孟子・荀子は後世の儒家思想家。"],aliases:["孔丘","孔子"]},
+
+{id:"add_147",name:"荀子",en:"Xunzi",affiliation:"儒家",era:"古代",region:"中国",importance:3,period:"前3世紀",summary:"性悪説を唱えた戦国時代の儒家思想家。",achievements:["性悪説","礼による秩序を重視","韓非子などに影響"],traps:["孟子は性善説。"],aliases:["荀況","荀子"]},
+
+{id:"add_148",name:"孟子",en:"Mencius",affiliation:"儒家",era:"古代",region:"中国",importance:3,period:"前4世紀",summary:"性善説を唱えた儒家思想家。",achievements:["性善説","王道政治を主張","民本思想を展開"],traps:["荀子は性悪説。"],aliases:["孟軻","孟子"]},
+
+{id:"add_149",name:"老子",en:"Laozi",affiliation:"道家",era:"古代",region:"中国",importance:3,period:"古代",summary:"道家思想の祖とされる思想家。",achievements:["無為自然を説いた","道家思想に影響","『老子』と結び付く"],traps:["荘子とともに道家思想で整理。"],aliases:["老子"]},
+
+{id:"add_150",name:"荘子",en:"Zhuangzi",affiliation:"道家",era:"古代",region:"中国",importance:3,period:"前4世紀頃",summary:"道家思想を発展させた思想家。",achievements:["相対主義的な思想を展開","『荘子』を残した","道家思想を発展"],traps:["儒家ではなく道家。"],aliases:["荘周","荘子"]},
+
+{id:"add_151",name:"墨子",en:"Mozi",affiliation:"墨家",era:"古代",region:"中国",importance:2,period:"前5世紀頃",summary:"兼愛・非攻を説いた墨家の思想家。",achievements:["兼愛を主張","非攻を主張","墨家を形成"],traps:["儒家ではなく墨家。"],aliases:["墨翟","墨子"]},
+
+{id:"add_152",name:"韓非",en:"Han Fei",affiliation:"法家",era:"古代",region:"中国",importance:3,period:"前3世紀",summary:"法家思想を体系化した思想家。",achievements:["法・術・勢を重視","法家思想を体系化","秦の統治思想に影響"],traps:["李斯も法家思想を秦の統治に利用した。"],aliases:["韓非子","韓非"]},
+
+{id:"add_153",name:"李斯",en:"Li Si",affiliation:"秦",era:"古代",region:"中国",importance:3,period:"前3世紀",summary:"秦の始皇帝に仕えた法家官僚。中央集権化を推進した。",achievements:["郡県制を推進","文字・度量衡の統一を推進","焚書を進言"],traps:["韓非とともに法家思想。"],aliases:["李斯"]},
+
+{id:"add_154",name:"司馬遷",en:"Sima Qian",affiliation:"前漢",era:"古代",region:"中国",importance:3,period:"前2〜1世紀",summary:"『史記』を著した中国古代最大の歴史家の一人。",achievements:["『史記』を著した","紀伝体史書を確立","中国古代史の記録を残した"],traps:["司馬光は宋代の歴史家。"],aliases:["司馬遷"]},
+
+{id:"add_155",name:"班固",en:"Ban Gu",affiliation:"後漢",era:"古代",region:"中国",importance:2,period:"1世紀",summary:"『漢書』を編纂した歴史家。",achievements:["『漢書』を編纂","前漢史を体系化","紀伝体史書を発展"],traps:["『史記』は司馬遷。"],aliases:["班固"]},
+
+{id:"add_156",name:"蔡倫",en:"Cai Lun",affiliation:"後漢",era:"古代",region:"中国",importance:3,period:"2世紀",summary:"製紙法の改良で知られる後漢の宦官。",achievements:["紙の製造法を改良","情報伝達の発展に影響","後世の東アジア文化に大きな影響"],traps:["紙そのものの起源を蔡倫一人の発明と単純化しない。"],aliases:["蔡倫"]},
+
+{id:"add_157",name:"張騫",en:"Zhang Qian",affiliation:"前漢",era:"古代",region:"中国・中央アジア",importance:3,period:"前2世紀",summary:"漢の武帝に派遣され、西域との交流を開いた人物。",achievements:["大月氏へ派遣","西域情報を漢にもたらした","シルクロード交易発展の契機"],traps:["玄奘は唐代の僧。"],aliases:["張騫"]},
+
+{id:"add_158",name:"班超",en:"Ban Chao",affiliation:"後漢",era:"古代",region:"中国・中央アジア",importance:2,period:"1世紀",summary:"後漢の西域経営を推進した武将。",achievements:["西域都護として活動","匈奴勢力を抑制","漢の西域支配を回復"],traps:["班固の兄。"],aliases:["班超"]},
+
+{id:"add_159",name:"曹丕",en:"Cao Pi",affiliation:"魏",era:"古代",region:"中国",importance:2,period:"3世紀",summary:"魏を建国した曹操の子。三国時代の魏の初代皇帝。",achievements:["魏を建国","漢の献帝から禅譲を受けた","三国時代の魏を成立"],traps:["曹操は魏の実質的基礎を築いたが皇帝ではない。"],aliases:["曹丕","魏文帝"]},
+
+{id:"add_160",name:"司馬炎",en:"Sima Yan",affiliation:"西晋",era:"古代",region:"中国",importance:3,period:"3世紀",summary:"西晋を建国し、中国を一時的に統一した皇帝。",achievements:["西晋を建国","呉を滅ぼして中国を統一","三国時代を終結"],traps:["司馬懿・司馬昭の一族。"],aliases:["司馬炎","晋武帝"]},
+
+{id:"add_161",name:"拓跋珪",en:"Tuoba Gui",affiliation:"北魏",era:"古代",region:"中国",importance:2,period:"4世紀",summary:"北魏を建国した鮮卑系の君主。",achievements:["北魏を建国","華北統一への基礎を築いた","鮮卑勢力を拡大"],traps:["孝文帝は後代の北魏皇帝。"],aliases:["拓跋珪","道武帝"]},
+
+{id:"add_162",name:"孝文帝",en:"Emperor Xiaowen of Northern Wei",affiliation:"北魏",era:"古代",region:"中国",importance:3,period:"5世紀",summary:"北魏の漢化政策を推進した皇帝。",achievements:["洛陽へ遷都","漢化政策を推進","均田制・三長制の整備期"],traps:["鮮卑の文化を漢文化へ近づけた人物。"],aliases:["北魏孝文帝","拓跋宏"]},
+
+{id:"add_163",name:"楊堅",en:"Yang Jian",affiliation:"隋",era:"古代",region:"中国",importance:3,period:"6世紀",summary:"隋を建国し、中国を再統一した文帝。",achievements:["隋を建国","南北朝分裂を終結","均田制・科挙の基礎を整備"],traps:["煬帝は楊堅の子。"],aliases:["隋文帝","楊堅"]},
+
+{id:"add_164",name:"楊広",en:"Yang Guang",affiliation:"隋",era:"古代",region:"中国",importance:3,period:"7世紀",summary:"隋の第2代皇帝。大運河建設と高句麗遠征で知られる。",achievements:["大運河を整備","高句麗遠征を実施","隋の滅亡を招いた"],traps:["隋文帝の子。"],aliases:["隋煬帝","楊広"]},
+
+{id:"add_165",name:"李淵",en:"Li Yuan",affiliation:"唐",era:"古代",region:"中国",importance:3,period:"7世紀",summary:"唐を建国した初代皇帝。",achievements:["唐を建国","隋末の混乱を利用","長安を中心に統治"],traps:["太宗は李淵の子。"],aliases:["唐高祖","李淵"]},
+
+{id:"add_166",name:"李世民",en:"Li Shimin",affiliation:"唐",era:"古代",region:"中国",importance:3,period:"7世紀",summary:"唐の太宗。貞観の治で知られる皇帝。",achievements:["玄武門の変","貞観の治","周辺民族への勢力拡大"],traps:["李淵は父、李世民は太宗。"],aliases:["唐太宗","李世民"]},
+
+{id:"add_167",name:"武則天",en:"Wu Zetian",affiliation:"周",era:"古代",region:"中国",importance:3,period:"7世紀",summary:"中国史上唯一の正式な女帝。唐から周を建国した。",achievements:["周を建国","科挙官僚を登用","中央集権化を推進"],traps:["則天武后は唐の皇后時代の称号。"],aliases:["則天武后","武則天"]},
+
+{id:"add_168",name:"玄宗",en:"Emperor Xuanzong of Tang",affiliation:"唐",era:"古代",region:"中国",importance:3,period:"8世紀",summary:"唐の最盛期と安史の乱の双方に関係する皇帝。",achievements:["開元の治","唐の繁栄","安史の乱を契機に衰退"],traps:["安史の乱は玄宗期に発生。"],aliases:["唐玄宗","李隆基"]},
+
+{id:"add_169",name:"安禄山",en:"An Lushan",affiliation:"唐",era:"古代",region:"中国",importance:3,period:"8世紀",summary:"安史の乱を起こした節度使。",achievements:["安史の乱を開始","洛陽・長安を占領","唐の衰退を促進"],traps:["史思明とともに反乱側。"],aliases:["安禄山"]},
+
+{id:"add_170",name:"史思明",en:"Shi Siming",affiliation:"唐・安史の乱",era:"古代",region:"中国",importance:2,period:"8世紀",summary:"安禄山の死後、反乱を継続した指導者。",achievements:["安史の乱を継続","燕を支配","唐の弱体化に影響"],traps:["安禄山の後継的反乱指導者。"],aliases:["史思明"]},
+
+{id:"add_171",name:"黄巣",en:"Huang Chao",affiliation:"唐末",era:"古代",region:"中国",importance:2,period:"9世紀",summary:"唐末の大規模反乱を指導した人物。",achievements:["黄巣の乱","長安を占領","唐の弱体化を促進"],traps:["安史の乱より後の反乱。"],aliases:["黄巣"]},
+
+{id:"add_172",name:"趙匡胤",en:"Zhao Kuangyin",affiliation:"宋",era:"中世",region:"中国",importance:3,period:"10世紀",summary:"宋を建国した太祖。文治主義を進めた。",achievements:["宋を建国","節度使勢力を抑制","文治主義を推進"],traps:["宋太宗は弟の趙匡義。"],aliases:["宋太祖","趙匡胤"]},
+
+{id:"add_173",name:"王安石",en:"Wang Anshi",affiliation:"宋",era:"中世",region:"中国",importance:3,period:"11世紀",summary:"宋の政治家。新法による改革を推進した。",achievements:["青苗法","市易法","募役法など新法を実施"],traps:["司馬光は新法に反対した政治家。"],aliases:["王安石"]},
+
+{id:"add_174",name:"司馬光",en:"Sima Guang",affiliation:"宋",era:"中世",region:"中国",importance:3,period:"11世紀",summary:"『資治通鑑』を編纂し、王安石の新法に反対した政治家。",achievements:["『資治通鑑』を編纂","旧法党を代表","王安石と政治的に対立"],traps:["司馬遷は『史記』。"],aliases:["司馬光"]},
+
+{id:"add_175",name:"朱熹",en:"Zhu Xi",affiliation:"宋・朱子学",era:"中世",region:"中国",importance:3,period:"12世紀",summary:"朱子学を大成した儒学者。",achievements:["朱子学を大成","理気二元論を展開","科挙・教育に大きな影響"],traps:["孔子・孟子とは時代が異なる。"],aliases:["朱子","朱熹"]},
+
+{id:"add_176",name:"岳飛",en:"Yue Fei",affiliation:"南宋",era:"中世",region:"中国",importance:2,period:"12世紀",summary:"金と戦った南宋の名将。",achievements:["金軍と戦った","南宋の軍事的抵抗を代表","忠臣として後世に評価"],traps:["宋の文官改革者ではなく軍人。"],aliases:["岳飛"]},
+
+{id:"add_177",name:"フビライ",en:"Kublai Khan",affiliation:"元",era:"中世",region:"中国・モンゴル",importance:3,period:"13世紀",summary:"元を建国し、中国を支配したモンゴル皇帝。",achievements:["元を建国","南宋を滅ぼし中国を統一","日本・ベトナムなどへ遠征"],traps:["チンギス＝ハンはモンゴル帝国の創始者。"],aliases:["クビライ","フビライ＝ハン"]},
+
+{id:"add_178",name:"チンギス＝ハン",en:"Genghis Khan",affiliation:"モンゴル帝国",era:"中世",region:"中央アジア",importance:3,period:"13世紀",summary:"モンゴル帝国を建設した初代大ハーン。",achievements:["モンゴル帝国を建設","中央アジアへ大征服","駅伝・軍事制度を整備"],traps:["フビライは孫。"],aliases:["チンギス・ハン","成吉思汗"]},
+
+{id:"add_179",name:"オゴタイ＝ハン",en:"Ögedei Khan",affiliation:"モンゴル帝国",era:"中世",region:"中央アジア・東ヨーロッパ",importance:3,period:"13世紀",summary:"チンギス＝ハンの後継者。モンゴル帝国の西方征服を拡大した。",achievements:["大ハーンを継承","中国北部・東欧方面への征服を拡大","カラコルムを整備"],traps:["フビライより前の大ハーン。"],aliases:["オゴタイ","オゴデイ"]},
+
+{id:"add_180",name:"バトゥ",en:"Batu Khan",affiliation:"キプチャク＝ハン国",era:"中世",region:"中央アジア・東ヨーロッパ",importance:3,period:"13世紀",summary:"モンゴル帝国西征を指揮し、キプチャク＝ハン国を形成した人物。",achievements:["ヨーロッパ遠征","ロシア諸公国を支配下に置いた","キプチャク＝ハン国を形成"],traps:["フビライの中国支配とは別系統。"],aliases:["バトゥ"]},
+
+{id:"add_181",name:"ティムール",en:"Timur",affiliation:"ティムール朝",era:"中世",region:"中央アジア",importance:3,period:"14〜15世紀",summary:"中央アジアを中心に巨大な帝国を築いた征服者。",achievements:["ティムール朝を建設","中央アジア・西アジアへ遠征","サマルカンドを発展"],traps:["モンゴル帝国の大ハーンではない。"],aliases:["ティムール","ティムール・ベク"]},
+
+{id:"add_182",name:"ウルグ＝ベク",en:"Ulugh Beg",affiliation:"ティムール朝",era:"中世",region:"中央アジア",importance:2,period:"15世紀",summary:"天文学・数学を保護したティムール朝の君主・学者。",achievements:["サマルカンド天文台","天文表を作成","学術文化を保護"],traps:["ティムールの孫。"],aliases:["ウルグ・ベク"]},
+
+{id:"add_183",name:"オスマン1世",en:"Osman I",affiliation:"オスマン帝国",era:"中世",region:"小アジア",importance:3,period:"13〜14世紀",summary:"オスマン帝国の建設者とされる君主。",achievements:["オスマン朝を建設","アナトリアで勢力拡大","後のオスマン帝国の基礎を形成"],traps:["メフメト2世はコンスタンティノープル征服者。"],aliases:["オスマン1世"]},
+
+{id:"add_184",name:"ムラト1世",en:"Murad I",affiliation:"オスマン帝国",era:"中世",region:"バルカン",importance:2,period:"14世紀",summary:"オスマン帝国のバルカン進出を進めた皇帝。",achievements:["バルカンへ進出","アドリアノープルを重要拠点化","コソヴォの戦い"],traps:["メフメト2世より前の皇帝。"],aliases:["ムラト1世"]},
+
+{id:"add_185",name:"スレイマン1世",en:"Suleiman the Magnificent",affiliation:"オスマン帝国",era:"近世",region:"中東・ヨーロッパ",importance:3,period:"16世紀",summary:"オスマン帝国最盛期の皇帝。法整備と領土拡大を進めた。",achievements:["ハンガリー方面へ進出","ウィーンを包囲","法制度を整備"],traps:["イスマーイール1世とはサファヴィー朝とオスマン帝国の対立関係。"],aliases:["スレイマン大帝"]},
+
+{id:"add_186",name:"アクバル",en:"Akbar",affiliation:"ムガル帝国",era:"近世",region:"南アジア",importance:3,period:"16世紀",summary:"ムガル帝国を大帝国へ発展させた皇帝。宗教融和政策で知られる。",achievements:["領土を拡大","ジズヤを一時廃止","宗教融和政策を推進"],traps:["アウラングゼーブは後世にイスラーム政策を強めた皇帝。"],aliases:["アクバル"]},
+
+{id:"add_187",name:"アウラングゼーブ",en:"Aurangzeb",affiliation:"ムガル帝国",era:"近世",region:"南アジア",importance:3,period:"17〜18世紀",summary:"ムガル帝国の最大領域を実現したが、宗教政策などで帝国の分裂を促した皇帝。",achievements:["ムガル帝国領を最大化","ジズヤを復活","マラーター勢力と対立"],traps:["アクバルの宗教融和政策と対照的。"],aliases:["アウラングゼーブ","アウランゼーブ"]},
+
+{id:"add_188",name:"康熙帝",en:"Kangxi Emperor",affiliation:"清",era:"近世",region:"中国",importance:3,period:"17〜18世紀",summary:"清の最盛期を築いた皇帝。",achievements:["三藩の乱を鎮圧","台湾を征服","ロシアとネルチンスク条約"],traps:["雍正帝・乾隆帝と続く清の全盛期。"],aliases:["康熙帝","愛新覚羅玄燁"]},
+
+{id:"add_189",name:"雍正帝",en:"Yongzheng Emperor",affiliation:"清",era:"近世",region:"中国",importance:3,period:"18世紀",summary:"清の財政・行政改革を進めた皇帝。",achievements:["財政改革","軍機処を設置","中央集権化を強化"],traps:["康熙帝の子、乾隆帝の父。"],aliases:["雍正帝","愛新覚羅胤禛"]},
+
+{id:"add_190",name:"乾隆帝",en:"Qianlong Emperor",affiliation:"清",era:"近世",region:"中国",importance:3,period:"18世紀",summary:"清の最大領域を実現した皇帝。",achievements:["新疆を支配下に組み込む","清の領域を最大化","乾隆文化を発展"],traps:["康熙帝・雍正帝に続く皇帝。"],aliases:["乾隆帝","愛新覚羅弘暦"]},
+
+{id:"add_191",name:"光緒帝",en:"Guangxu Emperor",affiliation:"清",era:"近代",region:"中国",importance:3,period:"19世紀",summary:"戊戌変法を支持した清朝皇帝。",achievements:["戊戌変法を支持","康有為・梁啓超を登用","西太后と対立"],traps:["清朝最後の皇帝は宣統帝溥儀。"],aliases:["光緒帝","愛新覚羅載湉"]},
+
+{id:"add_192",name:"西太后",en:"Empress Dowager Cixi",affiliation:"清",era:"近代",region:"中国",importance:3,period:"19世紀",summary:"清末の政治を長く主導した皇太后。",achievements:["清末政治を主導","戊戌政変","義和団事件期の清朝を指導"],traps:["光緒帝の改革を抑えた人物。"],aliases:["慈禧太后","西太后"]},
+
+{id:"add_193",name:"康有為",en:"Kang Youwei",affiliation:"清・変法運動",era:"近代",region:"中国",importance:3,period:"19世紀",summary:"戊戌変法を主導した思想家・政治家。",achievements:["戊戌変法を推進","光緒帝に改革を進言","立憲君主制を構想"],traps:["孫文は革命派、康有為は改革派。"],aliases:["康有為"]},
+
+{id:"add_194",name:"梁啓超",en:"Liang Qichao",affiliation:"清・中国近代化",era:"近代",region:"中国",importance:2,period:"19〜20世紀",summary:"康有為とともに変法運動を進めた思想家。",achievements:["変法運動を推進","近代的国民国家思想を紹介","中国近代思想に影響"],traps:["孫文の革命派とは立場が異なる時期がある。"],aliases:["梁啓超"]},
+
+{id:"add_195",name:"袁世凱",en:"Yuan Shikai",affiliation:"清・中華民国",era:"近代",region:"中国",importance:3,period:"19〜20世紀",summary:"清末から中華民国初期に権力を握った政治家。",achievements:["北洋軍を掌握","清朝最後の皇帝の退位に関与","中華民国初代大総統"],traps:["孫文とは政治的に対立。"],aliases:["袁世凱"]},
+
+{id:"add_196",name:"孫文",en:"Sun Yat-sen",affiliation:"中国同盟会・中華民国",era:"近代",region:"中国",importance:3,period:"19〜20世紀",summary:"辛亥革命を指導し、中華民国を建国した革命家。",achievements:["中国同盟会を結成","三民主義","辛亥革命を指導"],traps:["袁世凱は革命後に大総統となった。"],aliases:["孫逸仙","孫中山","孫文"]},
+
+{id:"add_197",name:"蒋介石",en:"Chiang Kai-shek",affiliation:"中国国民党",era:"近現代",region:"中国",importance:3,period:"20世紀",summary:"国民政府を率い、国共内戦と日中戦争を戦った政治家。",achievements:["北伐を完成","国民政府を指導","日中戦争・国共内戦を指揮"],traps:["毛沢東は中国共産党側。"],aliases:["蔣介石","蒋介石"]},
+
+{id:"add_198",name:"毛沢東",en:"Mao Zedong",affiliation:"中国共産党",era:"近現代",region:"中国",importance:3,period:"20世紀",summary:"中華人民共和国を建国し、社会主義政策を推進した指導者。",achievements:["中国共産党を指導","1949年中華人民共和国成立","大躍進・文化大革命を推進"],traps:["蒋介石は国民党側。"],aliases:["毛沢東"]},
+
+{id:"add_199",name:"周恩来",en:"Zhou Enlai",affiliation:"中華人民共和国",era:"近現代",region:"中国",importance:3,period:"20世紀",summary:"中華人民共和国の初代首相。外交面で重要な役割を果たした。",achievements:["初代国務院総理","ジュネーヴ会議","バンドン会議"],traps:["毛沢東は党・国家の最高指導者、周恩来は首相として実務を担った。"],aliases:["周恩来"]},
+
+{id:"add_200",name:"鄧小平",en:"Deng Xiaoping",affiliation:"中華人民共和国",era:"近現代",region:"中国",importance:3,period:"20世紀",summary:"改革開放を推進し、中国経済の方向を大きく転換した指導者。",achievements:["改革開放","四つの現代化","市場経済導入を推進"],traps:["毛沢東の社会主義政策とは経済政策の方向が大きく異なる。"],aliases:["鄧小平"]},
+
+{id:"add_201",name:"習近平",en:"Xi Jinping",affiliation:"中華人民共和国",era:"現代",region:"中国",importance:2,period:"21世紀",summary:"中国共産党総書記・国家主席として中国政治を主導する現代の指導者。",achievements:["一帯一路構想","国家主席を務める","中国共産党の指導体制を強化"],traps:["鄧小平は改革開放を進めた20世紀の指導者。"],aliases:["習近平"]},
+
+{id:"add_202",name:"レーニン",en:"Vladimir Lenin",affiliation:"ロシア社会民主労働党・ボリシェヴィキ",era:"近現代",region:"ロシア",importance:3,period:"20世紀",summary:"ロシア革命を指導し、ソビエト政権を成立させた革命家。",achievements:["十月革命を指導","ソビエト政権を樹立","NEPを導入"],traps:["スターリンはレーニン死後に権力を強化。"],aliases:["ウラジーミル・レーニン","レーニン"]},
+
+{id:"add_203",name:"トロツキー",en:"Leon Trotsky",affiliation:"ロシア革命・ソ連",era:"近現代",region:"ロシア",importance:3,period:"20世紀",summary:"ロシア革命の指導者。赤軍を組織し、スターリンと対立した。",achievements:["十月革命に参加","赤軍を組織","世界革命論を主張"],traps:["スターリンの政敵として亡命・暗殺された。"],aliases:["レフ・トロツキー","トロツキー"]},
+
+{id:"add_204",name:"スターリン",en:"Joseph Stalin",affiliation:"ソ連",era:"近現代",region:"ロシア",importance:3,period:"20世紀",summary:"ソ連を長期支配し、強制的工業化・集団農場化を推進した指導者。",achievements:["五カ年計画","集団農場化","第二次世界大戦でソ連を指導"],traps:["レーニン死後に権力を強化した。"],aliases:["ヨシフ・スターリン","スターリン"]},
+
+{id:"add_205",name:"ニキータ＝フルシチョフ",en:"Nikita Khrushchev",affiliation:"ソ連",era:"近現代",region:"ロシア",importance:3,period:"20世紀",summary:"スターリン批判を行ったソ連指導者。キューバ危機期の指導者。",achievements:["スターリン批判","平和共存路線","キューバ危機"],traps:["ブレジネフはフルシチョフ失脚後の指導者。"],aliases:["フルシチョフ"]},
+
+{id:"add_206",name:"ブレジネフ",en:"Leonid Brezhnev",affiliation:"ソ連",era:"近現代",region:"ロシア",importance:2,period:"20世紀",summary:"ソ連の長期政権を率いた指導者。",achievements:["ソ連の軍事力を強化","東欧支配を維持","ブレジネフ＝ドクトリン"],traps:["フルシチョフの後継。"],aliases:["レオニード・ブレジネフ","ブレジネフ"]},
+
+{id:"add_207",name:"ゴルバチョフ",en:"Mikhail Gorbachev",affiliation:"ソ連",era:"近現代",region:"ロシア・東欧",importance:3,period:"20世紀",summary:"ペレストロイカとグラスノスチを進め、冷戦終結に関わったソ連指導者。",achievements:["ペレストロイカ","グラスノスチ","冷戦終結を促進"],traps:["ソ連最後の指導者。"],aliases:["ミハイル・ゴルバチョフ","ゴルバチョフ"]},
+
+{id:"add_208",name:"エリツィン",en:"Boris Yeltsin",affiliation:"ロシア連邦",era:"近現代",region:"ロシア",importance:2,period:"20世紀末",summary:"ソ連崩壊後のロシア連邦初代大統領。",achievements:["ロシア連邦初代大統領","ソ連解体後の政治を主導","市場経済化を推進"],traps:["ゴルバチョフはソ連最後の指導者。"],aliases:["ボリス・エリツィン","エリツィン"]},
+
+{id:"add_209",name:"ケレンスキー",en:"Alexander Kerensky",affiliation:"ロシア臨時政府",era:"近現代",region:"ロシア",importance:3,period:"20世紀",summary:"二月革命後のロシア臨時政府を率いた政治家。",achievements:["臨時政府を指導","第一次世界大戦を継続","十月革命で政権を失った"],traps:["レーニンはボリシェヴィキ側。"],aliases:["アレクサンドル・ケレンスキー","ケレンスキー"]},
+
+{id:"add_210",name:"フェリックス＝ジェルジンスキー",en:"Felix Dzerzhinsky",affiliation:"ソビエト政権",era:"近現代",region:"ロシア",importance:2,period:"20世紀",summary:"チェーカーを創設したソビエト政権の政治家。",achievements:["チェーカーを創設","革命政権の治安機関を整備","内戦期の赤色テロと関連"],traps:["レーニン政権初期の治安機関。"],aliases:["ジェルジンスキー"]},
+
+{id:"add_211",name:"ムッソリーニ",en:"Benito Mussolini",affiliation:"イタリア・ファシスト党",era:"近現代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"イタリアでファシスト政権を築いた独裁者。",achievements:["ファシスト党を率いた","1922年ローマ進軍","ファシズム体制を構築"],traps:["ヒトラーはドイツ、ムッソリーニはイタリア。"],aliases:["ベニート・ムッソリーニ","ムッソリーニ"]},
+
+{id:"add_212",name:"フランコ",en:"Francisco Franco",affiliation:"スペイン",era:"近現代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"スペイン内戦で勝利し、長期独裁体制を築いた軍人・政治家。",achievements:["スペイン内戦で勝利","フランコ独裁体制","第二次世界大戦で中立を維持"],traps:["ムッソリーニやヒトラーとは同盟関係だけで単純化しない。"],aliases:["フランシスコ・フランコ","フランコ"]},
+
+{id:"add_213",name:"チャーチル",en:"Winston Churchill",affiliation:"イギリス",era:"近現代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"第二次世界大戦期のイギリス首相。対ナチス戦争を指導した。",achievements:["第二次世界大戦を指導","連合国首脳会談","鉄のカーテン演説"],traps:["ローズヴェルトはアメリカ、チャーチルはイギリス。"],aliases:["ウィンストン・チャーチル","チャーチル"]},
+
+{id:"add_214",name:"フランクリン＝ローズヴェルト",en:"Franklin D. Roosevelt",affiliation:"アメリカ合衆国",era:"近現代",region:"アメリカ",importance:3,period:"20世紀",summary:"ニューディール政策と第二次世界大戦期のアメリカ大統領。",achievements:["ニューディール政策","第二次世界大戦で連合国を指導","大西洋憲章"],traps:["セオドア・ローズヴェルトとは別人。"],aliases:["FDR","フランクリン・ルーズベルト"]},
+
+{id:"add_215",name:"シャルル＝ド＝ゴール",en:"Charles de Gaulle",affiliation:"フランス",era:"近現代",region:"ヨーロッパ",importance:3,period:"20世紀",summary:"自由フランスを率い、戦後フランスの大統領となった政治家。",achievements:["自由フランスを指導","第五共和政を成立","フランスの独自外交を推進"],traps:["ペタンはヴィシー政権側。"],aliases:["ド・ゴール","シャルル・ド・ゴール"]},
+
+{id:"add_216",name:"ペタン",en:"Philippe Pétain",affiliation:"ヴィシー政権",era:"近現代",region:"フランス",importance:2,period:"20世紀",summary:"第二次世界大戦期のヴィシー政権の指導者。",achievements:["ヴィシー政権を率いた","ドイツ占領下で統治","対独協力政策"],traps:["ド・ゴールは自由フランス側。"],aliases:["フィリップ・ペタン","ペタン"]},
+
+{id:"add_217",name:"東條英機",en:"Hideki Tojo",affiliation:"日本",era:"近現代",region:"東アジア",importance:3,period:"20世紀",summary:"太平洋戦争期の日本の首相・陸軍軍人。",achievements:["1941年首相就任","太平洋戦争開戦期を指導","戦後A級戦犯として裁判"],traps:["近衛文麿は東條英機の前の首相。"],aliases:["東條英機","東条英機"]},
+
+{id:"add_218",name:"近衛文麿",en:"Fumimaro Konoe",affiliation:"日本",era:"近現代",region:"東アジア",importance:2,period:"20世紀",summary:"日中戦争期の日本の首相。",achievements:["近衛内閣","大政翼賛会","日独伊三国同盟の推進"],traps:["東條英機は近衛内閣後の首相。"],aliases:["近衛文麿"]},
+
+{id:"add_219",name:"溥儀",en:"Puyi",affiliation:"清・満州国",era:"近現代",region:"中国",importance:3,period:"20世紀",summary:"清朝最後の皇帝。満州国の執政・皇帝ともなった。",achievements:["清朝最後の皇帝","満州国皇帝","戦後に中国で再教育を受けた"],traps:["宣統帝は溥儀の皇帝号。"],aliases:["宣統帝","愛新覚羅溥儀","溥儀"]},
+
+{id:"add_220",name:"ガンディー",en:"Gandhi",affiliation:"インド国民会議",era:"近現代",region:"南アジア",importance:3,period:"20世紀",summary:"インド独立運動を非暴力で指導した人物。",achievements:["非協力運動","塩の行進","インド独立運動"],traps:["同一人物の別名として整理。"],aliases:["マハトマ・ガンディー","ガンディー"]},
+
+{id:"add_221",name:"マンデラ",en:"Nelson Mandela",affiliation:"南アフリカ",era:"近現代",region:"アフリカ",importance:3,period:"20世紀",summary:"アパルトヘイト撤廃を進め、南アフリカ初の黒人大統領となった人物。",achievements:["反アパルトヘイト運動","27年間投獄","民主化後に大統領"],traps:["ガンディーはインド独立運動。"],aliases:["ネルソン・マンデラ","マンデラ"]},
+
+{id:"add_222",name:"デズモンド＝ツツ",en:"Desmond Tutu",affiliation:"南アフリカ",era:"近現代",region:"アフリカ",importance:2,period:"20世紀",summary:"アパルトヘイト撤廃運動に関わった南アフリカの聖職者。",achievements:["反アパルトヘイト運動","真実和解委員会","ノーベル平和賞"],traps:["マンデラは政治指導者、ツツは宗教指導者。"],aliases:["デズモンド・ツツ"]},
+
+{id:"add_223",name:"クワメ＝エンクルマ",en:"Kwame Nkrumah",affiliation:"ガーナ",era:"近現代",region:"アフリカ",importance:3,period:"20世紀",summary:"ガーナ独立を指導し、アフリカ民族主義を推進した政治家。",achievements:["ガーナ独立","初代首相・大統領","パン・アフリカ主義"],traps:["ネルー・ナセルらと非同盟外交でも関係。"],aliases:["エンクルマ"]},
+
+{id:"add_224",name:"ジュリウス＝ニエレレ",en:"Julius Nyerere",affiliation:"タンザニア",era:"近現代",region:"アフリカ",importance:2,period:"20世紀",summary:"タンザニア独立を指導し、アフリカ社会主義を推進した政治家。",achievements:["タンガニーカ独立","タンザニア建国","ウジャマー社会主義"],traps:["ガーナのエンクルマとは別のアフリカ指導者。"],aliases:["ニエレレ"]},
+
+{id:"add_225",name:"パトリス＝ルムンバ",en:"Patrice Lumumba",affiliation:"コンゴ",era:"近現代",region:"アフリカ",importance:3,period:"20世紀",summary:"コンゴ独立運動を指導し、初代首相となった政治家。",achievements:["コンゴ独立","初代首相","コンゴ危機で失脚・暗殺"],traps:["レオポルド2世の時代とは異なる植民地解放期。"],aliases:["ルムンバ"]},
+
+{id:"add_226",name:"ハイレ＝セラシエ1世",en:"Haile Selassie I",affiliation:"エチオピア",era:"近現代",region:"アフリカ",importance:2,period:"20世紀",summary:"エチオピア皇帝。イタリアの侵略に抵抗し、アフリカ統一運動に関わった。",achievements:["イタリア侵略への抵抗","国際連盟で訴え","アフリカ統一機構設立に関与"],traps:["ムッソリーニのイタリアと対立。"],aliases:["ハイレ・セラシエ"]},
+
+{id:"add_227",name:"メンデス＝フランス",en:"Pierre Mendès France",affiliation:"フランス",era:"近現代",region:"ヨーロッパ",importance:1,period:"20世紀",summary:"フランス第四共和政期の首相。植民地問題への対応で知られる。",achievements:["フランス首相","インドシナ戦争終結に関与","チュニジア独立交渉を進めた"],traps:["19世紀帝国主義者ではなく20世紀の政治家。"],aliases:["ピエール・マンデス＝フランス"]},
+
+{id:"add_228",name:"アダム＝スミス",en:"Adam Smith",affiliation:"啓蒙思想・古典派経済学",era:"近代",region:"西ヨーロッパ",importance:3,period:"18世紀",summary:"『国富論』を著し、自由放任的な経済思想を展開した経済学者。",achievements:["『国富論』","分業論","自由競争を重視"],traps:["マルクスは資本主義を批判した経済思想家。"],aliases:["アダム・スミス"]},
+
+{id:"add_229",name:"デイヴィッド＝リカード",en:"David Ricardo",affiliation:"古典派経済学",era:"近代",region:"イギリス",importance:2,period:"19世紀",summary:"古典派経済学を代表する経済学者。比較優位論で知られる。",achievements:["比較生産費説","自由貿易論","古典派経済学を発展"],traps:["アダム＝スミスより後の人物。"],aliases:["リカード"]},
+
+{id:"add_230",name:"トマス＝マルサス",en:"Thomas Malthus",affiliation:"古典派経済学",era:"近代",region:"イギリス",importance:2,period:"18〜19世紀",summary:"人口論を著した経済学者。",achievements:["『人口論』","人口増加と食料問題を論じた","古典派経済学に影響"],traps:["ダーウィンの進化論にも影響を与えた。"],aliases:["マルサス"]},
+
+{id:"add_231",name:"フリードリヒ＝エンゲルス",en:"Friedrich Engels",affiliation:"社会主義",era:"近代",region:"ヨーロッパ",importance:3,period:"19世紀",summary:"マルクスとともに科学的社会主義を形成した思想家。",achievements:["『共産党宣言』をマルクスと執筆","『イギリスにおける労働者階級の状態』","マルクスを経済的に支援"],traps:["マルクスと共同で社会主義思想を発展。"],aliases:["エンゲルス"]},
+
+{id:"add_232",name:"ヘーゲル",en:"Georg Hegel",affiliation:"ドイツ哲学",era:"近代",region:"ヨーロッパ",importance:2,period:"18〜19世紀",summary:"弁証法を発展させたドイツ観念論の哲学者。",achievements:["弁証法","ドイツ観念論","マルクス思想に影響"],traps:["マルクスはヘーゲルの思想を批判的に継承。"],aliases:["ヘーゲル"]},
+
+{id:"add_233",name:"デカルト",en:"René Descartes",affiliation:"近代哲学",era:"近代",region:"西ヨーロッパ",importance:3,period:"17世紀",summary:"合理論を代表するフランスの哲学者・数学者。",achievements:["方法的懐疑","『我思う、ゆえに我あり』","合理論を発展"],traps:["経験論のロックとは対照的。"],aliases:["ルネ・デカルト","デカルト"]},
+
+{id:"add_234",name:"ジョン＝ロック",en:"John Locke",affiliation:"イギリス経験論",era:"近代",region:"イギリス",importance:3,period:"17世紀",summary:"自然権と社会契約を説いたイギリスの思想家。",achievements:["自然権","抵抗権","社会契約論"],traps:["ルソーは後世の社会契約論者。"],aliases:["ロック","ジョン・ロック"]},
+
+{id:"add_235",name:"モンテスキュー",en:"Montesquieu",affiliation:"啓蒙思想",era:"近代",region:"フランス",importance:3,period:"18世紀",summary:"三権分立を説いたフランス啓蒙思想家。",achievements:["三権分立","『法の精神』","権力分立論"],traps:["ルソーは人民主権を重視。"],aliases:["モンテスキュー"]},
+
+{id:"add_236",name:"ルソー",en:"Jean-Jacques Rousseau",affiliation:"啓蒙思想",era:"近代",region:"フランス",importance:3,period:"18世紀",summary:"人民主権と一般意志を説いた思想家。",achievements:["『社会契約論』","人民主権","一般意志"],traps:["モンテスキューは三権分立。"],aliases:["ジャン＝ジャック・ルソー","ルソー"]},
+
+{id:"add_237",name:"ヴォルテール",en:"Voltaire",affiliation:"啓蒙思想",era:"近代",region:"フランス",importance:3,period:"18世紀",summary:"宗教的寛容や自由を主張した啓蒙思想家。",achievements:["宗教的寛容","言論の自由を擁護","啓蒙専制君主と交流"],traps:["ルソーとは思想的立場に違いがある。"],aliases:["ヴォルテール"]},
+
+{id:"add_238",name:"ディドロ",en:"Denis Diderot",affiliation:"啓蒙思想",era:"近代",region:"フランス",importance:3,period:"18世紀",summary:"『百科全書』を編集した啓蒙思想家。",achievements:["『百科全書』を編集","知識の普及を推進","教会権威を批判"],traps:["百科全書派の中心人物。"],aliases:["ディドロ"]},
+
+{id:"add_239",name:"エラスムス",en:"Erasmus",affiliation:"北方ルネサンス",era:"近世",region:"西ヨーロッパ",importance:3,period:"16世紀",summary:"北方ルネサンスを代表する人文主義者。",achievements:["『愚神礼讃』","キリスト教内部の改革を主張","古典研究を推進"],traps:["ルターとは宗教改革への立場が異なる。"],aliases:["エラスムス"]},
+
+{id:"add_240",name:"ルター",en:"Martin Luther",affiliation:"宗教改革",era:"近世",region:"ドイツ",importance:3,period:"16世紀",summary:"宗教改革を開始した神学者。",achievements:["95か条の論題","信仰義認","聖書中心主義"],traps:["カルヴァンはスイス・ジュネーヴを中心に活動。"],aliases:["マルティン・ルター","ルター"]},
+
+{id:"add_241",name:"カルヴァン",en:"John Calvin",affiliation:"宗教改革",era:"近世",region:"西ヨーロッパ",importance:3,period:"16世紀",summary:"予定説を説き、ジュネーヴで宗教改革を進めた神学者。",achievements:["予定説","ジュネーヴ改革","カルヴァン派形成"],traps:["ルター派とカルヴァン派を区別。"],aliases:["ジャン・カルヴァン","カルヴァン"]},
+
+{id:"add_242",name:"ツヴィングリ",en:"Huldrych Zwingli",affiliation:"宗教改革",era:"近世",region:"スイス",importance:2,period:"16世紀",summary:"スイスで宗教改革を進めた神学者。",achievements:["チューリヒ宗教改革","聖書中心主義","カトリック教会の制度を批判"],traps:["カルヴァンはジュネーヴで活動。"],aliases:["ツヴィングリ"]},
+
+{id:"add_243",name:"コペルニクス",en:"Nicolaus Copernicus",affiliation:"科学革命",era:"近世",region:"ヨーロッパ",importance:3,period:"16世紀",summary:"地動説を提唱した天文学者。",achievements:["地動説","『天球の回転について』","科学革命の先駆者"],traps:["ガリレオは観測によって地動説を支持。"],aliases:["ニコラウス・コペルニクス","コペルニクス"]},
+
+{id:"add_244",name:"ガリレオ＝ガリレイ",en:"Galileo Galilei",affiliation:"科学革命",era:"近世",region:"イタリア",importance:3,period:"17世紀",summary:"望遠鏡観測と地動説支持で知られる科学者。",achievements:["望遠鏡による天体観測","地動説を支持","科学的方法を発展"],traps:["コペルニクスは地動説提唱者。"],aliases:["ガリレオ"]},
+
+{id:"add_245",name:"ニュートン",en:"Isaac Newton",affiliation:"科学革命",era:"近世",region:"イギリス",importance:3,period:"17〜18世紀",summary:"万有引力と運動法則を体系化した科学者。",achievements:["万有引力の法則","運動の三法則","『プリンキピア』"],traps:["ガリレオより後の科学者。"],aliases:["アイザック・ニュートン","ニュートン"]},
+
+{id:"add_246",name:"フランシス＝ベーコン",en:"Francis Bacon",affiliation:"近代哲学・科学",era:"近世",region:"イギリス",importance:2,period:"16〜17世紀",summary:"経験と実験を重視した近代科学思想の先駆者。",achievements:["経験論的科学方法","帰納法","知識の実用性を重視"],traps:["デカルトは合理論。"],aliases:["フランシス・ベーコン"]},
+
+{id:"add_247",name:"トマス＝ホッブズ",en:"Thomas Hobbes",affiliation:"近代政治思想",era:"近世",region:"イギリス",importance:2,period:"17世紀",summary:"『リヴァイアサン』で社会契約論を展開した思想家。",achievements:["社会契約論","強い主権国家を擁護","『リヴァイアサン』"],traps:["ロックは人民の抵抗権を認めた。"],aliases:["ホッブズ"]},
+
+{id:"add_248",name:"ベンサム",en:"Jeremy Bentham",affiliation:"功利主義",era:"近代",region:"イギリス",importance:2,period:"18〜19世紀",summary:"最大多数の最大幸福を唱えた功利主義者。",achievements:["功利主義","最大多数の最大幸福","刑法・政治改革を主張"],traps:["ミルは後継的な功利主義思想家。"],aliases:["ジェレミー・ベンサム","ベンサム"]},
+
+{id:"add_249",name:"J.S.ミル",en:"John Stuart Mill",affiliation:"功利主義・自由主義",era:"近代",region:"イギリス",importance:3,period:"19世紀",summary:"自由主義と功利主義を代表する思想家。",achievements:["『自由論』","功利主義を発展","女性参政権を支持"],traps:["ベンサムより後の功利主義者。"],aliases:["ジョン・スチュアート・ミル","ミル"]},
+
+{id:"add_250",name:"ダーウィン",en:"Charles Darwin",affiliation:"自然科学",era:"近代",region:"イギリス",importance:3,period:"19世紀",summary:"進化論・自然選択説を提唱した自然科学者。",achievements:["自然選択説","『種の起源』","生物進化思想を確立"],traps:["社会ダーウィニズムとは区別する。"],aliases:["チャールズ・ダーウィン","ダーウィン"]},
+
+{id:"add_251",name:"フロイト",en:"Sigmund Freud",affiliation:"精神分析",era:"近現代",region:"ヨーロッパ",importance:2,period:"19〜20世紀",summary:"精神分析学を創始した思想家・医師。",achievements:["無意識の概念","精神分析学","夢分析"],traps:["ダーウィンは生物学、フロイトは心理学。"],aliases:["ジークムント・フロイト","フロイト"]},
+
+{id:"add_252",name:"マックス＝ウェーバー",en:"Max Weber",affiliation:"社会科学",era:"近現代",region:"ドイツ",importance:2,period:"19〜20世紀",summary:"近代社会学を代表するドイツの社会学者。",achievements:["『プロテスタンティズムの倫理と資本主義の精神』","官僚制論","近代化研究"],traps:["マルクスとは異なる社会科学的分析。"],aliases:["マックス・ウェーバー"]},
+
+{id:"add_253",name:"カール＝マルクス",en:"Karl Marx",affiliation:"科学的社会主義",era:"近代",region:"ヨーロッパ",importance:3,period:"19世紀",summary:"資本主義を批判し、科学的社会主義を発展させた思想家。",achievements:["『資本論』","『共産党宣言』","階級闘争論"],traps:["エンゲルスと共同で社会主義思想を発展。"],aliases:["マルクス","カール・マルクス"]},
+
+{id:"add_254",name:"ミケランジェロ",en:"Michelangelo",affiliation:"ルネサンス",era:"近世",region:"イタリア",importance:3,period:"15〜16世紀",summary:"盛期ルネサンスを代表する芸術家。",achievements:["システィーナ礼拝堂天井画","彫刻『ダヴィデ』","サン・ピエトロ大聖堂に関与"],traps:["レオナルド・ダ・ヴィンチとは別の芸術家。"],aliases:["ミケランジェロ"]},
+
+{id:"add_255",name:"ラファエロ",en:"Raphael",affiliation:"ルネサンス",era:"近世",region:"イタリア",importance:2,period:"15〜16世紀",summary:"盛期ルネサンスを代表する画家。",achievements:["『アテネの学堂』","ローマで活動","ルネサンス美術を代表"],traps:["ミケランジェロ・レオナルドとともに盛期ルネサンス。"],aliases:["ラファエロ"]},
+
+{id:"add_256",name:"レオナルド＝ダ＝ヴィンチ",en:"Leonardo da Vinci",affiliation:"ルネサンス",era:"近世",region:"イタリア",importance:3,period:"15〜16世紀",summary:"芸術・科学の双方で活動したルネサンス人。",achievements:["『モナ・リザ』","『最後の晩餐』","科学・解剖学研究"],traps:["ミケランジェロと対立関係にあった時期がある。"],aliases:["レオナルド・ダ・ヴィンチ"]},
+
+{id:"add_257",name:"マキャヴェリ",en:"Niccolò Machiavelli",affiliation:"ルネサンス政治思想",era:"近世",region:"イタリア",importance:3,period:"16世紀",summary:"『君主論』を著した政治思想家。",achievements:["『君主論』","現実主義的政治論","フィレンツェ共和国で外交活動"],traps:["宗教改革者ではなく政治思想家。"],aliases:["ニッコロ・マキャヴェリ","マキャヴェリ"]},
+
+{id:"add_258",name:"セルバンテス",en:"Miguel de Cervantes",affiliation:"スペイン文学",era:"近世",region:"イベリア半島",importance:2,period:"16〜17世紀",summary:"『ドン＝キホーテ』を著したスペイン文学者。",achievements:["『ドン・キホーテ』","近代小説の発展に影響","スペイン文学を代表"],traps:["シェイクスピアはイギリス。"],aliases:["セルバンテス"]},
+
+{id:"add_259",name:"シェイクスピア",en:"William Shakespeare",affiliation:"イギリス文学",era:"近世",region:"イギリス",importance:3,period:"16〜17世紀",summary:"イギリス・ルネサンス演劇を代表する劇作家。",achievements:["悲劇・喜劇を多数執筆","イギリス演劇を発展","世界文学に大きな影響"],traps:["セルバンテスはスペイン文学。"],aliases:["ウィリアム・シェイクスピア","シェイクスピア"]},
+
+{id:"add_260",name:"ゲーテ",en:"Johann Wolfgang von Goethe",affiliation:"ドイツ文学",era:"近代",region:"ドイツ",importance:2,period:"18〜19世紀",summary:"ドイツ文学を代表する文豪。",achievements:["『ファウスト』","ドイツ文学の発展","ワイマール古典主義"],traps:["シラーとともにドイツ文学史で重要。"],aliases:["ゲーテ"]},
+
+{id:"add_261",name:"シラー",en:"Friedrich Schiller",affiliation:"ドイツ文学",era:"近代",region:"ドイツ",importance:1,period:"18〜19世紀",summary:"ドイツの詩人・劇作家。ゲーテと交流した。",achievements:["『群盗』","『ウィリアム・テル』","ワイマール古典主義"],traps:["ゲーテと同時代のドイツ文学者。"],aliases:["シラー"]},
+
+{id:"add_262",name:"ベートーヴェン",en:"Ludwig van Beethoven",affiliation:"西洋音楽",era:"近代",region:"ヨーロッパ",importance:2,period:"18〜19世紀",summary:"古典派からロマン派への転換を代表する作曲家。",achievements:["交響曲第9番","交響曲第5番","音楽史に大きな影響"],traps:["モーツァルトより後の世代。"],aliases:["ルートヴィヒ・ヴァン・ベートーヴェン","ベートーベン"]},
+
+{id:"add_263",name:"モーツァルト",en:"Wolfgang Amadeus Mozart",affiliation:"西洋音楽",era:"近世",region:"ヨーロッパ",importance:2,period:"18世紀",summary:"古典派を代表する作曲家。",achievements:["多くの交響曲・協奏曲・オペラ","『フィガロの結婚』","古典派音楽を代表"],traps:["ベートーヴェンより前の世代。"],aliases:["モーツァルト"]},
+
+{id:"add_264",name:"ゴヤ",en:"Francisco Goya",affiliation:"スペイン美術",era:"近代",region:"ヨーロッパ",importance:1,period:"18〜19世紀",summary:"スペインを代表する画家。戦争や社会を題材とした作品で知られる。",achievements:["『1808年5月3日』","宮廷画家","近代絵画への影響"],traps:["ルネサンス期の画家ではない。"],aliases:["フランシスコ・ゴヤ","ゴヤ"]},
+
+{id:"add_265",name:"オーギュスト＝コント",en:"Auguste Comte",affiliation:"社会学・実証主義",era:"近代",region:"フランス",importance:2,period:"19世紀",summary:"実証主義を提唱し、社会学という学問の形成に影響した思想家。",achievements:["実証主義","社会学を提唱","三段階の法則"],traps:["マルクスとは異なる社会分析。"],aliases:["コント"]},
+
+{id:"add_266",name:"ニーチェ",en:"Friedrich Nietzsche",affiliation:"近代哲学",era:"近代",region:"ドイツ",importance:2,period:"19世紀",summary:"伝統的道徳やキリスト教価値を批判した哲学者。",achievements:["超人思想","価値の転換","ニヒリズム論"],traps:["フロイトとは異なる分野。"],aliases:["ニーチェ"]},
+
+{id:"add_267",name:"キルケゴール",en:"Søren Kierkegaard",affiliation:"近代哲学",era:"近代",region:"デンマーク",importance:1,period:"19世紀",summary:"実存主義の先駆者とされる思想家。",achievements:["主体的真理","実存思想","個人の選択と信仰を重視"],traps:["ニーチェとともに近代実存思想の先駆者。"],aliases:["キルケゴール"]},
+
+{id:"add_268",name:"マックス＝プランク",en:"Max Planck",affiliation:"科学",era:"近現代",region:"ドイツ",importance:1,period:"19〜20世紀",summary:"量子論の創始者の一人。",achievements:["量子仮説","プランク定数","現代物理学の基礎"],traps:["アインシュタインは相対性理論。"],aliases:["マックス・プランク"]},
+
+{id:"add_269",name:"アインシュタイン",en:"Albert Einstein",affiliation:"物理学",era:"近現代",region:"ヨーロッパ・アメリカ",importance:3,period:"20世紀",summary:"相対性理論を構築した物理学者。",achievements:["特殊相対性理論","一般相対性理論","ノーベル物理学賞"],traps:["ニュートンは古典力学。"],aliases:["アルベルト・アインシュタイン","アインシュタイン"]},
+
+{id:"add_270",name:"フレミング",en:"Alexander Fleming",affiliation:"医学・科学",era:"近現代",region:"イギリス",importance:2,period:"20世紀",summary:"ペニシリンを発見した科学者。",achievements:["ペニシリン発見","感染症治療に革命","ノーベル生理学・医学賞"],traps:["ワクチン研究者とは区別。"],aliases:["アレクサンダー・フレミング","フレミング"]},
+
+{id:"add_271",name:"ライト兄弟",en:"Wright Brothers",affiliation:"航空技術",era:"近現代",region:"アメリカ",importance:2,period:"20世紀",summary:"動力飛行機の実用的飛行に成功した兄弟。",achievements:["1903年動力飛行","航空技術を発展","近代航空史の先駆者"],traps:["航空機研究の初期段階と区別。"],aliases:["ライト兄弟","オービル・ライト","ウィルバー・ライト"]},
+
+{id:"add_272",name:"グラハム＝ベル",en:"Alexander Graham Bell",affiliation:"科学技術",era:"近代",region:"アメリカ",importance:1,period:"19世紀",summary:"電話の実用化で知られる発明家。",achievements:["電話の実用化","通信技術の発展","ベル電話会社につながる事業"],traps:["エジソンは電灯などで知られる。"],aliases:["アレクサンダー・グラハム・ベル"]},
+
+{id:"add_273",name:"エジソン",en:"Thomas Edison",affiliation:"科学技術",era:"近代",region:"アメリカ",importance:2,period:"19〜20世紀",summary:"電灯・蓄音機などの発明と実用化で知られる発明家。",achievements:["白熱電灯の実用化","蓄音機","発明研究所を設立"],traps:["ベルは電話。"],aliases:["トーマス・エジソン","エジソン"]},
+
+{id:"add_274",name:"ジョージ＝ワシントン",en:"George Washington",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:3,period:"18世紀",summary:"アメリカ独立戦争の総司令官で、初代大統領。",achievements:["独立戦争総司令官","アメリカ初代大統領","連邦政府の基礎を形成"],traps:["ジェファソンは第3代大統領。"],aliases:["ジョージ・ワシントン","ワシントン"]},
+
+{id:"add_275",name:"ベンジャミン＝フランクリン",en:"Benjamin Franklin",affiliation:"アメリカ独立革命",era:"近代",region:"アメリカ",importance:3,period:"18世紀",summary:"アメリカ独立革命の政治家・外交官・科学者。",achievements:["独立宣言に関与","フランスからの支援を獲得","アメリカ外交を担当"],traps:["ワシントンは軍事指導者、フランクリンは外交・政治で重要。"],aliases:["ベンジャミン・フランクリン","フランクリン"]},
+
+{id:"add_276",name:"アレクサンダー＝ハミルトン",en:"Alexander Hamilton",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:2,period:"18世紀",summary:"アメリカ合衆国の初期財政制度を築いた政治家。",achievements:["初代財務長官","連邦政府の財政制度を構築","中央政府の強化を主張"],traps:["ジェファソンとは政治的に対立。"],aliases:["ハミルトン"]},
+
+{id:"add_277",name:"トマス＝ジェファソン",en:"Thomas Jefferson",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:3,period:"18〜19世紀",summary:"アメリカ独立宣言の起草者の一人で、第3代大統領。",achievements:["独立宣言","第3代大統領","ルイジアナ購入"],traps:["ワシントンは初代大統領。"],aliases:["トーマス・ジェファーソン","トマス・ジェファソン"]},
+
+{id:"add_278",name:"ジェームズ＝マディソン",en:"James Madison",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:2,period:"18〜19世紀",summary:"アメリカ合衆国憲法制定と初期政治に関わった政治家。",achievements:["合衆国憲法制定に関与","権利章典に関与","第4代大統領"],traps:["ジェファソンの後継世代。"],aliases:["ジェームズ・マディソン"]},
+
+{id:"add_279",name:"エイブラハム＝リンカン",en:"Abraham Lincoln",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:3,period:"19世紀",summary:"南北戦争期の大統領。奴隷解放宣言を発した。",achievements:["奴隷解放宣言","南北戦争を指導","合衆国の統一を維持"],traps:["南部連合のジェファソン・デイヴィスと対立。"],aliases:["リンカーン","エイブラハム・リンカン"]},
+
+{id:"add_280",name:"ジェファソン＝デイヴィス",en:"Jefferson Davis",affiliation:"アメリカ南部連合",era:"近代",region:"アメリカ",importance:2,period:"19世紀",summary:"南北戦争期のアメリカ南部連合大統領。",achievements:["南部連合を指導","南北戦争で南軍を統率","奴隷制維持を支持"],traps:["リンカンは北部合衆国側。"],aliases:["ジェファソン・デイヴィス"]},
+
+{id:"add_281",name:"シモン＝ボリバル",en:"Simón Bolívar",affiliation:"ラテンアメリカ独立運動",era:"近代",region:"南アメリカ",importance:3,period:"19世紀",summary:"南米北部の独立運動を指導した革命家。",achievements:["ベネズエラ・コロンビアなどの独立運動","大コロンビア構想","南米独立運動を主導"],traps:["サン＝マルティンは南米南部で活躍。"],aliases:["シモン・ボリバル","ボリバル"]},
+
+{id:"add_282",name:"サン＝マルティン",en:"José de San Martín",affiliation:"ラテンアメリカ独立運動",era:"近代",region:"南アメリカ",importance:3,period:"19世紀",summary:"南米南部の独立運動を指導した軍人。",achievements:["アルゼンチン独立に貢献","チリ独立に貢献","ペルー独立を支援"],traps:["ボリバルは南米北部を中心に活動。"],aliases:["ホセ・デ・サン・マルティン","サン・マルティン"]},
+
+{id:"add_283",name:"イダルゴ",en:"Miguel Hidalgo",affiliation:"メキシコ独立運動",era:"近代",region:"中南米",importance:2,period:"19世紀",summary:"メキシコ独立運動の先駆者。",achievements:["ドロレスの叫び","メキシコ独立運動を開始","植民地支配に反抗"],traps:["メキシコ独立は最終的にイトゥルビデらの時代に成立。"],aliases:["ミゲル・イダルゴ"]},
+
+{id:"add_284",name:"イトゥルビデ",en:"Agustín de Iturbide",affiliation:"メキシコ",era:"近代",region:"中南米",importance:2,period:"19世紀",summary:"メキシコ独立を実現し、皇帝となった軍人。",achievements:["メキシコ独立","メキシコ帝国皇帝","独立運動を保守派と統合"],traps:["イダルゴは独立運動初期。"],aliases:["アグスティン・デ・イトゥルビデ","イトゥルビデ"]},
+
+{id:"add_285",name:"ベニート＝フアレス",en:"Benito Juárez",affiliation:"メキシコ",era:"近代",region:"中南米",importance:2,period:"19世紀",summary:"メキシコの自由主義改革を進めた大統領。",achievements:["自由主義改革","教会財産の世俗化","フランス介入に抵抗"],traps:["マクシミリアンはフランス支援のメキシコ皇帝。"],aliases:["ベニート・フアレス"]},
+
+{id:"add_286",name:"マクシミリアン",en:"Maximilian I of Mexico",affiliation:"メキシコ帝国",era:"近代",region:"中南米",importance:2,period:"19世紀",summary:"フランスの支援でメキシコ皇帝となったハプスブルク家の人物。",achievements:["メキシコ皇帝に即位","ナポレオン3世の支援を受けた","フアレス側に敗北"],traps:["オーストリア皇帝ではなくメキシコ皇帝。"],aliases:["マクシミリアン","メキシコ皇帝マクシミリアン"]},
+
+{id:"add_287",name:"メッテルニヒ",en:"Klemens von Metternich",affiliation:"オーストリア帝国",era:"近代",region:"ヨーロッパ",importance:3,period:"19世紀",summary:"ウィーン体制を主導したオーストリアの外交家。",achievements:["ウィーン会議","正統主義","自由主義・民族主義運動を抑制"],traps:["ビスマルクはドイツ統一を進めた人物。"],aliases:["クレメンス・フォン・メッテルニヒ","メッテルニヒ"]},
+
+{id:"add_288",name:"ビスマルク",en:"Otto von Bismarck",affiliation:"プロイセン・ドイツ帝国",era:"近代",region:"ヨーロッパ",importance:3,period:"19世紀",summary:"ドイツ統一を実現し、ドイツ帝国初代宰相となった政治家。",achievements:["鉄血政策","ドイツ帝国成立","社会保険制度を整備"],traps:["メッテルニヒはオーストリア、ビスマルクはプロイセン・ドイツ。"],aliases:["オットー・フォン・ビスマルク","ビスマルク"]},
+
+{id:"add_289",name:"ヴィルヘルム1世",en:"Wilhelm I",affiliation:"プロイセン・ドイツ帝国",era:"近代",region:"ヨーロッパ",importance:3,period:"19世紀",summary:"ドイツ帝国初代皇帝。ビスマルクとともにドイツ統一を実現した。",achievements:["プロイセン国王","ドイツ帝国初代皇帝","普仏戦争後に皇帝即位"],traps:["ヴィルヘルム2世は孫の世代。"],aliases:["ヴィルヘルム1世"]},
+
+{id:"add_290",name:"ヴィルヘルム2世",en:"Wilhelm II",affiliation:"ドイツ帝国",era:"近代",region:"ヨーロッパ",importance:3,period:"19〜20世紀",summary:"ドイツ帝国最後の皇帝。世界政策を推進した。",achievements:["ビスマルクを罷免","世界政策","第一次世界大戦で敗北し退位"],traps:["ヴィルヘルム1世はドイツ帝国初代皇帝。"],aliases:["ヴィルヘルム2世"]},
+
+{id:"add_291",name:"レーニン",en:"Lenin",affiliation:"ソ連",era:"近現代",region:"ロシア",importance:3,period:"20世紀",summary:"ロシア革命を指導した革命家。",achievements:["十月革命","ソビエト政権","新経済政策"],traps:["同一人物の別名。"],aliases:["ウラジーミル・レーニン","レーニン"]},
+
+{id:"add_292",name:"ルーズベルト",en:"Theodore Roosevelt",affiliation:"アメリカ合衆国",era:"近代",region:"アメリカ",importance:2,period:"20世紀初頭",summary:"進歩主義改革と外交政策で知られるアメリカ大統領。",achievements:["革新主義政策","パナマ運河建設を推進","棍棒外交"],traps:["フランクリン・ローズヴェルトとは別人。"],aliases:["セオドア・ルーズベルト","セオドア・ローズヴェルト"]},
+
+{id:"add_293",name:"ヘンリー＝フォード",en:"Henry Ford",affiliation:"アメリカ産業",era:"近現代",region:"アメリカ",importance:2,period:"20世紀",summary:"大量生産方式を自動車産業に導入した実業家。",achievements:["T型フォード","ベルトコンベア式大量生産","大衆消費社会の発展に影響"],traps:["発明家というより大量生産・産業システムで重要。"],aliases:["ヘンリー・フォード"]},
+
+{id:"add_294",name:"アンドリュー＝カーネギー",en:"Andrew Carnegie",affiliation:"アメリカ産業",era:"近代",region:"アメリカ",importance:1,period:"19世紀",summary:"鉄鋼産業で巨富を築いた実業家。慈善事業でも知られる。",achievements:["鉄鋼産業を拡大","カーネギー鉄鋼会社","図書館などへの慈善活動"],traps:["ロックフェラーは石油産業。"],aliases:["アンドリュー・カーネギー"]},
+
+{id:"add_295",name:"ジョン＝ロックフェラー",en:"John D. Rockefeller",affiliation:"アメリカ産業",era:"近代",region:"アメリカ",importance:1,period:"19世紀",summary:"石油産業で巨大企業を築いたアメリカの実業家。",achievements:["スタンダード・オイル","石油産業を支配","大規模な慈善活動"],traps:["カーネギーは鉄鋼、ロックフェラーは石油。"],aliases:["ジョン・D・ロックフェラー","ロックフェラー"]},
+
+{id:"add_296",name:"ヘンリー8世",en:"Henry VIII",affiliation:"イングランド王国",era:"近世",region:"イギリス",importance:3,period:"在位1509〜1547年",summary:"イングランド国教会成立につながる宗教改革を進めた国王。",achievements:["国王至上法","ローマ教皇と断絶","イングランド国教会成立"],traps:["エリザベス1世はヘンリー8世の娘。"],aliases:["ヘンリー8世"]},
+
+{id:"add_297",name:"メアリー1世",en:"Mary I",affiliation:"イングランド王国",era:"近世",region:"イギリス",importance:2,period:"在位1553〜1558年",summary:"カトリック復帰を進めたイングランド女王。",achievements:["カトリック復帰政策","プロテスタントを弾圧","エリザベス1世の前王"],traps:["エリザベス1世はプロテスタント政策。"],aliases:["メアリー1世"]},
+
+{id:"add_298",name:"ジェームズ1世",en:"James I",affiliation:"イングランド王国",era:"近世",region:"イギリス",importance:2,period:"在位1603〜1625年",summary:"ステュアート朝初代イングランド王。王権神授説を主張した。",achievements:["ステュアート朝開始","王権神授説","イングランドとスコットランドを同君連合"],traps:["チャールズ1世の父。"],aliases:["ジェームズ1世"]},
+
+{id:"add_299",name:"チャールズ1世",en:"Charles I",affiliation:"イングランド王国",era:"近世",region:"イギリス",importance:3,period:"在位1625〜1649年",summary:"イングランド内戦で議会派と対立し、処刑された国王。",achievements:["議会と対立","イングランド内戦","1649年処刑"],traps:["クロムウェルは議会派の指導者。"],aliases:["チャールズ1世"]},
+
+{id:"add_300",name:"オリバー＝クロムウェル",en:"Oliver Cromwell",affiliation:"イングランド共和国",era:"近世",region:"イギリス",importance:3,period:"17世紀",summary:"イングランド内戦で議会派を率い、共和国期に護国卿となった人物。",achievements:["国王軍を破る","チャールズ1世処刑後の共和国","護国卿として統治"],traps:["チャールズ1世は王党派、クロムウェルは議会派。"],aliases:["オリヴァー・クロムウェル","クロムウェル"]}
+  ];
 /* ===== データ正規化 ===== */
 const EXTRA_NAMES = {
   "akbar_extra":"バーブル"
